@@ -1,3 +1,8 @@
+#
+# Default excludes
+#
+
+# Binaries
 *.7z
 *.dmg
 *.gz
@@ -10,7 +15,11 @@
 *.ear
 *.sar
 *.class
+
+# Maven 
 target/
+
+# NetBeans specific
 nbproject/private/
 build/
 nbbuild/
@@ -18,7 +27,33 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+
+# Misc
 *.swp
 release.properties
 pom.xml.releaseBackup
 pom.xml.tag
+
+# Image
+*.jpg
+*.gif
+*.png
+*.svg
+*.ico
+
+# Video
+*.wmv
+*.mpg
+*.mpeg
+*.mp4
+*.mov
+*.flv
+*.avi
+*.ogv
+*.ogg
+*.webm
+
+# Audio
+*.wav
+*.mp3
+*.wma

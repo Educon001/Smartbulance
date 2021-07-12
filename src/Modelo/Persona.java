@@ -14,8 +14,6 @@ public class Persona {
     public Persona() {
         entradaSalida = new ArrayList<>();
     }
-
-    
     
     public long getCedula() {
         return cedula;
@@ -56,6 +54,10 @@ public class Persona {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public ArrayList<Turno> getEntradaSalida() {
+        return entradaSalida;
+    }
     
     public void registrarEntradaSalida(Turno turno){
         entradaSalida.add(turno);
@@ -64,4 +66,5 @@ public class Persona {
     public Turno ultimaEntradaSalida(){
         return entradaSalida.get(entradaSalida.size()-1);
     }
+
 }

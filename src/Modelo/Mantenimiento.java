@@ -1,14 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Modelo;
 
-/**
- *
- * @author jdfer
- */
-class Mantenimiento {
+class Mantenimiento extends Turno {
+    
+    private String taller;
+    private String descripcion;
+
+    public Mantenimiento() {
+    }
+
+    public String getTaller() {
+        return taller;
+    }
+
+    public void setTaller(String taller) {
+        this.taller = taller;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
     
 }

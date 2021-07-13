@@ -2,6 +2,8 @@
 package Modelo;
 
 class Suministro {
+    
+    protected String nombre;
     protected String fIngreso;
     protected String fEgreso;
     protected String fVencimiento;
@@ -9,11 +11,20 @@ class Suministro {
     
     public Suministro(){}
 
-    public Suministro(String fIngreso, String fEgreso, String fVencimiento, boolean vencido) {
+    public Suministro(String nombre, String fIngreso, String fEgreso, String fVencimiento, boolean vencido) {
+        this.nombre = nombre;
         this.fIngreso = fIngreso;
         this.fEgreso = fEgreso;
         this.fVencimiento = fVencimiento;
         this.vencido = vencido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getfIngreso() {

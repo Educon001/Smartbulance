@@ -3,7 +3,7 @@ package Modelo;
 
 import java.util.ArrayList;
 
-public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENTARIO
+public abstract class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENTARIO
     protected String serial;
     protected boolean enMantenimiento;
     protected boolean disponible;
@@ -58,5 +58,6 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
         }
         return false;
     }   
+    
     
 }

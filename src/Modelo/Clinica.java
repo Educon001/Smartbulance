@@ -26,11 +26,11 @@ public class Clinica extends Entidad{
 
     
     //GETTERS Y SETTERS
-    public Ambulatorio[] getAmbulatorios() {
+    public ArrayList<Ambulatorio> getAmbulatorios() {
         return ambulatorios;
     }
 
-    public void setAmbulatorios(Ambulatorio[] ambulatorios) {
+    public void setAmbulatorios(ArrayList<Ambulatorio> ambulatorios) {
         this.ambulatorios = ambulatorios;
     }
 

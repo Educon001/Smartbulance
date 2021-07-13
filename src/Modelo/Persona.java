@@ -2,13 +2,14 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.time.*;
 import java.util.Date;
 
 public class Persona {
     
     protected long cedula;
     protected String nombre, correo, telefono;
-    protected Date nacimiento;
+    protected LocalDate nacimiento;
     protected ArrayList<Turno> entradaSalida;
 
     public Persona() {
@@ -31,11 +32,11 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public Date getNacimiento() {
+    public LocalDate getNacimiento() {
         return nacimiento;
     }
 
-    public void setNacimiento(Date nacimiento) {
+    public void setNacimiento(LocalDate nacimiento) {
         this.nacimiento = nacimiento;
     }
 
@@ -66,5 +67,16 @@ public class Persona {
     public Turno ultimaEntradaSalida(){
         return entradaSalida.get(entradaSalida.size()-1);
     }
-
+    
+    public Turno buscarTurnoPorDia(LocalDate dia){
+        for (Turno turno: entradaSalida){
+            LocalDate entrada = turno.getEntrada()
+                    .toInstant().atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+            if (entrada == dia){
+                return turno;
+            }
+        }
+        return null;
+    }
 }

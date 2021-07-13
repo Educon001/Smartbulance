@@ -8,6 +8,7 @@ public class Paciente extends Persona{
     private ArrayList<Pago> pagos;
 
     public Paciente() {
+        super();
         pagos = new ArrayList<>();
     }
 

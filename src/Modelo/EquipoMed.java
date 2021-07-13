@@ -12,17 +12,20 @@ package Modelo;
 
 
 
-public class EquipoMed {
+public class EquipoMed extends Suministro{
+
     
     private String tipo;
     private float capacidad;
 
     public EquipoMed() {}
 
-    public EquipoMed(String tipo, float capacidad) {
+    public EquipoMed(String tipo, float capacidad, String fIngreso, String fEgreso, String fVencimiento, boolean vencido) {
+        super(fIngreso, fEgreso, fVencimiento, vencido);
         this.tipo = tipo;
         this.capacidad = capacidad;
     }
+
 
     public String getTipo() {
         return tipo;

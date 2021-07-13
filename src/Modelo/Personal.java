@@ -61,5 +61,5 @@ public class Personal extends Persona {
     public ArrayList<Turno> getTurnoSemanal() {
         return turnoSemanal;
     }
-    
+
 }

@@ -3,7 +3,7 @@ package Modelo;
 
 import java.util.ArrayList;
 
-public abstract class Vehiculo {
+public abstract class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENTARIO
     protected String serial;
     protected boolean enMantenimiento;
     protected boolean disponible;
@@ -32,8 +32,32 @@ public abstract class Vehiculo {
         entradasSalidas.add(io);
     }
    
-    //MÉTODO ABSTRACTO, SE TIENEN CADA TIPO DE VEHÍCULO TIENE UN TIPO DE EQUIPO
-    public abstract void asignarEquipo();   
+    public boolean poseeConductor(){
+        for(Personal per:personalActual){
+            if(per instanceof Conductor)
+                return true;
+        }
+        return false;
+    }
+    
+    public int contarParamedicos(){
+       int cont=0;
+       for(Personal per:personalActual){
+            if(per instanceof Paramedico)
+                cont+=1;
+        }
+        return cont;
+    }
+    
+    public boolean asignar_Al_Equipo(Personal per){
+        if(per instanceof Conductor){
+            if(poseeConductor()==false){
+                personalActual.add(per);
+                return true;
+            }
+        }
+        return false;
+    }   
     
     
 }

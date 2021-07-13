@@ -3,7 +3,6 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.time.*;
-import java.util.Date;
 
 public class Persona {
     

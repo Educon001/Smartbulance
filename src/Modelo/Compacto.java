@@ -4,30 +4,10 @@ public class Compacto extends Vehiculo{ //NOTA: FALTAN LOS METODOS PARA LLEVAR A
     
     //SE PONDRÁN LOS CONSTRUCTORES AL ESTAR LISTAS LAS DEMÁS CLASES
     
-    public Compacto(){
-        //Se llama al constructor de Vehiculo
-        super();
-        //En el constructor de los suministros debe ir el nombre y la cantidad ideal de cada suministro
-        Suministro sueros = new Suministro(); 
-        Suministro antialergico = new Suministro();
-        Suministro dilatador = new Suministro();
-        Suministro antiinflamatorio = new Suministro();
-        Suministro inyectadoras = new Suministro(); 
-        Suministro carretesHilo = new Suministro();
-        Suministro guantes = new Suministro();
-        Suministro botellasAlcohol = new Suministro();
-        Suministro gasa = new Suministro();
-        
-        //Se agrega cada uno de los suministros al inventario de la ambulancia
-        inventario.add(sueros);
-        inventario.add(antialergico);
-        inventario.add(dilatador);
-        inventario.add(antiinflamatorio);
-        inventario.add(inyectadoras);
-        inventario.add(carretesHilo);
-        inventario.add(guantes);
-        inventario.add(botellasAlcohol);
-        inventario.add(gasa);
+    public Compacto(){}
+    
+    public Compacto(String serial, boolean enMantenimiento, boolean disponible){
+        super(serial,enMantenimiento,disponible);
     }
 
     //SE PONDRÁN LOS GETTERS Y SETTERS AL ESTAR LISTAS LAS DEMÁS CLASES

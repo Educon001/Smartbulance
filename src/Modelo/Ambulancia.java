@@ -38,5 +38,5 @@ public class Ambulancia extends Vehiculo { //NOTA: FALTAN LOS METODOS PARA LLEVA
         }
         return false;
     }
-    
-    
+       
+}

@@ -3,7 +3,7 @@ package Modelo;
 
 import java.util.ArrayList;
 
-public abstract class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENTARIO
+public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENTARIO
     protected String serial;
     protected boolean enMantenimiento;
     protected boolean disponible;
@@ -12,9 +12,78 @@ public abstract class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO 
     protected ArrayList<Personal> personalActual;
     protected ArrayList<Turno> entradasSalidas;
     
-    //CONSTRUCTORES, NO LOS PONGO PORQUE FALTAN LAS DEMAS CLASES
+    //CONSTRUCTORES
+    public Vehiculo(){}
     
-    //GETTERS Y SETTERS, NO LOS PONGO PORQUE FALTAN LAS DEMAS CLASES
+    public Vehiculo(String serial, boolean enMantenimiento, boolean disponible) {
+        this.serial = serial;
+        this.enMantenimiento = enMantenimiento;
+        this.disponible = disponible;
+        inventario = new ArrayList<>();
+        histMantenimiento = new ArrayList<>();
+        personalActual = new ArrayList<>();
+        entradasSalidas = new ArrayList<>();
+    }
+    
+    
+    //GETTERS Y SETTERS
+
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
+    public boolean isEnMantenimiento() {
+        return enMantenimiento;
+    }
+
+    public void setEnMantenimiento(boolean enMantenimiento) {
+        this.enMantenimiento = enMantenimiento;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public ArrayList<Suministro> getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(ArrayList<Suministro> inventario) {
+        this.inventario = inventario;
+    }
+
+    public ArrayList<Mantenimiento> getHistMantenimiento() {
+        return histMantenimiento;
+    }
+
+    public void setHistMantenimiento(ArrayList<Mantenimiento> histMantenimiento) {
+        this.histMantenimiento = histMantenimiento;
+    }
+
+    public ArrayList<Personal> getPersonalActual() {
+        return personalActual;
+    }
+
+    public void setPersonalActual(ArrayList<Personal> personalActual) {
+        this.personalActual = personalActual;
+    }
+
+    public ArrayList<Turno> getEntradasSalidas() {
+        return entradasSalidas;
+    }
+
+    public void setEntradasSalidas(ArrayList<Turno> entradasSalidas) {
+        this.entradasSalidas = entradasSalidas;
+    }
+    
     
     
     //OTROS METODOS

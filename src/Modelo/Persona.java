@@ -3,23 +3,26 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.time.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Persona {
     
-    protected long cedula;
+    protected String cedula;
     protected String nombre, correo, telefono;
     protected LocalDate nacimiento;
     protected ArrayList<Turno> entradaSalida;
+    protected char genero;
 
     public Persona() {
         entradaSalida = new ArrayList<>();
     }
     
-    public long getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(long cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -55,6 +58,14 @@ public class Persona {
         this.telefono = telefono;
     }
 
+    public char getGenero() {
+        return genero;
+    }
+
+    public void setGenero(char genero) {
+        this.genero = genero;
+    } 
+
     public ArrayList<Turno> getEntradaSalida() {
         return entradaSalida;
     }
@@ -78,4 +89,17 @@ public class Persona {
         }
         return null;
     }
+    
+    public boolean validarNombre(String nombre){
+        Pattern pat = Pattern.compile("[a-zA-Z ']{5,50}");
+        Matcher mat = pat.matcher(nombre);
+        return mat.matches();
+    }
+    
+    public boolean validarCorreo(String correo){
+        Pattern pat = Pattern.compile("[A-Z0-9._-]+@[A-Z0-9.-]+\\.([A-Z]{2,4})+",Pattern.CASE_INSENSITIVE);
+        Matcher mat = pat.matcher(correo);
+        return mat.matches();
+    }
+    
 }

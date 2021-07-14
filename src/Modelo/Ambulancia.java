@@ -1,8 +1,6 @@
 
 package Modelo;
 
-import java.util.ArrayList;
-
 public class Ambulancia extends Vehiculo { //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENTARIO
     private String tipo;
     

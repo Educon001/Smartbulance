@@ -1,21 +1,21 @@
 
 package Modelo;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 
 class Suministro {
     //Atributos
     private String tipo;
     private String nombre_descripcion;
-    private String fIngreso;
-    private String fVencimiento;
+    private LocalDate fIngreso;
+    private LocalDate fVencimiento;
     private int cantidad;
     private String mantenimiento;
     
     //Constructores
     public Suministro(){}
 
-    public Suministro(String tipo, String nombre_descripcion, String fIngreso, String fVencimiento, int cantidad, String mantenimiento) {
+    public Suministro(String tipo, String nombre_descripcion, LocalDate fIngreso, LocalDate fVencimiento, int cantidad, String mantenimiento) {
         this.tipo = tipo;
         this.nombre_descripcion = nombre_descripcion;
         this.fIngreso = fIngreso;
@@ -42,19 +42,19 @@ class Suministro {
         this.nombre_descripcion = nombre_descripcion;
     }
 
-    public String getfIngreso() {
+    public LocalDate getfIngreso() {
         return fIngreso;
     }
 
-    public void setfIngreso(String fIngreso) {
+    public void setfIngreso(LocalDate fIngreso) {
         this.fIngreso = fIngreso;
     }
 
-    public String getfVencimiento() {
+    public LocalDate getfVencimiento() {
         return fVencimiento;
     }
 
-    public void setfVencimiento(String fVencimiento) {
+    public void setfVencimiento(LocalDate fVencimiento) {
         this.fVencimiento = fVencimiento;
     }
 
@@ -72,6 +72,10 @@ class Suministro {
 
     public void setMantenimiento(String mantenimiento) {
         this.mantenimiento = mantenimiento;
+    }
+    
+    public boolean validarCantidad(int cantidad){
+        return cantidad>=0;
     }
     
 }

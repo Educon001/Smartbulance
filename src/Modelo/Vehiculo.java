@@ -2,6 +2,8 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENTARIO
     protected String serial;
@@ -128,5 +130,9 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
         return false;
     }   
     
-    
+    public boolean validarSerial(String serial){
+        Pattern pat = Pattern.compile("[A-Z0-9]{17}",Pattern.CASE_INSENSITIVE);
+        Matcher mat = pat.matcher(serial);
+        return mat.matches();
+    }
 }

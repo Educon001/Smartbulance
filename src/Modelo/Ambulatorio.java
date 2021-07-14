@@ -73,9 +73,9 @@ public class Ambulatorio extends Entidad{
         histPacientes.add(pac);
     }
     
-    public Paciente buscarPaciente(long ced){
+    public Paciente buscarPaciente(String ced){
         for (Paciente pac: histPacientes){
-            if (pac.getCedula()==ced)
+            if (pac.getCedula().equals(ced))
                 return pac;
         }
       return null; 

@@ -3,13 +3,13 @@ package Modelo;
 
 public class PersonalConVehiculo extends Personal {
     
-    protected Vehiculo vehiculoActual;
+    protected String vehiculoActual;
 
-    public void setVehiculoActual(Vehiculo vehiculoActual) {
+    public void setVehiculoActual(String vehiculoActual) {
         this.vehiculoActual = vehiculoActual;
     }
 
-    public Vehiculo getVehiculoActual() {
+    public String getVehiculoActual() {
         return vehiculoActual;
     }
     

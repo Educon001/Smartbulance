@@ -1,15 +1,15 @@
 
 package Modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Personal extends Persona {
     
     protected long numCarnet;
     protected boolean activo;
     protected double salario;
-    protected Date fechaContrato;
+    protected LocalDate fechaContrato;
     protected ArrayList<Turno> turnoSemanal;
     protected String tipo;
 
@@ -42,11 +42,11 @@ public class Personal extends Persona {
         this.salario = salario;
     }
 
-    public Date getFechaContrato() {
+    public LocalDate getFechaContrato() {
         return fechaContrato;
     }
 
-    public void setFechaContrato(Date fechaContrato) {
+    public void setFechaContrato(LocalDate fechaContrato) {
         this.fechaContrato = fechaContrato;
     }
 
@@ -60,6 +60,10 @@ public class Personal extends Persona {
 
     public ArrayList<Turno> getTurnoSemanal() {
         return turnoSemanal;
+    }
+    
+    public boolean validarCarnet(long carnet){
+        return carnet>0;
     }
 
 }

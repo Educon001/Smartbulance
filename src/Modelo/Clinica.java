@@ -76,9 +76,9 @@ public class Clinica extends Entidad{
         talleresAsociados.remove(taller);
     }
    
-    public Paciente buscarPaciente(long ced){
+    public Paciente buscarPaciente(String ced){
         for (Paciente pac: histPacientes){
-            if (pac.getCedula()==ced)
+            if (pac.getCedula().equals(ced))
                 return pac;
         }
       return null; 

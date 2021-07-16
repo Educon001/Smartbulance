@@ -1,14 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controller;
 
-/**
- *
- * @author Eduardo Consalvo
- */
+import Modelo.Clinica;
+import java.util.ArrayList;
+
 public class CSistema {
+    //ATRIBUTOS
+    private ArrayList<Clinica> listaClinicas;
+    
+    //CONSTRUCTORES
+
+    public CSistema() {
+        listaClinicas = new ArrayList<>();
+    }
+    
+    public void agregarClinica(Clinica cli){
+        listaClinicas.add(cli);
+    }
     
 }

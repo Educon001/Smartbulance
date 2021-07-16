@@ -39,46 +39,4 @@ public class Entidad {
         this.direccion = direccion;
     }   
     
-    public boolean validarRif(String sRif) {
-    boolean bResultado = false;
-    int iFactor = 0;
-
-    sRif = sRif.replace("-", "");
-    if (sRif.length() < 10) {
-    sRif = sRif.toUpperCase().substring(0, 1) + padLeft(sRif.substring(1, sRif.length() - 1), "0", 9);
-    }
-
-        String sPrimerCaracter = sRif.substring(0, 1).toUpperCase();
-
-        switch (sPrimerCaracter) {
-        case "V": iFactor = 1; break;
-        case "E": iFactor = 2; break;
-        case "J": iFactor = 3; break;
-        case "P": iFactor = 4; break;
-        case "G": iFactor = 5; break;
-        }
-        if (iFactor > 0) {
-        int suma;
-        suma = ((Integer.parseInt(sRif.substring(8, 9))) * 2)
-        + ((Integer.parseInt(sRif.substring(7, 8))) * 3)
-        + ((Integer.parseInt(sRif.substring(6, 7))) * 4)
-        + ((Integer.parseInt(sRif.substring(5, 6))) * 5)
-        + ((Integer.parseInt(sRif.substring(4, 5))) * 6)
-        + ((Integer.parseInt(sRif.substring(3, 4))) * 7)
-        + ((Integer.parseInt(sRif.substring(2, 3))) * 2)
-        + ((Integer.parseInt(sRif.substring(1, 2))) * 3)
-        + (iFactor * 4);
-
-        int resto = 11 - (suma % 11);
-        if (resto >= 10 || resto < 1){
-        resto = 0;
-        }
-        if (sRif.substring(9, 10).equals(Integer.toString(resto))) {
-        bResultado = true;
-        }
-    }
-return bResultado;
-}
-
-
 }

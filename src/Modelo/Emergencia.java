@@ -5,7 +5,7 @@ public class Emergencia extends Turno{
     
     private String descripcion;
     private boolean respuestaRapida, ambulatorio, clinica;
-    private Vehiculo vehiculo;
+    private String vehiculo;
 
     public String getDescripcion() {
         return descripcion;
@@ -39,11 +39,11 @@ public class Emergencia extends Turno{
         this.clinica = clinica;
     }
 
-    public Vehiculo getVehiculo() {
+    public String getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
+    public void setVehiculo(String vehiculo) {
         this.vehiculo = vehiculo;
     }
 

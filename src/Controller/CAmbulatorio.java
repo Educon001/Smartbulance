@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controller;
 
-/**
- *
- * @author Eduardo Consalvo
- */
+import javax.swing.JLabel;
+
 public class CAmbulatorio {
+    
+    private JLabel nombre,RIF,direccion,telefono;
+
+    public CAmbulatorio(JLabel nombre, JLabel RIF, JLabel direccion, JLabel telefono) {
+        this.nombre = nombre;
+        this.RIF = RIF;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }  
     
 }

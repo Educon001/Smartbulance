@@ -1,8 +1,6 @@
 
 package Modelo;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Entidad {
     protected String RIF;
@@ -82,15 +80,5 @@ public class Entidad {
 return bResultado;
 }
 
-public static String padLeft(String valor,String relleno,int longitud) {
-String resultado=valor;
-int x = longitud-valor.length(), i=0;
-while (i<x){
-resultado=relleno+resultado;
-i++;
-}
-return resultado;
-}
-    
 
 }

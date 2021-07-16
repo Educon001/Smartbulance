@@ -80,5 +80,14 @@ public class Ambulatorio extends Entidad{
         }
       return null; 
     }
+    
+    public Vehiculo buscarVehiculo(String serial){
+        for (Vehiculo veh: vehiculos){
+            if (veh.getSerial().equals(serial))
+                return veh;
+            
+        }
+      return null; 
+    }
    
 }

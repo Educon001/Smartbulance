@@ -15,10 +15,11 @@ import javax.swing.border.Border;
  */
 public class MenúPrincipal extends javax.swing.JFrame{
     Border borde = BorderFactory.createLineBorder(Color.blue);
+    Border bordeAmarillo = BorderFactory.createLineBorder(Color.yellow);
     
     public MenúPrincipal() {
         initComponents();
-        panelesOp.setVisible(false);
+        panelesOp.setVisible(true);
     }
 
     /**
@@ -30,33 +31,375 @@ public class MenúPrincipal extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelesOp = new javax.swing.JTabbedPane();
+        panelHome = new javax.swing.JPanel();
+        fondoHome = new javax.swing.JLabel();
+        panelClinica = new javax.swing.JPanel();
+        bhClinica = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        fondoClinica = new javax.swing.JLabel();
+        panelAmbulatorios = new javax.swing.JPanel();
+        bhAmbulatorios = new javax.swing.JButton();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        fondoAmbulatorios = new javax.swing.JLabel();
+        panelAmbulancias = new javax.swing.JPanel();
+        bhAmbulancias = new javax.swing.JButton();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        fondoAmbulancias = new javax.swing.JLabel();
+        panelPacientes = new javax.swing.JPanel();
+        bhPacientes = new javax.swing.JButton();
+        jTabbedPane4 = new javax.swing.JTabbedPane();
+        jPanel13 = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        fondoPacientes = new javax.swing.JLabel();
         panelOpciones = new javax.swing.JPanel();
         botonAmbulancias = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         botonAmbulatorios = new javax.swing.JLabel();
         botonPacientes = new javax.swing.JLabel();
         botonClinica = new javax.swing.JLabel();
-        panelesOp = new javax.swing.JTabbedPane();
-        panelClinica = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        botonHOME3 = new javax.swing.JButton();
-        fondo1 = new javax.swing.JLabel();
-        panelAmbulatorios = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        botonHOME2 = new javax.swing.JButton();
-        fondo2 = new javax.swing.JLabel();
-        panelAmbulancias = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        botonHOME1 = new javax.swing.JButton();
-        fondo3 = new javax.swing.JLabel();
-        panelPacientes = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        botonHOME = new javax.swing.JButton();
-        fondo4 = new javax.swing.JLabel();
-        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        fondoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
+        panelHome.add(fondoHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 660));
+
+        panelesOp.addTab("Home", panelHome);
+
+        panelClinica.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bhClinica.setBackground(new java.awt.Color(51, 51, 255));
+        bhClinica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoHome.png"))); // NOI18N
+        bhClinica.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bhClinica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bhClinicaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bhClinicaMouseExited(evt);
+            }
+        });
+        bhClinica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhClinicaActionPerformed(evt);
+            }
+        });
+        panelClinica.add(bhClinica, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 13, 70, 60));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab1", jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab2", jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab3", jPanel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("tab4", jPanel4);
+
+        panelClinica.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 800, 540));
+
+        fondoClinica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
+        panelClinica.add(fondoClinica, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 660));
+
+        panelesOp.addTab("Clínica", panelClinica);
+
+        panelAmbulatorios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bhAmbulatorios.setBackground(new java.awt.Color(51, 51, 255));
+        bhAmbulatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoHome.png"))); // NOI18N
+        bhAmbulatorios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bhAmbulatorios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bhAmbulatoriosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bhAmbulatoriosMouseExited(evt);
+            }
+        });
+        bhAmbulatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhAmbulatoriosActionPerformed(evt);
+            }
+        });
+        panelAmbulatorios.add(bhAmbulatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 20, 70, 60));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("tab1", jPanel5);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("tab2", jPanel8);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("tab3", jPanel9);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("tab4", jPanel10);
+
+        panelAmbulatorios.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 800, 540));
+
+        fondoAmbulatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
+        panelAmbulatorios.add(fondoAmbulatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 660));
+
+        panelesOp.addTab("Ambulatorios", panelAmbulatorios);
+
+        panelAmbulancias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bhAmbulancias.setBackground(new java.awt.Color(51, 51, 255));
+        bhAmbulancias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoHome.png"))); // NOI18N
+        bhAmbulancias.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bhAmbulancias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bhAmbulanciasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bhAmbulanciasMouseExited(evt);
+            }
+        });
+        bhAmbulancias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhAmbulanciasActionPerformed(evt);
+            }
+        });
+        panelAmbulancias.add(bhAmbulancias, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 20, 70, 60));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("tab1", jPanel6);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("tab2", jPanel7);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("tab3", jPanel11);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("tab4", jPanel12);
+
+        panelAmbulancias.add(jTabbedPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 800, 540));
+
+        fondoAmbulancias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
+        panelAmbulancias.add(fondoAmbulancias, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 660));
+
+        panelesOp.addTab("Ambulancias", panelAmbulancias);
+
+        panelPacientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bhPacientes.setBackground(new java.awt.Color(51, 51, 255));
+        bhPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoHome.png"))); // NOI18N
+        bhPacientes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bhPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bhPacientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bhPacientesMouseExited(evt);
+            }
+        });
+        bhPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bhPacientesActionPerformed(evt);
+            }
+        });
+        panelPacientes.add(bhPacientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 20, 70, 60));
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane4.addTab("tab1", jPanel13);
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane4.addTab("tab2", jPanel14);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane4.addTab("tab3", jPanel15);
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 506, Short.MAX_VALUE)
+        );
+
+        jTabbedPane4.addTab("tab4", jPanel16);
+
+        panelPacientes.add(jTabbedPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 800, 540));
+
+        fondoPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
+        panelPacientes.add(fondoPacientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 660));
+
+        panelesOp.addTab("Pacientes", panelPacientes);
+
+        getContentPane().add(panelesOp, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, -30, 890, 690));
 
         panelOpciones.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -120,120 +463,38 @@ public class MenúPrincipal extends javax.swing.JFrame{
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelOpcionesLayout.createSequentialGroup()
                 .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelOpcionesLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(logo))
-                    .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(botonClinica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonAmbulancias, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(botonAmbulatorios))
-                .addGap(0, 11, Short.MAX_VALUE))
+                    .addComponent(botonClinica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonAmbulatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(1, 1, 1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(53, 53, 53))
+            .addComponent(botonAmbulancias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(botonPacientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelOpcionesLayout.setVerticalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelOpcionesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logo)
-                .addGap(32, 32, 32)
-                .addComponent(botonClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(botonAmbulatorios)
-                .addGap(28, 28, 28)
-                .addComponent(botonAmbulancias, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(botonPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(botonClinica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botonAmbulatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botonAmbulancias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botonPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(86, 86, 86))
         );
 
-        getContentPane().add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 670));
-
-        panelClinica.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setForeground(new java.awt.Color(204, 204, 0));
-        jLabel1.setText("PANEL CLINICA");
-        panelClinica.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, -1, -1));
-
-        botonHOME3.setText("HOME");
-        botonHOME3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonHOME3ActionPerformed(evt);
-            }
-        });
-        panelClinica.add(botonHOME3, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 313, -1, -1));
-
-        fondo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
-        panelClinica.add(fondo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 660));
-
-        panelesOp.addTab("Clínica", panelClinica);
-
-        panelAmbulatorios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setText("PANEL AMBULATORIOS");
-        panelAmbulatorios.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
-
-        botonHOME2.setText("HOME");
-        botonHOME2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonHOME2ActionPerformed(evt);
-            }
-        });
-        panelAmbulatorios.add(botonHOME2, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 313, -1, -1));
-
-        fondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
-        panelAmbulatorios.add(fondo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 660));
-
-        panelesOp.addTab("Ambulatorios", panelAmbulatorios);
-
-        panelAmbulancias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setText("PANEL AMBULANCIAS");
-        panelAmbulancias.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
-
-        botonHOME1.setText("HOME");
-        botonHOME1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonHOME1ActionPerformed(evt);
-            }
-        });
-        panelAmbulancias.add(botonHOME1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 313, -1, -1));
-
-        fondo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
-        panelAmbulancias.add(fondo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 660));
-
-        panelesOp.addTab("Ambulancias", panelAmbulancias);
-
-        panelPacientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setText("PANEL PACIENTES");
-        panelPacientes.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 248, -1, -1));
-
-        botonHOME.setText("HOME");
-        botonHOME.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonHOMEActionPerformed(evt);
-            }
-        });
-        panelPacientes.add(botonHOME, new org.netbeans.lib.awtextra.AbsoluteConstraints(603, 16, -1, -1));
-
-        fondo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
-        panelPacientes.add(fondo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 660));
-
-        panelesOp.addTab("Pacientes", panelPacientes);
-
-        getContentPane().add(panelesOp, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, -30, 700, 690));
-
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
-        fondo.setText("jLabel1");
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 1000, 670));
+        getContentPane().add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonClinicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClinicaMouseClicked
-        panelesOp.setVisible(true);
-        panelesOp.setSelectedIndex(0);
+        panelesOp.setSelectedIndex(1);
     }//GEN-LAST:event_botonClinicaMouseClicked
 
     private void botonClinicaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClinicaMouseEntered
@@ -277,39 +538,79 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_botonPacientesMouseExited
 
     private void botonAmbulatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAmbulatoriosMouseClicked
-        panelesOp.setVisible(true);
-        panelesOp.setSelectedIndex(1);
+        //panelesOp.setVisible(true);
+        panelesOp.setSelectedIndex(2);
     }//GEN-LAST:event_botonAmbulatoriosMouseClicked
 
     private void botonAmbulanciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAmbulanciasMouseClicked
-        panelesOp.setVisible(true);
-        panelesOp.setSelectedIndex(2);
+        //panelesOp.setVisible(true);
+        panelesOp.setSelectedIndex(3);
     }//GEN-LAST:event_botonAmbulanciasMouseClicked
 
     private void botonPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPacientesMouseClicked
-        panelesOp.setVisible(true);
-        panelesOp.setSelectedIndex(3);
+        //panelesOp.setVisible(true);
+        panelesOp.setSelectedIndex(4);
     }//GEN-LAST:event_botonPacientesMouseClicked
 
-    private void botonHOMEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHOMEActionPerformed
+    private void bhClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhClinicaActionPerformed
         // TODO add your handling code here:
-        panelesOp.setVisible(false);
-    }//GEN-LAST:event_botonHOMEActionPerformed
+        panelesOp.setSelectedIndex(0);
+    }//GEN-LAST:event_bhClinicaActionPerformed
 
-    private void botonHOME1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHOME1ActionPerformed
+    private void bhAmbulatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhAmbulatoriosActionPerformed
         // TODO add your handling code here:
-        panelesOp.setVisible(false);
-    }//GEN-LAST:event_botonHOME1ActionPerformed
+        panelesOp.setSelectedIndex(0);
+    }//GEN-LAST:event_bhAmbulatoriosActionPerformed
 
-    private void botonHOME2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHOME2ActionPerformed
+    private void bhAmbulanciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhAmbulanciasActionPerformed
         // TODO add your handling code here:
-        panelesOp.setVisible(false);
-    }//GEN-LAST:event_botonHOME2ActionPerformed
+        panelesOp.setSelectedIndex(0);
+    }//GEN-LAST:event_bhAmbulanciasActionPerformed
 
-    private void botonHOME3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHOME3ActionPerformed
+    private void bhPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhPacientesActionPerformed
         // TODO add your handling code here:
-        panelesOp.setVisible(false);
-    }//GEN-LAST:event_botonHOME3ActionPerformed
+        panelesOp.setSelectedIndex(0);
+    }//GEN-LAST:event_bhPacientesActionPerformed
+
+    private void bhClinicaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhClinicaMouseEntered
+        // TODO add your handling code here:
+        bhClinica.setBorder(bordeAmarillo);
+    }//GEN-LAST:event_bhClinicaMouseEntered
+
+    private void bhAmbulatoriosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhAmbulatoriosMouseEntered
+        // TODO add your handling code here:
+        bhAmbulatorios.setBorder(bordeAmarillo);
+    }//GEN-LAST:event_bhAmbulatoriosMouseEntered
+
+    private void bhAmbulanciasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhAmbulanciasMouseEntered
+        // TODO add your handling code here:
+        bhAmbulancias.setBorder(bordeAmarillo);
+    }//GEN-LAST:event_bhAmbulanciasMouseEntered
+
+    private void bhPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhPacientesMouseEntered
+        // TODO add your handling code here:
+        bhPacientes.setBorder(bordeAmarillo);
+    }//GEN-LAST:event_bhPacientesMouseEntered
+
+    private void bhClinicaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhClinicaMouseExited
+        // TODO add your handling code here:
+        bhClinica.setBorder(null);
+    }//GEN-LAST:event_bhClinicaMouseExited
+
+    private void bhAmbulatoriosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhAmbulatoriosMouseExited
+        // TODO add your handling code here:
+        bhAmbulatorios.setBorder(null);
+    }//GEN-LAST:event_bhAmbulatoriosMouseExited
+
+    private void bhAmbulanciasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhAmbulanciasMouseExited
+        // TODO add your handling code here:
+        bhAmbulancias.setBorder(null);
+    }//GEN-LAST:event_bhAmbulanciasMouseExited
+
+    private void bhPacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhPacientesMouseExited
+        // TODO add your handling code here:
+        bhPacientes.setBorder(null);
+    }//GEN-LAST:event_bhPacientesMouseExited
 
     /**
      * @param args the command line arguments
@@ -347,27 +648,44 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bhAmbulancias;
+    private javax.swing.JButton bhAmbulatorios;
+    private javax.swing.JButton bhClinica;
+    private javax.swing.JButton bhPacientes;
     private javax.swing.JLabel botonAmbulancias;
     private javax.swing.JLabel botonAmbulatorios;
     private javax.swing.JLabel botonClinica;
-    private javax.swing.JButton botonHOME;
-    private javax.swing.JButton botonHOME1;
-    private javax.swing.JButton botonHOME2;
-    private javax.swing.JButton botonHOME3;
     private javax.swing.JLabel botonPacientes;
-    private javax.swing.JLabel fondo;
-    private javax.swing.JLabel fondo1;
-    private javax.swing.JLabel fondo2;
-    private javax.swing.JLabel fondo3;
-    private javax.swing.JLabel fondo4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel fondoAmbulancias;
+    private javax.swing.JLabel fondoAmbulatorios;
+    private javax.swing.JLabel fondoClinica;
+    private javax.swing.JLabel fondoHome;
+    private javax.swing.JLabel fondoPacientes;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel panelAmbulancias;
     private javax.swing.JPanel panelAmbulatorios;
     private javax.swing.JPanel panelClinica;
+    private javax.swing.JPanel panelHome;
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JPanel panelPacientes;
     private javax.swing.JTabbedPane panelesOp;

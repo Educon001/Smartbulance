@@ -3,17 +3,21 @@ package Modelo;
 
 
 public class Entidad {
+    protected String nombre;
     protected String RIF;
+    protected String estado;
     protected String ciudad;
     protected String direccion;
 
     public Entidad(){}
-    
-    public Entidad(String RIF, String ciudad, String direccion) {
+
+    public Entidad(String nombre, String RIF, String estado, String ciudad, String direccion) {
+        this.nombre = nombre;
         this.RIF = RIF;
+        this.estado = estado;
         this.ciudad = ciudad;
         this.direccion = direccion;
-    }
+    }    
     
     public String getRIF() {
         return RIF;
@@ -38,5 +42,22 @@ public class Entidad {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }   
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     
 }

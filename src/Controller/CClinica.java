@@ -5,6 +5,10 @@ import Modelo.Ambulatorio;
 import Modelo.Clinica;
 import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 
 public class CClinica {
     private JLabel nombre;
@@ -12,26 +16,28 @@ public class CClinica {
     private Clinica clinica;
     private ArrayList<Ambulatorio> listaAmbulatorios;
 
-    public CClinica(JLabel nombre, JLabel RIF,Clinica clinica) {
-        this.nombre = nombre;
-        this.RIF = RIF;
-        this.clinica=clinica;
+    public CClinica() {
+        //nombre = clinica.get;
+        RIF.setText(clinica.getRIF());
+        clinica=new Clinica();
         listaAmbulatorios = clinica.getAmbulatorios();
        
     }
-    public void mostrarAmbulatorios(){
-        for (int i=0;i<listaAmbulatorios.size();i++) {
-            
-            nombre.setText(listaAmbulatorios.get(i).getRIF());
-            nombre.setText(listaAmbulatorios.get(i).getCiudad());
-            for(int x=0;x<listaAmbulatorios.get(i).getVehiculos().size();x++ ){
-                
-                nombre.setText(listaAmbulatorios.get(i).getVehiculos().get(x).getSerial());              
-                            
-            
-            }
-      
-        }  
+    public void mostrarAmbulatorios(JTable tabla){
+        String titulo[]={"RIF","Ciudad","Dirección"};
+        String matris[][]=new String[listaAmbulatorios.size()][3];
+        
+        
+        for (int i=0;i<listaAmbulatorios.size();i++){
+            matris[i][0]=listaAmbulatorios.get(i).getRIF();
+            matris[i][1]=listaAmbulatorios.get(i).getCiudad();
+            matris[i][2]=listaAmbulatorios.get(i).getDireccion();
+     
+        }
+        
+        TableModel model = new DefaultTableModel(matris,titulo);
+        tabla.setModel(model);
+        
     
     }
     

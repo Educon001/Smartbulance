@@ -16,7 +16,17 @@ public class Personal extends Persona {
     public Personal() {
         super();
         turnoSemanal = new ArrayList<>();
-    }   
+    }
+
+    public Personal(long numCarnet, boolean activo, double salario, LocalDate fechaContrato, String tipo, String cedula, String nombre, String correo, String telefono, LocalDate nacimiento, ArrayList<Turno> entradaSalida, char genero) {
+        super(cedula, nombre, correo, telefono, nacimiento, genero);
+        this.numCarnet = numCarnet;
+        this.activo = activo;
+        this.salario = salario;
+        this.fechaContrato = fechaContrato;
+        this.tipo = tipo;
+        turnoSemanal = new ArrayList<>();
+    }  
 
     public long getNumCarnet() {
         return numCarnet;

@@ -18,14 +18,14 @@ public class Persona {
         entradaSalida = new ArrayList<>();
     }
 
-    public Persona(String cedula, String nombre, String correo, String telefono, LocalDate nacimiento, ArrayList<Turno> entradaSalida, char genero) {
+    public Persona(String cedula, String nombre, String correo, String telefono, LocalDate nacimiento, char genero) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
         this.nacimiento = nacimiento;
-        this.entradaSalida = entradaSalida;
         this.genero = genero;
+        entradaSalida = new ArrayList<>();
     }
 
     public String getCedula() {

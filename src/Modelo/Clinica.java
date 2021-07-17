@@ -14,16 +14,23 @@ public class Clinica extends Entidad{
 
     
     //CONSTRUCTORES
-    public Clinica(ArrayList<Paciente> histPacientes, ArrayList<Suministro> inventario, boolean disponible, String RIF, String ciudad, String direccion) {
-        super(RIF, ciudad, direccion);
-        this.histPacientes = histPacientes;
-        this.inventario = inventario;
+    
+
+    public Clinica(boolean disponible, String nombre, String RIF, String estado, String ciudad, String direccion) {
+        super(nombre, RIF, estado, ciudad, direccion);
         this.disponible = disponible;
+        ambulatorios = new ArrayList<>();
+        histPacientes = new ArrayList<>();
+        talleresAsociados = new ArrayList<>();
+        inventario = new ArrayList<>();
     }
 
     public Clinica() {
+        ambulatorios = new ArrayList<>();
+        histPacientes = new ArrayList<>();
+        talleresAsociados = new ArrayList<>();
+        inventario = new ArrayList<>();
     }
-
     
     //GETTERS Y SETTERS
     public ArrayList<Ambulatorio> getAmbulatorios() {

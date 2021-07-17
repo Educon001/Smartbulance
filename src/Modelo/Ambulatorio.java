@@ -11,16 +11,11 @@ public class Ambulatorio extends Entidad{
 
     //CONSTRUCTORES
     public Ambulatorio() {
+        vehiculos = new ArrayList<>();
+        personal = new ArrayList<>();
+        histPacientes = new ArrayList<>();
+        inventario = new ArrayList<>();
     }
-    
-    public Ambulatorio(ArrayList<Vehiculo> vehiculos, ArrayList<Personal> personal, ArrayList<Paciente> histPacientes, ArrayList<Suministro> inventario, String RIF, String ciudad, String direccion) {
-        super(RIF, ciudad, direccion);
-        this.vehiculos = vehiculos;
-        this.personal = personal;
-        this.histPacientes = histPacientes;
-        this.inventario = inventario;
-    }
-    
     
     //GETTERS Y SETTERS
     public ArrayList<Vehiculo> getVehiculos() {

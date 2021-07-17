@@ -16,7 +16,7 @@ public class Personal extends Persona {
     public Personal() {
         super();
         turnoSemanal = new ArrayList<>();
-    }
+    }   
 
     public long getNumCarnet() {
         return numCarnet;

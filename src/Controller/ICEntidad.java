@@ -1,14 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controller;
 
-/**
- *
- * @author Eduardo Consalvo
- */
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 public interface ICEntidad {
-    
+
+    public abstract void mostrarEntidad(JLabel nombre, JLabel RIF,JLabel estado, JLabel ciudad, JLabel dirección);
+
+    public abstract void editarEntidad(JTextField nombre, JTextField RIF,JTextField estado, JTextField ciudad, JTextField dirección);
+
 }

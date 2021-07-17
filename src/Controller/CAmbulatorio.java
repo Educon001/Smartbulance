@@ -6,7 +6,7 @@ import Modelo.Ambulatorio;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class CAmbulatorio extends CEntidad{
+public class CAmbulatorio implements ICEntidad{
     
     private Ambulatorio ambulatorio; //= new Ambulatorio("A","a","ª");
 
@@ -16,6 +16,19 @@ public class CAmbulatorio extends CEntidad{
 
     /*public CAmbulatorio() {
     }*/
+        @Override
+    public void mostrarEntidad(JLabel nombre, JLabel RIF, JLabel estado, JLabel ciudad, JLabel direccion) {
+        nombre.setText(ambulatorio.getNombre());
+        RIF.setText(ambulatorio.getRIF());
+        estado.setText(ambulatorio.getEstado());
+        ciudad.setText(ambulatorio.getCiudad());
+        direccion.setText(ambulatorio.getDireccion());
+    }
+
+    @Override
+    public void editarEntidad(JTextField nombre, JTextField RIF, JTextField estado, JTextField ciudad, JTextField dirección) {
+    }
+    
     
     public void mostrarPersonal(JTable tabla){
         /*Personal per1 = new Personal(1,true,0,null,null,"doc","1","Eduardo","a","1",null,null,'M');
@@ -44,4 +57,6 @@ public class CAmbulatorio extends CEntidad{
         tabla.setDefaultEditor(Object.class, null);
     }
     
+    public void mostrarInventario(JTable tabla){
+    }
 }

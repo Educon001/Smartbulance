@@ -6,7 +6,7 @@ import Modelo.Ambulatorio;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class CAmbulatorio {
+public class CAmbulatorio extends CEntidad{
     
     private Ambulatorio ambulatorio; //= new Ambulatorio("A","a","ª");
 
@@ -16,11 +16,6 @@ public class CAmbulatorio {
 
     /*public CAmbulatorio() {
     }*/
-    
-    
-    public void mostrarDatos(){
-        
-    }
     
     public void mostrarPersonal(JTable tabla){
         /*Personal per1 = new Personal(1,true,0,null,null,"doc","1","Eduardo","a","1",null,null,'M');

@@ -37,6 +37,8 @@ public class CClinica {
         
         TableModel model = new DefaultTableModel(matris,titulo);
         tabla.setModel(model);
+        tabla.setDefaultEditor(Object.class, null);
+
         
     
     }

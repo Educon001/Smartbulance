@@ -9,7 +9,6 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
     protected String serial;
     protected boolean enMantenimiento;
     protected boolean disponible;
-    protected ArrayList<Suministro> inventario;
     protected ArrayList<Mantenimiento> histMantenimiento;
     protected ArrayList<Personal> personalActual;
     protected ArrayList<Turno> entradasSalidas;
@@ -21,7 +20,6 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
         this.serial = serial;
         this.enMantenimiento = enMantenimiento;
         this.disponible = disponible;
-        inventario = new ArrayList<>();
         histMantenimiento = new ArrayList<>();
         personalActual = new ArrayList<>();
         entradasSalidas = new ArrayList<>();
@@ -52,14 +50,6 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
 
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
-    }
-
-    public ArrayList<Suministro> getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(ArrayList<Suministro> inventario) {
-        this.inventario = inventario;
     }
 
     public ArrayList<Mantenimiento> getHistMantenimiento() {

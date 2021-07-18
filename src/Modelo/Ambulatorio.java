@@ -93,4 +93,8 @@ public class Ambulatorio extends Entidad{
       return null; 
     }
    
+    public void agregarSuministro(Suministro sum){
+        sum.setCodigo(inventario.size());
+        inventario.add(sum);
+    }
 }

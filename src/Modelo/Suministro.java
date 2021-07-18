@@ -1,31 +1,27 @@
 
 package Modelo;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 class Suministro {
     //Atributos
     private String tipo;
-    private String nombre_descripcion;
-    private LocalDate fIngreso;
-    private LocalDate fVencimiento;
-    private int cantidad;
-    private String mantenimiento;
+    private String nombre;
+    private String descripción;
+    private int codigo;
+    private ArrayList<Movimiento> movimientos;
+    private ArrayList<Unidad> unidades;
     
     //Constructores
-    public Suministro(){}
-
-    public Suministro(String tipo, String nombre_descripcion, LocalDate fIngreso, LocalDate fVencimiento, int cantidad, String mantenimiento) {
-        this.tipo = tipo;
-        this.nombre_descripcion = nombre_descripcion;
-        this.fIngreso = fIngreso;
-        this.fVencimiento = fVencimiento;
-        this.cantidad = cantidad;
-        this.mantenimiento = mantenimiento;
+    public Suministro(int codigo) {
+        this.codigo = codigo;
+        movimientos = new ArrayList<>();
+        unidades = new ArrayList<>();
     }
     
     //Getters y setters
-    
+
     public String getTipo() {
         return tipo;
     }
@@ -34,49 +30,59 @@ class Suministro {
         this.tipo = tipo;
     }
 
-    public String getNombre_descripcion() {
-        return nombre_descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombre_descripcion(String nombre_descripcion) {
-        this.nombre_descripcion = nombre_descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public LocalDate getfIngreso() {
-        return fIngreso;
+    public String getDescripción() {
+        return descripción;
     }
 
-    public void setfIngreso(LocalDate fIngreso) {
-        this.fIngreso = fIngreso;
+    public void setDescripción(String descripción) {
+        this.descripción = descripción;
     }
 
-    public LocalDate getfVencimiento() {
-        return fVencimiento;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setfVencimiento(LocalDate fVencimiento) {
-        this.fVencimiento = fVencimiento;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
+    public ArrayList<Movimiento> getMovimientos() {
+        return movimientos;
     }
 
+    public ArrayList<Unidad> getUnidades() {
+        return unidades;
+    }
+    
     public int getCantidad() {
+        int cantidad = unidades.size();
         return cantidad;
     }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public String getMantenimiento() {
-        return mantenimiento;
-    }
-
-    public void setMantenimiento(String mantenimiento) {
-        this.mantenimiento = mantenimiento;
-    }
     
-    public boolean validarCantidad(int cantidad){
-        return cantidad>=0;
-    }
+    public void registrarMovimiento(Movimiento mov){
+        movimientos.add(mov);
+        if (mov.getTipo().equals("Entrada"))
+            unidades.addAll(Arrays.asList(mov.getUnidades()));
+        else if (mov.getTipo().equals("Salida"))
+            unidades.removeAll(Arrays.asList(mov.getUnidades()));
+        else{
+            for (int i = 0; i < mov.getUnidades().length; i++) {
+                for (Unidad uni : unidades){
+                    if (uni.equals(mov.getUnidades()[i])){
+                        uni.setUbicacion(((Reubicacion) mov).getDestino());
+                        break;
+                    }
+                }
+            }
+        }           
+    }  
     
 }
-

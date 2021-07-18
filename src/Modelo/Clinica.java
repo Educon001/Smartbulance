@@ -11,17 +11,29 @@ public class Clinica extends Entidad{
     private ArrayList<Taller> talleresAsociados;
     private ArrayList<Suministro> inventario;
     private boolean disponible;
-
     
     //CONSTRUCTORES
-    public Clinica(ArrayList<Paciente> histPacientes, ArrayList<Suministro> inventario, boolean disponible, String RIF, String ciudad, String direccion) {
-        super(RIF, ciudad, direccion);
+    public Clinica(ArrayList<Ambulatorio> ambulatorios, ArrayList<Paciente> histPacientes, ArrayList<Taller> talleresAsociados, ArrayList<Suministro> inventario, boolean disponible) {
+        this.ambulatorios = ambulatorios;
         this.histPacientes = histPacientes;
+        this.talleresAsociados = talleresAsociados;
         this.inventario = inventario;
         this.disponible = disponible;
     }
 
+    public Clinica(String nombre, String RIF, String ciudad, String estado, String direccion) {    
+        super(nombre, RIF, ciudad, estado, direccion);
+        ambulatorios = new ArrayList<>();
+        histPacientes = new ArrayList<>();
+        talleresAsociados = new ArrayList<>();
+        inventario = new ArrayList<>();
+    }
+
     public Clinica() {
+        ambulatorios = new ArrayList<>();
+        histPacientes = new ArrayList<>();
+        talleresAsociados = new ArrayList<>();
+        inventario = new ArrayList<>();
     }
 
     

@@ -8,7 +8,8 @@ package Vista;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
-
+import Controller.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author jdfer
@@ -16,10 +17,18 @@ import javax.swing.border.Border;
 public class MenúPrincipal extends javax.swing.JFrame{
     Border borde = BorderFactory.createLineBorder(Color.blue);
     Border bordeAmarillo = BorderFactory.createLineBorder(Color.yellow);
+    CRegistro cRegistro = new CRegistro();
+    CVentana controlVentana = new CVentana(this);
     
     public MenúPrincipal() {
         initComponents();
+
+    }
+    
+    public MenúPrincipal(CSistema controlSistema){
+        initComponents();
         panelesOp.setVisible(true);
+        controlVentana.iniciarVentana(this,"src/imagenes/logo(1).png");
     }
 
     /**
@@ -37,10 +46,31 @@ public class MenúPrincipal extends javax.swing.JFrame{
         panelClinica = new javax.swing.JPanel();
         bhClinica = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        labelNombre = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNombreAmbulatorio = new javax.swing.JTextField();
+        labelRIF = new javax.swing.JLabel();
+        txt8RIF = new javax.swing.JTextField();
+        labelPrivada = new javax.swing.JLabel();
+        guion1 = new javax.swing.JLabel();
+        txt1RIF = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtTelf1 = new javax.swing.JTextField();
+        labelTelf = new javax.swing.JLabel();
+        guion2 = new javax.swing.JLabel();
+        txtTelf2 = new javax.swing.JTextField();
+        labelDir = new javax.swing.JLabel();
+        labelCiudad = new javax.swing.JLabel();
+        txtDir = new javax.swing.JTextField();
+        txtCiudad = new javax.swing.JTextField();
+        labelEstado = new javax.swing.JLabel();
+        cboEstado = new javax.swing.JComboBox<>();
+        botonRegistrar = new javax.swing.JButton();
+        botonVaciar = new javax.swing.JButton();
         fondoClinica = new javax.swing.JLabel();
         panelAmbulatorios = new javax.swing.JPanel();
         bhAmbulatorios = new javax.swing.JButton();
@@ -103,41 +133,34 @@ public class MenúPrincipal extends javax.swing.JFrame{
         });
         panelClinica.add(bhClinica, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 13, 70, 60));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
-        );
+        jTabbedPane1.setBackground(new java.awt.Color(153, 204, 255));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTabbedPane1.setOpaque(true);
 
-        jTabbedPane1.addTab("tab1", jPanel1);
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 803, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGap(0, 514, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("tab2", jPanel2);
+        jTabbedPane1.addTab("Ambulatorios", jPanel2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab3", jPanel3);
@@ -146,16 +169,254 @@ public class MenúPrincipal extends javax.swing.JFrame{
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("tab4", jPanel4);
 
-        panelClinica.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 800, 540));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        labelNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelNombre.setText("Nombre:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel2.setText("Introduzca los datos del ambulatorio supeditado a la clínica");
+
+        txtNombreAmbulatorio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNombreAmbulatorio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreAmbulatorioFocusLost(evt);
+            }
+        });
+        txtNombreAmbulatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreAmbulatorioActionPerformed(evt);
+            }
+        });
+
+        labelRIF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelRIF.setText("RIF:");
+
+        txt8RIF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt8RIF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt8RIFFocusLost(evt);
+            }
+        });
+        txt8RIF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt8RIFActionPerformed(evt);
+            }
+        });
+
+        labelPrivada.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelPrivada.setText("J-");
+
+        guion1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        guion1.setText("-");
+
+        txt1RIF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt1RIF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt1RIFFocusLost(evt);
+            }
+        });
+        txt1RIF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt1RIFActionPerformed(evt);
+            }
+        });
+
+        txtTelf1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTelf1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelf1FocusLost(evt);
+            }
+        });
+        txtTelf1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelf1ActionPerformed(evt);
+            }
+        });
+
+        labelTelf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelTelf.setText("Teléfono:");
+
+        guion2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        guion2.setText("-");
+
+        txtTelf2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTelf2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelf2FocusLost(evt);
+            }
+        });
+        txtTelf2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelf2ActionPerformed(evt);
+            }
+        });
+
+        labelDir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelDir.setText("Dirección:");
+
+        labelCiudad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelCiudad.setText("Ciudad:");
+
+        txtDir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtDir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDirActionPerformed(evt);
+            }
+        });
+
+        txtCiudad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCiudad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCiudadFocusLost(evt);
+            }
+        });
+        txtCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCiudadActionPerformed(evt);
+            }
+        });
+
+        labelEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelEstado.setText("Estado:");
+
+        cboEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amazonas", "Anzoátegui", "Apure", "Aragua", "Barinas", "Bolívar", "Carabobo", "Cojedes", "Delta Amacuro", "Falcón", "Guárico", "Lara", "Mérida", "Miranda", "Monagas", "Nueva Esparta", "Portuguesa", "Sucre", "Táchira", "Trujillo", "Vargas", "Yaracuy", "Zulia" }));
+        cboEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEstadoActionPerformed(evt);
+            }
+        });
+
+        botonRegistrar.setBackground(new java.awt.Color(153, 204, 255));
+        botonRegistrar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonRegistrar.setText("Registrar");
+        botonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarActionPerformed(evt);
+            }
+        });
+
+        botonVaciar.setBackground(new java.awt.Color(255, 51, 51));
+        botonVaciar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonVaciar.setText("Vaciar datos");
+        botonVaciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVaciarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelDir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDir, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(labelTelf)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtTelf1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(guion2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtTelf2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(labelNombre)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtNombreAmbulatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(labelRIF)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(labelPrivada)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt8RIF, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(guion1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txt1RIF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(labelCiudad)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(labelEstado)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(118, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(80, 80, 80))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonVaciar)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonRegistrar)
+                        .addGap(33, 33, 33))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNombre)
+                    .addComponent(txtNombreAmbulatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelRIF)
+                    .addComponent(txt8RIF, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPrivada)
+                    .addComponent(guion1)
+                    .addComponent(txt1RIF, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTelf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTelf)
+                    .addComponent(txtTelf2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guion2))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCiudad)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelEstado)
+                        .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelDir)
+                    .addComponent(txtDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonVaciar)
+                    .addComponent(botonRegistrar))
+                .addGap(40, 40, 40))
+        );
+
+        jTabbedPane1.addTab("Registrar ambulatorio", jPanel1);
+
+        panelClinica.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 810, 550));
 
         fondoClinica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
         panelClinica.add(fondoClinica, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 660));
@@ -612,6 +873,81 @@ public class MenúPrincipal extends javax.swing.JFrame{
         bhPacientes.setBorder(null);
     }//GEN-LAST:event_bhPacientesMouseExited
 
+    private void cboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEstadoActionPerformed
+
+    private void txtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCiudadActionPerformed
+
+    private void txtDirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDirActionPerformed
+
+    private void txtTelf2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelf2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelf2ActionPerformed
+
+    private void txtTelf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelf1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelf1ActionPerformed
+
+    private void txt1RIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt1RIFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt1RIFActionPerformed
+
+    private void txt8RIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt8RIFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt8RIFActionPerformed
+
+    private void txtNombreAmbulatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreAmbulatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreAmbulatorioActionPerformed
+
+    private void txtTelf1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelf1FocusLost
+        // TODO add your handling code here:
+        if(cRegistro.validarTelf(txtTelf1,4)==false) txtTelf1.setText(null);
+    }//GEN-LAST:event_txtTelf1FocusLost
+
+    private void txtTelf2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelf2FocusLost
+        // TODO add your handling code here:
+        if(cRegistro.validarTelf(txtTelf2,7)==false) txtTelf2.setText(null);
+    }//GEN-LAST:event_txtTelf2FocusLost
+
+    private void txtCiudadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCiudadFocusLost
+        // TODO add your handling code here:
+        if(cRegistro.validarNombre(txtCiudad)==false) txtCiudad.setText(null);
+    }//GEN-LAST:event_txtCiudadFocusLost
+
+    private void botonVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVaciarActionPerformed
+        // TODO add your handling code here:
+        cRegistro.vaciarDatosAmbulatorio(txtNombreAmbulatorio,txt8RIF,txt1RIF,txtTelf1,txtTelf2,txtCiudad,txtDir,cboEstado);
+    }//GEN-LAST:event_botonVaciarActionPerformed
+
+    private void txt8RIFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt8RIFFocusLost
+        // TODO add your handling code here:
+        if(cRegistro.validarRIF(txt8RIF,8)==false) txt8RIF.setText(null);
+    }//GEN-LAST:event_txt8RIFFocusLost
+
+    private void txt1RIFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt1RIFFocusLost
+        // TODO add your handling code here:
+        if(cRegistro.validarRIF(txt1RIF,1)==false) txt1RIF.setText(null);
+    }//GEN-LAST:event_txt1RIFFocusLost
+
+    private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
+        if(cRegistro.confirmar()==true){
+            //Guardar ambulatorio en la lista de la clinica
+            //control.crearAmbulatorio(txtNombreAmbulatorio,txt8RIF,txt1RIF,txtTelf1,txtTelf2,txtCiudad,txtDir,cboEstado);
+            cRegistro.vaciarDatosAmbulatorio(txtNombreAmbulatorio, txt8RIF, txt1RIF, txtTelf1, txtTelf2, txtCiudad, txtDir, cboEstado);
+        }
+    }//GEN-LAST:event_botonRegistrarActionPerformed
+
+    private void txtNombreAmbulatorioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreAmbulatorioFocusLost
+        // TODO add your handling code here:
+        if(cRegistro.validarNombre(txtNombreAmbulatorio)==false) txtNombreAmbulatorio.setText(null);
+    }//GEN-LAST:event_txtNombreAmbulatorioFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -656,11 +992,18 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel botonAmbulatorios;
     private javax.swing.JLabel botonClinica;
     private javax.swing.JLabel botonPacientes;
+    private javax.swing.JButton botonRegistrar;
+    private javax.swing.JButton botonVaciar;
+    private javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JLabel fondoAmbulancias;
     private javax.swing.JLabel fondoAmbulatorios;
     private javax.swing.JLabel fondoClinica;
     private javax.swing.JLabel fondoHome;
     private javax.swing.JLabel fondoPacientes;
+    private javax.swing.JLabel guion1;
+    private javax.swing.JLabel guion2;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -681,6 +1024,13 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JLabel labelCiudad;
+    private javax.swing.JLabel labelDir;
+    private javax.swing.JLabel labelEstado;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelPrivada;
+    private javax.swing.JLabel labelRIF;
+    private javax.swing.JLabel labelTelf;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel panelAmbulancias;
     private javax.swing.JPanel panelAmbulatorios;
@@ -689,5 +1039,12 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JPanel panelOpciones;
     private javax.swing.JPanel panelPacientes;
     private javax.swing.JTabbedPane panelesOp;
+    private javax.swing.JTextField txt1RIF;
+    private javax.swing.JTextField txt8RIF;
+    private javax.swing.JTextField txtCiudad;
+    private javax.swing.JTextField txtDir;
+    private javax.swing.JTextField txtNombreAmbulatorio;
+    private javax.swing.JTextField txtTelf1;
+    private javax.swing.JTextField txtTelf2;
     // End of variables declaration//GEN-END:variables
 }

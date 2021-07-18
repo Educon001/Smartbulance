@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class CClinica {
+public class CClinica implements ICEntidad{
     private JLabel nombre;
     private JLabel RIF;
     private Clinica clinica;
@@ -50,6 +50,12 @@ public class CClinica {
         amb.setEstado(cboEstado.getSelectedItem().toString());
         
         clinica.incorporarAmbulatorio(amb);
+    }
+
+    public void mostrarEntidad(JLabel nombre, JLabel RIF, JLabel estado, JLabel ciudad, JLabel dirección) {
+    }
+
+    public void editarEntidad(JTextField nombre, JTextField RIF, JTextField estado, JTextField ciudad, JTextField dirección) {
     }
     
 }

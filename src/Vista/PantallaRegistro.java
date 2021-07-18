@@ -5,22 +5,40 @@
  */
 package Vista;
 
-import Controller.Controladora;
+import Controller.*;
+import Modelo.Clinica;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.*;
+
 /**
  *
  * @author jdfer
  */
 public class PantallaRegistro extends javax.swing.JFrame {
-    Controladora control;
+    private IniciarSesión iniciarSesion;
+    CRegistro controlRegistro;
+    CSistema controlSistema;
+    CVentana controlVentana;
     /**
      * Creates new form Pantalla_de_inicio
      */
     public PantallaRegistro() {
         initComponents();
-        control = new Controladora(this);
-        control.iniciaVentana(this, "src/imagenes/Logo.png");
+
     }
+    
+    public PantallaRegistro(CSistema controlSistema,IniciarSesión iniciarSesion){
+        initComponents();
+        this.iniciarSesion = iniciarSesion;
+        this.controlSistema=controlSistema;
+        controlRegistro = new CRegistro();
+        controlVentana = new CVentana();
+        controlVentana.iniciarVentana(this,"src/imagenes/logo(1).png");
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,19 +49,26 @@ public class PantallaRegistro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSeparator1 = new javax.swing.JSeparator();
         panelRegistro = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         botonRegistrar = new javax.swing.JButton();
         labelNombreClinica = new javax.swing.JLabel();
         txtNombreClinica = new javax.swing.JTextField();
         labelRIF = new javax.swing.JLabel();
-        txtRIF = new javax.swing.JTextField();
         labelCiudad = new javax.swing.JLabel();
         txtCiudad = new javax.swing.JTextField();
         labelDir = new javax.swing.JLabel();
         txtDir = new javax.swing.JTextField();
-        botonSalir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txt8RIF = new javax.swing.JTextField();
+        txt1RIF = new javax.swing.JTextField();
+        labelTelf = new javax.swing.JLabel();
+        txtTelf1 = new javax.swing.JTextField();
+        guion2 = new javax.swing.JLabel();
+        txtTelf2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cboEstado = new javax.swing.JComboBox<>();
+        botonVolver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,6 +91,11 @@ public class PantallaRegistro extends javax.swing.JFrame {
         labelNombreClinica.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelNombreClinica.setText("Nombre de la clínica:");
 
+        txtNombreClinica.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreClinicaFocusLost(evt);
+            }
+        });
         txtNombreClinica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreClinicaActionPerformed(evt);
@@ -73,10 +103,16 @@ public class PantallaRegistro extends javax.swing.JFrame {
         });
 
         labelRIF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelRIF.setText("RIF:    J-");
+        labelRIF.setText("RIF:   J-");
 
         labelCiudad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelCiudad.setText("Ciudad:");
+
+        txtCiudad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCiudadFocusLost(evt);
+            }
+        });
 
         labelDir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelDir.setText("Dirección:");
@@ -84,6 +120,67 @@ public class PantallaRegistro extends javax.swing.JFrame {
         txtDir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDirActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("-");
+
+        txt8RIF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt8RIFFocusLost(evt);
+            }
+        });
+        txt8RIF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt8RIFActionPerformed(evt);
+            }
+        });
+
+        txt1RIF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt1RIFFocusLost(evt);
+            }
+        });
+
+        labelTelf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelTelf.setText("Teléfono:");
+
+        txtTelf1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTelf1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelf1FocusLost(evt);
+            }
+        });
+        txtTelf1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelf1ActionPerformed(evt);
+            }
+        });
+
+        guion2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        guion2.setText("-");
+
+        txtTelf2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTelf2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelf2FocusLost(evt);
+            }
+        });
+        txtTelf2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelf2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Estado:");
+
+        cboEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amazonas", "Anzoátegui", "Apure", "Aragua", "Barinas", "Bolívar", "Carabobo", "Cojedes", "Delta Amacuro", "Falcón", "Guárico", "Lara", "Mérida", "Miranda", "Monagas", "Nueva Esparta", "Portuguesa", "Sucre", "Táchira", "Trujillo", "Vargas", "Yaracuy", "Zulia" }));
+        cboEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEstadoActionPerformed(evt);
             }
         });
 
@@ -95,30 +192,51 @@ public class PantallaRegistro extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(logo)
                 .addGap(136, 136, 136))
-            .addGroup(panelRegistroLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelRegistroLayout.createSequentialGroup()
-                        .addComponent(labelRIF, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtRIF, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelRegistroLayout.createSequentialGroup()
-                        .addComponent(labelNombreClinica)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNombreClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelRegistroLayout.createSequentialGroup()
-                        .addComponent(labelCiudad)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCiudad))
-                    .addGroup(panelRegistroLayout.createSequentialGroup()
-                        .addComponent(labelDir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDir)))
-                .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistroLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonRegistrar)
-                .addGap(132, 132, 132))
+                .addGap(135, 135, 135))
+            .addGroup(panelRegistroLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addComponent(labelTelf)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTelf1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(guion2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTelf2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelRegistroLayout.createSequentialGroup()
+                            .addComponent(labelCiudad)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelRegistroLayout.createSequentialGroup()
+                            .addComponent(labelDir)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtDir))
+                        .addGroup(panelRegistroLayout.createSequentialGroup()
+                            .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelRegistroLayout.createSequentialGroup()
+                                    .addComponent(labelRIF)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txt8RIF, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(labelNombreClinica))
+                            .addGap(6, 6, 6)
+                            .addComponent(jLabel2)
+                            .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panelRegistroLayout.createSequentialGroup()
+                                    .addGap(9, 9, 9)
+                                    .addComponent(txtNombreClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelRegistroLayout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txt1RIF, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         panelRegistroLayout.setVerticalGroup(
             panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,34 +247,47 @@ public class PantallaRegistro extends javax.swing.JFrame {
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNombreClinica)
                     .addComponent(txtNombreClinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelRIF)
-                    .addComponent(txtRIF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addComponent(jLabel2)
+                    .addComponent(txt8RIF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt1RIF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelTelf)
+                    .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtTelf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTelf2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(guion2)))
+                .addGap(18, 18, 18)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCiudad)
                     .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDir)
                     .addComponent(txtDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(botonRegistrar)
-                .addGap(43, 43, 43))
+                .addGap(27, 27, 27))
         );
 
         getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 500, 570));
 
-        botonSalir.setBackground(new java.awt.Color(153, 204, 255));
-        botonSalir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonSalir.setText("Salir");
-        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+        botonVolver.setBackground(new java.awt.Color(153, 204, 255));
+        botonVolver.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        botonVolver.setText("Volver");
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSalirActionPerformed(evt);
+                botonVolverActionPerformed(evt);
             }
         });
-        getContentPane().add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, -1, -1));
+        getContentPane().add(botonVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 650));
@@ -164,10 +295,11 @@ public class PantallaRegistro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         // TODO add your handling code here:
+        iniciarSesion.setVisible(true);
         dispose();
-    }//GEN-LAST:event_botonSalirActionPerformed
+    }//GEN-LAST:event_botonVolverActionPerformed
 
     private void txtNombreClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClinicaActionPerformed
         // TODO add your handling code here:
@@ -178,10 +310,64 @@ public class PantallaRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDirActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-        // TODO add your handling code here:
-        MenúPrincipal ventana = new MenúPrincipal();
-        ventana.setVisible(true);
+
+        /*if(controlSistema.seEncuentraRegistrada_RIF(RIF)==true)
+            JOptionPane.showMessageDialog(null,"Ya se encuentra registrada una clínica con este RIF.","Error", JOptionPane.ERROR_MESSAGE);
+        else if(controlSistema.seEncuentraRegistrada_Telf(telf)==true)
+            JOptionPane.showMessageDialog(null,"Ya se encuentra registrada una clínica con este número de teléfono.","Error", JOptionPane.ERROR_MESSAGE);
+        else{*/
+            if(controlRegistro.confirmar()){
+                controlSistema.crearClinica(txtNombreClinica.getText(),txt8RIF,txt1RIF,txtTelf1,txtTelf2,txtCiudad.getText(),cboEstado.getSelectedItem().toString(),txtDir.getText());
+                System.out.println(controlSistema.getListaClinicas().get(0).getRIF());
+            }
+            
+        //}
     }//GEN-LAST:event_botonRegistrarActionPerformed
+
+    private void txt8RIFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt8RIFFocusLost
+        // TODO add your handling code here:
+        if(controlRegistro.validarRIF(txt8RIF,8)==false) txt8RIF.setText(null);
+    }//GEN-LAST:event_txt8RIFFocusLost
+
+    private void txt1RIFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt1RIFFocusLost
+        // TODO add your handling code here:
+        if(controlRegistro.validarRIF(txt1RIF,1)==false) txt1RIF.setText(null);
+    }//GEN-LAST:event_txt1RIFFocusLost
+
+    private void txtTelf1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelf1FocusLost
+        // TODO add your handling code here:
+        if(controlRegistro.validarTelf(txtTelf1,4)==false) txtTelf1.setText(null);
+    }//GEN-LAST:event_txtTelf1FocusLost
+
+    private void txtTelf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelf1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelf1ActionPerformed
+
+    private void txtTelf2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelf2FocusLost
+        // TODO add your handling code here:
+        if(controlRegistro.validarTelf(txtTelf2,7)==false) txtTelf2.setText(null);
+    }//GEN-LAST:event_txtTelf2FocusLost
+
+    private void txtTelf2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelf2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelf2ActionPerformed
+
+    private void cboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboEstadoActionPerformed
+
+    private void txtNombreClinicaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreClinicaFocusLost
+        // TODO add your handling code here:
+        if(controlRegistro.validarNombre(txtNombreClinica)==false) txtNombreClinica.setText(null);
+    }//GEN-LAST:event_txtNombreClinicaFocusLost
+
+    private void txtCiudadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCiudadFocusLost
+        if(controlRegistro.validarNombre(txtCiudad)==false) txtCiudad.setText(null);
+    }//GEN-LAST:event_txtCiudadFocusLost
+
+    private void txt8RIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt8RIFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt8RIFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,18 +409,25 @@ public class PantallaRegistro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRegistrar;
-    private javax.swing.JButton botonSalir;
+    private javax.swing.JButton botonVolver;
+    private javax.swing.JComboBox<String> cboEstado;
+    private javax.swing.JLabel guion2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel labelCiudad;
     private javax.swing.JLabel labelDir;
     private javax.swing.JLabel labelNombreClinica;
     private javax.swing.JLabel labelRIF;
+    private javax.swing.JLabel labelTelf;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel panelRegistro;
+    private javax.swing.JTextField txt1RIF;
+    private javax.swing.JTextField txt8RIF;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtDir;
     private javax.swing.JTextField txtNombreClinica;
-    private javax.swing.JTextField txtRIF;
+    private javax.swing.JTextField txtTelf1;
+    private javax.swing.JTextField txtTelf2;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,7 +36,6 @@ public class CSistema {
     //OTROS MÉTODOS
     public void agregarClinica(Clinica cli){
         listaClinicas.add(cli);
-        JOptionPane.showMessageDialog(null,"6","Error", JOptionPane.ERROR_MESSAGE);
     }
     
     public void agregarPaciente(Paciente pac){

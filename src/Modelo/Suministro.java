@@ -4,7 +4,7 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class Suministro {
+public class Suministro {
     //Atributos
     private String tipo;
     private String nombre;
@@ -14,8 +14,10 @@ class Suministro {
     private ArrayList<Unidad> unidades;
     
     //Constructores
-    public Suministro(int codigo) {
-        this.codigo = codigo;
+    public Suministro(String tipo, String nombre, String descripción){
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.descripción = descripción;
         movimientos = new ArrayList<>();
         unidades = new ArrayList<>();
     }

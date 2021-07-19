@@ -52,10 +52,10 @@ public class CClinica implements ICEntidad{
         clinica.incorporarAmbulatorio(amb);
     }
 
-    public void mostrarEntidad(JLabel nombre, JLabel RIF, JLabel estado, JLabel ciudad, JLabel dirección) {
+    public void mostrarEntidad(JLabel nombre, JLabel telefono,JLabel RIF, JLabel estado, JLabel ciudad, JLabel dirección) {
     }
 
-    public void editarEntidad(JTextField nombre, JTextField RIF, JTextField estado, JTextField ciudad, JTextField dirección) {
+    public void editarEntidad(JTextField nombre, JTextField telefono, JTextField estado, JTextField ciudad, JTextField dirección) {
     }
     
 }

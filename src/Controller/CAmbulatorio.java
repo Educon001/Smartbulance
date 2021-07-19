@@ -17,7 +17,7 @@ public class CAmbulatorio implements ICEntidad{
     /*public CAmbulatorio() {
     }*/
         @Override
-    public void mostrarEntidad(JLabel nombre, JLabel RIF, JLabel estado, JLabel ciudad, JLabel direccion) {
+    public void mostrarEntidad(JLabel nombre, JLabel telefono,JLabel RIF, JLabel estado, JLabel ciudad, JLabel direccion) {
         nombre.setText(ambulatorio.getNombre());
         RIF.setText(ambulatorio.getRIF());
         estado.setText(ambulatorio.getEstado());
@@ -26,7 +26,7 @@ public class CAmbulatorio implements ICEntidad{
     }
 
     @Override
-    public void editarEntidad(JTextField nombre, JTextField RIF, JTextField estado, JTextField ciudad, JTextField dirección) {
+    public void editarEntidad(JTextField nombre, JTextField telefono,JTextField estado, JTextField ciudad, JTextField dirección) {
     }
     
     
@@ -49,7 +49,7 @@ public class CAmbulatorio implements ICEntidad{
             datos[i][0]=ambulatorio.getPersonal().get(i).getNombre();
             datos[i][1]=ambulatorio.getPersonal().get(i).getCedula();
             datos[i][2]=String.valueOf(ambulatorio.getPersonal().get(i).getNumCarnet());
-            datos[i][4]=ambulatorio.getPersonal().get(i).getTipo();
+            datos[i][3]=ambulatorio.getPersonal().get(i).getTipo();
         }
         
         TableModel modelo = new DefaultTableModel(datos,titulos);

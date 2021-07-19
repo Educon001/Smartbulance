@@ -89,4 +89,12 @@ public class Ambulatorio extends Entidad{
         sum.setCodigo(inventario.size());
         inventario.add(sum);
     }
+    
+    public Suministro buscarSuministro(int codigo){
+        for (Suministro sum : inventario) {
+            if(sum.getCodigo()==codigo)
+                return sum;
+        }
+        return null;
+    }
 }

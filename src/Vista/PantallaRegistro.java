@@ -279,7 +279,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
 
         getContentPane().add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 500, 570));
 
-        botonVolver.setBackground(new java.awt.Color(153, 204, 255));
+        botonVolver.setBackground(new java.awt.Color(255, 0, 51));
         botonVolver.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonVolver.setText("Volver");
         botonVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -310,18 +310,17 @@ public class PantallaRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDirActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-
-        /*if(controlSistema.seEncuentraRegistrada_RIF(RIF)==true)
-            JOptionPane.showMessageDialog(null,"Ya se encuentra registrada una clínica con este RIF.","Error", JOptionPane.ERROR_MESSAGE);
-        else if(controlSistema.seEncuentraRegistrada_Telf(telf)==true)
-            JOptionPane.showMessageDialog(null,"Ya se encuentra registrada una clínica con este número de teléfono.","Error", JOptionPane.ERROR_MESSAGE);
-        else{*/
-            if(controlRegistro.confirmar()){
-                controlSistema.crearClinica(txtNombreClinica.getText(),txt8RIF,txt1RIF,txtTelf1,txtTelf2,txtCiudad.getText(),cboEstado.getSelectedItem().toString(),txtDir.getText());
-                System.out.println(controlSistema.getListaClinicas().get(0).getRIF());
+        if(controlRegistro.camposVaciosEntidad(txtNombreClinica,txt8RIF,txt1RIF,txtTelf1,txtTelf2,txtCiudad,txtDir)==false){
+            String RIF = controlRegistro.construirRIF(txt8RIF,txt1RIF);
+            String telf = controlRegistro.construirTelf(txtTelf1,txtTelf2);
+            if(controlSistema.seEncuentraRegistrada_RIF(RIF,false)==false && controlSistema.seEncuentraRegistrada_Telf(telf)==false){
+                if(controlRegistro.confirmar()==true){
+                    controlSistema.crearClinica(txtNombreClinica.getText(),RIF,telf,txtCiudad.getText(),cboEstado.getSelectedItem().toString(),txtDir.getText());
+                    iniciarSesion.setVisible(true);
+                    dispose();
+                }                   
             }
-            
-        //}
+        }
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void txt8RIFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt8RIFFocusLost

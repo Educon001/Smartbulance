@@ -65,7 +65,7 @@ public class CRegistro {
         return true;
     }
     
-    public void vaciarDatosAmbulatorio(JTextField txtNombreAmbulatorio,JTextField txt8RIF,JTextField txt1RIF,JTextField txtTelf1,JTextField txtTelf2,JTextField txtCiudad,JTextField txtDir, JComboBox cboEstado){
+    public void vaciarDatosEntidad(JTextField txtNombreAmbulatorio,JTextField txt8RIF,JTextField txt1RIF,JTextField txtTelf1,JTextField txtTelf2,JTextField txtCiudad,JTextField txtDir, JComboBox cboEstado){
        txtNombreAmbulatorio.setText(null);
        txt8RIF.setText(null);
        txt1RIF.setText(null);
@@ -91,5 +91,27 @@ public class CRegistro {
         if(op==JOptionPane.YES_OPTION) return true;
         return false;
     }
+    
+    public boolean camposVaciosEntidad(JTextField txtNombre,JTextField txt8RIF,JTextField txt1RIF,JTextField txtTelf1,JTextField txtTelf2,JTextField txtCiudad,JTextField txtDir){
+        if(txtNombre.getText().isEmpty() || txt8RIF.getText().isEmpty() || txt1RIF.getText().isEmpty() || txtTelf1.getText().isEmpty() || txtTelf2.getText().isEmpty() || txtCiudad.getText().isEmpty() || txtDir.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public String construirRIF(JTextField txt1,JTextField txt2){
+        return "J-"+txt1.getText()+"-"+txt2.getText();
+    }
+   
+    public String construirTelf(JTextField txt1, JTextField txt2){
+        String telf = txt1.getText()+"-"+txt2.getText();
+        if(telf.charAt(0)!='0') telf='0'+telf;
+        return telf;
+    }
+            
+            
     
 }

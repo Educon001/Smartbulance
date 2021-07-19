@@ -51,7 +51,7 @@ public class IniciarSesión extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        botonSalir.setBackground(new java.awt.Color(153, 204, 255));
+        botonSalir.setBackground(new java.awt.Color(255, 0, 51));
         botonSalir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonSalir.setText("Salir");
         botonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -190,6 +190,8 @@ public class IniciarSesión extends javax.swing.JFrame {
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         // TODO add your handling code here:
+        txt8RIF.setText(null);
+        txt1RIF.setText(null);
         PantallaRegistro pRegistro = new PantallaRegistro(controlSistema,this);
         pRegistro.setVisible(true);
         setVisible(false);
@@ -215,13 +217,14 @@ public class IniciarSesión extends javax.swing.JFrame {
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
         // TODO add your handling code here:
-        String RIF = "J-"+txt8RIF.getText()+"-"+txt1RIF.getText();
-        System.out.println(controlSistema.getListaClinicas().get(0).getRIF());
-        if(controlSistema.seEncuentraRegistrada_RIF(RIF)){
-            MenúPrincipal menuPrincipal = new MenúPrincipal(controlSistema);
+        String RIF = controlRegistro.construirRIF(txt8RIF,txt1RIF);
+        if(controlSistema.seEncuentraRegistrada_RIF(RIF,true)){
+            CClinica controlClinica = new CClinica(controlSistema.buscarClinica(RIF));
+            MenúPrincipal menuPrincipal = new MenúPrincipal(controlSistema,controlClinica,this);
+            setVisible(false);
             menuPrincipal.setVisible(true);
         }
-        else JOptionPane.showMessageDialog(null,"La clínica con este RIF no se encuentra registrada.","Error", JOptionPane.ERROR_MESSAGE);
+        txt8RIF.setText(null); txt1RIF.setText(null);
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
 
     /**

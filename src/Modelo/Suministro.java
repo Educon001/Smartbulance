@@ -21,6 +21,11 @@ public class Suministro {
         movimientos = new ArrayList<>();
         unidades = new ArrayList<>();
     }
+
+    public Suministro() {
+        unidades = new ArrayList<>();
+        nombre = "DROGA";
+    }
     
     //Getters y setters
 

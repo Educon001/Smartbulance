@@ -2,13 +2,12 @@
 package Controller;
 
 import Modelo.Ambulatorio;
-//import Modelo.Personal;
 import javax.swing.*;
 import javax.swing.table.*;
 
 public class CAmbulatorio implements ICEntidad{
     
-    private Ambulatorio ambulatorio; //= new Ambulatorio("A","a","ª");
+    private Ambulatorio ambulatorio;
 
     public CAmbulatorio(Ambulatorio ambulatorio){
         this.ambulatorio = ambulatorio;
@@ -31,16 +30,6 @@ public class CAmbulatorio implements ICEntidad{
     
     
     public void mostrarPersonal(JTable tabla){
-        /*Personal per1 = new Personal(1,true,0,null,null,"doc","1","Eduardo","a","1",null,null,'M');
-        Personal per2 = new Personal(2,true,0,null,null,"enf","2","Marco","b","2",null,null,'M');
-        Personal per3 = new Personal(3,true,0,null,null,"par","3","Jesus","c","3",null,null,'M');
-        Personal per4 = new Personal(4,true,0,null,null,"con","4","Jose","d","4",null,null,'F');
-        Personal per5 = new Personal(5,true,0,null,null,"sec","5","Steiker","e","5",null,null,'F');
-        ambulatorio.registrarPersonal(per1);
-        ambulatorio.registrarPersonal(per2);
-        ambulatorio.registrarPersonal(per3);
-        ambulatorio.registrarPersonal(per4);
-        ambulatorio.registrarPersonal(per5);*/
         
         String[] titulos = {"Nombre","Cedula","Numero de Carnet","Tipo"};
         String[][] datos = new String[ambulatorio.getPersonal().size()][4];
@@ -55,6 +44,7 @@ public class CAmbulatorio implements ICEntidad{
         TableModel modelo = new DefaultTableModel(datos,titulos);
         tabla.setModel(modelo);
         tabla.setDefaultEditor(Object.class, null);
+        tabla.getTableHeader().setReorderingAllowed(false);
     }
     
     public void mostrarInventario(JTable tabla){

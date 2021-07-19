@@ -3,6 +3,10 @@ package Controller;
 
 import Modelo.Ambulatorio;
 import Modelo.Suministro;
+import Modelo.Unidad;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -13,17 +17,12 @@ public class CInventario {
     public CInventario(Ambulatorio ambulatorio) {
         this.ambulatorio = ambulatorio;
     }
+
+    public CInventario() {
+    }
+  
     
-    public void mostrarinventario(JTable tabla,JButton boton){
-        Suministro sum1 = new Suministro("1","A","10mg");
-        Suministro sum2 = new Suministro("2","B","20mg");
-        Suministro sum3 = new Suministro("3","C","30mg");
-        Suministro sum4 = new Suministro("4","D","40mg");
-        
-        ambulatorio.agregarSuministro(sum1);
-        ambulatorio.agregarSuministro(sum2);
-        ambulatorio.agregarSuministro(sum3);
-        ambulatorio.agregarSuministro(sum4);
+    public void mostrarInventario(JTable tabla,JButton botonMovimiento,JButton botonDetalles){
         
         String[] titulos = {"Tipo","Nombre","Descripción","Cantidad","Codigo"};
         String[][] datos = new String[ambulatorio.getInventario().size()][5];
@@ -43,7 +42,9 @@ public class CInventario {
         TableModel modelo = new DefaultTableModel(datos,titulos);
         tabla.setModel(modelo);
         tabla.setDefaultEditor(Object.class, null);
-        tabla.addMouseListener(new EventoMouse(boton));
+        tabla.getTableHeader().setReorderingAllowed(false);
+        tabla.addMouseListener(new EventoMouse(botonDetalles));
+        tabla.addMouseListener(new EventoMouse(botonMovimiento));
     }
     
     public void registrarSuministro(String tipo, String nombre, String descripcion){
@@ -51,11 +52,53 @@ public class CInventario {
         ambulatorio.agregarSuministro(sum);
     }
     
-    public Suministro verDetalle(JTable tabla){
+    public Suministro obtenerObjetoSeleccionado(JTable tabla){
         int indice = tabla.getSelectedRow();   
         String cod = tabla.getModel().getValueAt(indice,4).toString();
         Suministro sum = ambulatorio.buscarSuministro(Integer.parseInt(cod));
         return sum;
     }
     
+    public void activarPaneles(int tipo, JPanel panel1, JPanel panel2){
+        if (tipo==1) panel1.setVisible(false); //Tipo 1 representa el boton Ver detalle
+        if (tipo==2) panel2.setVisible(false); //Tipo 2 representa el boton Registrar movimiento
+    }
+    
+    public void mostrarUnidades(JTable tabla, JLabel label,Suministro sum){
+        Unidad uni1 = new Unidad("almacen",LocalDate.of(2021, 7, 26));
+        Unidad uni2 = new Unidad("ambu 1",LocalDate.of(2021, 9, 4));
+        sum.getUnidades().add(uni1);
+        sum.getUnidades().add(uni2);
+        label.setText("Unidades de "+sum.getNombre());
+        String[] titulos = {"No.","Fecha vencimiento","Ubicacion actual"};
+        String[][] datos = new String[sum.getUnidades().size()][3];
+        
+        for (int i = 0; i < sum.getUnidades().size(); i++) {
+            datos[i][0]=String.valueOf(i+1);
+            datos[i][1]=sum.getUnidades().get(i).getfVencimiento().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+            datos[i][2]=sum.getUnidades().get(i).getUbicacion();
+        }
+        
+        TableModel modelo = new DefaultTableModel(datos,titulos);
+        tabla.setModel(modelo);
+        tabla.setDefaultEditor(Object.class, null); 
+        tabla.getTableHeader().setReorderingAllowed(false);
+    }
+    
+    public void tipoMovimiento(JComboBox tipo,JLabel labelFechaV, JLabel labelDestino, JComboBox comboDestino){
+        switch (tipo.getSelectedIndex()){
+            case 1:
+                
+            break;
+            
+            case 2:
+                
+            break;
+            
+            case 3:
+                
+            break;
+        }
+    }
+
 }

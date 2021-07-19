@@ -51,11 +51,11 @@ public class CInventario {
         ambulatorio.agregarSuministro(sum);
     }
     
-    public void verDetalle(JTable tabla){
+    public Suministro verDetalle(JTable tabla){
         int indice = tabla.getSelectedRow();   
         String cod = tabla.getModel().getValueAt(indice,4).toString();
         Suministro sum = ambulatorio.buscarSuministro(Integer.parseInt(cod));
-        System.out.println("00"+sum.getCodigo()+"  "+ sum.getNombre());
+        return sum;
     }
     
 }

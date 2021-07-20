@@ -60,7 +60,14 @@ public class Clinica extends Entidad{
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
-    
+
+    public ArrayList<Taller> getTalleresAsociados() {
+        return talleresAsociados;
+    }
+
+    public void setTalleresAsociados(ArrayList<Taller> talleresAsociados) {
+        this.talleresAsociados = talleresAsociados;
+    }
     
     //MÉTODOS
     public void incorporarAmbulatorio(Ambulatorio amb){
@@ -85,6 +92,27 @@ public class Clinica extends Entidad{
                 return pac;
         }
       return null; 
+    }
+    
+    public boolean buscarAmbulatorio_RIF(String RIF){
+        for(Ambulatorio amb : ambulatorios){
+            if(RIF.equals(amb.getRIF())) return true;
+        }
+        return false;
+    }
+    
+    public boolean buscarAmbulatorio_Telf(String telf){
+        for(Ambulatorio amb : ambulatorios){
+            if(telf.equals(amb.getTelefono())) return true;
+        }
+        return false;
+    }
+    
+    public Ambulatorio retornarAmbulatorio(String RIF){
+        for(Ambulatorio amb : ambulatorios){
+            if(RIF.equals(amb.getRIF())) return amb;
+        }
+        return null;
     }
     
 }

@@ -2,6 +2,7 @@
 package Controller;
 
 import Modelo.Clinica;
+import Modelo.Entidad;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.util.regex.Matcher;
@@ -65,7 +66,7 @@ public class CRegistro {
         return true;
     }
     
-    public void vaciarDatosAmbulatorio(JTextField txtNombreAmbulatorio,JTextField txt8RIF,JTextField txt1RIF,JTextField txtTelf1,JTextField txtTelf2,JTextField txtCiudad,JTextField txtDir, JComboBox cboEstado){
+    public void vaciarDatosEntidad(JTextField txtNombreAmbulatorio,JTextField txt8RIF,JTextField txt1RIF,JTextField txtTelf1,JTextField txtTelf2,JTextField txtCiudad,JTextField txtDir, JComboBox cboEstado){
        txtNombreAmbulatorio.setText(null);
        txt8RIF.setText(null);
        txt1RIF.setText(null);
@@ -90,6 +91,49 @@ public class CRegistro {
         int op = JOptionPane.showConfirmDialog(null, "¿Desea continuar con esta acción?","Confirme",JOptionPane.YES_NO_OPTION);
         if(op==JOptionPane.YES_OPTION) return true;
         return false;
+    }
+    
+    public boolean camposVaciosEntidad(JTextField txtNombre,JTextField txt8RIF,JTextField txt1RIF,JTextField txtTelf1,JTextField txtTelf2,JTextField txtCiudad,JTextField txtDir){
+        if(txtNombre.getText().isEmpty() || txt8RIF.getText().isEmpty() || txt1RIF.getText().isEmpty() || txtTelf1.getText().isEmpty() || txtTelf2.getText().isEmpty() || txtCiudad.getText().isEmpty() || txtDir.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public String construirRIF(JTextField txt1,JTextField txt2){
+        return "J-"+txt1.getText()+"-"+txt2.getText();
+    }
+   
+    public String construirTelf(JTextField txt1, JTextField txt2){
+        String telf = txt1.getText()+"-"+txt2.getText();
+        if(telf.charAt(0)!='0') telf='0'+telf;
+        return telf;
+    }
+            
+    public void actualizarEtiquetas_Entidad(Entidad entidad,JLabel labelNombre,JLabel labelRIF,JLabel labelTelf,JLabel labelCiudad,JLabel labelEstado,JLabel labelDir){
+        labelNombre.setText(entidad.getNombre());
+        labelRIF.setText(entidad.getRIF());
+        labelTelf.setText(entidad.getTelefono());
+        labelCiudad.setText(entidad.getCiudad());
+        labelEstado.setText(entidad.getEstado());
+        labelDir.setText(entidad.getDireccion());
+    }        
+    
+    public void actualizarEntidad(Entidad entidad,JTextField txtNombreEntidad,String RIF,String telf,JTextField txtCiudadEntidad,JComboBox cboEstadoEntidad,JTextField txtDirEntidad){
+        entidad.setNombre(txtNombreEntidad.getText());
+        entidad.setRIF(RIF);
+        entidad.setTelefono(telf);
+        entidad.setCiudad(txtNombreEntidad.getText());
+        entidad.setCiudad(txtCiudadEntidad.getText());
+        entidad.setEstado(cboEstadoEntidad.getSelectedItem().toString());
+        entidad.setDireccion(txtDirEntidad.getText());
+    }
+    
+    public boolean textAreaVacio(JTextArea txtArea){
+        return txtArea.getText().isEmpty();
     }
     
 }

@@ -1,9 +1,9 @@
 
 package Controller;
 
-import Modelo.Ambulatorio;
-import Modelo.Clinica;
+import Modelo.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -20,35 +20,53 @@ public class CClinica implements ICEntidad{
         listaAmbulatorios = clinica.getAmbulatorios();       
     }
 
-    public void mostrarAmbulatorios(JTable tabla){
-        String titulo[]={"RIF","Ciudad","Dirección"};
-        String matriz[][]=new String[listaAmbulatorios.size()][3];
+    public CClinica(Clinica clinica) {
+        this.clinica=clinica;      
+    }
 
-        for (int i=0;i<listaAmbulatorios.size();i++){
-            matriz[i][0]=listaAmbulatorios.get(i).getRIF();
-            matriz[i][1]=listaAmbulatorios.get(i).getCiudad();
-            matriz[i][2]=listaAmbulatorios.get(i).getDireccion();     
+    public Clinica getClinica() {
+        return clinica;
+    }
+    
+    
+    public void mostrarTablaAmbulatorios(ArrayList<Ambulatorio> ambulatorios, JTable tabla){
+        String titulo[]={"Nombre","RIF","Teléfono","Ciudad","Estado","Dirección"};
+        String matriz[][]=new String[ambulatorios.size()][6];
+
+        for (int i=0;i<ambulatorios.size();i++){
+            matriz[i][0]=ambulatorios.get(i).getNombre();
+            matriz[i][1]=ambulatorios.get(i).getRIF();
+            matriz[i][2]=ambulatorios.get(i).getTelefono();
+            matriz[i][3]=ambulatorios.get(i).getCiudad();
+            matriz[i][4]=ambulatorios.get(i).getEstado();
+            matriz[i][5]=ambulatorios.get(i).getDireccion();  
         }
         
         TableModel model = new DefaultTableModel(matriz,titulo);
         tabla.setModel(model);
-        tabla.setDefaultEditor(Object.class, null);    
+        tabla.setDefaultEditor(Object.class, null);
     }
-     
-    public void agregarAmbulatorio(Clinica clinica, JTextField txtNombreAmbulatorio,JTextField txt8RIF,JTextField txt1RIF,JTextField txtTelf1,JTextField txtTelf2,JTextField txtCiudad,JTextField txtDir, JComboBox cboEstado){
-        Ambulatorio amb = new Ambulatorio();
-        amb.setNombre(txtNombreAmbulatorio.getText());
-        String RIF = "J-"+txt8RIF.getText()+"-"+txt1RIF.getText();  
-        amb.setRIF(RIF);
-       
-        String telf = txtTelf1+"-"+txtTelf2;
-        if(telf.charAt(0)!='0') telf = "0"+telf;
-        amb.setTelefono(telf);
+    
+    public void mostrarTablaTalleres(ArrayList<Taller> talleres, JTable tabla){
+        String titulo[]={"Nombre","RIF","Teléfono","Ciudad","Estado","Dirección"};
+        String matriz[][]=new String[talleres.size()][6];
+
+        for (int i=0;i<talleres.size();i++){
+            matriz[i][0]=talleres.get(i).getNombre();
+            matriz[i][1]=talleres.get(i).getRIF();
+            matriz[i][2]=talleres.get(i).getTelefono();
+            matriz[i][3]=talleres.get(i).getCiudad();
+            matriz[i][4]=talleres.get(i).getEstado();
+            matriz[i][5]=talleres.get(i).getDireccion();  
+        }
         
-        amb.setCiudad(txtCiudad.getText().toUpperCase());
-        amb.setDireccion(txtDir.getText());
-        amb.setEstado(cboEstado.getSelectedItem().toString());
-        
+        TableModel model = new DefaultTableModel(matriz,titulo);
+        tabla.setModel(model);
+        tabla.setDefaultEditor(Object.class, null);
+    }
+    
+    public void crearAmbulatorio(Clinica clinica,String nombreAmbulatorio,String RIF,String telefono,String ciudad,String estado,String direccion){
+        Ambulatorio amb = new Ambulatorio(nombreAmbulatorio,telefono,RIF,estado,ciudad,direccion);        
         clinica.incorporarAmbulatorio(amb);
     }
 
@@ -57,5 +75,48 @@ public class CClinica implements ICEntidad{
 
     public void editarEntidad(JTextField nombre, JTextField telefono, JTextField estado, JTextField ciudad, JTextField dirección) {
     }
+    
+    public void crearTaller(Clinica clinica,String nombreTaller,String RIF,String telefono,String ciudad,String direccion,String estado,JTextArea txtAreaMecanicos){
+        ArrayList<String> mecanicos =new ArrayList<>(Arrays.asList(txtAreaMecanicos.getText().split("\n")));
+        mecanicos.remove(0);
+        Taller taller = new Taller(mecanicos,nombreTaller,telefono,RIF,estado,ciudad,direccion);       
+        clinica.asociarTaller(taller);
+        System.out.println(taller.getMecanicos().get(0)+"\n"+taller.getMecanicos().get(1));
+    }
+    
+    
+    public boolean seEncuentraRegistradoRIF_Ambulatorio(String RIF, boolean inicio){
+        if(!inicio){
+            if(clinica.buscarAmbulatorio_RIF(RIF)){
+                JOptionPane.showMessageDialog(null,"Ya se encuentra un ambulatorio registrado con este RIF.","Error", JOptionPane.ERROR_MESSAGE);
+                return true;
+            } 
+        }
+        return false;
+    }
+    
+    public boolean seEncuentraRegistradoTelf_Ambulatorio(String telf, boolean inicio){
+        if(!inicio){
+            if(clinica.buscarAmbulatorio_Telf(telf)){
+                JOptionPane.showMessageDialog(null,"Ya se encuentra un ambulatorio registrado con este número telefónico.","Error", JOptionPane.ERROR_MESSAGE);
+                return true;
+            } 
+        }
+        return false;
+    }
+    
+    public void prueba(Taller taller){
+        for(String mec : taller.getMecanicos()){
+            System.out.println(mec+"\n");
+        }        
+    }
+    
+    public Taller buscarTaller(String RIF){
+        for(Taller taller : clinica.getTalleresAsociados()){
+            if(RIF.equals(taller.getRIF())) return taller;
+        }
+        return null;
+    }
+    
     
 }

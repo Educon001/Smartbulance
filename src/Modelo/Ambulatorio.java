@@ -17,6 +17,16 @@ public class Ambulatorio extends Entidad{
         inventario = new ArrayList<>();
     }
     
+    public Ambulatorio(String nombre, String telefono, String RIF, String estado, String ciudad, String direccion){
+        super(nombre,telefono,RIF,estado,ciudad,direccion);
+        vehiculos = new ArrayList<>();
+        personal = new ArrayList<>();
+        histPacientes = new ArrayList<>();
+        inventario = new ArrayList<>();
+    }
+    
+    
+    
     //GETTERS Y SETTERS
     public ArrayList<Vehiculo> getVehiculos() {
         return vehiculos;

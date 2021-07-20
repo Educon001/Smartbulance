@@ -24,7 +24,7 @@ public class CVentana {
     
     public void entradasModificar_Entidad(Entidad entidad, JTextField txtNombre,JTextField txt8RIF,JTextField txt1RIF,JTextField txtTelf1,JTextField txtTelf2,JTextField txtCiudad,JComboBox cboEstado,JTextField txtDir){
         txtNombre.setText(entidad.getNombre());
-        txt8RIF.setText(entidad.getRIF().substring(2,9));
+        txt8RIF.setText(entidad.getRIF().substring(2,10));
         txt1RIF.setText(entidad.getRIF().substring(11));
         txtTelf1.setText(entidad.getTelefono().substring(0,4));
         txtTelf2.setText(entidad.getTelefono().substring(5));
@@ -48,15 +48,6 @@ public class CVentana {
         boton4.setSelected(seleccionar);
         boton5.setSelected(seleccionar);
         boton6.setSelected(seleccionar);
-    }
-    
-    public void actualizarEntidad(Entidad entidad,JLabel labelNombre,JLabel labelRIF,JLabel labelTelf,JLabel labelCiudad,JLabel labelEstado,JLabel labelDir){
-        labelNombre.setText(entidad.getNombre());
-        labelRIF.setText(entidad.getRIF());
-        labelTelf.setText(entidad.getTelefono());
-        labelCiudad.setText(entidad.getCiudad());
-        labelEstado.setText(entidad.getEstado());
-        labelDir.setText(entidad.getDireccion());
     }
     
     

@@ -10,12 +10,14 @@ public class CSistema {
     private ArrayList<Clinica> listaClinicas;
     private ArrayList<Paciente> listaPacientes;
     
+    Clinica prueba = new Clinica("Clinic","0212-9435176","J-12345678-1","Amazonas","Maracaibo","Calle 13");
     //CONSTRUCTORES
     public CSistema() {
         listaClinicas = new ArrayList<>();
+        listaClinicas.add(prueba);
         listaPacientes = new ArrayList<>();  
     }
-        
+       // String nombre, String telefono, String RIF, String estado, String ciudad, String direccion
     //GETTERS Y SETTERS
     public ArrayList<Clinica> getListaClinicas() {
         return listaClinicas;
@@ -67,7 +69,7 @@ public class CSistema {
                 if(!inicio) mensajeEntidad_RIFRegistrado();
                 return true;
             }
-            else{
+            else if(!inicio){
                 for(Ambulatorio amb : cli.getAmbulatorios()){
                     if(RIF.equals(amb.getRIF())){
                         mensajeEntidad_RIFRegistrado();

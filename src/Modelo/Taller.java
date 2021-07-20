@@ -8,7 +8,8 @@ public class Taller extends Entidad{
 
     public Taller(ArrayList<String> mecanicos, String nombre, String telefono, String RIF, String estado, String ciudad, String direccion) {
         super(nombre, telefono, RIF, estado, ciudad, direccion);
-        this.mecanicos = mecanicos;
+        this.mecanicos = new ArrayList<String>();
+        this.mecanicos=mecanicos;
     }
 
     

@@ -108,4 +108,11 @@ public class Clinica extends Entidad{
         return false;
     }
     
+    public Ambulatorio retornarAmbulatorio(String RIF){
+        for(Ambulatorio amb : ambulatorios){
+            if(RIF.equals(amb.getRIF())) return amb;
+        }
+        return null;
+    }
+    
 }

@@ -12,17 +12,18 @@ public class ModificarEntidad extends javax.swing.JFrame {
     Entidad entidad;
     CVentana controlVentana = new CVentana();
     CRegistro controlRegistro = new CRegistro();
-    CClinica controlClinica;
+    CSistema controlSistema;
     MenúPrincipal ventanaAnterior;
 
     public ModificarEntidad() {
         initComponents();
     }
     
-    public ModificarEntidad(MenúPrincipal ventanaAnterior,Entidad entidad) {
+    public ModificarEntidad(MenúPrincipal ventanaAnterior,Entidad entidad,CSistema controlSistema) {
         initComponents();
         this.entidad = entidad;
         this.ventanaAnterior = ventanaAnterior;
+        this.controlSistema=controlSistema;
         controlVentana.iniciarVentana(this, "src/imagenes/logo(1).png");    
         controlVentana.entradasModificar_Entidad(entidad,txtNombreEntidad, txt8RIFEntidad, txt1RIFEntidad, txtTelf1Entidad, txtTelf2Entidad, txtCiudadEntidad, cboEstadoEntidad, txtDirEntidad);    
     }
@@ -99,6 +100,12 @@ public class ModificarEntidad extends javax.swing.JFrame {
             }
         });
 
+        txt8RIFEntidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt8RIFEntidadFocusLost(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("J-");
 
@@ -106,11 +113,27 @@ public class ModificarEntidad extends javax.swing.JFrame {
         jLabel3.setText("-");
 
         txt1RIFEntidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt1RIFEntidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt1RIFEntidadFocusLost(evt);
+            }
+        });
+
+        txtTelf1Entidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelf1EntidadFocusLost(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("-");
 
         txtTelf2Entidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTelf2Entidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelf2EntidadFocusLost(evt);
+            }
+        });
         txtTelf2Entidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelf2EntidadActionPerformed(evt);
@@ -118,6 +141,11 @@ public class ModificarEntidad extends javax.swing.JFrame {
         });
 
         txtCiudadEntidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCiudadEntidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCiudadEntidadFocusLost(evt);
+            }
+        });
 
         cboEstadoEntidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amazonas", "Anzoátegui", "Apure", "Aragua", "Barinas", "Bolívar", "Carabobo", "Cojedes", "Delta Amacuro", "Falcón", "Guárico", "Lara", "Mérida", "Miranda", "Monagas", "Nueva Esparta", "Portuguesa", "Sucre", "Táchira", "Trujillo", "Vargas", "Yaracuy", "Zulia" }));
 
@@ -376,7 +404,7 @@ public class ModificarEntidad extends javax.swing.JFrame {
         else{
             txt8RIFEntidad.setEnabled(false);
             txt1RIFEntidad.setEnabled(false);
-            txt8RIFEntidad.setText(entidad.getRIF().substring(2,9));
+            txt8RIFEntidad.setText(entidad.getRIF().substring(2,10));
             txt1RIFEntidad.setText(entidad.getRIF().substring(11));
         }
     }//GEN-LAST:event_radioModRIFMouseClicked
@@ -391,7 +419,7 @@ public class ModificarEntidad extends javax.swing.JFrame {
         else{
             txtTelf1Entidad.setEnabled(false);
             txtTelf2Entidad.setEnabled(false);
-            txtTelf1Entidad.setText(entidad.getTelefono().substring(0,3));
+            txtTelf1Entidad.setText(entidad.getTelefono().substring(0,4));
             txtTelf2Entidad.setText(entidad.getTelefono().substring(5));
         }
     }//GEN-LAST:event_radioModTelfMouseClicked
@@ -428,6 +456,7 @@ public class ModificarEntidad extends javax.swing.JFrame {
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         dispose();
+        ventanaAnterior.setVisible(true);
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void radioModTelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModTelfActionPerformed
@@ -440,12 +469,47 @@ public class ModificarEntidad extends javax.swing.JFrame {
     }//GEN-LAST:event_botonReestablecerActionPerformed
 
     private void botonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarCambiosActionPerformed
-        if(controlRegistro.confirmar()){
-            dispose(); 
-            controlVentana.actualizarEntidad(entidad,ventanaAnterior.getLabelNombre_DeLaClinica(),ventanaAnterior.getLabelRIF_DeLaClinica(),ventanaAnterior.getLabelTelf_DeLaClinica(),ventanaAnterior.getLabelCiudad_DeLaClinca(),ventanaAnterior.getLabelEstado_DeLaClinica(),ventanaAnterior.getLabelDir_DeLaClinica());
-            ventanaAnterior.setVisible(true);
+        boolean validaciones = controlRegistro.validarRIF(txt8RIFEntidad,8) && controlRegistro.validarRIF(txt1RIFEntidad,1) && controlRegistro.validarTelf(txtTelf1Entidad,4) && controlRegistro.validarTelf(txtTelf2Entidad,7) && controlRegistro.validarNombre(txtCiudadEntidad);
+        if(validaciones && controlRegistro.camposVaciosEntidad(txtNombreEntidad, txt8RIFEntidad, txt1RIFEntidad, txtTelf1Entidad, txtTelf2Entidad, txtDirEntidad, txtDirEntidad)==false){
+                boolean modRIF=false,modTelf=false,continuar=true;
+                String RIF = controlRegistro.construirRIF(txt8RIFEntidad, txt1RIFEntidad);
+                String telf = controlRegistro.construirTelf(txtTelf1Entidad, txtTelf2Entidad);
+                if(!RIF.equals(entidad.getRIF())) modRIF=true;
+                if(!telf.equals(entidad.getTelefono())) modTelf=true;
+                
+                if(modRIF==true && controlSistema.seEncuentraRegistrada_RIF(RIF,false)) continuar=false;
+                if(modTelf==true && controlSistema.seEncuentraRegistrada_Telf(telf)) continuar=false;
+                
+                if(continuar){
+                        if(controlRegistro.confirmar()){
+                            dispose(); 
+                            controlRegistro.actualizarEntidad(entidad,txtNombreEntidad,RIF,telf,txtCiudadEntidad,cboEstadoEntidad,txtDirEntidad);
+                            controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DeLaClinica(),ventanaAnterior.getLabelRIF_DeLaClinica(),ventanaAnterior.getLabelTelf_DeLaClinica(),ventanaAnterior.getLabelCiudad_DeLaClinca(),ventanaAnterior.getLabelEstado_DeLaClinica(),ventanaAnterior.getLabelDir_DeLaClinica());
+                            ventanaAnterior.setVisible(true);
+                        }   
+                }
         }
     }//GEN-LAST:event_botonGuardarCambiosActionPerformed
+
+    private void txt8RIFEntidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt8RIFEntidadFocusLost
+        if(!controlRegistro.validarRIF(txt8RIFEntidad, 8)) txt8RIFEntidad.setText(null);
+    }//GEN-LAST:event_txt8RIFEntidadFocusLost
+
+    private void txt1RIFEntidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt1RIFEntidadFocusLost
+        if(!controlRegistro.validarRIF(txt1RIFEntidad, 1)) txt1RIFEntidad.setText(null);
+    }//GEN-LAST:event_txt1RIFEntidadFocusLost
+
+    private void txtTelf1EntidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelf1EntidadFocusLost
+        if(!controlRegistro.validarTelf(txtTelf1Entidad,4)) txtTelf1Entidad.setText(null);
+    }//GEN-LAST:event_txtTelf1EntidadFocusLost
+
+    private void txtTelf2EntidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelf2EntidadFocusLost
+        if(!controlRegistro.validarTelf(txtTelf2Entidad,7)) txtTelf2Entidad.setText(null);
+    }//GEN-LAST:event_txtTelf2EntidadFocusLost
+
+    private void txtCiudadEntidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCiudadEntidadFocusLost
+        if(!controlRegistro.validarNombre(txtCiudadEntidad)) txtCiudadEntidad.setText(null); 
+    }//GEN-LAST:event_txtCiudadEntidadFocusLost
 
     /**
      * @param args the command line arguments

@@ -2,6 +2,7 @@
 package Controller;
 
 import Modelo.Clinica;
+import Modelo.Entidad;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.util.regex.Matcher;
@@ -112,6 +113,27 @@ public class CRegistro {
         return telf;
     }
             
-            
+    public void actualizarEtiquetas_Entidad(Entidad entidad,JLabel labelNombre,JLabel labelRIF,JLabel labelTelf,JLabel labelCiudad,JLabel labelEstado,JLabel labelDir){
+        labelNombre.setText(entidad.getNombre());
+        labelRIF.setText(entidad.getRIF());
+        labelTelf.setText(entidad.getTelefono());
+        labelCiudad.setText(entidad.getCiudad());
+        labelEstado.setText(entidad.getEstado());
+        labelDir.setText(entidad.getDireccion());
+    }        
+    
+    public void actualizarEntidad(Entidad entidad,JTextField txtNombreEntidad,String RIF,String telf,JTextField txtCiudadEntidad,JComboBox cboEstadoEntidad,JTextField txtDirEntidad){
+        entidad.setNombre(txtNombreEntidad.getText());
+        entidad.setRIF(RIF);
+        entidad.setTelefono(telf);
+        entidad.setCiudad(txtNombreEntidad.getText());
+        entidad.setCiudad(txtCiudadEntidad.getText());
+        entidad.setEstado(cboEstadoEntidad.getSelectedItem().toString());
+        entidad.setDireccion(txtDirEntidad.getText());
+    }
+    
+    public boolean textAreaVacio(JTextArea txtArea){
+        return txtArea.getText().isEmpty();
+    }
     
 }

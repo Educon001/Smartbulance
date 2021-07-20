@@ -47,6 +47,4 @@ public class CAmbulatorio implements ICEntidad{
         tabla.getTableHeader().setReorderingAllowed(false);
     }
     
-    public void mostrarInventario(JTable tabla){
-    }
 }

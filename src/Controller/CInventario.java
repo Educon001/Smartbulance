@@ -4,6 +4,7 @@ package Controller;
 import Modelo.Ambulatorio;
 import Modelo.Suministro;
 import Modelo.Unidad;
+import com.toedter.calendar.JDateChooser;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -85,20 +86,43 @@ public class CInventario {
         tabla.getTableHeader().setReorderingAllowed(false);
     }
     
-    public void tipoMovimiento(JComboBox tipo,JLabel labelFechaV, JLabel labelDestino, JComboBox comboDestino){
-        switch (tipo.getSelectedIndex()){
-            case 1:
-                
-            break;
-            
-            case 2:
-                
-            break;
-            
-            case 3:
-                
-            break;
-        }
+    //Case 0 en el ActionPerformed del ComboBox
+    public void tipoMovimientoEntrada(JTable tablaUnidades, JButton btnSeleccionarUni, JLabel labelFechaV, JDateChooser calendario, JComboBox comboAplica, JTextField txt1, JLabel labelCantidad, JTextField txtCantidad, JList lista, JScrollPane scroll){
+        tablaUnidades.setEnabled(false);
+        btnSeleccionarUni.setEnabled(false);
+        labelFechaV.setText("Fecha de vencimiento:");
+        calendario.setVisible(true);
+        txt1.setVisible(false);
+        labelCantidad.setText("Cantidad:");
+        txtCantidad.setVisible(true);
+        lista.setVisible(false);
+        scroll.setVisible(false);     
     }
-
+    
+    //Case 1 en el ActionPerformed del ComboBox
+    public void tipoMovimientoSalida(JTable tablaUnidades, JButton btnSeleccionarUni, JLabel labelArgumento, JDateChooser calendario, JComboBox tipoArgumento, JTextField txtNroEmergencia, JLabel labelObjetos, JTextField txtCantidad, JList lista, JScrollPane scroll){
+        tablaUnidades.addMouseListener(new EventoMouse(btnSeleccionarUni)); //El boton tendría que estar Deshabilitado antes
+        tablaUnidades.setEnabled(true);
+        labelArgumento.setText("Argumento:");
+        calendario.setVisible(false);
+        txtNroEmergencia.setVisible(false);
+        labelObjetos.setText("Objetos:");
+        txtCantidad.setVisible(false);
+        lista.setVisible(true);
+        scroll.setVisible(true);
+    }
+    
+    //Case 2 en el ActionPerformed del ComboBox
+    public void tipoMovimientoReubicacion(JTable tablaUnidades, JButton btnSeleccionarUni, JLabel labelDestino, JDateChooser calendario, JComboBox comboDestinos, JTextField txt1, JLabel labelObjetos, JTextField txtCantidad, JList lista, JScrollPane scroll){
+        tablaUnidades.addMouseListener(new EventoMouse(btnSeleccionarUni)); //El boton tendría que estar Deshabilitado antes
+        tablaUnidades.setEnabled(true);
+        labelDestino.setText("Destino:");
+        calendario.setVisible(false);
+        txt1.setVisible(false);
+        labelObjetos.setText("Objetos:");
+        txtCantidad.setVisible(false);
+        lista.setVisible(true);
+        scroll.setVisible(true);
+    }
+    
 }

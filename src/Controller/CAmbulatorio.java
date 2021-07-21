@@ -1,7 +1,7 @@
 
 package Controller;
 
-import Modelo.Ambulatorio;
+import Modelo.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -54,5 +54,59 @@ public class CAmbulatorio implements ICEntidad{
         tabla.getTableHeader().setReorderingAllowed(false);
     }
     
+    public void crearAmbulancia(boolean enMantenimiento, String serial, boolean disponible,JRadioButton radioTerrestre){
+        String tipoAmbulancia;
+        
+        if(radioTerrestre.isSelected()) tipoAmbulancia = "Terrestre";
+        else tipoAmbulancia = "Aerea";
+        
+        Ambulancia amb = new Ambulancia(serial,enMantenimiento,disponible,tipoAmbulancia);
+        ambulatorio.agregarVehiculo(amb);
+    }
     
+    public void crearCompacto(boolean enMantenimiento, String serial, boolean disponible){
+        Compacto comp = new Compacto(serial,enMantenimiento,disponible);
+        ambulatorio.agregarVehiculo(comp);
+    }
+    
+    public void crearVehiculo(JRadioButton radioAmb,JTextField txtSerial,JRadioButton radioMant_SI,JRadioButton radioDis_SI,JRadioButton radioTerrestre){
+        boolean disponible=false, enMantenimiento=false;
+        String serial;
+        
+        if(radioMant_SI.isSelected()) enMantenimiento=true;
+        if(radioDis_SI.isSelected()) disponible=true;
+        serial = txtSerial.getText();
+        
+        if(radioAmb.isSelected()) crearAmbulancia(enMantenimiento,serial,disponible,radioTerrestre);
+        else crearCompacto(enMantenimiento,serial,disponible);
+    }
+    
+    public void mostrarTablaVehiculos(JTable tablaVehiculos){
+        String titulo[]={"Tipo","Serial","En Mantenimiento","Disponible","Tipo ambulancia"};
+        String matriz[][]=new String[ambulatorio.getVehiculos().size()][6];
+
+        for (int i=0;i<ambulatorio.getVehiculos().size();i++){
+            if(ambulatorio.getVehiculos().get(i) instanceof Compacto){
+                matriz[i][0]="Compacto";
+                matriz[i][4]="No aplica";
+            }
+            if(ambulatorio.getVehiculos().get(i) instanceof Ambulancia){
+                matriz[i][0]="Ambulancia";
+                matriz[i][4]= ((Ambulancia) ambulatorio.getVehiculos().get(i)).getTipo();
+            }
+            
+            matriz[i][1]=ambulatorio.getVehiculos().get(i).getSerial();
+            
+            if(ambulatorio.getVehiculos().get(i).isEnMantenimiento()) matriz[i][2]="Sí";
+            else matriz[i][2]="No";
+            
+            if(ambulatorio.getVehiculos().get(i).isDisponible()) matriz[i][3]="Sí";
+            else matriz[i][3]="No";
+            
+        }
+        
+        TableModel model = new DefaultTableModel(matriz,titulo);
+        tablaVehiculos.setModel(model);
+        tablaVehiculos.setDefaultEditor(Object.class, null);
+    }
 }

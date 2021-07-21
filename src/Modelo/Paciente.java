@@ -3,6 +3,7 @@ package Modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 
@@ -15,6 +16,8 @@ public class Paciente extends Persona{
         super( cedula,  nombre,  correo,  telefono,  nacimiento,  genero);        
         pagos = new ArrayList<>();
     }  
+
+   
 
     public ArrayList<Pago> getPagos() {
         return pagos;
@@ -29,6 +32,7 @@ public class Paciente extends Persona{
             if (pago.getFactura() == fact)
                 return pago;
         return null;
+        
     }
     
     //public boolean alDia(){ Hay que hacer este método

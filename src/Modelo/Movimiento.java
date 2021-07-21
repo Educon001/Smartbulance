@@ -11,6 +11,12 @@ public class Movimiento {
     public Movimiento() {
     }
 
+    public Movimiento(LocalDate fecha, Unidad[] unidades, String tipo) {
+        this.fecha = fecha;
+        this.unidades = unidades;
+        this.tipo = tipo;
+    }
+    
     public LocalDate getFecha() {
         return fecha;
     }

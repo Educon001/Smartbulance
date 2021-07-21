@@ -5,11 +5,11 @@
  */
 package Vista;
 
-import Controller.CInventario;
-import Modelo.Suministro;
+import Controller.*;
+import Modelo.*;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.util.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 /**
  *
@@ -17,14 +17,36 @@ import javax.swing.JOptionPane;
  */
 public class PantallaInventario extends javax.swing.JFrame {
     Suministro sum;
-    CInventario con = new CInventario();
+    CSistema conSistema;
+    CInventario con = new CInventario(new Ambulatorio());
+    DefaultListModel modeloLista = new DefaultListModel();
     /**
      * Creates new form pruebaUnidades
      */
+    
     public PantallaInventario() {
         initComponents();
         sum = new Suministro();
+        Unidad uni1 = new Unidad("Almacen","26/07/2021");
+        Unidad uni2 = new Unidad("Ambulancia 1","04/09/2021");
+        sum.getUnidades().add(uni1);
+        sum.getUnidades().add(uni2);
         con.mostrarUnidades(tablaUnidades, tituloTabla, sum);
+        listaObjetos.setModel(modeloLista);
+        listaObjetos.addMouseListener(new EventoMouse(btnEliminar));
+        conSistema = new CSistema();
+        conSistema.setListaEmergencias(new ArrayList<Emergencia>());
+        Emergencia em = new Emergencia();
+        conSistema.agregarEmergencia(em);
+    }
+    
+    public PantallaInventario(Suministro sum, CSistema conSistema) {
+        initComponents();
+        this.conSistema = conSistema;
+        this.sum = sum;
+        con.mostrarUnidades(tablaUnidades, tituloTabla, sum);
+        listaObjetos.setModel(modeloLista);
+        listaObjetos.addMouseListener(new EventoMouse(btnEliminar));
     }
 
     /**
@@ -39,17 +61,19 @@ public class PantallaInventario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUnidades = new javax.swing.JTable();
         tituloTabla = new javax.swing.JLabel();
+        btnSeleccionarUni = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         calendario = new com.toedter.calendar.JDateChooser();
         tipoMovimiento = new javax.swing.JComboBox<>();
-        btnSeleccionarUni = new javax.swing.JButton();
         label1Movimientos = new javax.swing.JLabel();
         txtNEmergenciaArgumento = new javax.swing.JTextField();
         label2Movimientos = new javax.swing.JLabel();
+        btnRegistrar = new javax.swing.JButton();
         txtCantidad = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaObjetos = new javax.swing.JList<>();
         combo1Movimientos = new javax.swing.JComboBox<>();
-        btnRegistrar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,6 +86,11 @@ public class PantallaInventario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3"
             }
         ));
+        tablaUnidades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaUnidadesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaUnidades);
         tablaUnidades.setEnabled(false);
 
@@ -72,21 +101,6 @@ public class PantallaInventario extends javax.swing.JFrame {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, 1);
 
-        calendario.setDateFormatString("dd/MM/yyyy");
-        calendario.setMinSelectableDate(calendar.getTime()
-        );
-        getContentPane().add(calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 215, -1));
-        JTextFieldDateEditor editor = (JTextFieldDateEditor) calendario.getDateEditor();
-        editor.setEditable(false);
-
-        tipoMovimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Salida", "Reubicacion" }));
-        tipoMovimiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoMovimientoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tipoMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 134, 32));
-
         btnSeleccionarUni.setText("Seleccionar Unidad");
         btnSeleccionarUni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,60 +110,169 @@ public class PantallaInventario extends javax.swing.JFrame {
         getContentPane().add(btnSeleccionarUni, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, 151, 41));
         btnSeleccionarUni.setEnabled(false);
 
-        label1Movimientos.setText("Fecha de vencimiento:");
-        getContentPane().add(label1Movimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 140, 28));
-        getContentPane().add(txtNEmergenciaArgumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 128, -1));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        calendario.setDateFormatString("dd/MM/yyyy");
+        calendario.setMinSelectableDate(calendar.getTime()
+        );
+        jPanel1.add(calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 215, -1));
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) calendario.getDateEditor();
+        editor.setEditable(false);
+
+        tipoMovimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entrada", "Salida", "Reubicacion" }));
+        tipoMovimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoMovimientoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tipoMovimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 134, 32));
+
+        label1Movimientos.setText("Vencimiento:");
+        jPanel1.add(label1Movimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 140, 28));
+
+        txtNEmergenciaArgumento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNEmergenciaArgumentoFocusLost(evt);
+            }
+        });
+        jPanel1.add(txtNEmergenciaArgumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 220, -1));
         txtNEmergenciaArgumento.setVisible(false);
 
         label2Movimientos.setText("Cantidad:");
-        getContentPane().add(label2Movimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 120, 30));
-        getContentPane().add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 40, -1));
+        jPanel1.add(label2Movimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 80, 30));
 
-        jScrollPane2.setViewportView(listaObjetos);
-        listaObjetos.setVisible(false);
-        listaObjetos.setEnabled(false);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 60, 100));
-        jScrollPane2.setVisible(false);
-
-        combo1Movimientos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aplica", "No aplica" }));
-        getContentPane().add(combo1Movimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 120, -1));
-
-        btnRegistrar.setText("Registrar ");
+        btnRegistrar.setText("Registrar movimiento ");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 150, 40));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 170, 40));
+
+        txtCantidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCantidadFocusLost(evt);
+            }
+        });
+        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 40, -1));
+
+        jScrollPane2.setViewportView(listaObjetos);
+        listaObjetos.setVisible(false);
+        listaObjetos.setEnabled(true);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 60, 110));
+        jScrollPane2.setVisible(false);
+
+        combo1Movimientos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aplica", "No aplica" }));
+        combo1Movimientos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo1MovimientosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(combo1Movimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 130, -1));
+
+        btnEliminar.setText("Eliminar ");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 90, -1));
+        btnEliminar.setVisible(false);
+        btnEliminar.setEnabled(false);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 720, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void tipoMovimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoMovimientoActionPerformed
-        // TODO add your handling code here:
         switch (tipoMovimiento.getSelectedIndex()){
             case 0: //Entrada
-                con.tipoMovimientoEntrada(tablaUnidades, btnSeleccionarUni, label1Movimientos, calendario, combo1Movimientos, txtNEmergenciaArgumento, label2Movimientos, txtCantidad, listaObjetos, jScrollPane2);
+                con.tipoMovimientoEntrada(tablaUnidades, btnSeleccionarUni, label1Movimientos, calendario, combo1Movimientos, txtNEmergenciaArgumento, label2Movimientos, txtCantidad, listaObjetos, jScrollPane2, btnEliminar);
             break;
             
             case 1: //Salida
-                con.tipoMovimientoSalida(tablaUnidades, btnSeleccionarUni, label1Movimientos, calendario, combo1Movimientos, txtNEmergenciaArgumento, label2Movimientos, txtCantidad, listaObjetos, jScrollPane2);
+                con.tipoMovimientoSalida(tablaUnidades, btnSeleccionarUni, label1Movimientos, calendario, combo1Movimientos, txtNEmergenciaArgumento, label2Movimientos, txtCantidad, listaObjetos, jScrollPane2, btnEliminar);
+                modeloLista.removeAllElements();
             break;
             
             case 2: //Reubicación
-                con.tipoMovimientoReubicacion(tablaUnidades, btnSeleccionarUni, label1Movimientos, calendario, combo1Movimientos, txtNEmergenciaArgumento, label2Movimientos, txtCantidad, listaObjetos, jScrollPane2);
+                con.tipoMovimientoReubicacion(tablaUnidades, btnSeleccionarUni, label1Movimientos, calendario, combo1Movimientos, txtNEmergenciaArgumento, label2Movimientos, txtCantidad, listaObjetos, jScrollPane2, btnEliminar);
+                modeloLista.removeAllElements();
             break;
         }
     }//GEN-LAST:event_tipoMovimientoActionPerformed
 
     private void btnSeleccionarUniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarUniActionPerformed
-        // TODO add your handling code here:
+        con.agregarUnidad(tablaUnidades, modeloLista, listaObjetos, btnEliminar, tipoMovimiento);
     }//GEN-LAST:event_btnSeleccionarUniActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+        try{
+        switch (tipoMovimiento.getSelectedIndex()){
+            case 0:
+                con.registrarEntrada(combo1Movimientos.getSelectedItem().toString(), calendario.getDate(), Integer.parseInt(txtCantidad.getText()), sum);
+                calendario.setDate(null);
+                txtCantidad.setText(null);
+                con.mostrarUnidades(tablaUnidades, tituloTabla, sum);
+            break;
+            
+            case 1:
+            break;
+            
+            case 2:
+            break;
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void combo1MovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1MovimientosActionPerformed
+        try{
+        switch(combo1Movimientos.getSelectedItem().toString()) {
+            case "Aplica":
+                calendario.setEnabled(true);
+            break;
+            
+            case "No aplica":
+                calendario.setEnabled(false);
+                calendario.setDate(null);
+            break;
+            
+            case "Emergencia Nro:":
+                txtNEmergenciaArgumento.setVisible(true);
+            break;
+            
+            case "Otro:":
+                txtNEmergenciaArgumento.setVisible(true);
+            break;
+            
+            default:
+                txtNEmergenciaArgumento.setVisible(false);
+                txtNEmergenciaArgumento.setText(null);
+            break;
+        }
+        }catch (NullPointerException ex){}
+    }//GEN-LAST:event_combo1MovimientosActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        con.eliminarUnidad(listaObjetos, modeloLista,btnEliminar);
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tablaUnidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUnidadesMouseClicked
+        btnSeleccionarUni.setEnabled(true);
+    }//GEN-LAST:event_tablaUnidadesMouseClicked
+
+    private void txtNEmergenciaArgumentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNEmergenciaArgumentoFocusLost
+        if (combo1Movimientos.getSelectedIndex()==1)
+            con.validarEmergencia(conSistema, txtNEmergenciaArgumento);
+    }//GEN-LAST:event_txtNEmergenciaArgumentoFocusLost
+
+    private void txtCantidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCantidadFocusLost
+        con.validarCantidad(txtCantidad);
+    }//GEN-LAST:event_txtCantidadFocusLost
 
     /**
      * @param args the command line arguments
@@ -188,10 +311,12 @@ public class PantallaInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSeleccionarUni;
     private com.toedter.calendar.JDateChooser calendario;
     private javax.swing.JComboBox<String> combo1Movimientos;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label1Movimientos;

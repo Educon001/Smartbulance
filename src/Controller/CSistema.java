@@ -9,6 +9,7 @@ public class CSistema {
     //ATRIBUTOS
     private ArrayList<Clinica> listaClinicas;
     private ArrayList<Paciente> listaPacientes;
+    private ArrayList<Emergencia> listaEmergencias;
     
     Clinica prueba = new Clinica("Clinic","0212-9435176","J-12345678-1","Amazonas","Maracaibo","Calle 13");
     //CONSTRUCTORES
@@ -16,6 +17,7 @@ public class CSistema {
         listaClinicas = new ArrayList<>();
         listaClinicas.add(prueba);
         listaPacientes = new ArrayList<>();  
+        listaEmergencias = new ArrayList<>();
     }
        // String nombre, String telefono, String RIF, String estado, String ciudad, String direccion
     //GETTERS Y SETTERS
@@ -34,6 +36,14 @@ public class CSistema {
     public void setListaPacientes(ArrayList<Paciente> listaPacientes) {
         this.listaPacientes = listaPacientes;
     }
+
+    public ArrayList<Emergencia> getListaEmergencias() {
+        return listaEmergencias;
+    }
+
+    public void setListaEmergencias(ArrayList<Emergencia> listaEmergencias) {
+        this.listaEmergencias = listaEmergencias;
+    }
     
     //OTROS MÉTODOS
     public void agregarClinica(Clinica cli){
@@ -47,13 +57,34 @@ public class CSistema {
     public void eliminarPaciente(Paciente pac){
         listaPacientes.remove(pac);
     }
+    
+    public void agregarEmergencia(Emergencia em){
+        listaEmergencias.add(em);
+        em.setCodigo(listaEmergencias.size());
+    }
  
     public Clinica buscarClinica(String RIF){
         for(Clinica clinica : listaClinicas){
             if(RIF.equals(clinica.getRIF())) return clinica;
         }
         return null;
-    } 
+    }
+    
+    public Paciente buscarPaciente(String ced){
+        for (Paciente pac: listaPacientes){
+            if (pac.getCedula().equals(ced))
+                return pac;
+        }
+        return null; 
+    }
+    
+    public Emergencia buscarEmergencia(int cod){
+        for (Emergencia em : listaEmergencias) {
+            if (em.getCodigo()==cod)
+                return em;
+        }
+        return null;
+    }
     
     public void mensajeEntidad_RIFRegistrado(){
         JOptionPane.showMessageDialog(null,"Ya se encuentra una entidad registrada con este RIF.","Error", JOptionPane.ERROR_MESSAGE);

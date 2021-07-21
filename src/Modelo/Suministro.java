@@ -91,6 +91,14 @@ public class Suministro {
                 }
             }
         }           
-    }  
+    }
+    
+    public Unidad buscarUnidad(int cod){
+        for (Unidad uni : unidades) {
+            if (uni.getCodigo()==cod)
+                return uni;
+        }            
+        return null;
+    }
     
 }

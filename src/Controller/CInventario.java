@@ -71,11 +71,11 @@ public class CInventario {
         String[][] datos = new String[sum.getUnidades().size()][3];
         
         for (int i = 0; i < sum.getUnidades().size(); i++) {
-            datos[i][0]=String.valueOf(i+1);
+            sum.getUnidades().get(i).setCodigo(i+1);
+            datos[i][0]=String.valueOf(sum.getUnidades().get(i).getCodigo());
             datos[i][1]=sum.getUnidades().get(i).getfVencimiento();
             datos[i][2]=sum.getUnidades().get(i).getUbicacion();
-        }
-        
+        }       
         TableModel modelo = new DefaultTableModel(datos,titulos);
         tabla.setModel(modelo);
         tabla.setDefaultEditor(Object.class, null); 
@@ -206,6 +206,10 @@ public class CInventario {
         }
     }
     
+    public boolean validarDestino(String destino, int indice, JTable tabla){
+        return !destino.equals(tabla.getValueAt(indice, 2));
+    }
+    
     public void eliminarUnidad(JList lista, DefaultListModel modelo, JButton btnEliminar){
     try{
         int indice = lista.getSelectedIndex();
@@ -233,12 +237,28 @@ public class CInventario {
         sum.registrarMovimiento(mov);
     }
     
-    public void registrarSalida(){
-        
+    public void registrarSalida(String comboArgumento, String txtArgumento, Object[] objetos, Suministro sum, JTable tabla){
+        String argumento = comboArgumento + " ";
+        if (!comboArgumento.equals("Ajuste inventario"))
+            argumento += txtArgumento;
+        Unidad[] unidades = new Unidad[objetos.length];
+        for (int i = 0; i < objetos.length; i++) {
+            unidades[i]=sum.buscarUnidad(Integer.parseInt(objetos[i].toString()));
+        }
+        Movimiento mov = new Salida(argumento,LocalDate.now(),unidades,"Salida");
+        sum.registrarMovimiento(mov);
     }
     
-    public void registrarReubicacion(){
-        
+    public void registrarReubicacion(String destino, Object[] objetos, Suministro sum, JTable tabla){
+        if (validarDestino(destino, Integer.parseInt(objetos[0].toString())-1, tabla)){
+            Unidad[] unidades = new Unidad[objetos.length];
+            for (int i = 0; i < objetos.length; i++) {
+                unidades[i]=sum.buscarUnidad(Integer.parseInt(objetos[i].toString()));
+            }
+            Movimiento mov = new Reubicacion(destino,LocalDate.now(),unidades,"Reubicacion");
+            sum.registrarMovimiento(mov);
+        }else
+            JOptionPane.showMessageDialog(null, "El destino debe ser diferente al origen", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
 }

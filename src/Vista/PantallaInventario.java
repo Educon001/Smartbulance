@@ -219,9 +219,16 @@ public class PantallaInventario extends javax.swing.JFrame {
             break;
             
             case 1:
+                con.registrarSalida(combo1Movimientos.getSelectedItem().toString(), txtNEmergenciaArgumento.getText(), modeloLista.toArray(), sum, tablaUnidades);
+                txtNEmergenciaArgumento.setText(null);
+                modeloLista.removeAllElements();
+                con.mostrarUnidades(tablaUnidades, tituloTabla, sum);
             break;
             
             case 2:
+                con.registrarReubicacion(combo1Movimientos.getSelectedItem().toString(), modeloLista.toArray(), sum, tablaUnidades);
+                modeloLista.removeAllElements();
+                con.mostrarUnidades(tablaUnidades, tituloTabla, sum);
             break;
         }
         }catch(Exception ex){

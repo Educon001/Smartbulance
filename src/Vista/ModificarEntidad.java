@@ -484,7 +484,8 @@ public class ModificarEntidad extends javax.swing.JFrame {
                         if(controlRegistro.confirmar()){
                             dispose(); 
                             controlRegistro.actualizarEntidad(entidad,txtNombreEntidad,RIF,telf,txtCiudadEntidad,cboEstadoEntidad,txtDirEntidad);
-                            controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DeLaClinica(),ventanaAnterior.getLabelRIF_DeLaClinica(),ventanaAnterior.getLabelTelf_DeLaClinica(),ventanaAnterior.getLabelCiudad_DeLaClinca(),ventanaAnterior.getLabelEstado_DeLaClinica(),ventanaAnterior.getLabelDir_DeLaClinica());
+                            if(entidad instanceof Clinica) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DeLaClinica(),ventanaAnterior.getLabelRIF_DeLaClinica(),ventanaAnterior.getLabelTelf_DeLaClinica(),ventanaAnterior.getLabelCiudad_DeLaClinca(),ventanaAnterior.getLabelEstado_DeLaClinica(),ventanaAnterior.getLabelDir_DeLaClinica());
+                            if(entidad instanceof Ambulatorio) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DelAmbulatorio(),ventanaAnterior.getLabelRIF_DelAmbulatorio(),ventanaAnterior.getLabelTelf_DelAmbulatorio(),ventanaAnterior.getLabelCiudad_DelAmbulatorio(),ventanaAnterior.getLabelEstado_DelAmbulatorio(),ventanaAnterior.getLabelDir_DelAmbulatorio());
                             ventanaAnterior.setVisible(true);
                         }   
                 }

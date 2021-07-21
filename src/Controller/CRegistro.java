@@ -19,9 +19,10 @@ public class CRegistro {
     }
     
     
-    public boolean validarExpresionRegular(String patrón, String cadenaIndicada){
-        Pattern pat = Pattern.compile(patrón);
-        Matcher mat = pat.matcher(cadenaIndicada);
+    public boolean validarSerial(String serial){
+        Pattern pat = Pattern.compile("[A-Z0-9]{17}",Pattern.CASE_INSENSITIVE);
+        Matcher mat = pat.matcher(serial);
+        if(!mat.matches()) JOptionPane.showMessageDialog(null,"Solo se aceptan letras y numeros para el serial del vehículo.","Error",JOptionPane.ERROR_MESSAGE);
         return mat.matches();
     }
     
@@ -35,6 +36,12 @@ public class CRegistro {
         }
         return true;
     }    
+    
+    public boolean formatoRIFCompleto(String RIF){
+        if(RIF.matches("[J]-\\d{8}-\\d{1}")) return true;
+        JOptionPane.showMessageDialog(null,"El dato introducido no cumple con el formato RIF.\nEjemplo válido: J-11223344-1", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
     
     public boolean validarRIF(JTextField txtRIF,int dig){
         if(txtRIF.getText().isEmpty()==false){
@@ -136,4 +143,15 @@ public class CRegistro {
         return txtArea.getText().isEmpty();
     }
     
+    public void vaciarDatosAmbulancia(JRadioButton radioAmbulancia,JRadioButton radioCompacto,JTextField txtSerial,JRadioButton radioMantenimiento_SI,JRadioButton radioMantenimiento_NO,JRadioButton radioDisponibleAmbulancia_SI,JRadioButton radioDisponibleAmbulancia_NO,JRadioButton radioAmbTerrestre,JRadioButton radioAmbAerea){
+        radioAmbulancia.setSelected(false);
+        radioCompacto.setSelected(false);
+        txtSerial.setText(null);
+        radioMantenimiento_SI.setSelected(false);
+        radioMantenimiento_NO.setSelected(false);
+        radioDisponibleAmbulancia_SI.setSelected(false);
+        radioDisponibleAmbulancia_NO.setSelected(false);
+        radioAmbTerrestre.setSelected(false);
+        radioAmbAerea.setSelected(false);
+    }
 }

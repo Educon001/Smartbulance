@@ -85,4 +85,11 @@ public class Clinica extends Entidad{
         return null;
     }
     
+    public Taller buscarTaller(String RIF){
+        for(Taller taller : talleresAsociados){
+            if(RIF.equals(taller.getRIF())) return taller;
+        }
+        return null;
+    }
+    
 }

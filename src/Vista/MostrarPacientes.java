@@ -32,6 +32,11 @@ public class MostrarPacientes extends javax.swing.JFrame {
     
     public MostrarPacientes() {
         initComponents();
+        con=new CSistema();
+        pac=new CPaciente();
+        
+        
+        
     }
     
     public MostrarPacientes(CSistema con,CPaciente pac,MenúPrincipal ventanaAnterior) {
@@ -72,15 +77,15 @@ public class MostrarPacientes extends javax.swing.JFrame {
 
         jTablePacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Cedula", "Nombre", "Correo"
+                "Cedula", "Nombre", "Correo", "Telefono", "Fecha de Nacimiento", "Genero"
             }
         ));
         jTablePacientes.setRowHeight(30);
@@ -238,7 +243,7 @@ public class MostrarPacientes extends javax.swing.JFrame {
         
              
         con.agregarPaciente(paciente);
-        pac.agregarPaciente(paciente,listaPacientes);
+        
         pac.mostrarPacientes(jTablePacientes, con.getListaPacientes());
         
         

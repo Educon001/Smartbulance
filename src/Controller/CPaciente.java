@@ -6,13 +6,8 @@
 package Controller;
 
 import Modelo.Paciente;
-import com.toedter.calendar.JDateChooser;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -34,13 +29,16 @@ public class CPaciente {
         
 
       
-        String[] titulos = {"Cedula","Nombre","Correo"};
-        String[][] datos = new String[listaPacientes.size()][5];
+        String[] titulos = {"Cedula","Nombre","Correo","Telefono","Fecha De Nacimiento","Genero"};
+        String[][] datos = new String[listaPacientes.size()][6];
         
         for (int i = 0; i < listaPacientes.size(); i++) {
             datos[i][0]=listaPacientes.get(i).getCedula();
             datos[i][1]=listaPacientes.get(i).getNombre();
             datos[i][2]=listaPacientes.get(i).getCorreo();
+            datos[i][3]=listaPacientes.get(i).getTelefono();
+            datos[i][4]=listaPacientes.get(i).getNacimiento().toString();
+            datos[i][5]=String.valueOf(listaPacientes.get(i).getGenero());
             
         }
         

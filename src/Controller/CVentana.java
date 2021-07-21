@@ -1,5 +1,6 @@
 package Controller;
 
+import Modelo.Clinica;
 import Modelo.Entidad;
 import javax.swing.*;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
@@ -50,5 +51,19 @@ public class CVentana {
         boton6.setSelected(seleccionar);
     }
     
+    public void pestClinica(JButton boton1,JButton boton2,JButton boton3,JTextArea txtArea){
+        boton1.setEnabled(false);
+        boton2.setEnabled(false);
+        boton3.setEnabled(false);
+        txtArea.setEnabled(false);
+    }    
     
+    public void botonClinica_DatosEntidad(Entidad entidad, JLabel labelNombre_DeLaClinica,JLabel labelRIF_DeLaClinica,JLabel labelTelf_DeLaClinica,JLabel labelCiudad_DeLaClinca,JLabel labelEstado_DeLaClinica,JLabel labelDir_DeLaClinica){
+        labelNombre_DeLaClinica.setText(entidad.getNombre());
+        labelRIF_DeLaClinica.setText(entidad.getRIF());
+        labelTelf_DeLaClinica.setText(entidad.getTelefono());
+        labelCiudad_DeLaClinca.setText(entidad.getCiudad());
+        labelEstado_DeLaClinica.setText(entidad.getEstado());
+        labelDir_DeLaClinica.setText(entidad.getDireccion());
+    }
 }

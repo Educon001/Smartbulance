@@ -7,7 +7,7 @@ import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class CClinica implements ICEntidad{
+public class CClinica {
     private JLabel nombre;
     private JLabel RIF;
     private Clinica clinica;
@@ -69,12 +69,6 @@ public class CClinica implements ICEntidad{
         Ambulatorio amb = new Ambulatorio(nombreAmbulatorio,telefono,RIF,estado,ciudad,direccion);        
         clinica.incorporarAmbulatorio(amb);
     }
-
-    public void mostrarEntidad(JLabel nombre, JLabel telefono,JLabel RIF, JLabel estado, JLabel ciudad, JLabel dirección) {
-    }
-
-    public void editarEntidad(JTextField nombre, JTextField telefono, JTextField estado, JTextField ciudad, JTextField dirección) {
-    }
     
     public void crearTaller(Clinica clinica,String nombreTaller,String RIF,String telefono,String ciudad,String direccion,String estado,JTextArea txtAreaMecanicos){
         ArrayList<String> mecanicos =new ArrayList<>(Arrays.asList(txtAreaMecanicos.getText().split("\n")));
@@ -86,14 +80,16 @@ public class CClinica implements ICEntidad{
     
     
     public boolean seEncuentraRegistradoRIF_Ambulatorio(String RIF, boolean inicio){
-        if(!inicio){
+        //if(!inicio){
             if(clinica.buscarAmbulatorio_RIF(RIF)){
-                JOptionPane.showMessageDialog(null,"Ya se encuentra un ambulatorio registrado con este RIF.","Error", JOptionPane.ERROR_MESSAGE);
+                if(!inicio) JOptionPane.showMessageDialog(null,"Ya se encuentra un ambulatorio registrado con este RIF.","Error", JOptionPane.ERROR_MESSAGE);
                 return true;
-            } 
+          //  } 
         }
+        if(inicio) JOptionPane.showMessageDialog(null,"No se encuentra un ambulatorio registrado con este RIF.","Error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
+    
     
     public boolean seEncuentraRegistradoTelf_Ambulatorio(String telf, boolean inicio){
         if(!inicio){
@@ -109,14 +105,37 @@ public class CClinica implements ICEntidad{
         for(String mec : taller.getMecanicos()){
             System.out.println(mec+"\n");
         }        
-    }
+    }   
     
-    public Taller buscarTaller(String RIF){
-        for(Taller taller : clinica.getTalleresAsociados()){
-            if(RIF.equals(taller.getRIF())) return taller;
+    public String pasarAtributo_DeTabla(JTable tablaEntidad,int columna){
+        int indice = tablaEntidad.getSelectedRow();
+        TableModel modelo = tablaEntidad.getModel();
+        try{
+            String atributo = modelo.getValueAt(indice,columna).toString();
+            return atributo;
+        }
+        catch(ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showConfirmDialog(null,"Debe seleccionar un item de la tabla.","Error",JOptionPane.ERROR_MESSAGE);
         }
         return null;
     }
     
+    public Taller tallerSeleccionado(JTable tablaEntidad){
+        String RIF = pasarAtributo_DeTabla(tablaEntidad,1);
+        if(RIF!=null){
+            System.out.println(RIF+" RIF PASADO");
+            return clinica.buscarTaller(RIF);
+        }
+        return null;
+    }
+    
+    public Ambulatorio ambulatorioSeleccionado(JTable tablaEntidad){
+        String RIF = pasarAtributo_DeTabla(tablaEntidad,1);
+        System.out.println(RIF+" RIF PASADO");
+        if(RIF!=null){
+            return clinica.retornarAmbulatorio(RIF);
+        }
+        return null;
+    }
     
 }

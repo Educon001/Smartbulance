@@ -33,12 +33,22 @@ public class VentanaMecanicos extends javax.swing.JFrame {
     private void initComponents() {
 
         panelMecanicos = new javax.swing.JPanel();
+        botonSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaMecanicos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelMecanicos.setBackground(new java.awt.Color(255, 255, 255));
+
+        botonSalir.setBackground(new java.awt.Color(255, 0, 0));
+        botonSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         tablaMecanicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -57,17 +67,21 @@ public class VentanaMecanicos extends javax.swing.JFrame {
         panelMecanicos.setLayout(panelMecanicosLayout);
         panelMecanicosLayout.setHorizontalGroup(
             panelMecanicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMecanicosLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMecanicosLayout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addGroup(panelMecanicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonSalir))
+                .addGap(28, 28, 28))
         );
         panelMecanicosLayout.setVerticalGroup(
             panelMecanicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMecanicosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMecanicosLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botonSalir)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,6 +97,10 @@ public class VentanaMecanicos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +138,7 @@ public class VentanaMecanicos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelMecanicos;
     private javax.swing.JTable tablaMecanicos;

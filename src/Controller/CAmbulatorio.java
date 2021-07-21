@@ -12,7 +12,14 @@ public class CAmbulatorio implements ICEntidad{
     public CAmbulatorio(Ambulatorio ambulatorio){
         this.ambulatorio = ambulatorio;
     }
+    
+    public CAmbulatorio(){}
 
+    public Ambulatorio getAmbulatorio() {
+        return ambulatorio;
+    }
+    
+    
     /*public CAmbulatorio() {
     }*/
         @Override
@@ -46,5 +53,6 @@ public class CAmbulatorio implements ICEntidad{
         tabla.setDefaultEditor(Object.class, null);
         tabla.getTableHeader().setReorderingAllowed(false);
     }
+    
     
 }

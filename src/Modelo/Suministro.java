@@ -24,6 +24,7 @@ public class Suministro {
 
     public Suministro() {
         unidades = new ArrayList<>();
+        movimientos = new ArrayList<>();
         nombre = "DROGA";
     }
     

@@ -1,14 +1,13 @@
 
 package Modelo;
 
-import java.time.LocalDate;
 
 public class Unidad {
     
     private String ubicacion;
-    private LocalDate fVencimiento;
+    private String fVencimiento;
 
-    public Unidad(String ubicacion, LocalDate fVencimiento) {
+    public Unidad(String ubicacion, String fVencimiento) {
         this.ubicacion = ubicacion;
         this.fVencimiento = fVencimiento;
     }
@@ -21,11 +20,11 @@ public class Unidad {
         this.ubicacion = ubicacion;
     }
 
-    public LocalDate getfVencimiento() {
+    public String getfVencimiento() {
         return fVencimiento;
     }
 
-    public void setfVencimiento(LocalDate fVencimiento) {
+    public void setfVencimiento(String fVencimiento) {
         this.fVencimiento = fVencimiento;
     }
     

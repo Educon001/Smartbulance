@@ -6,14 +6,12 @@ public class Ambulatorio extends Entidad{
     //ATRIBUTOS
     private ArrayList<Vehiculo> vehiculos;
     private ArrayList<Personal> personal;
-    private ArrayList<Paciente> histPacientes;
     private ArrayList<Suministro> inventario;
 
     //CONSTRUCTORES
     public Ambulatorio() {
         vehiculos = new ArrayList<>();
         personal = new ArrayList<>();
-        histPacientes = new ArrayList<>();
         inventario = new ArrayList<>();
     }
     
@@ -21,12 +19,9 @@ public class Ambulatorio extends Entidad{
         super(nombre,telefono,RIF,estado,ciudad,direccion);
         vehiculos = new ArrayList<>();
         personal = new ArrayList<>();
-        histPacientes = new ArrayList<>();
         inventario = new ArrayList<>();
     }
-    
-    
-    
+     
     //GETTERS Y SETTERS
     public ArrayList<Vehiculo> getVehiculos() {
         return vehiculos;
@@ -42,14 +37,6 @@ public class Ambulatorio extends Entidad{
 
     public void setPersonal(ArrayList<Personal> personal) {
         this.personal = personal;
-    }
-
-    public ArrayList<Paciente> getHistPacientes() {
-        return histPacientes;
-    }
-
-    public void setHistPacientes(ArrayList<Paciente> histPacientes) {
-        this.histPacientes = histPacientes;
     }
 
     public ArrayList<Suministro> getInventario() {
@@ -73,19 +60,7 @@ public class Ambulatorio extends Entidad{
     public void registrarPersonal(Personal per){
         personal.add(per);
     }
-    
-    public void registrarPaciente(Paciente pac){
-        histPacientes.add(pac);
-    }
-    
-    public Paciente buscarPaciente(String ced){
-        for (Paciente pac: histPacientes){
-            if (pac.getCedula().equals(ced))
-                return pac;
-        }
-      return null; 
-    }
-    
+   
     public Vehiculo buscarVehiculo(String serial){
         for (Vehiculo veh: vehiculos){
             if (veh.getSerial().equals(serial))

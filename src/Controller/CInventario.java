@@ -1,13 +1,13 @@
 
 package Controller;
 
-import Modelo.Ambulatorio;
-import Modelo.Suministro;
-import Modelo.Unidad;
+import Modelo.*;
 import com.toedter.calendar.JDateChooser;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -66,17 +66,13 @@ public class CInventario {
     }
     
     public void mostrarUnidades(JTable tabla, JLabel label,Suministro sum){
-        Unidad uni1 = new Unidad("almacen",LocalDate.of(2021, 7, 26));
-        Unidad uni2 = new Unidad("ambu 1",LocalDate.of(2021, 9, 4));
-        sum.getUnidades().add(uni1);
-        sum.getUnidades().add(uni2);
         label.setText("Unidades de "+sum.getNombre());
         String[] titulos = {"No.","Fecha vencimiento","Ubicacion actual"};
         String[][] datos = new String[sum.getUnidades().size()][3];
         
         for (int i = 0; i < sum.getUnidades().size(); i++) {
             datos[i][0]=String.valueOf(i+1);
-            datos[i][1]=sum.getUnidades().get(i).getfVencimiento().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+            datos[i][1]=sum.getUnidades().get(i).getfVencimiento();
             datos[i][2]=sum.getUnidades().get(i).getUbicacion();
         }
         
@@ -87,42 +83,162 @@ public class CInventario {
     }
     
     //Case 0 en el ActionPerformed del ComboBox
-    public void tipoMovimientoEntrada(JTable tablaUnidades, JButton btnSeleccionarUni, JLabel labelFechaV, JDateChooser calendario, JComboBox comboAplica, JTextField txt1, JLabel labelCantidad, JTextField txtCantidad, JList lista, JScrollPane scroll){
+    public void tipoMovimientoEntrada(JTable tablaUnidades, JButton btnSeleccionarUni, JLabel labelFechaV, JDateChooser calendario, JComboBox comboAplica, JTextField txt1, JLabel labelCantidad, JTextField txtCantidad, JList lista, JScrollPane scroll, JButton btnEliminar){
         tablaUnidades.setEnabled(false);
         btnSeleccionarUni.setEnabled(false);
-        labelFechaV.setText("Fecha de vencimiento:");
+        labelFechaV.setText("Vencimiento:");
         calendario.setVisible(true);
         txt1.setVisible(false);
         labelCantidad.setText("Cantidad:");
         txtCantidad.setVisible(true);
         lista.setVisible(false);
-        scroll.setVisible(false);     
+        scroll.setVisible(false);
+        btnEliminar.setVisible(false);
+        comboAplica.removeAllItems();
+        String[] opciones = {"Aplica","No aplica"};
+        for (String op : opciones) {
+            comboAplica.addItem(op);
+        }
     }
     
     //Case 1 en el ActionPerformed del ComboBox
-    public void tipoMovimientoSalida(JTable tablaUnidades, JButton btnSeleccionarUni, JLabel labelArgumento, JDateChooser calendario, JComboBox tipoArgumento, JTextField txtNroEmergencia, JLabel labelObjetos, JTextField txtCantidad, JList lista, JScrollPane scroll){
-        tablaUnidades.addMouseListener(new EventoMouse(btnSeleccionarUni)); //El boton tendría que estar Deshabilitado antes
+    public void tipoMovimientoSalida(JTable tablaUnidades, JButton btnSeleccionarUni, JLabel labelArgumento, JDateChooser calendario, JComboBox tipoArgumento, JTextField txtNroEmergencia, JLabel labelObjetos, JTextField txtCantidad, JList lista, JScrollPane scroll, JButton btnEliminar){
         tablaUnidades.setEnabled(true);
         labelArgumento.setText("Argumento:");
         calendario.setVisible(false);
+        btnSeleccionarUni.setEnabled(false);
         txtNroEmergencia.setVisible(false);
         labelObjetos.setText("Objetos:");
         txtCantidad.setVisible(false);
         lista.setVisible(true);
         scroll.setVisible(true);
+        btnEliminar.setVisible(true);
+        btnEliminar.setEnabled(false);
+        tipoArgumento.removeAllItems();
+        String[] opciones = {"Ajuste inventario","Emergencia Nro:","Otro:"};
+        for (String op : opciones) {
+            tipoArgumento.addItem(op);
+        }
     }
     
     //Case 2 en el ActionPerformed del ComboBox
-    public void tipoMovimientoReubicacion(JTable tablaUnidades, JButton btnSeleccionarUni, JLabel labelDestino, JDateChooser calendario, JComboBox comboDestinos, JTextField txt1, JLabel labelObjetos, JTextField txtCantidad, JList lista, JScrollPane scroll){
-        tablaUnidades.addMouseListener(new EventoMouse(btnSeleccionarUni)); //El boton tendría que estar Deshabilitado antes
+    public void tipoMovimientoReubicacion(JTable tablaUnidades, JButton btnSeleccionarUni, JLabel labelDestino, JDateChooser calendario, JComboBox comboDestinos, JTextField txt1, JLabel labelObjetos, JTextField txtCantidad, JList lista, JScrollPane scroll, JButton btnEliminar){
         tablaUnidades.setEnabled(true);
         labelDestino.setText("Destino:");
         calendario.setVisible(false);
+        btnSeleccionarUni.setEnabled(false);
         txt1.setVisible(false);
         labelObjetos.setText("Objetos:");
         txtCantidad.setVisible(false);
         lista.setVisible(true);
         scroll.setVisible(true);
+        btnEliminar.setVisible(true);
+        btnEliminar.setEnabled(false);
+        comboDestinos.removeAllItems();
+        ArrayList<String> opciones = new ArrayList<>();
+        opciones.add("Almacen");
+        for (Vehiculo v : ambulatorio.getVehiculos()){
+            if (v instanceof Ambulancia)
+                opciones.add("Ambulancia "+v.getSerial());
+            if (v instanceof Compacto)
+                opciones.add("Compacto "+v.getSerial());
+        }
+        for (String op : opciones) {
+            comboDestinos.addItem(op);
+        }
+    }
+    
+    public void agregarUnidad(JTable tabla, DefaultListModel modelo, JList lista, JButton btnEliminar, JComboBox combo){
+    try{
+        int indice = tabla.getSelectedRow();
+        int cod = Integer.parseInt(tabla.getModel().getValueAt(indice,0).toString());
+        if (combo.getSelectedIndex() == 2){
+            try{
+            if (!tabla.getModel().getValueAt(indice, 2).toString().equals(tabla.getModel().getValueAt(Integer.parseInt(modelo.getElementAt(0).toString())-1, 2))){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar objetos que esten en la misma ubicación", "Error", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            }catch(ArrayIndexOutOfBoundsException ex){}
+        }
+        boolean repetido=false;
+        for (int i = 0; i < modelo.getSize(); i++) {
+            if (modelo.elementAt(i).toString().equals(String.valueOf(cod)))
+                repetido=true;
+        }
+        if (!repetido)
+            modelo.addElement(cod);
+        else
+            JOptionPane.showMessageDialog(null,"El elemento ya se encuentra registrado en la lista","Error",JOptionPane.ERROR_MESSAGE);
+    }catch(ArrayIndexOutOfBoundsException ex){
+        JOptionPane.showMessageDialog(null, "Debe seleccionar un objeto", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }
+    
+    public void validarEmergencia(CSistema con, JTextField txtEmergencia){
+        String texto = txtEmergencia.getText();
+        int numero;
+        try{
+            numero = Integer.parseInt(texto);
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Introduzca un valor numerico", "Error", JOptionPane.ERROR_MESSAGE);
+            txtEmergencia.setText(null);
+            return;
+        }
+        if (con.buscarEmergencia(numero)==null){
+            JOptionPane.showMessageDialog(null, "La emergencia que ingreso no esta registrada", "Error", JOptionPane.ERROR_MESSAGE); 
+            txtEmergencia.setText(null);
+        }
+    }
+    
+    public void validarCantidad(JTextField txtCantidad){
+        String cantidad = txtCantidad.getText();
+        int cant;
+        try{
+            cant = Integer.parseInt(cantidad);
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Introduzca un valor numerico", "Error", JOptionPane.ERROR_MESSAGE);
+            txtCantidad.setText(null);
+            return;
+        }
+        if (cant<1){
+            JOptionPane.showMessageDialog(null, "Introduzca una cantidad valida", "Error", JOptionPane.ERROR_MESSAGE); 
+            txtCantidad.setText(null);
+        }
+    }
+    
+    public void eliminarUnidad(JList lista, DefaultListModel modelo, JButton btnEliminar){
+    try{
+        int indice = lista.getSelectedIndex();
+        modelo.removeElementAt(indice);
+        if (modelo.size()==0)
+            btnEliminar.setEnabled(false);
+    }catch(ArrayIndexOutOfBoundsException ex){
+        JOptionPane.showMessageDialog(null, "Debe seleccionar un objeto", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }
+    
+    public void registrarEntrada(String comboAplica, Date fVencimiento, int cantidad, Suministro sum){
+        Unidad uni = null;
+        if (comboAplica.equals("Aplica")){
+            String patron = "dd/MM/yyyy";
+            DateFormat formato = new SimpleDateFormat(patron);
+            uni = new Unidad("Almacen",formato.format(fVencimiento));
+        }else if (comboAplica.equals("No aplica"))
+            uni = new Unidad("Almacen",comboAplica);
+        Unidad[] unidades = new Unidad[cantidad];
+        for (int i = 0; i < unidades.length; i++) {
+            unidades[i]=uni;
+        }
+        Movimiento mov = new Movimiento(LocalDate.now(),unidades,"Entrada");
+        sum.registrarMovimiento(mov);
+    }
+    
+    public void registrarSalida(){
+        
+    }
+    
+    public void registrarReubicacion(){
+        
     }
     
 }

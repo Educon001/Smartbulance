@@ -3,8 +3,6 @@ package Vista;
 
 import Controller.*;
 import Modelo.*;
-import java.util.*;
-import javax.swing.JOptionPane;
 
 public class PantallaVerMovimientos extends javax.swing.JFrame {
     Suministro sum;

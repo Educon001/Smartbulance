@@ -4,7 +4,6 @@ package Vista;
 import Controller.*;
 import Modelo.*;
 import java.util.*;
-import javax.swing.JOptionPane;
 
 public class PantallaDetalleSum extends javax.swing.JFrame {
     Suministro sum;
@@ -13,13 +12,7 @@ public class PantallaDetalleSum extends javax.swing.JFrame {
     CVentana controlVentana = new CVentana(this);
     
     public PantallaDetalleSum() {
-        sum = new Suministro("Medicamento","Atamel","Acetaminofen 20mg");
-        Unidad uni1 = new Unidad("Almacen","26/07/2021");
-        Unidad uni2 = new Unidad("Ambulancia 1","04/09/2021");
-        sum.getUnidades().add(uni1);
-        sum.getUnidades().add(uni2);
         initComponents();
-        con.mostrarUnidades(tablaUnidades, tituloTabla, sum);
     }
     
     public PantallaDetalleSum(Suministro sum, CInventario con,MenúPrincipal ventanaAnterior) {

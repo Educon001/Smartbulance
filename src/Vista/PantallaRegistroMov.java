@@ -10,25 +10,13 @@ import javax.swing.*;
 public class PantallaRegistroMov extends javax.swing.JFrame {
     Suministro sum;
     CSistema conSistema;
-    CInventario con; //= new CInventario(new Ambulatorio());
+    CInventario con;
     DefaultListModel modeloLista = new DefaultListModel();
     MenúPrincipal ventanaAnterior;
     CVentana controlVentana = new CVentana(this);
     
     public PantallaRegistroMov() {
         initComponents();
-        /*sum = new Suministro();
-        Unidad uni1 = new Unidad("Almacen","26/07/2021");
-        Unidad uni2 = new Unidad("Ambulancia 1","04/09/2021");
-        sum.getUnidades().add(uni1);
-        sum.getUnidades().add(uni2);
-        con.mostrarUnidades(tablaUnidades, tituloTabla, sum);
-        listaObjetos.setModel(modeloLista);
-        listaObjetos.addMouseListener(new EventoMouse(btnEliminar));
-        conSistema = new CSistema();
-        conSistema.setListaEmergencias(new ArrayList<Emergencia>());
-        Emergencia em = new Emergencia();
-        conSistema.agregarEmergencia(em);*/
     }
     
     public PantallaRegistroMov(Suministro sum, CInventario con, CSistema conSistema,MenúPrincipal ventanaAnterior) {

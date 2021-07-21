@@ -41,6 +41,8 @@ public class Movimiento {
         this.tipo = tipo;
     }
 
-    
+    public int getCantidad(){
+        return unidades.length;
+    }
     
 }

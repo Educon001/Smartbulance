@@ -18,6 +18,7 @@ public class Suministro {
         this.tipo = tipo;
         this.nombre = nombre;
         this.descripción = descripción;
+        codigo=1;
         movimientos = new ArrayList<>();
         unidades = new ArrayList<>();
     }
@@ -25,7 +26,7 @@ public class Suministro {
     public Suministro() {
         unidades = new ArrayList<>();
         movimientos = new ArrayList<>();
-        nombre = "DROGA";
+        nombre = "Medicina";
     }
     
     //Getters y setters
@@ -91,6 +92,14 @@ public class Suministro {
                 }
             }
         }           
-    }  
+    }
+    
+    public Unidad buscarUnidad(int cod){
+        for (Unidad uni : unidades) {
+            if (uni.getCodigo()==cod)
+                return uni;
+        }            
+        return null;
+    }
     
 }

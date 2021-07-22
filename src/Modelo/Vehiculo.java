@@ -12,6 +12,7 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
     protected ArrayList<Mantenimiento> histMantenimiento;
     protected ArrayList<Personal> personalActual;
     protected ArrayList<Turno> entradasSalidas;
+    protected int codigo;
     
     //CONSTRUCTORES
     public Vehiculo(){}
@@ -25,8 +26,15 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
         entradasSalidas = new ArrayList<>();
     }
     
-    
+  
     //GETTERS Y SETTERS
+    public int getCodigo() {
+        return codigo;
+    }
+    
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
     public String getSerial() {
         return serial;

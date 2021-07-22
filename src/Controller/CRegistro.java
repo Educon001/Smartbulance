@@ -208,19 +208,10 @@ public class CRegistro {
         entidad.setDireccion(txtDirEntidad.getText());
     }
     
-    public void seleccionTipoPersonal(JComboBox cboTipo,JLabel labelVehActual,JTextField txtVehActual,JLabel labelLicencia,JLabel labelAsignado,JTextField txtLicencia,JRadioButton radioSI, JRadioButton radioNO){
+    public void seleccionTipoPersonal(JComboBox cboTipo,JLabel labelLicencia,JLabel labelAsignado,JTextField txtLicencia,JRadioButton radioSI, JRadioButton radioNO){
         boolean conductor=false, paramedico=false;
         if(cboTipo.getSelectedIndex()==2) paramedico=true;
         else if(cboTipo.getSelectedIndex()==3) conductor=true;
-        
-        if(paramedico || conductor){
-            labelVehActual.setVisible(true);
-            txtVehActual.setVisible(true);
-        }
-        else{
-            labelVehActual.setVisible(false);
-            txtVehActual.setVisible(false);
-        }
         
         labelLicencia.setVisible(conductor);
         txtLicencia.setVisible(conductor);
@@ -245,7 +236,7 @@ public class CRegistro {
         radioAmbAerea.setSelected(false);
     }
     
-    public void vaciarDatosPersonal(JTextField txtCI,JTextField txtNombre,JTextField txtCorreo,JTextField txtTelf1,JTextField txtTelf2,JDateChooser fN,JRadioButton masc,JRadioButton fem,JRadioButton act_SI,JRadioButton act_NO,JTextField txtSalario,JDateChooser fC,JComboBox cboTipo,JTextField txtVehActual,JRadioButton drs_SI,JRadioButton drs_NO, JTextField txtLicencia){
+    public void vaciarDatosPersonal(JTextField txtCI,JTextField txtNombre,JTextField txtCorreo,JTextField txtTelf1,JTextField txtTelf2,JDateChooser fN,JRadioButton masc,JRadioButton fem,JRadioButton act_SI,JRadioButton act_NO,JTextField txtSalario,JDateChooser fC,JComboBox cboTipo,JRadioButton drs_SI,JRadioButton drs_NO, JTextField txtLicencia){
         txtCI.setText(null);
         txtNombre.setText(null);
         txtCorreo.setText(null);
@@ -259,7 +250,6 @@ public class CRegistro {
         txtSalario.setText(null);
         fC.setDate(null);
         cboTipo.setSelectedIndex(0);
-        txtVehActual.setVisible(false);
         drs_SI.setVisible(false);
         drs_NO.setVisible(false);
         txtLicencia.setVisible(false);

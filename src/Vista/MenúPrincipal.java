@@ -220,15 +220,15 @@ public class MenúPrincipal extends javax.swing.JFrame{
         txtLicencia = new javax.swing.JTextField();
         radioAsignado_SI = new javax.swing.JRadioButton();
         radioAsignado_NO = new javax.swing.JRadioButton();
-        labelVehActual = new javax.swing.JLabel();
-        txtVehActual = new javax.swing.JTextField();
         botonRegistrarPersonal = new javax.swing.JButton();
         botonVaciarDatosPersonal = new javax.swing.JButton();
         panelVerPersonal = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tablaPersonal = new javax.swing.JTable();
         botonEliminar_Personal = new javax.swing.JButton();
-        botonRegistrarTurno = new javax.swing.JButton();
+        botonRegistrarEntrada = new javax.swing.JButton();
+        botonRegistrarSalida = new javax.swing.JButton();
+        botonVerTurnos = new javax.swing.JButton();
         bhAmbulatorios = new javax.swing.JButton();
         fondoAmbulatorios = new javax.swing.JLabel();
         panelAmbulancias = new javax.swing.JPanel();
@@ -1067,6 +1067,11 @@ public class MenúPrincipal extends javax.swing.JFrame{
         botonListaMecanicos.setBackground(new java.awt.Color(153, 204, 255));
         botonListaMecanicos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonListaMecanicos.setText("Ver lista de mecánicos");
+        botonListaMecanicos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonListaMecanicosMouseClicked(evt);
+            }
+        });
         botonListaMecanicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonListaMecanicosActionPerformed(evt);
@@ -1609,11 +1614,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
         radioAsignado_NO.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioAsignado_NO.setText("No");
 
-        labelVehActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelVehActual.setText("Vehiculo actual:");
-
-        txtVehActual.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         javax.swing.GroupLayout panelDatosPersonalLayout = new javax.swing.GroupLayout(panelDatosPersonal);
         panelDatosPersonal.setLayout(panelDatosPersonalLayout);
         panelDatosPersonalLayout.setHorizontalGroup(
@@ -1665,10 +1665,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDatosPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(panelDatosPersonalLayout.createSequentialGroup()
-                            .addComponent(labelVehActual)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtVehActual))
                         .addGroup(panelDatosPersonalLayout.createSequentialGroup()
                             .addComponent(labelFN_Personal)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1750,18 +1746,14 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addGroup(panelDatosPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTipoPersonal)
                     .addComponent(cboTipoPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(panelDatosPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelVehActual)
-                    .addComponent(txtVehActual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(43, 43, 43)
                 .addGroup(panelDatosPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAsignadoDRS)
                     .addComponent(radioAsignado_SI)
                     .addComponent(radioAsignado_NO)
                     .addComponent(labelLicencia)
                     .addComponent(txtLicencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         jScrollPane5.setViewportView(panelDatosPersonal);
@@ -1771,6 +1763,11 @@ public class MenúPrincipal extends javax.swing.JFrame{
         botonRegistrarPersonal.setBackground(new java.awt.Color(153, 204, 255));
         botonRegistrarPersonal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         botonRegistrarPersonal.setText("Registrar");
+        botonRegistrarPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistrarPersonalMouseClicked(evt);
+            }
+        });
         botonRegistrarPersonal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonRegistrarPersonalActionPerformed(evt);
@@ -1803,6 +1800,11 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaPersonal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPersonalMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(tablaPersonal);
 
         botonEliminar_Personal.setBackground(new java.awt.Color(255, 0, 0));
@@ -1819,12 +1821,40 @@ public class MenúPrincipal extends javax.swing.JFrame{
             }
         });
 
-        botonRegistrarTurno.setBackground(new java.awt.Color(0, 153, 255));
-        botonRegistrarTurno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        botonRegistrarTurno.setText("Registrar turno");
-        botonRegistrarTurno.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonRegistrarEntrada.setBackground(new java.awt.Color(0, 153, 255));
+        botonRegistrarEntrada.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonRegistrarEntrada.setText("Registrar entrada");
+        botonRegistrarEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonRegistrarTurnoMouseClicked(evt);
+                botonRegistrarEntradaMouseClicked(evt);
+            }
+        });
+        botonRegistrarEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarEntradaActionPerformed(evt);
+            }
+        });
+
+        botonRegistrarSalida.setBackground(new java.awt.Color(0, 255, 0));
+        botonRegistrarSalida.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonRegistrarSalida.setText("Registrar salida");
+        botonRegistrarSalida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegistrarSalidaMouseClicked(evt);
+            }
+        });
+
+        botonVerTurnos.setBackground(new java.awt.Color(255, 255, 51));
+        botonVerTurnos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonVerTurnos.setText("Ver turnos");
+        botonVerTurnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonVerTurnosMouseClicked(evt);
+            }
+        });
+        botonVerTurnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerTurnosActionPerformed(evt);
             }
         });
 
@@ -1834,10 +1864,14 @@ public class MenúPrincipal extends javax.swing.JFrame{
             panelVerPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelVerPersonalLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(panelVerPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(panelVerPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(panelVerPersonalLayout.createSequentialGroup()
-                        .addComponent(botonRegistrarTurno)
+                        .addComponent(botonRegistrarEntrada)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonRegistrarSalida)
                         .addGap(18, 18, 18)
+                        .addComponent(botonVerTurnos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonEliminar_Personal))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -1850,7 +1884,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addGap(28, 28, 28)
                 .addGroup(panelVerPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonEliminar_Personal)
-                    .addComponent(botonRegistrarTurno))
+                    .addComponent(botonRegistrarEntrada)
+                    .addComponent(botonRegistrarSalida)
+                    .addComponent(botonVerTurnos))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -2500,7 +2536,11 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_tablaAmbulatoriosMouseClicked
 
     private void pestAmbulatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pestAmbulatoriosMouseClicked
-        cRegistro.seleccionTipoPersonal(cboTipoPersonal,labelVehActual,txtVehActual,labelLicencia,labelAsignadoDRS,txtLicencia,radioAsignado_SI,radioAsignado_NO);
+        cRegistro.seleccionTipoPersonal(cboTipoPersonal,labelLicencia,labelAsignadoDRS,txtLicencia,radioAsignado_SI,radioAsignado_NO);
+        botonEliminar_Personal.setEnabled(false);
+        botonRegistrarEntrada.setEnabled(false);
+        botonRegistrarSalida.setEnabled(false);
+        botonVerTurnos.setEnabled(false);
         controlAmbulatorio.mostrarPersonal(tablaPersonal);
         controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);
     }//GEN-LAST:event_pestAmbulatoriosMouseClicked
@@ -2613,28 +2653,27 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_txtSalarioFocusLost
 
     private void cboTipoPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboTipoPersonalMouseClicked
-        cRegistro.seleccionTipoPersonal(cboTipoPersonal,labelVehActual,txtVehActual,labelLicencia,labelAsignadoDRS,txtLicencia,radioAsignado_SI,radioAsignado_NO);
+        cRegistro.seleccionTipoPersonal(cboTipoPersonal,labelLicencia,labelAsignadoDRS,txtLicencia,radioAsignado_SI,radioAsignado_NO);
     }//GEN-LAST:event_cboTipoPersonalMouseClicked
 
     private void botonRegistrarPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarPersonalActionPerformed
-        //GENERAR NUMERO DE CARNET
         if(!cRegistro.camposVaciosPersonal(cboTipoPersonal,txtCI_Personal,txtNombre_Personal,txtCorreo_Personal,txtTelf1_Personal,txtTelf2_Personal,chooserFN_Personal,radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario,chooserFC,txtLicencia,radioAsignado_SI,radioAsignado_NO)){
             String cedula = cRegistro.construirCedula(cboCI_Personal,txtCI_Personal);
-            String telf = cRegistro.construirTelf(txtTelf1_Personal,txtTelf2_Personal);
+            String telf = cRegistro.construirTelf(txtTelf1_Personal,txtTelf2_Personal);              
             if(!controlAmbulatorio.seEncuentraPersonal_CI(cedula)){
                 //Si es conductor
                 if(cboTipoPersonal.getSelectedIndex()==3 && !controlAmbulatorio.seEncuentraPersonal_Licencia(txtLicencia.getText())) 
-                    controlAmbulatorio.crearPersonal(cedula,txtNombre_Personal.getText(),txtCorreo_Personal.getText(),telf,chooserFN_Personal.getDate(),radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario.getText(),chooserFC.getDate(),cboTipoPersonal.getSelectedItem().toString(),txtLicencia.getText(),radioAsignado_SI,radioAsignado_NO,txtVehActual.getText());
+                    controlAmbulatorio.crearPersonal(cedula,txtNombre_Personal.getText(),txtCorreo_Personal.getText(),telf,chooserFN_Personal.getDate(),radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario.getText(),chooserFC.getDate(),cboTipoPersonal.getSelectedItem().toString(),txtLicencia.getText(),radioAsignado_SI,radioAsignado_NO);
                 else if(cboTipoPersonal.getSelectedIndex()!=3){
-                    controlAmbulatorio.crearPersonal(cedula,txtNombre_Personal.getText(),txtCorreo_Personal.getText(),telf,chooserFN_Personal.getDate(),radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario.getText(),chooserFC.getDate(),cboTipoPersonal.getSelectedItem().toString(),txtLicencia.getText(),radioAsignado_SI,radioAsignado_NO,txtVehActual.getText());
+                    controlAmbulatorio.crearPersonal(cedula,txtNombre_Personal.getText(),txtCorreo_Personal.getText(),telf,chooserFN_Personal.getDate(),radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario.getText(),chooserFC.getDate(),cboTipoPersonal.getSelectedItem().toString(),txtLicencia.getText(),radioAsignado_SI,radioAsignado_NO);
                 }
-                cRegistro.vaciarDatosPersonal(txtCI_Personal,txtNombre_Personal,txtCorreo_Personal,txtTelf1_Personal,txtTelf2_Personal,chooserFN_Personal,radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario,chooserFC,cboTipoPersonal,txtVehActual,radioAsignado_SI,radioAsignado_SI,txtLicencia);
+                cRegistro.vaciarDatosPersonal(txtCI_Personal,txtNombre_Personal,txtCorreo_Personal,txtTelf1_Personal,txtTelf2_Personal,chooserFN_Personal,radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario,chooserFC,cboTipoPersonal,radioAsignado_SI,radioAsignado_SI,txtLicencia);
             }
         }
     }//GEN-LAST:event_botonRegistrarPersonalActionPerformed
 
     private void botonVaciarDatosPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVaciarDatosPersonalActionPerformed
-        cRegistro.vaciarDatosPersonal(txtCI_Personal,txtNombre_Personal,txtCorreo_Personal,txtTelf1_Personal,txtTelf2_Personal,chooserFN_Personal,radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario,chooserFC,cboTipoPersonal,txtVehActual,radioAsignado_SI,radioAsignado_SI,txtLicencia);
+        cRegistro.vaciarDatosPersonal(txtCI_Personal,txtNombre_Personal,txtCorreo_Personal,txtTelf1_Personal,txtTelf2_Personal,chooserFN_Personal,radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario,chooserFC,cboTipoPersonal,radioAsignado_SI,radioAsignado_SI,txtLicencia);
     }//GEN-LAST:event_botonVaciarDatosPersonalActionPerformed
 
     private void cboTipoPersonalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboTipoPersonalMouseExited
@@ -2648,7 +2687,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_txtCorreo_PersonalActionPerformed
 
     private void panelDatosPersonalMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelDatosPersonalMouseMoved
-        cRegistro.seleccionTipoPersonal(cboTipoPersonal,labelVehActual,txtVehActual,labelLicencia,labelAsignadoDRS,txtLicencia,radioAsignado_SI,radioAsignado_NO);
+        cRegistro.seleccionTipoPersonal(cboTipoPersonal,labelLicencia,labelAsignadoDRS,txtLicencia,radioAsignado_SI,radioAsignado_NO);
     }//GEN-LAST:event_panelDatosPersonalMouseMoved
 
     private void botonEliminar_PersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar_PersonalActionPerformed
@@ -2663,9 +2702,67 @@ public class MenúPrincipal extends javax.swing.JFrame{
         }
     }//GEN-LAST:event_botonEliminar_PersonalMouseClicked
 
-    private void botonRegistrarTurnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarTurnoMouseClicked
+    private void botonRegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarEntradaMouseClicked
+        Personal per = controlAmbulatorio.personalSeleccionado(tablaPersonal);
+        if(per!=null){
+            if(cRegistro.confirmar()){
+                controlAmbulatorio.registrarTurno(per);
+                botonRegistrarEntrada.setEnabled(false);
+                botonRegistrarSalida.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_botonRegistrarEntradaMouseClicked
+
+    private void botonRegistrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarEntradaActionPerformed
         
-    }//GEN-LAST:event_botonRegistrarTurnoMouseClicked
+    }//GEN-LAST:event_botonRegistrarEntradaActionPerformed
+
+    private void tablaPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPersonalMouseClicked
+        Personal per = controlAmbulatorio.personalSeleccionado(tablaPersonal);
+        if(per!=null){
+            if(per.getEntradaSalida().isEmpty() || per.ultimaEntradaSalida().getSalida()!=null){
+                botonRegistrarEntrada.setEnabled(true);
+                botonRegistrarSalida.setEnabled(false);
+            }
+            else{
+                botonRegistrarEntrada.setEnabled(false);
+                botonRegistrarSalida.setEnabled(true);
+            }
+            botonVerTurnos.setEnabled(true);
+            botonEliminar_Personal.setEnabled(true);
+        }
+    }//GEN-LAST:event_tablaPersonalMouseClicked
+
+    private void botonRegistrarSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarSalidaMouseClicked
+        Personal per = controlAmbulatorio.personalSeleccionado(tablaPersonal);
+        if(per!=null){
+            if(cRegistro.confirmar()){
+                controlAmbulatorio.registrarTurno(per);
+                botonRegistrarEntrada.setEnabled(true);
+                botonRegistrarSalida.setEnabled(false);                
+            }
+        }
+    }//GEN-LAST:event_botonRegistrarSalidaMouseClicked
+
+    private void botonVerTurnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerTurnosMouseClicked
+        Personal per = controlAmbulatorio.personalSeleccionado(tablaPersonal);
+        if(per!=null){
+            VentanaMecanicos verTurnos = new VentanaMecanicos(per);
+            verTurnos.setVisible(true);
+        }
+    }//GEN-LAST:event_botonVerTurnosMouseClicked
+
+    private void botonListaMecanicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonListaMecanicosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonListaMecanicosMouseClicked
+
+    private void botonRegistrarPersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarPersonalMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonRegistrarPersonalMouseClicked
+
+    private void botonVerTurnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerTurnosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerTurnosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2776,12 +2873,14 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel botonPacientes;
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JButton botonRegistrarAmbulancia;
+    private javax.swing.JButton botonRegistrarEntrada;
     private javax.swing.JButton botonRegistrarPersonal;
-    private javax.swing.JButton botonRegistrarTurno;
+    private javax.swing.JButton botonRegistrarSalida;
     private javax.swing.JButton botonVaciar;
     private javax.swing.JButton botonVaciarAmbulancia;
     private javax.swing.JButton botonVaciarDatosPersonal;
     private javax.swing.JButton botonVaciar_Taller;
+    private javax.swing.JButton botonVerTurnos;
     private javax.swing.JComboBox<String> cboCI_Personal;
     private javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JComboBox<String> cboEstado_Taller;
@@ -2887,7 +2986,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel labelTipoVehiculo;
     private javax.swing.JLabel labelTituloAmbulatorio;
     private javax.swing.JLabel labelTituloVehiculo;
-    private javax.swing.JLabel labelVehActual;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel panelAmbulancias;
     private javax.swing.JPanel panelAmbulatorios;
@@ -2953,6 +3051,5 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JTextField txtTelf2;
     private javax.swing.JTextField txtTelf2_Personal;
     private javax.swing.JTextField txtTelf2_Taller;
-    private javax.swing.JTextField txtVehActual;
     // End of variables declaration//GEN-END:variables
 }

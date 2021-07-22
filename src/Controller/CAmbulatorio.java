@@ -106,7 +106,7 @@ public class CAmbulatorio implements ICEntidad{
     }
     
     
-    public void crearPersonal(String ci,String nombre,String correo,String telf,Date fN,JRadioButton masc,JRadioButton fem,JRadioButton act_SI,JRadioButton act_NO,String salario,Date fC,String tipo,String licencia,JRadioButton DRS_SI,JRadioButton DRS_NO,String vehActual){
+    public void crearPersonal(String ci,String nombre,String correo,String telf,Date fN,JRadioButton masc,JRadioButton fem,JRadioButton act_SI,JRadioButton act_NO,String salario,Date fC,String tipo,String licencia,JRadioButton DRS_SI,JRadioButton DRS_NO){
         Personal per;
         long lic;
         boolean activo,drs;
@@ -125,11 +125,11 @@ public class CAmbulatorio implements ICEntidad{
         
         if(tipo.equals("Paramedico")){
             drs=DRS_SI.isSelected();
-            per = new Paramedico(numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero,vehActual,drs);
+            per = new Paramedico(numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero,drs);
         }
         else if(tipo.equals("Conductor")){
             lic = Long.parseLong(licencia);
-            per = new Conductor(lic,vehActual,numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero);
+            per = new Conductor(lic,numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero);
         }
         else per = new Personal(numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero);
         
@@ -187,4 +187,19 @@ public class CAmbulatorio implements ICEntidad{
         }
         return null;
     }
+    
+    public void crearTurnoNuevo(Personal per, Date hora){
+        Turno turno = new Turno(hora,null);
+        per.registrarEntradaSalida(turno);
+        System.out.println(per.ultimaEntradaSalida().getEntrada());
+    }
+    
+    public void registrarTurno(Personal per){
+       Date hora = new Date();
+       if(per.getEntradaSalida().isEmpty() || per.ultimaEntradaSalida().getSalida()!=null)
+            crearTurnoNuevo(per,hora);
+       else
+            per.ultimaEntradaSalida().setSalida(hora);
+    }
+    
 }

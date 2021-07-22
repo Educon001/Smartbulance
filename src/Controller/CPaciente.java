@@ -10,9 +10,13 @@ import Modelo.Pago;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -58,6 +62,33 @@ public class CPaciente {
 
         
     }
+    
+    public boolean validarCedula(JTextField txtCedula){
+        String cedula = txtCedula.getText();
+        int cant;
+        try{
+            cant = Integer.parseInt(cedula);
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Introduzca un valor numerico", "Error Cedula", JOptionPane.ERROR_MESSAGE);
+            txtCedula.setText(null);
+            return false;
+        }
+        
+        return true;
+    }
+    public boolean validarCorreo(JTextField txtCorreo){
+        String correo = txtCorreo.getText();
+
+        Pattern pat = Pattern.compile("[A-Z0-9._-]+@[A-Z0-9.-]+\\.([A-Z]{2,4})+",Pattern.CASE_INSENSITIVE);
+        Matcher mat = pat.matcher(correo);
+        return mat.matches();
+    }
+        
+    
+    
+    
+   
+    
     
     public void mostrarPagos(JTable tabla,ArrayList<Pago> listaPagos){
         
@@ -130,4 +161,5 @@ public class CPaciente {
     
     
     }
+
 }

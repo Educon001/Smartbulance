@@ -6,6 +6,7 @@
 package Vista;
 
 import Controller.CPaciente;
+import Controller.CRegistro;
 import Controller.CSistema;
 import Modelo.Paciente;
 import java.awt.event.MouseAdapter;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,6 +31,7 @@ public class MostrarPacientes extends javax.swing.JFrame {
     ArrayList<Paciente> listaPacientes=new ArrayList<Paciente>();
     private Paciente paciente;
     private CPaciente pac;
+    private CRegistro controlRegistro;
     private MenúPrincipal ventanaAnterior;
     private CSistema con;
     
@@ -52,7 +55,7 @@ public class MostrarPacientes extends javax.swing.JFrame {
         this.pac = pac;
         this.ventanaAnterior = ventanaAnterior;
         this.con=con;
-        
+        controlRegistro=new CRegistro();
         
         pac.mostrarPacientes(jTablePacientes,con.getListaPacientes(),btnDetalles,jBtnEliminar);
     }
@@ -111,7 +114,19 @@ public class MostrarPacientes extends javax.swing.JFrame {
 
         jLabel5.setText("Correo");
 
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Telefono");
+
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Nacimiento");
 
@@ -272,6 +287,8 @@ public class MostrarPacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        pac.validarCedula(txtCedula);
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
 
@@ -279,25 +296,30 @@ public class MostrarPacientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         //DEBEMOS DEVOLVER LA FECHA A LOCALDATE, SOLO LO PUSE sTRING PARA PROBAR
-        Date fecha;
-        fecha = Calendario.getDate();
-        LocalDate nacimiento = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        char ch = 0;
-        if(jGenero.getSelectedIndex()==0){
-            ch='M';
-        }else if(jGenero.getSelectedIndex()==1){
+        controlRegistro=new CRegistro();
+        if ((controlRegistro.validarTelf(txtTelefono,txtTelefono.getText().length())==true)&&(pac.validarCorreo(txtCorreo)==true)&&(pac.validarCedula(txtCedula)==true) ){
+            Date fecha;
+            fecha = Calendario.getDate();
+            LocalDate nacimiento = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            char ch = 0;
+            if(jGenero.getSelectedIndex()==0){
+                ch='M';
+            }else if(jGenero.getSelectedIndex()==1){
+                
+                ch='F';
+                
+            }
+            Paciente paciente = new Paciente(txtCedula.getText(), txtNombre.getText(),txtCorreo.getText(), txtTelefono.getText(), nacimiento,ch);
             
-            ch='F';         
-    
+            
+            
+            con.agregarPaciente(paciente);
+
+            pac.mostrarPacientes(jTablePacientes, con.getListaPacientes(),btnDetalles,jBtnEliminar);
+        } else {
+            
+             JOptionPane.showMessageDialog(null,"Todos los datos deben proporcionarse correctamente","Error", JOptionPane.ERROR_MESSAGE);
         }
-        Paciente paciente = new Paciente(txtCedula.getText(), txtNombre.getText(),txtCorreo.getText(), txtTelefono.getText(), nacimiento,ch);
-        
-        
-    
-        con.agregarPaciente(paciente);
-        
-        pac.mostrarPacientes(jTablePacientes, con.getListaPacientes(),btnDetalles,jBtnEliminar);
-        
         
         
         
@@ -331,6 +353,18 @@ public class MostrarPacientes extends javax.swing.JFrame {
         pac.eliminarPaciente(con, jTablePacientes);
         pac.mostrarPacientes(jTablePacientes, con.getListaPacientes(), btnDetalles, jBtnEliminar);
     }//GEN-LAST:event_jBtnEliminarActionPerformed
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+        pac.validarCorreo(txtCorreo);
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+        controlRegistro=new CRegistro();
+        controlRegistro.validarTelf(txtTelefono,txtTelefono.getText().length());
+        
+    }//GEN-LAST:event_txtTelefonoActionPerformed
 
     /**
      * @param args the command line arguments

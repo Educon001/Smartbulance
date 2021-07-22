@@ -284,6 +284,8 @@ public class MostrarPacientes extends javax.swing.JFrame {
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
+        controlRegistro=new CRegistro();
+        controlRegistro.validarNombre(txtNombre);
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
@@ -297,7 +299,7 @@ public class MostrarPacientes extends javax.swing.JFrame {
         
         //DEBEMOS DEVOLVER LA FECHA A LOCALDATE, SOLO LO PUSE sTRING PARA PROBAR
         controlRegistro=new CRegistro();
-        if ((controlRegistro.validarTelf(txtTelefono,txtTelefono.getText().length())==true)&&(pac.validarCorreo(txtCorreo)==true)&&(pac.validarCedula(txtCedula)==true) ){
+        if ((controlRegistro.validarTelf(txtTelefono,txtTelefono.getText().length())==true)&&(pac.validarCorreo(txtCorreo)==true)&&(pac.validarCedula(txtCedula)==true)&&(controlRegistro.validarNombre(txtNombre)==true) ){
             Date fecha;
             fecha = Calendario.getDate();
             LocalDate nacimiento = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

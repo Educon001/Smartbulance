@@ -80,8 +80,7 @@ public class CClinica {
         if(inicio) JOptionPane.showMessageDialog(null,"No se encuentra un ambulatorio registrado con este RIF.","Error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
-    
-    
+   
     public boolean seEncuentraRegistradoTelf_Ambulatorio(String telf, boolean inicio){
         if(!inicio){
             if(clinica.buscarAmbulatorio_Telf(telf)){
@@ -122,11 +121,21 @@ public class CClinica {
     
     public Ambulatorio ambulatorioSeleccionado(JTable tablaEntidad){
         String RIF = pasarAtributo_DeTabla(tablaEntidad,1);
-        System.out.println(RIF+" RIF PASADO");
         if(RIF!=null){
             return clinica.retornarAmbulatorio(RIF);
         }
         return null;
     }
     
+    public boolean buscarVehiculo(String serial){
+        for(Ambulatorio amb : clinica.getAmbulatorios()){
+            for(Vehiculo veh : amb.getVehiculos()){
+                if(serial.equals(veh.getSerial())){
+                    JOptionPane.showMessageDialog(null,"Ya se encuentra un vehículo registrado con este serial.","Error",JOptionPane.ERROR_MESSAGE);
+                    return true;
+                }
+            }
+        }
+        return false;   
+    }
 }

@@ -8,6 +8,8 @@ package Vista;
 import javax.swing.JTable;
 import Controller.CMecanicos;
 import Controller.CVentana;
+import Modelo.Personal;
+import Modelo.Turno;
 import java.util.ArrayList;
 
 public class VentanaMecanicos extends javax.swing.JFrame {
@@ -21,7 +23,13 @@ public class VentanaMecanicos extends javax.swing.JFrame {
     public VentanaMecanicos(ArrayList<String> lista) {
         initComponents();
         controlVentana.iniciarVentana(this,"src/imagenes/logo(1).png");
-        controlMecanicos.mostrarMecanicos(lista, tablaMecanicos);
+        controlMecanicos.mostrarMecanicos(lista, tabla);
+    }    
+    
+    public VentanaMecanicos(Personal per) {
+        initComponents();
+        controlVentana.iniciarVentana(this,"src/imagenes/logo(1).png");
+        controlMecanicos.mostrarTurnos(per.getEntradaSalida(), tabla);
     }    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,7 +43,7 @@ public class VentanaMecanicos extends javax.swing.JFrame {
         panelMecanicos = new javax.swing.JPanel();
         botonSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaMecanicos = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +58,7 @@ public class VentanaMecanicos extends javax.swing.JFrame {
             }
         });
 
-        tablaMecanicos.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -61,7 +69,7 @@ public class VentanaMecanicos extends javax.swing.JFrame {
                 "Title 1"
             }
         ));
-        jScrollPane1.setViewportView(tablaMecanicos);
+        jScrollPane1.setViewportView(tabla);
 
         javax.swing.GroupLayout panelMecanicosLayout = new javax.swing.GroupLayout(panelMecanicos);
         panelMecanicos.setLayout(panelMecanicosLayout);
@@ -141,6 +149,6 @@ public class VentanaMecanicos extends javax.swing.JFrame {
     private javax.swing.JButton botonSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelMecanicos;
-    private javax.swing.JTable tablaMecanicos;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

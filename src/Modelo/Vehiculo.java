@@ -26,7 +26,7 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
         entradasSalidas = new ArrayList<>();
     }
     
-    
+  
     //GETTERS Y SETTERS
     public int getCodigo() {
         return codigo;

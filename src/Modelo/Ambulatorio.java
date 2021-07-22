@@ -81,7 +81,7 @@ public class Ambulatorio extends Entidad{
         }
         return null;
     }
-   
+
     public void agregarSuministro(Suministro sum){
         sum.setCodigo(inventario.size());
         inventario.add(sum);
@@ -94,4 +94,17 @@ public class Ambulatorio extends Entidad{
         }
         return null;
     }
+    
+    public Personal buscarPersonal(String ci){
+        for (Personal per : personal) {
+            if(ci.equals(per.getCedula()))
+                return per;
+        }
+        return null;
+    }
+    
+    public void eliminarPersonal(Personal per){
+        personal.remove(per);
+    }
+    
 }

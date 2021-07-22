@@ -9,6 +9,13 @@ public class Turno {
 
     public Turno() {
     }
+
+    public Turno(Date entrada, Date salida) {
+        this.entrada = entrada;
+        this.salida = salida;
+    }
+    
+    
     
     public Date getEntrada() {
         return entrada;

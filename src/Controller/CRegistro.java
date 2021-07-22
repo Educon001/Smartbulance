@@ -3,6 +3,7 @@ package Controller;
 
 import Modelo.Clinica;
 import Modelo.Entidad;
+import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.util.regex.Matcher;
@@ -22,7 +23,7 @@ public class CRegistro {
     public boolean validarSerial(String serial){
         Pattern pat = Pattern.compile("[A-Z0-9]{17}",Pattern.CASE_INSENSITIVE);
         Matcher mat = pat.matcher(serial);
-        if(!mat.matches()) JOptionPane.showMessageDialog(null,"Solo se aceptan letras y numeros para el serial del vehículo.","Error",JOptionPane.ERROR_MESSAGE);
+        if(!mat.matches()) JOptionPane.showMessageDialog(null,"El serial del vehiculo debe tener 17 caracteres entre letras y numeros","Error",JOptionPane.ERROR_MESSAGE);
         return mat.matches();
     }
     
@@ -84,6 +85,16 @@ public class CRegistro {
        cboEstado.setSelectedIndex(0);
     }
     
+    public boolean validarNombreEntidad(JTextField txtNombre){
+        if(txtNombre.getText().isEmpty()==false){
+            if(txtNombre.getText().matches("^([A-Za-zñáéíóúü0-9]+[ ]?){1,4}$")==false){
+                JOptionPane.showMessageDialog(null,"El nombre no puede tener números y/o caracteres especiales.","Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public boolean validarNombre(JTextField txtNombre){
         if(txtNombre.getText().isEmpty()==false){
             if(txtNombre.getText().matches("^([A-Za-zñáéíóúü]+[ ]?){1,4}$")==false){
@@ -92,6 +103,41 @@ public class CRegistro {
             }
         }
         return true;
+    }
+    
+    public boolean validarCorreo(String correo){
+        Pattern pat = Pattern.compile("[A-Z0-9._-]+@[A-Z0-9.-]+\\.([A-Z]{2,4})+",Pattern.CASE_INSENSITIVE);
+        Matcher mat = pat.matcher(correo);
+        if(!mat.matches())
+            JOptionPane.showMessageDialog(null,"No cumple con el formato de un correo electrónico.\nFormato válido: usuario@servidor.dominio","Error", JOptionPane.ERROR_MESSAGE);
+        return mat.matches();
+    }
+    
+    public boolean validarCI (String ci){
+        try{
+            long ced = Long.parseLong(ci);
+            if(ced<0){
+                JOptionPane.showMessageDialog(null,"La cédula debe ser mayor a cero.","Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+            return true;
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null,"Fomato de dato no es numérico.","Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
+    
+    public boolean validarSalario (String salario){
+        try{
+            double sal = Double.parseDouble(salario);
+            if(sal>0) return true;
+            else JOptionPane.showMessageDialog(null,"El salario debe ser un número positivo mayor que cero.","Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null,"Formato de dato no es numérico.","Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
     }
     
     public boolean confirmar(){
@@ -110,6 +156,25 @@ public class CRegistro {
         return false;
     }
     
+    public boolean camposVaciosVehiculo(JRadioButton radioAmbulancia,JRadioButton radioCompacto,JTextField txtSerial,JRadioButton radioMantenimiento_SI,JRadioButton radioMantenimiento_NO,JRadioButton radioDis_SI,JRadioButton radioDis_NO,JRadioButton radioTer,JRadioButton radioAerea){
+        if(radioAmbulancia.isSelected() && (radioMantenimiento_SI.isSelected() || radioMantenimiento_NO.isSelected()) && (radioDis_SI.isSelected() || radioDis_NO.isSelected()) && (radioTer.isSelected() || radioAerea.isSelected()) && !txtSerial.getText().isEmpty())
+            return false;
+        if(radioCompacto.isSelected() && (radioMantenimiento_SI.isSelected() || radioMantenimiento_NO.isSelected()) && (radioDis_SI.isSelected() || radioDis_NO.isSelected()) && !txtSerial.getText().isEmpty())
+            return false;
+        JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);        
+        return true;
+    }
+    
+    public boolean camposVaciosPersonal(JComboBox tipoPersonal,JTextField txtCI,JTextField txtNombre,JTextField txtCorreo,JTextField txtTelf1,JTextField txtTelf2,JDateChooser chooserFN,JRadioButton radioMasc,JRadioButton radioFem,JRadioButton radioActivo_SI,JRadioButton radioActivo_NO,JTextField txtSalario,JDateChooser chooserFC,JTextField txtLicencia,JRadioButton radioAsignado_SI,JRadioButton radioAsignado_NO){
+        if(!txtCI.getText().isEmpty() && !txtNombre.getText().isEmpty() && !txtCorreo.getText().isEmpty() && !txtTelf1.getText().isEmpty() && !txtTelf2.getText().isEmpty() && chooserFN.getDate()!=null && (radioMasc.isSelected() || radioFem.isSelected()) && (radioActivo_SI.isSelected() || radioActivo_NO.isSelected()) && !txtSalario.getText().isEmpty() && chooserFC.getDate()!=null){
+            if(tipoPersonal.getSelectedIndex()==2 && (radioAsignado_SI.isSelected() || radioAsignado_NO.isSelected())) return false;
+            else if(tipoPersonal.getSelectedIndex()==3 && !txtLicencia.getText().isEmpty()) return false;
+            else if(tipoPersonal.getSelectedIndex()!=2 && tipoPersonal.getSelectedIndex()!=3) return false;            
+        }
+        JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);
+        return true;
+    }
+    
     public String construirRIF(JTextField txt1,JTextField txt2){
         return "J-"+txt1.getText()+"-"+txt2.getText();
     }
@@ -118,6 +183,10 @@ public class CRegistro {
         String telf = txt1.getText()+"-"+txt2.getText();
         if(telf.charAt(0)!='0') telf='0'+telf;
         return telf;
+    }
+    
+    public String construirCedula(JComboBox origen,JTextField numero){
+        return origen.getSelectedItem().toString().toString()+"-"+numero.getText();
     }
             
     public void actualizarEtiquetas_Entidad(Entidad entidad,JLabel labelNombre,JLabel labelRIF,JLabel labelTelf,JLabel labelCiudad,JLabel labelEstado,JLabel labelDir){
@@ -139,6 +208,18 @@ public class CRegistro {
         entidad.setDireccion(txtDirEntidad.getText());
     }
     
+    public void seleccionTipoPersonal(JComboBox cboTipo,JLabel labelLicencia,JLabel labelAsignado,JTextField txtLicencia,JRadioButton radioSI, JRadioButton radioNO){
+        boolean conductor=false, paramedico=false;
+        if(cboTipo.getSelectedIndex()==2) paramedico=true;
+        else if(cboTipo.getSelectedIndex()==3) conductor=true;
+        
+        labelLicencia.setVisible(conductor);
+        txtLicencia.setVisible(conductor);
+        labelAsignado.setVisible(paramedico);
+        radioSI.setVisible(paramedico);
+        radioNO.setVisible(paramedico);
+    }
+    
     public boolean textAreaVacio(JTextArea txtArea){
         return txtArea.getText().isEmpty();
     }
@@ -153,5 +234,25 @@ public class CRegistro {
         radioDisponibleAmbulancia_NO.setSelected(false);
         radioAmbTerrestre.setSelected(false);
         radioAmbAerea.setSelected(false);
+    }
+    
+    public void vaciarDatosPersonal(JTextField txtCI,JTextField txtNombre,JTextField txtCorreo,JTextField txtTelf1,JTextField txtTelf2,JDateChooser fN,JRadioButton masc,JRadioButton fem,JRadioButton act_SI,JRadioButton act_NO,JTextField txtSalario,JDateChooser fC,JComboBox cboTipo,JRadioButton drs_SI,JRadioButton drs_NO, JTextField txtLicencia){
+        txtCI.setText(null);
+        txtNombre.setText(null);
+        txtCorreo.setText(null);
+        txtTelf1.setText(null);
+        txtTelf2.setText(null);
+        fN.setDate(null);
+        masc.setSelected(false);
+        fem.setSelected(false);
+        act_SI.setSelected(false);
+        act_NO.setSelected(false);
+        txtSalario.setText(null);
+        fC.setDate(null);
+        cboTipo.setSelectedIndex(0);
+        drs_SI.setVisible(false);
+        drs_NO.setVisible(false);
+        txtLicencia.setVisible(false);
+        
     }
 }

@@ -5,6 +5,7 @@ import Modelo.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class CVehiculo {
     
@@ -64,23 +65,29 @@ public class CVehiculo {
         ArrayList<String[]> datos = new ArrayList<>();
         Ambulatorio am = getAmbulatorio();
         for (Suministro sum : am.getInventario()) {
-            String[] dato = new String[5];
             int i=0;
             for (Unidad uni : sum.getUnidades()){
                 if (uni.getUbicacion().equals("Ambulancia "+vehiculo.getSerial()) || uni.getUbicacion().equals("Compacto "+vehiculo.getSerial()))
                     i++;
             }
             if (i>0){
+                String[] dato = new String[5];
                 dato[0] = sum.getTipo();
                 dato[1] = sum.getNombre();
                 dato[2] = sum.getDescripción();
                 dato[3] = String.valueOf(i);
                 dato[4] = String.valueOf(sum.getCodigo());
-            }
-                
+                datos.add(dato);
+            }               
         }
-
-            
+        String[][] arrayDatos = new String[datos.size()][5];
+        for (int i = 0; i < datos.size(); i++) {
+            arrayDatos[i]=datos.get(i);
         }
+        TableModel modelo = new DefaultTableModel(arrayDatos,titulos);
+        tabla.setModel(modelo);
+        tabla.setDefaultEditor(Object.class, null); 
+        tabla.getTableHeader().setReorderingAllowed(false);
+    }
   
 }

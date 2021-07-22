@@ -3,6 +3,7 @@ package Controller;
 
 import Modelo.*;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -12,9 +13,19 @@ public class CVehiculo {
     private Vehiculo vehiculo;
     private Clinica clinica;
 
-    public CVehiculo(Vehiculo vehiculo,Clinica clinica){
-        this.vehiculo = vehiculo;
+    public CVehiculo(Clinica clinica){
         this.clinica = clinica;
+    }
+    
+    public boolean serialRegistrado(String serial){
+        for (Ambulatorio am : clinica.getAmbulatorios()) {
+            for (Vehiculo ve : am.getVehiculos()) {
+                if (ve.getSerial().equals(serial))
+                    vehiculo = ve;
+                    return true;
+            }
+        }
+        return false;
     }
     
     public void mostrarVehiculo(JLabel codigo, JLabel serial, JLabel tipo, JLabel disponible, JLabel labelMantenimiento, JLabel enMantenimiento,JTable personalActual){
@@ -180,6 +191,25 @@ public class CVehiculo {
         tabla.setModel(modelo);
         tabla.setDefaultEditor(Object.class, null); 
         tabla.getTableHeader().setReorderingAllowed(false);
+    }
+    
+    public void mostrarMantenimiento(JTable tabla){
+        String[] titulo = {"Taller","Descripción"};
+        String matriz[][]=new String[vehiculo.getHistMantenimiento().size()][2];
+        
+        for (int i=0;i<vehiculo.getHistMantenimiento().size();i++){
+            matriz[i][0] = (vehiculo.getHistMantenimiento().get(i)).getTaller();
+            matriz[i][1] = (vehiculo.getHistMantenimiento().get(i)).getDescripcion();
+        }
+        
+        TableModel model = new DefaultTableModel(matriz,titulo);
+        tabla.setModel(model);
+        tabla.setDefaultEditor(Object.class, null);
+    }
+    
+    public void registrarManenimiento(Date entrada, Date salida, String taller, String descripcion){
+        Mantenimiento man = new Mantenimiento(taller,descripcion,entrada,salida);
+        vehiculo.registrarMantenimiento(man);
     }
   
 }

@@ -7,7 +7,7 @@ import java.util.*;
 
 public class PantallaDetalleSum extends javax.swing.JFrame {
     Suministro sum;
-    CInventario con = new CInventario(new Ambulatorio());
+    CInventario con;
     MenúPrincipal ventanaAnterior;
     CVentana controlVentana = new CVentana(this);
     

@@ -8,17 +8,8 @@ import javax.swing.*;
 import javax.swing.table.*;
 
 public class CClinica {
-    private JLabel nombre;
-    private JLabel RIF;
-    private Clinica clinica;
-    private ArrayList<Ambulatorio> listaAmbulatorios;
 
-    public CClinica() {
-        //nombre = clinica.get;
-        RIF.setText(clinica.getRIF());
-        clinica=new Clinica();
-        listaAmbulatorios = clinica.getAmbulatorios();       
-    }
+    private Clinica clinica;
 
     public CClinica(Clinica clinica) {
         this.clinica=clinica;      

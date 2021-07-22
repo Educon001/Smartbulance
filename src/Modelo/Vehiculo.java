@@ -10,7 +10,7 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
     protected boolean enMantenimiento;
     protected boolean disponible;
     protected ArrayList<Mantenimiento> histMantenimiento;
-    protected ArrayList<Personal> personalActual;
+    protected ArrayList<PersonalConVehiculo> personalActual;
     protected ArrayList<Turno> entradasSalidas;
     
     //CONSTRUCTORES
@@ -60,11 +60,11 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
         this.histMantenimiento = histMantenimiento;
     }
 
-    public ArrayList<Personal> getPersonalActual() {
+    public ArrayList<PersonalConVehiculo> getPersonalActual() {
         return personalActual;
     }
 
-    public void setPersonalActual(ArrayList<Personal> personalActual) {
+    public void setPersonalActual(ArrayList<PersonalConVehiculo> personalActual) {
         this.personalActual = personalActual;
     }
 
@@ -94,7 +94,7 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
     }
    
     public boolean poseeConductor(){
-        for(Personal per:personalActual){
+        for(PersonalConVehiculo per:personalActual){
             if(per instanceof Conductor)
                 return true;
         }
@@ -103,14 +103,14 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
     
     public int contarParamedicos(){
        int cont=0;
-       for(Personal per:personalActual){
+       for(PersonalConVehiculo per:personalActual){
             if(per instanceof Paramedico)
                 cont+=1;
         }
         return cont;
     }
     
-    public boolean asignar_Al_Equipo(Personal per){
+    public boolean asignar_Al_Equipo(PersonalConVehiculo per){
         if(per instanceof Conductor){
             if(poseeConductor()==false){
                 personalActual.add(per);

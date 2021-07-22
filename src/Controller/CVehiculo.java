@@ -17,7 +17,7 @@ public class CVehiculo {
         this.clinica = clinica;
     }
     
-    private void mostrarVehiculo(JLabel codigo, JLabel serial, JLabel tipo, JLabel disponible, JLabel labelMantenimiento, JLabel enMantenimiento,JTable personalActual){
+    public void mostrarVehiculo(JLabel codigo, JLabel serial, JLabel tipo, JLabel disponible, JLabel labelMantenimiento, JLabel enMantenimiento,JTable personalActual){
         if (vehiculo instanceof Ambulancia)
             tipo.setText("Ambulancia"+((Ambulancia) vehiculo).getTipo());
         else if (vehiculo instanceof Compacto)
@@ -49,7 +49,7 @@ public class CVehiculo {
         personalActual.getTableHeader().setReorderingAllowed(false);
     }
     
-    private Ambulatorio getAmbulatorio(){
+    public Ambulatorio getAmbulatorio(){
         for (Ambulatorio am : clinica.getAmbulatorios()){
             for (Vehiculo ve : am.getVehiculos())
                 if (ve.equals(vehiculo))
@@ -58,7 +58,7 @@ public class CVehiculo {
         return null;
     }
     
-    private void asignarPersonal(JTable asignados, JTable personal){
+    public void tablasAsignarPersonal(JTable asignados, JTable personal){
         String[] titulos = {"Tipo","Nombre","Cedula"};
         String[][] datos1 = new String[vehiculo.getPersonalActual().size()][3];
         String[][] datos2;
@@ -92,7 +92,19 @@ public class CVehiculo {
         personal.getTableHeader().setReorderingAllowed(false);
     }
     
-    private void mostrarInventario(JTable tabla){
+    public void agregarPersonal(JTable asignados, JTable personal){
+        
+    }
+    
+    public void eliminarPersonal(JTable asignados, JTable personal){
+        
+    }
+    
+    public void asignarPersonal(JTable asignados, JTable personal){
+        
+    }
+    
+    public void mostrarInventario(JTable tabla){
         String[] titulos = {"Tipo","Nombre","Descripción","Cantidad","Codigo"};
         ArrayList<String[]> datos = new ArrayList<>();
         Ambulatorio am = getAmbulatorio();

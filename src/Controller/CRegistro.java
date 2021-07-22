@@ -23,7 +23,7 @@ public class CRegistro {
     public boolean validarSerial(String serial){
         Pattern pat = Pattern.compile("[A-Z0-9]{17}",Pattern.CASE_INSENSITIVE);
         Matcher mat = pat.matcher(serial);
-        if(!mat.matches()) JOptionPane.showMessageDialog(null,"Solo se aceptan letras y numeros para el serial del vehículo.","Error",JOptionPane.ERROR_MESSAGE);
+        if(!mat.matches()) JOptionPane.showMessageDialog(null,"El serial del vehiculo debe tener 17 caracteres entre letras y numeros","Error",JOptionPane.ERROR_MESSAGE);
         return mat.matches();
     }
     

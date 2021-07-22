@@ -50,9 +50,9 @@ public class Ambulatorio extends Entidad{
     
     //MÉTODOS
     public void agregarVehiculo(Vehiculo veh){
-        if(vehiculos.isEmpty()) 
-            veh.setCodigo(0);
-        else 
+        if (vehiculos.isEmpty())
+            veh.setCodigo(1);
+        else
             veh.setCodigo(vehiculos.get(vehiculos.size()-1).getCodigo()+1);
         vehiculos.add(veh);
     }
@@ -81,7 +81,7 @@ public class Ambulatorio extends Entidad{
         }
         return null;
     }
-    
+
     public void agregarSuministro(Suministro sum){
         sum.setCodigo(inventario.size());
         inventario.add(sum);

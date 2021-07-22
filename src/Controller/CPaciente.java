@@ -6,7 +6,11 @@
 package Controller;
 
 import Modelo.Paciente;
+
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -24,7 +28,8 @@ public class CPaciente {
 
     
     
-    public void mostrarPacientes(JTable tabla,ArrayList<Paciente> listaPacientes){
+    public void mostrarPacientes(JTable tabla,ArrayList<Paciente> listaPacientes, JButton Detalles){
+        
         
         
 
@@ -47,22 +52,41 @@ public class CPaciente {
         tabla.setModel(model);
         tabla.setDefaultEditor(Object.class, null);
         tabla.getTableHeader().setReorderingAllowed(false);
+        tabla.addMouseListener(new EventoMouse(Detalles));
+       
+
+        
+        
+        
         
         
         
     }
     
 
+    
+    public void mostrarDetalles(Paciente paciente,JLabel jCedula,JLabel jNombre,JLabel jCorreo,JLabel jTelefono,JLabel jNacimiento, JLabel jGenero){
+       
+        jCedula.setText(paciente.getCedula());
+        jNombre.setText(paciente.getNombre());
+        jCorreo.setText(paciente.getCorreo());
+        jTelefono.setText(paciente.getTelefono());
+        String Fecha = paciente.getNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+
+        jNacimiento.setText(Fecha);
+        jGenero.setText(String.valueOf(paciente.getGenero()));
+        
+        
    
-    public ArrayList<Paciente> agregarPaciente(Paciente paciente,ArrayList<Paciente> listaPacientes) {
-        
-      
-        listaPacientes.add(paciente);
-        return listaPacientes;
-        
-        
-        }
+    }
      
+     public Paciente obtenerPacienteSeleccionado(CSistema sis,JTable tabla){
+        int indice = tabla.getSelectedRow();   
+        String cod = tabla.getModel().getValueAt(indice,0).toString();
+        Paciente paciente;
+        paciente = sis.buscarPaciente(String.valueOf(cod));
+        return paciente;
+    }
    
     
 }

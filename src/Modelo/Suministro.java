@@ -18,15 +18,8 @@ public class Suministro {
         this.tipo = tipo;
         this.nombre = nombre;
         this.descripción = descripción;
-        codigo=1;
         movimientos = new ArrayList<>();
         unidades = new ArrayList<>();
-    }
-
-    public Suministro() {
-        unidades = new ArrayList<>();
-        movimientos = new ArrayList<>();
-        nombre = "Medicina";
     }
     
     //Getters y setters

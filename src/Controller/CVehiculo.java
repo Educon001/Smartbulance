@@ -134,10 +134,17 @@ public class CVehiculo {
         if ((vehiculo instanceof Compacto && num==2) || (vehiculo instanceof Ambulancia && num==3)){
             vehiculo.getPersonalActual().clear();
             for (int i = 0; i < num; i++) {
-                PersonalConVehiculo per;
+                PersonalConVehiculo per = (PersonalConVehiculo) am.buscarPersonal(asignados.getModel().getValueAt(i, 2).toString());
+                if (!vehiculo.asignar_Al_Equipo(per)){
+                    vehiculo.getPersonalActual().clear();
+                    if (vehiculo instanceof Compacto)
+                        JOptionPane.showMessageDialog(null, "Los vehiculos compactos deben tener un (1) conductor y un (1) paramedico", "Error", JOptionPane.ERROR_MESSAGE);
+                    else if (vehiculo instanceof Ambulancia)
+                        JOptionPane.showMessageDialog(null, "Las ambulancias deben tener un (1) conductor y dos (2) paramedicos", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+                }
             }
-        }
-            
+        }         
     }
     
     public void mostrarInventario(JTable tabla){

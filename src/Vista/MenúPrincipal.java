@@ -30,6 +30,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     CVentana controlVentana = new CVentana(this);
     CClinica controlClinica;
     CAmbulatorio controlAmbulatorio;
+    CInventario controlInventario;
     CSistema controlSistema;
     IniciarSesión iniciarSesion;
     
@@ -184,6 +185,17 @@ public class MenúPrincipal extends javax.swing.JFrame{
         tablaVehiculos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         panelInventario = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablaSuministros = new javax.swing.JTable();
+        btnDetallesSum = new javax.swing.JButton();
+        btnRegistrarMov = new javax.swing.JButton();
+        btnRegistrarSum = new javax.swing.JButton();
+        labelTipoVehiculo2 = new javax.swing.JLabel();
+        labelTipoVehiculo3 = new javax.swing.JLabel();
+        labelTipoVehiculo4 = new javax.swing.JLabel();
+        comboTipoSum = new javax.swing.JComboBox<>();
+        txtDescripcionSum = new javax.swing.JTextField();
+        txtNombreSum = new javax.swing.JTextField();
         panelPersonal = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -1439,16 +1451,72 @@ public class MenúPrincipal extends javax.swing.JFrame{
 
         pestAmbulatorios.addTab("Ver vehículos", panelVerAmbulancias);
 
-        javax.swing.GroupLayout panelInventarioLayout = new javax.swing.GroupLayout(panelInventario);
-        panelInventario.setLayout(panelInventarioLayout);
-        panelInventarioLayout.setHorizontalGroup(
-            panelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panelInventarioLayout.setVerticalGroup(
-            panelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        panelInventario.setBackground(new java.awt.Color(255, 255, 255));
+        panelInventario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tablaSuministros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        tablaSuministros.setRowHeight(30);
+        jScrollPane7.setViewportView(tablaSuministros);
+
+        panelInventario.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 162, 739, 260));
+
+        btnDetallesSum.setBackground(new java.awt.Color(51, 255, 51));
+        btnDetallesSum.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnDetallesSum.setText("Ver detalles");
+        btnDetallesSum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetallesSumActionPerformed(evt);
+            }
+        });
+        panelInventario.add(btnDetallesSum, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, -1, -1));
+        btnDetallesSum.setEnabled(false);
+
+        btnRegistrarMov.setBackground(new java.awt.Color(255, 255, 0));
+        btnRegistrarMov.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnRegistrarMov.setText("Registrar movimientos");
+        btnRegistrarMov.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarMovActionPerformed(evt);
+            }
+        });
+        panelInventario.add(btnRegistrarMov, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
+        btnRegistrarMov.setEnabled(false);
+
+        btnRegistrarSum.setBackground(new java.awt.Color(0, 153, 255));
+        btnRegistrarSum.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnRegistrarSum.setText("Registrar suministro");
+        btnRegistrarSum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarSumActionPerformed(evt);
+            }
+        });
+        panelInventario.add(btnRegistrarSum, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 450, -1, -1));
+        btnRegistrarMov.setEnabled(false);
+
+        labelTipoVehiculo2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelTipoVehiculo2.setText("Tipo de suministro:");
+        panelInventario.add(labelTipoVehiculo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+
+        labelTipoVehiculo3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelTipoVehiculo3.setText("Descripción:");
+        panelInventario.add(labelTipoVehiculo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
+
+        labelTipoVehiculo4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelTipoVehiculo4.setText("Nombre:");
+        panelInventario.add(labelTipoVehiculo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
+
+        comboTipoSum.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        comboTipoSum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicamento", "Equipo medico" }));
+        panelInventario.add(comboTipoSum, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 150, -1));
+        panelInventario.add(txtDescripcionSum, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 100, 260, -1));
+        panelInventario.add(txtNombreSum, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 200, -1));
 
         pestAmbulatorios.addTab("Inventario", panelInventario);
 
@@ -1874,7 +1942,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonEliminar_Personal))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelVerPersonalLayout.setVerticalGroup(
             panelVerPersonalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1887,7 +1955,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                     .addComponent(botonRegistrarEntrada)
                     .addComponent(botonRegistrarSalida)
                     .addComponent(botonVerTurnos))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pestAmbulatorios.addTab("Ver personal", panelVerPersonal);
@@ -2215,11 +2283,12 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_botonPacientesMouseExited
 
     private void botonAmbulatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAmbulatoriosMouseClicked
-        String RIF = JOptionPane.showInputDialog(null,"Introduzca el RIF del ambulatorio:","Solicitud del RIF",JOptionPane.OK_OPTION);        
+        String RIF = JOptionPane.showInputDialog(null,"Introduzca el RIF del ambulatorio:","Solicitud del RIF",JOptionPane.QUESTION_MESSAGE);        
         if(RIF!=null){
             if(cRegistro.formatoRIFCompleto(RIF) && controlClinica.seEncuentraRegistradoRIF_Ambulatorio(RIF,true)){
                 Ambulatorio amb = controlClinica.getClinica().retornarAmbulatorio(RIF);
                 controlAmbulatorio = new CAmbulatorio(amb);
+                controlInventario = new CInventario(amb);
                 controlVentana.botonClinica_DatosEntidad(controlAmbulatorio.getAmbulatorio(),labelNombre_DelAmbulatorio,labelRIF_DelAmbulatorio,labelTelf_DelAmbulatorio,labelCiudad_DelAmbulatorio,labelEstado_DelAmbulatorio,labelDir_DelAmbulatorio);
                 controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);
                 controlAmbulatorio.mostrarPersonal(tablaPersonal);
@@ -2543,6 +2612,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         botonVerTurnos.setEnabled(false);
         controlAmbulatorio.mostrarPersonal(tablaPersonal);
         controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);
+        controlInventario.mostrarInventario(tablaSuministros, btnRegistrarMov, btnDetallesSum);
     }//GEN-LAST:event_pestAmbulatoriosMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -2764,6 +2834,40 @@ public class MenúPrincipal extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_botonVerTurnosActionPerformed
 
+    private void btnDetallesSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesSumActionPerformed
+        Suministro sum = controlInventario.obtenerObjetoSeleccionado(tablaSuministros);
+        if (sum != null){
+            PantallaDetalleSum ventanaNueva = new PantallaDetalleSum(sum, controlInventario, this);
+            setVisible(false);
+            ventanaNueva.setVisible(true);
+        }else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un objeto", "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnDetallesSumActionPerformed
+
+    private void btnRegistrarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMovActionPerformed
+        Suministro sum = controlInventario.obtenerObjetoSeleccionado(tablaSuministros);
+        if (sum != null){
+            PantallaRegistroMov ventanaNueva = new PantallaRegistroMov(sum, controlInventario, controlSistema, this);
+            setVisible(false);
+            ventanaNueva.setVisible(true);
+        }else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un objeto", "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnRegistrarMovActionPerformed
+
+    private void btnRegistrarSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSumActionPerformed
+        if (txtNombreSum.getText().isEmpty() || txtDescripcionSum.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if (cRegistro.confirmar()){
+                controlInventario.registrarSuministro(comboTipoSum.getSelectedItem().toString(), txtNombreSum.getText(), txtDescripcionSum.getText());
+                controlInventario.mostrarInventario(tablaSuministros, btnRegistrarMov, btnDetallesSum);
+                comboTipoSum.setSelectedIndex(0);
+                txtNombreSum.setText(null);
+                txtDescripcionSum.setText(null);
+            }
+        }
+    }//GEN-LAST:event_btnRegistrarSumActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2881,12 +2985,16 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JButton botonVaciarDatosPersonal;
     private javax.swing.JButton botonVaciar_Taller;
     private javax.swing.JButton botonVerTurnos;
+    private javax.swing.JButton btnDetallesSum;
+    private javax.swing.JButton btnRegistrarMov;
+    private javax.swing.JButton btnRegistrarSum;
     private javax.swing.JComboBox<String> cboCI_Personal;
     private javax.swing.JComboBox<String> cboEstado;
     private javax.swing.JComboBox<String> cboEstado_Taller;
     private javax.swing.JComboBox<String> cboTipoPersonal;
     private com.toedter.calendar.JDateChooser chooserFC;
     private com.toedter.calendar.JDateChooser chooserFN_Personal;
+    private javax.swing.JComboBox<String> comboTipoSum;
     private javax.swing.JLabel fondoAmbulancias;
     private javax.swing.JLabel fondoAmbulatorios;
     private javax.swing.JLabel fondoClinica;
@@ -2925,6 +3033,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JLabel labelActivo;
@@ -2984,6 +3093,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel labelTelf_Personal;
     private javax.swing.JLabel labelTipoPersonal;
     private javax.swing.JLabel labelTipoVehiculo;
+    private javax.swing.JLabel labelTipoVehiculo2;
+    private javax.swing.JLabel labelTipoVehiculo3;
+    private javax.swing.JLabel labelTipoVehiculo4;
     private javax.swing.JLabel labelTituloAmbulatorio;
     private javax.swing.JLabel labelTituloVehiculo;
     private javax.swing.JLabel logo;
@@ -3025,6 +3137,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel solicitudTaller;
     private javax.swing.JTable tablaAmbulatorios;
     private javax.swing.JTable tablaPersonal;
+    private javax.swing.JTable tablaSuministros;
     private javax.swing.JTable tablaTalleres;
     private javax.swing.JTable tablaVehiculos;
     private javax.swing.JTextField txt1RIF;
@@ -3036,11 +3149,13 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtCiudad_Taller;
     private javax.swing.JTextField txtCorreo_Personal;
+    private javax.swing.JTextField txtDescripcionSum;
     private javax.swing.JTextField txtDir;
     private javax.swing.JTextField txtDir_Taller;
     private javax.swing.JTextField txtLicencia;
     private javax.swing.JTextField txtNombreAmbulatorio;
     private javax.swing.JTextField txtNombreMecanico;
+    private javax.swing.JTextField txtNombreSum;
     private javax.swing.JTextField txtNombreTaller;
     private javax.swing.JTextField txtNombre_Personal;
     private javax.swing.JTextField txtSalario;

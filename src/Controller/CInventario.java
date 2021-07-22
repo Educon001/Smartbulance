@@ -233,13 +233,17 @@ public class CInventario {
         sum.registrarMovimiento(mov);
     }
     
-    public void registrarSalida(String comboArgumento, String txtArgumento, Object[] objetos, Suministro sum, JTable tabla){
-        String argumento = comboArgumento + " ";
-        if (!comboArgumento.equals("Ajuste inventario"))
-            argumento += txtArgumento;
-        Unidad[] unidades = new Unidad[objetos.length];
-        for (int i = 0; i < objetos.length; i++) {
-            unidades[i]=sum.buscarUnidad(Integer.parseInt(objetos[i].toString()));
+    public void registrarSalida(String comboArgumento, String txtArgumento, JList lista, Suministro sum){
+        String argumento = comboArgumento;
+        if (comboArgumento.equals("Emergencia Nro:"))
+            argumento = argumento+" "+txtArgumento;
+        else if (comboArgumento.equals("Otro:"))
+            argumento = txtArgumento;
+        Unidad[] unidades = new Unidad[lista.getModel().getSize()];
+        for (int i = 0; i < lista.getModel().getSize(); i++) {
+            String obString = lista.getModel().getElementAt(i).toString();
+            int cod = Integer.parseInt(obString);
+            unidades[i]=sum.buscarUnidad(cod);
         }
         Movimiento mov = new Salida(argumento,LocalDate.now(),unidades,"Salida");
         sum.registrarMovimiento(mov);
@@ -299,7 +303,7 @@ public class CInventario {
         }
         TableModel modeloEnt = new DefaultTableModel(datosEnt,titulosEnt);
         TableModel modeloSal = new DefaultTableModel(datosSal,titulosSal);
-        TableModel modeloReu = new DefaultTableModel(datosEnt,titulosReu);
+        TableModel modeloReu = new DefaultTableModel(datosReu,titulosReu);
         tablaEnt.setModel(modeloEnt);
         tablaSal.setModel(modeloSal);
         tablaReu.setModel(modeloReu);

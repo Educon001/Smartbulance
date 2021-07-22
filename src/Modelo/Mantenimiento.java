@@ -1,7 +1,7 @@
 
 package Modelo;
 
-class Mantenimiento extends Turno {
+public class Mantenimiento extends Turno {
     
     private String taller;
     private String descripcion;

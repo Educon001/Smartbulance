@@ -272,7 +272,8 @@ public class PantallaRegistroMov extends javax.swing.JFrame {
             break;
             
             case 1:
-                con.registrarSalida(combo1Movimientos.getSelectedItem().toString(), txtNEmergenciaArgumento.getText(), modeloLista.toArray(), sum, tablaUnidades);
+                modeloLista.get(0);
+                con.registrarSalida(combo1Movimientos.getSelectedItem().toString(), txtNEmergenciaArgumento.getText(), listaObjetos, sum);
                 txtNEmergenciaArgumento.setText(null);
                 modeloLista.removeAllElements();
                 con.mostrarUnidades(tablaUnidades, tituloTabla, sum);

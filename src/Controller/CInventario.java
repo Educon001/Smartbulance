@@ -135,9 +135,9 @@ public class CInventario {
         opciones.add("Almacen");
         for (Vehiculo v : ambulatorio.getVehiculos()){
             if (v instanceof Ambulancia)
-                opciones.add("Ambulancia "+v.getSerial());
+                opciones.add("Ambulancia "+v.getCodigo());
             if (v instanceof Compacto)
-                opciones.add("Compacto "+v.getSerial());
+                opciones.add("Compacto "+v.getCodigo());
         }
         for (String op : opciones) {
             comboDestinos.addItem(op);

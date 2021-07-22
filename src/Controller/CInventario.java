@@ -6,6 +6,7 @@ import com.toedter.calendar.JDateChooser;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
@@ -60,22 +61,17 @@ public class CInventario {
         return sum;
     }
     
-    public void activarPaneles(int tipo, JPanel panel1, JPanel panel2){
-        if (tipo==1) panel1.setVisible(false); //Tipo 1 representa el boton Ver detalle
-        if (tipo==2) panel2.setVisible(false); //Tipo 2 representa el boton Registrar movimiento
-    }
-    
     public void mostrarUnidades(JTable tabla, JLabel label,Suministro sum){
         label.setText("Unidades de "+sum.getNombre());
         String[] titulos = {"No.","Fecha vencimiento","Ubicacion actual"};
         String[][] datos = new String[sum.getUnidades().size()][3];
         
         for (int i = 0; i < sum.getUnidades().size(); i++) {
-            datos[i][0]=String.valueOf(i+1);
+            sum.getUnidades().get(i).setCodigo(i+1);
+            datos[i][0]=String.valueOf(sum.getUnidades().get(i).getCodigo());
             datos[i][1]=sum.getUnidades().get(i).getfVencimiento();
             datos[i][2]=sum.getUnidades().get(i).getUbicacion();
-        }
-        
+        }       
         TableModel modelo = new DefaultTableModel(datos,titulos);
         tabla.setModel(modelo);
         tabla.setDefaultEditor(Object.class, null); 
@@ -206,6 +202,10 @@ public class CInventario {
         }
     }
     
+    public boolean validarDestino(String destino, int indice, JTable tabla){
+        return !destino.equals(tabla.getValueAt(indice, 2));
+    }
+    
     public void eliminarUnidad(JList lista, DefaultListModel modelo, JButton btnEliminar){
     try{
         int indice = lista.getSelectedIndex();
@@ -233,12 +233,81 @@ public class CInventario {
         sum.registrarMovimiento(mov);
     }
     
-    public void registrarSalida(){
-        
+    public void registrarSalida(String comboArgumento, String txtArgumento, Object[] objetos, Suministro sum, JTable tabla){
+        String argumento = comboArgumento + " ";
+        if (!comboArgumento.equals("Ajuste inventario"))
+            argumento += txtArgumento;
+        Unidad[] unidades = new Unidad[objetos.length];
+        for (int i = 0; i < objetos.length; i++) {
+            unidades[i]=sum.buscarUnidad(Integer.parseInt(objetos[i].toString()));
+        }
+        Movimiento mov = new Salida(argumento,LocalDate.now(),unidades,"Salida");
+        sum.registrarMovimiento(mov);
     }
     
-    public void registrarReubicacion(){
-        
+    public void registrarReubicacion(String destino, Object[] objetos, Suministro sum, JTable tabla){
+        if (validarDestino(destino, Integer.parseInt(objetos[0].toString())-1, tabla)){
+            Unidad[] unidades = new Unidad[objetos.length];
+            for (int i = 0; i < objetos.length; i++) {
+                unidades[i]=sum.buscarUnidad(Integer.parseInt(objetos[i].toString()));
+            }
+            Movimiento mov = new Reubicacion(destino,LocalDate.now(),unidades,"Reubicacion");
+            sum.registrarMovimiento(mov);
+        }else
+            JOptionPane.showMessageDialog(null, "El destino debe ser diferente al origen", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
+    public void mostrarMovimientos(Suministro sum, JTable tablaEnt, JTable tablaSal, JTable tablaReu){
+        String[] titulosEnt = {"Fecha","Cantidad"};
+        String[] titulosSal = {"Fecha","Argumento","Cantidad"};
+        String[] titulosReu = {"Fecha","Origen","Destino","Cantidad"};
+        String[][] datosEnt,datosSal,datosReu;
+        int numEnt=0, numSal=0,numReu=0;
+        for (Movimiento mov : sum.getMovimientos()) {
+            if (mov.getTipo().equals("Entrada"))
+                numEnt++;
+            else if (mov.getTipo().equals("Salida"))
+                numSal++;
+            else if (mov.getTipo().equals("Reubicacion"))
+                numReu++;
+        }
+        datosEnt = new String[numEnt][2];
+        datosSal = new String[numSal][3];
+        datosReu = new String[numReu][4];
+        numEnt = 0;
+        numSal = 0;
+        numReu = 0; 
+        for (Movimiento mov : sum.getMovimientos()) {
+            if (mov.getTipo().equals("Entrada")){
+                datosEnt[numEnt][0] = mov.getFecha().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+                datosEnt[numEnt][1] = String.valueOf(mov.getCantidad());
+                numEnt++;
+            }
+            else if (mov.getTipo().equals("Salida")){
+                datosSal[numSal][0] = mov.getFecha().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+                datosSal[numSal][1] = ((Salida) mov).getArgumento();
+                datosSal[numSal][2] = String.valueOf(mov.getCantidad());
+                numSal++;
+            }
+            else if (mov.getTipo().equals("Reubicacion")){
+                datosReu[numReu][0] = mov.getFecha().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+                datosReu[numReu][1] = ((Reubicacion) mov).getOrigen();
+                datosReu[numReu][2] = ((Reubicacion) mov).getDestino();
+                datosReu[numReu][3] = String.valueOf(mov.getCantidad());
+                numReu++;
+            }
+        }
+        TableModel modeloEnt = new DefaultTableModel(datosEnt,titulosEnt);
+        TableModel modeloSal = new DefaultTableModel(datosSal,titulosSal);
+        TableModel modeloReu = new DefaultTableModel(datosEnt,titulosReu);
+        tablaEnt.setModel(modeloEnt);
+        tablaSal.setModel(modeloSal);
+        tablaReu.setModel(modeloReu);
+        tablaEnt.setDefaultEditor(Object.class, null); 
+        tablaEnt.getTableHeader().setReorderingAllowed(false);
+        tablaSal.setDefaultEditor(Object.class, null); 
+        tablaSal.getTableHeader().setReorderingAllowed(false);
+        tablaReu.setDefaultEditor(Object.class, null); 
+        tablaReu.getTableHeader().setReorderingAllowed(false);
+    }
 }

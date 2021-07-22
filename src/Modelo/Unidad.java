@@ -4,6 +4,7 @@ package Modelo;
 
 public class Unidad {
     
+    private int codigo;
     private String ubicacion;
     private String fVencimiento;
 
@@ -12,6 +13,14 @@ public class Unidad {
         this.fVencimiento = fVencimiento;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    } 
+    
     public String getUbicacion() {
         return ubicacion;
     }
@@ -27,6 +36,5 @@ public class Unidad {
     public void setfVencimiento(String fVencimiento) {
         this.fVencimiento = fVencimiento;
     }
-    
     
 }

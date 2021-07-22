@@ -2667,6 +2667,60 @@ public class MenúPrincipal extends javax.swing.JFrame{
         
     }//GEN-LAST:event_botonRegistrarTurnoMouseClicked
 
+    private void pestAmbulatoriosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pestAmbulatoriosMouseClicked
+        controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);
+    }//GEN-LAST:event_pestAmbulatoriosMouseClicked
+
+    private void txtSerialAmbulanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSerialAmbulanciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSerialAmbulanciaActionPerformed
+
+    private void radioAmbulanciaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioAmbulanciaMouseClicked
+        radioAmbTerrestre.setEnabled(true);
+        radioAmbAerea.setEnabled(true);
+    }//GEN-LAST:event_radioAmbulanciaMouseClicked
+
+    private void radioCompactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioCompactoMouseClicked
+        radioAmbTerrestre.setEnabled(false);
+        radioAmbAerea.setEnabled(false);
+    }//GEN-LAST:event_radioCompactoMouseClicked
+
+    private void radioMantenimiento_SIMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioMantenimiento_SIMouseClicked
+        radioDisponibleAmbulancia_SI.setSelected(false);
+        radioDisponibleAmbulancia_NO.setSelected(true);
+        radioDisponibleAmbulancia_SI.setEnabled(false);
+        radioDisponibleAmbulancia_NO.setEnabled(false);
+    }//GEN-LAST:event_radioMantenimiento_SIMouseClicked
+
+    private void radioMantenimiento_NOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioMantenimiento_NOMouseClicked
+        if(!radioDisponibleAmbulancia_SI.isEnabled() && !radioDisponibleAmbulancia_NO.isEnabled()){
+            radioDisponibleAmbulancia_SI.setEnabled(true);
+            radioDisponibleAmbulancia_NO.setEnabled(true);
+        }
+    }//GEN-LAST:event_radioMantenimiento_NOMouseClicked
+
+    private void radioMantenimiento_NOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMantenimiento_NOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioMantenimiento_NOActionPerformed
+
+    private void radioAmbTerrestreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioAmbTerrestreActionPerformed
+        if(!radioAmbulancia.isSelected()){
+            radioAmbulancia.setSelected(true);
+            if(radioCompacto.isSelected()) radioCompacto.setSelected(false);
+        }
+    }//GEN-LAST:event_radioAmbTerrestreActionPerformed
+
+    private void radioAmbAereaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioAmbAereaMouseClicked
+        if(!radioAmbulancia.isSelected()){
+            radioAmbulancia.setSelected(true);
+            if(radioCompacto.isSelected()) radioCompacto.setSelected(false);
+        }
+    }//GEN-LAST:event_radioAmbAereaMouseClicked
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2806,6 +2860,11 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel guion4;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2820,6 +2879,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

@@ -2,11 +2,10 @@
 package Controller;
 
 import Modelo.*;
+
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import javax.swing.*;
-import javax.swing.table.*;
 
 public class CAmbulatorio implements ICEntidad{
     
@@ -77,7 +76,7 @@ public class CAmbulatorio implements ICEntidad{
         }
         return false;
     }
-    
+
     public void crearAmbulancia(boolean enMantenimiento, String serial, boolean disponible,JRadioButton radioTerrestre){
         String tipoAmbulancia;
         
@@ -87,7 +86,7 @@ public class CAmbulatorio implements ICEntidad{
         Ambulancia amb = new Ambulancia(serial,enMantenimiento,disponible,tipoAmbulancia);
         ambulatorio.agregarVehiculo(amb);
     }
-    
+
     public void crearCompacto(boolean enMantenimiento, String serial, boolean disponible){
         Compacto comp = new Compacto(serial,enMantenimiento,disponible);
         ambulatorio.agregarVehiculo(comp);
@@ -104,8 +103,7 @@ public class CAmbulatorio implements ICEntidad{
         if(radioAmb.isSelected()) crearAmbulancia(enMantenimiento,serial,disponible,radioTerrestre);
         else crearCompacto(enMantenimiento,serial,disponible);
     }
-    
-    
+       
     public void crearPersonal(String ci,String nombre,String correo,String telf,Date fN,JRadioButton masc,JRadioButton fem,JRadioButton act_SI,JRadioButton act_NO,String salario,Date fC,String tipo,String licencia,JRadioButton DRS_SI,JRadioButton DRS_NO,String vehActual){
         Personal per;
         long lic;
@@ -165,7 +163,6 @@ public class CAmbulatorio implements ICEntidad{
         tablaVehiculos.setModel(model);
         tablaVehiculos.setDefaultEditor(Object.class, null);
     }
-    
 
     public String pasarAtributo_DeTabla(JTable tablaEntidad,int columna){
         int indice = tablaEntidad.getSelectedRow();
@@ -187,4 +184,5 @@ public class CAmbulatorio implements ICEntidad{
         }
         return null;
     }
+
 }

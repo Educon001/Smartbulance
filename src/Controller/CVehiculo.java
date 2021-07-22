@@ -58,7 +58,7 @@ public class CVehiculo {
         return null;
     }
     
-    public void tablasAsignarPersonal(JTable asignados, JTable personal){
+    public void tablasAsignarPersonal(JTable asignados, JTable personal, JButton btnAgregar, JButton btnEliminar){
         String[] titulos = {"Tipo","Nombre","Cedula"};
         String[][] datos1 = new String[vehiculo.getPersonalActual().size()][3];
         String[][] datos2;
@@ -90,18 +90,54 @@ public class CVehiculo {
         personal.setModel(modelo2);
         personal.setDefaultEditor(Object.class, null); 
         personal.getTableHeader().setReorderingAllowed(false);
+        btnAgregar.setEnabled(false);
+        btnEliminar.setEnabled(false);
     }
     
-    public void agregarPersonal(JTable asignados, JTable personal){
-        
+    public void agregarPersonal(JTable asignados, JTable personal, JButton btnAgregar){
+        int indice = personal.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) asignados.getModel();
+        Object[] seleccionado = {personal.getModel().getValueAt(indice, 0),personal.getModel().getValueAt(indice, 1),personal.getModel().getValueAt(indice, 2)};
+        boolean repetido=false;
+        for (int i = 0; i < asignados.getRowCount(); i++) {
+            if (asignados.getModel().getValueAt(i,2).equals(seleccionado[2])){
+                repetido=true;
+                break;
+            }
+        }
+        if (!repetido){
+            modelo.addRow(seleccionado);
+            asignados.setModel(modelo);
+            btnAgregar.setEnabled(false);
+        }else
+            JOptionPane.showMessageDialog(null, "La persona que eligio ya esta asignada al vehiculo", "Error", JOptionPane.ERROR_MESSAGE);
     }
     
-    public void eliminarPersonal(JTable asignados, JTable personal){
-        
+    public void eliminarPersonal(JTable asignados, JTable personal, JButton btnEliminar){
+        int indice = asignados.getSelectedRow();
+        DefaultTableModel modelo = (DefaultTableModel) asignados.getModel();
+        modelo.removeRow(indice);
+        asignados.setModel(modelo);
+        btnEliminar.setEnabled(false);
     }
     
-    public void asignarPersonal(JTable asignados, JTable personal){
-        
+    public void debloquearBotones(JTable asignados, JButton btnAgregar, JButton btnEliminar){
+        if (!((asignados.getRowCount()==2 && vehiculo instanceof Compacto) || (asignados.getRowCount()==3 && vehiculo instanceof Ambulancia)))
+            btnAgregar.setEnabled(true);
+        if (asignados.getRowCount()!=0)
+            btnEliminar.setEnabled(true);
+    }
+    
+    public void asignarPersonal(JTable asignados){
+        int num = asignados.getRowCount();
+        Ambulatorio am = getAmbulatorio();
+        if ((vehiculo instanceof Compacto && num==2) || (vehiculo instanceof Ambulancia && num==3)){
+            vehiculo.getPersonalActual().clear();
+            for (int i = 0; i < num; i++) {
+                PersonalConVehiculo per;
+            }
+        }
+            
     }
     
     public void mostrarInventario(JTable tabla){

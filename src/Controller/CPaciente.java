@@ -29,7 +29,7 @@ public class CPaciente {
 
     
     
-    public void mostrarPacientes(JTable tabla,ArrayList<Paciente> listaPacientes, JButton Detalles){
+    public void mostrarPacientes(JTable tabla,ArrayList<Paciente> listaPacientes, JButton Detalles,JButton eliminar){
         
         
         
@@ -54,6 +54,8 @@ public class CPaciente {
         tabla.setDefaultEditor(Object.class, null);
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.addMouseListener(new EventoMouse(Detalles));
+        tabla.addMouseListener(new EventoMouse(eliminar));
+
        
 
         
@@ -123,5 +125,16 @@ public class CPaciente {
         return paciente;
     }
    
+    public void eliminarPaciente(CSistema sis,JTable tabla){
+        
+        int indice = tabla.getSelectedRow();   
+        String cod = tabla.getModel().getValueAt(indice,0).toString();
+        Paciente paciente;
+        paciente = sis.buscarPaciente(String.valueOf(cod));
+        ArrayList<Paciente> lista = sis.getListaPacientes();
+        lista.remove(paciente);
+        sis.setListaPacientes(lista);
     
+    
+    }
 }

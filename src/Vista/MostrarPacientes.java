@@ -54,7 +54,7 @@ public class MostrarPacientes extends javax.swing.JFrame {
         this.con=con;
         
         
-        pac.mostrarPacientes(jTablePacientes,con.getListaPacientes(),btnDetalles);
+        pac.mostrarPacientes(jTablePacientes,con.getListaPacientes(),btnDetalles,jBtnEliminar);
     }
 
     /**
@@ -83,6 +83,7 @@ public class MostrarPacientes extends javax.swing.JFrame {
         Calendario = new com.toedter.calendar.JDateChooser();
         jGenero = new javax.swing.JComboBox<>();
         btnDetalles = new javax.swing.JButton();
+        jBtnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,6 +154,14 @@ public class MostrarPacientes extends javax.swing.JFrame {
             }
         });
 
+        jBtnEliminar.setEnabled(false);
+        jBtnEliminar.setText("Eliminar");
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,11 +175,6 @@ public class MostrarPacientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(20, 20, 20)
-                        .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -186,12 +190,18 @@ public class MostrarPacientes extends javax.swing.JFrame {
                             .addComponent(txtTelefono)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnDetalles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBTNRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(38, 38, 38))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(20, 20, 20)
+                        .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDetalles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBTNRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,17 +232,18 @@ public class MostrarPacientes extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(19, 19, 19)
                         .addComponent(btnDetalles)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -268,7 +279,7 @@ public class MostrarPacientes extends javax.swing.JFrame {
     
         con.agregarPaciente(paciente);
         
-        pac.mostrarPacientes(jTablePacientes, con.getListaPacientes(),btnDetalles);
+        pac.mostrarPacientes(jTablePacientes, con.getListaPacientes(),btnDetalles,jBtnEliminar);
         
         
         
@@ -297,6 +308,12 @@ public class MostrarPacientes extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnDetallesActionPerformed
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        // TODO add your handling code here:
+        pac.eliminarPaciente(con, jTablePacientes);
+        pac.mostrarPacientes(jTablePacientes, con.getListaPacientes(), btnDetalles, jBtnEliminar);
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,6 +354,7 @@ public class MostrarPacientes extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser Calendario;
     private javax.swing.JButton btnDetalles;
     private javax.swing.JButton jBTNRegistrar;
+    private javax.swing.JButton jBtnEliminar;
     private javax.swing.JComboBox<String> jGenero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

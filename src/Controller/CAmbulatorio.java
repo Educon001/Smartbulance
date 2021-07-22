@@ -2,12 +2,16 @@
 package Controller;
 
 import Modelo.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.*;
 
 public class CAmbulatorio implements ICEntidad{
     
     private Ambulatorio ambulatorio;
+    private long numCarnets=0;
 
     public CAmbulatorio(Ambulatorio ambulatorio){
         this.ambulatorio = ambulatorio;
@@ -54,6 +58,26 @@ public class CAmbulatorio implements ICEntidad{
         tabla.getTableHeader().setReorderingAllowed(false);
     }
     
+    public boolean seEncuentraPersonal_CI(String cedula){
+        for(Personal per : ambulatorio.getPersonal()){
+            if(cedula.equals(per.getCedula())){
+                JOptionPane.showMessageDialog(null,"Ya se encuentra un miembro del personal con esta cédula.","Error", JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public boolean seEncuentraPersonal_Licencia(String licencia){
+        for(Personal per : ambulatorio.getPersonal()){
+            if(per instanceof Conductor && licencia.equals(((Conductor) per).getLicencia())){
+                JOptionPane.showMessageDialog(null,"Ya se encuentra un conductor registrado con este número de licencia.","Error", JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public void crearAmbulancia(boolean enMantenimiento, String serial, boolean disponible,JRadioButton radioTerrestre){
         String tipoAmbulancia;
         
@@ -80,6 +104,38 @@ public class CAmbulatorio implements ICEntidad{
         if(radioAmb.isSelected()) crearAmbulancia(enMantenimiento,serial,disponible,radioTerrestre);
         else crearCompacto(enMantenimiento,serial,disponible);
     }
+    
+    
+    public void crearPersonal(String ci,String nombre,String correo,String telf,Date fN,JRadioButton masc,JRadioButton fem,JRadioButton act_SI,JRadioButton act_NO,String salario,Date fC,String tipo,String licencia,JRadioButton DRS_SI,JRadioButton DRS_NO,String vehActual){
+        Personal per;
+        long lic;
+        boolean activo,drs;
+        char genero=' ';
+        
+        LocalDate nacimiento = fN.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate contrato = fC.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+      
+        numCarnets += numCarnets;
+        double sal = Double.parseDouble(salario);
+        
+        if(masc.isSelected()) genero='M';
+        if(fem.isSelected()) genero='F';
+        
+        activo = act_SI.isSelected();
+        
+        if(tipo.equals("Paramedico")){
+            drs=DRS_SI.isSelected();
+            per = new Paramedico(numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero,vehActual,drs);
+        }
+        else if(tipo.equals("Conductor")){
+            lic = Long.parseLong(licencia);
+            per = new Conductor(lic,vehActual,numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero);
+        }
+        else per = new Personal(numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero);
+        
+        ambulatorio.registrarPersonal(per);
+    }
+    
     
     public void mostrarTablaVehiculos(JTable tablaVehiculos){
         String titulo[]={"Tipo","Serial","En Mantenimiento","Disponible","Tipo ambulancia"};
@@ -108,5 +164,27 @@ public class CAmbulatorio implements ICEntidad{
         TableModel model = new DefaultTableModel(matriz,titulo);
         tablaVehiculos.setModel(model);
         tablaVehiculos.setDefaultEditor(Object.class, null);
+    }
+    
+
+    public String pasarAtributo_DeTabla(JTable tablaEntidad,int columna){
+        int indice = tablaEntidad.getSelectedRow();
+        TableModel modelo = tablaEntidad.getModel();
+        try{
+            String atributo = modelo.getValueAt(indice,columna).toString();
+            return atributo;
+        }
+        catch(ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showConfirmDialog(null,"Debe seleccionar un item de la tabla.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
+    }
+    
+    public Personal personalSeleccionado(JTable tablaPersonal){
+        String ci = pasarAtributo_DeTabla(tablaPersonal,1);
+        if(ci!=null){
+            return ambulatorio.buscarPersonal(ci);
+        }
+        return null;
     }
 }

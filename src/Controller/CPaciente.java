@@ -6,6 +6,7 @@
 package Controller;
 
 import Modelo.Paciente;
+import Modelo.Pago;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -63,6 +64,39 @@ public class CPaciente {
         
     }
     
+    public void mostrarPagos(JTable tabla,ArrayList<Pago> listaPagos){
+        
+        
+        
+
+      
+        String[] titulos = {"Factura","Fecha","Monto"};
+        String[][] datos = new String[listaPagos.size()][3];
+        
+        for (int i = 0; i < listaPagos.size(); i++) {
+            datos[i][0]=String.valueOf(listaPagos.get(i).getFactura());
+            datos[i][1]=String.valueOf(listaPagos.get(i).getFecha());
+            datos[i][2]=String.valueOf(listaPagos.get(i).getMonto());
+            
+            
+        }
+        
+        
+        TableModel model = new DefaultTableModel(datos,titulos);
+        tabla.setModel(model);
+        tabla.setDefaultEditor(Object.class, null);
+        tabla.getTableHeader().setReorderingAllowed(false);
+        
+       
+
+        
+        
+        
+        
+        
+        
+    }
+    
 
     
     public void mostrarDetalles(Paciente paciente,JLabel jCedula,JLabel jNombre,JLabel jCorreo,JLabel jTelefono,JLabel jNacimiento, JLabel jGenero){
@@ -75,6 +109,7 @@ public class CPaciente {
 
         jNacimiento.setText(Fecha);
         jGenero.setText(String.valueOf(paciente.getGenero()));
+        
         
         
    

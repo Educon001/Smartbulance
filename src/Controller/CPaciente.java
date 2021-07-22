@@ -56,13 +56,6 @@ public class CPaciente {
         tabla.addMouseListener(new EventoMouse(Detalles));
         tabla.addMouseListener(new EventoMouse(eliminar));
 
-       
-
-        
-        
-        
-        
-        
         
     }
     

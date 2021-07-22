@@ -100,7 +100,7 @@ public class Persona {
         return null;
     }
     
-    public boolean validarNombre(String nombre){
+    /*public boolean validarNombre(String nombre){
         Pattern pat = Pattern.compile("[a-zA-Z ']{5,50}");
         Matcher mat = pat.matcher(nombre);
         return mat.matches();
@@ -110,6 +110,6 @@ public class Persona {
         Pattern pat = Pattern.compile("[A-Z0-9._-]+@[A-Z0-9.-]+\\.([A-Z]{2,4})+",Pattern.CASE_INSENSITIVE);
         Matcher mat = pat.matcher(correo);
         return mat.matches();
-    }
+    }*/
     
 }

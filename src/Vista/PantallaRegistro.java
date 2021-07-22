@@ -108,6 +108,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
         labelCiudad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelCiudad.setText("Ciudad:");
 
+        txtCiudad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtCiudad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCiudadFocusLost(evt);
@@ -235,7 +236,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
                     .addGroup(panelRegistroLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         panelRegistroLayout.setVerticalGroup(
@@ -268,7 +269,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDir)
                     .addComponent(txtDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -357,7 +358,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
 
     private void txtNombreClinicaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreClinicaFocusLost
         // TODO add your handling code here:
-        if(controlRegistro.validarNombre(txtNombreClinica)==false) txtNombreClinica.setText(null);
+        if(controlRegistro.validarNombreEntidad(txtNombreClinica)==false) txtNombreClinica.setText(null);
     }//GEN-LAST:event_txtNombreClinicaFocusLost
 
     private void txtCiudadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCiudadFocusLost

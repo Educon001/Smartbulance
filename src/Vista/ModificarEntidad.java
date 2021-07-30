@@ -100,6 +100,7 @@ public class ModificarEntidad extends javax.swing.JFrame {
             }
         });
 
+        txt8RIFEntidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txt8RIFEntidad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt8RIFEntidadFocusLost(evt);
@@ -119,6 +120,7 @@ public class ModificarEntidad extends javax.swing.JFrame {
             }
         });
 
+        txtTelf1Entidad.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtTelf1Entidad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtTelf1EntidadFocusLost(evt);

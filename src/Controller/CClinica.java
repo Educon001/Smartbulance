@@ -66,7 +66,6 @@ public class CClinica {
         mecanicos.remove(0);
         Taller taller = new Taller(mecanicos,nombreTaller,telefono,RIF,estado,ciudad,direccion);       
         clinica.asociarTaller(taller);
-        System.out.println(taller.getMecanicos().get(0)+"\n"+taller.getMecanicos().get(1));
     }
     
     

@@ -107,4 +107,8 @@ public class Ambulatorio extends Entidad{
         personal.remove(per);
     }
     
+    public void eliminarVehiculo(Vehiculo veh){
+        vehiculos.remove(veh);
+    }
+    
 }

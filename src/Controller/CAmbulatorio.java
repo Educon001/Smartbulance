@@ -138,7 +138,7 @@ public class CAmbulatorio implements ICEntidad{
     
     
     public void mostrarTablaVehiculos(JTable tablaVehiculos){
-        String titulo[]={"Tipo","Serial","En Mantenimiento","Disponible","Tipo ambulancia"};
+        String titulo[]={"Tipo","Serial","En Mantenimiento","Disponible","Tipo ambulancia","Código"};
         String matriz[][]=new String[ambulatorio.getVehiculos().size()][6];
 
         for (int i=0;i<ambulatorio.getVehiculos().size();i++){
@@ -159,6 +159,7 @@ public class CAmbulatorio implements ICEntidad{
             if(ambulatorio.getVehiculos().get(i).isDisponible()) matriz[i][3]="Sí";
             else matriz[i][3]="No";
             
+            matriz[i][5] = Integer.toString(ambulatorio.getVehiculos().get(i).getCodigo());
         }
         
         TableModel model = new DefaultTableModel(matriz,titulo);
@@ -184,6 +185,14 @@ public class CAmbulatorio implements ICEntidad{
         String ci = pasarAtributo_DeTabla(tablaPersonal,1);
         if(ci!=null){
             return ambulatorio.buscarPersonal(ci);
+        }
+        return null;
+    }
+   
+    public Vehiculo vehiculoSeleccionado(JTable tablaVehiculos){
+        String serial = pasarAtributo_DeTabla(tablaVehiculos,1);
+        if(serial!=null){
+            return ambulatorio.buscarVehiculo(serial);
         }
         return null;
     }

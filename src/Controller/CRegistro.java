@@ -156,6 +156,17 @@ public class CRegistro {
         return false;
     }
     
+    public boolean camposVaciosEntidad(JTextField txtNombre,JTextField txt8RIF,JTextField txt1RIF,JTextField txtTelf1,JTextField txtTelf2,JTextField txtCiudad,JTextField txtDir,JTextArea txtAreaMec){
+        if(txtNombre.getText().isEmpty() || txt8RIF.getText().isEmpty() || txt1RIF.getText().isEmpty() || txtTelf1.getText().isEmpty() || txtTelf2.getText().isEmpty() || txtCiudad.getText().isEmpty() || txtDir.getText().isEmpty() || txtAreaMec.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    
     public boolean camposVaciosVehiculo(JRadioButton radioAmbulancia,JRadioButton radioCompacto,JTextField txtSerial,JRadioButton radioMantenimiento_SI,JRadioButton radioMantenimiento_NO,JRadioButton radioDis_SI,JRadioButton radioDis_NO,JRadioButton radioTer,JRadioButton radioAerea){
         if(radioAmbulancia.isSelected() && (radioMantenimiento_SI.isSelected() || radioMantenimiento_NO.isSelected()) && (radioDis_SI.isSelected() || radioDis_NO.isSelected()) && (radioTer.isSelected() || radioAerea.isSelected()) && !txtSerial.getText().isEmpty())
             return false;
@@ -218,10 +229,6 @@ public class CRegistro {
         labelAsignado.setVisible(paramedico);
         radioSI.setVisible(paramedico);
         radioNO.setVisible(paramedico);
-    }
-    
-    public boolean textAreaVacio(JTextArea txtArea){
-        return txtArea.getText().isEmpty();
     }
     
     public void vaciarDatosAmbulancia(JRadioButton radioAmbulancia,JRadioButton radioCompacto,JTextField txtSerial,JRadioButton radioMantenimiento_SI,JRadioButton radioMantenimiento_NO,JRadioButton radioDisponibleAmbulancia_SI,JRadioButton radioDisponibleAmbulancia_NO,JRadioButton radioAmbTerrestre,JRadioButton radioAmbAerea){

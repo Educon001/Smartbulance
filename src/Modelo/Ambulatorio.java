@@ -7,6 +7,7 @@ public class Ambulatorio extends Entidad{
     private ArrayList<Vehiculo> vehiculos;
     private ArrayList<Personal> personal;
     private ArrayList<Suministro> inventario;
+    private boolean disponible;
 
     //CONSTRUCTORES
     public Ambulatorio() {
@@ -20,6 +21,7 @@ public class Ambulatorio extends Entidad{
         vehiculos = new ArrayList<>();
         personal = new ArrayList<>();
         inventario = new ArrayList<>();
+        disponible = true;
     }
      
     //GETTERS Y SETTERS
@@ -46,8 +48,15 @@ public class Ambulatorio extends Entidad{
     public void setInventario(ArrayList<Suministro> inventario) {
         this.inventario = inventario;
     }
-    
-    
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+        
     //MÉTODOS
     public void agregarVehiculo(Vehiculo veh){
         if (vehiculos.isEmpty())

@@ -20,6 +20,7 @@ public class Clinica extends Entidad{
         super(nombre, telefono, RIF, estado, ciudad, direccion);
         ambulatorios = new ArrayList<>();
         talleresAsociados = new ArrayList<>();
+        disponible = true;
     }      
     
     //GETTERS Y SETTERS

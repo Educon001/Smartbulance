@@ -4,6 +4,7 @@ package Controller;
 import Modelo.Clinica;
 import Modelo.Entidad;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.util.regex.Matcher;
@@ -259,7 +260,11 @@ public class CRegistro {
         cboTipo.setSelectedIndex(0);
         drs_SI.setVisible(false);
         drs_NO.setVisible(false);
-        txtLicencia.setVisible(false);
-        
+        txtLicencia.setVisible(false);   
+    }
+    
+    public void botonDisponible(JToggleButton disp){
+        if(disp.isSelected()) disp.setText("Sí");
+        else disp.setText("No");
     }
 }

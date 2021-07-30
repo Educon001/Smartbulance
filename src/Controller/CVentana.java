@@ -1,6 +1,6 @@
 package Controller;
 
-import Modelo.Clinica;
+import Modelo.*;
 import Modelo.Entidad;
 import javax.swing.*;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
@@ -58,12 +58,20 @@ public class CVentana {
         txtArea.setEnabled(false);
     }    
     
-    public void botonClinica_DatosEntidad(Entidad entidad, JLabel labelNombre_DeLaClinica,JLabel labelRIF_DeLaClinica,JLabel labelTelf_DeLaClinica,JLabel labelCiudad_DeLaClinca,JLabel labelEstado_DeLaClinica,JLabel labelDir_DeLaClinica){
+    public void botonClinica_DatosEntidad(Entidad entidad, JLabel labelNombre_DeLaClinica,JLabel labelRIF_DeLaClinica,JLabel labelTelf_DeLaClinica,JLabel labelCiudad_DeLaClinca,JLabel labelEstado_DeLaClinica,JLabel labelDir_DeLaClinica,JToggleButton disp){
         labelNombre_DeLaClinica.setText(entidad.getNombre());
         labelRIF_DeLaClinica.setText(entidad.getRIF());
         labelTelf_DeLaClinica.setText(entidad.getTelefono());
         labelCiudad_DeLaClinca.setText(entidad.getCiudad());
         labelEstado_DeLaClinica.setText(entidad.getEstado());
         labelDir_DeLaClinica.setText(entidad.getDireccion());
+        if(entidad instanceof Clinica){
+            if(((Clinica) entidad).isDisponible()) disp.setText("Sí");
+            else disp.setText("No");
+        }
+        if(entidad instanceof Ambulatorio){
+            if(((Ambulatorio) entidad).isDisponible()) disp.setText("Sí");
+            else disp.setText("No");
+        }
     }
 }

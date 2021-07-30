@@ -165,6 +165,7 @@ public class CAmbulatorio implements ICEntidad{
         TableModel model = new DefaultTableModel(matriz,titulo);
         tablaVehiculos.setModel(model);
         tablaVehiculos.setDefaultEditor(Object.class, null);
+        tablaVehiculos.getTableHeader().setReorderingAllowed(false);
     }
     
 
@@ -211,4 +212,8 @@ public class CAmbulatorio implements ICEntidad{
             per.ultimaEntradaSalida().setSalida(hora);
     }
     
+    public void ambulatorioDisponible(JToggleButton disp){
+        ambulatorio.setDisponible(disp.isSelected());
+    }
+ 
 }

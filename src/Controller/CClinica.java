@@ -36,6 +36,7 @@ public class CClinica {
         TableModel model = new DefaultTableModel(matriz,titulo);
         tabla.setModel(model);
         tabla.setDefaultEditor(Object.class, null);
+        tabla.getTableHeader().setReorderingAllowed(false);
     }
     
     public void mostrarTablaTalleres(ArrayList<Taller> talleres, JTable tabla){
@@ -54,6 +55,7 @@ public class CClinica {
         TableModel model = new DefaultTableModel(matriz,titulo);
         tabla.setModel(model);
         tabla.setDefaultEditor(Object.class, null);
+        tabla.getTableHeader().setReorderingAllowed(false);
     }
     
     public void crearAmbulatorio(Clinica clinica,String nombreAmbulatorio,String RIF,String telefono,String ciudad,String estado,String direccion){
@@ -136,5 +138,9 @@ public class CClinica {
             }
         }
         return false;   
+    }
+    
+    public void clinicaDisponible(JToggleButton disp){
+        clinica.setDisponible(disp.isSelected());
     }
 }

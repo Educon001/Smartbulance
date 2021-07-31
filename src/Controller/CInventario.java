@@ -67,7 +67,6 @@ public class CInventario {
         String[][] datos = new String[sum.getUnidades().size()][3];
         
         for (int i = 0; i < sum.getUnidades().size(); i++) {
-            sum.getUnidades().get(i).setCodigo(i+1);
             datos[i][0]=String.valueOf(sum.getUnidades().get(i).getCodigo());
             datos[i][1]=sum.getUnidades().get(i).getfVencimiento();
             datos[i][2]=sum.getUnidades().get(i).getUbicacion();
@@ -219,16 +218,17 @@ public class CInventario {
     
     public void registrarEntrada(String comboAplica, Date fVencimiento, int cantidad, Suministro sum){
         Unidad uni = null;
+        Unidad[] unidades = new Unidad[cantidad];
         if (comboAplica.equals("Aplica")){
             String patron = "dd/MM/yyyy";
             DateFormat formato = new SimpleDateFormat(patron);
-            uni = new Unidad("Almacen",formato.format(fVencimiento));
+            for (int i = 0; i < unidades.length; i++) {
+                unidades[i] = new Unidad("Almacen",formato.format(fVencimiento));
+            }
         }else if (comboAplica.equals("No aplica"))
-            uni = new Unidad("Almacen",comboAplica);
-        Unidad[] unidades = new Unidad[cantidad];
-        for (int i = 0; i < unidades.length; i++) {
-            unidades[i]=uni;
-        }
+            for (int i = 0; i < unidades.length; i++) {
+                unidades[i] = new Unidad("Almacen",comboAplica); 
+            }     
         Movimiento mov = new Movimiento(LocalDate.now(),unidades,"Entrada");
         sum.registrarMovimiento(mov);
     }
@@ -256,6 +256,7 @@ public class CInventario {
                 unidades[i]=sum.buscarUnidad(Integer.parseInt(objetos[i].toString()));
             }
             Movimiento mov = new Reubicacion(destino,LocalDate.now(),unidades,"Reubicacion");
+            ((Reubicacion) mov).setOrigen(unidades[0].getUbicacion());
             sum.registrarMovimiento(mov);
         }else
             JOptionPane.showMessageDialog(null, "El destino debe ser diferente al origen", "Error", JOptionPane.ERROR_MESSAGE);

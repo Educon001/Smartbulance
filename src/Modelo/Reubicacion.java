@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class Reubicacion extends Movimiento{
     
+    private String origen;
     private String destino;
 
     public Reubicacion(String destino, LocalDate fecha, Unidad[] unidades, String tipo) {
@@ -13,7 +14,11 @@ public class Reubicacion extends Movimiento{
     }
 
     public String getOrigen() {
-        return unidades[0].getUbicacion();
+        return origen;
+    }
+
+    public void setOrigen(String origen) {
+        this.origen = origen;
     }
 
     public String getDestino() {

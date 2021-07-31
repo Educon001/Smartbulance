@@ -166,6 +166,8 @@ public class CAmbulatorio implements ICEntidad{
         tablaVehiculos.setModel(model);
         tablaVehiculos.setDefaultEditor(Object.class, null);
         tablaVehiculos.getTableHeader().setReorderingAllowed(false);
+        tablaVehiculos.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tablaVehiculos.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
     }
     
 

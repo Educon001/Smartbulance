@@ -71,10 +71,14 @@ public class Suministro {
     
     public void registrarMovimiento(Movimiento mov){
         movimientos.add(mov);
-        if (mov.getTipo().equals("Entrada"))
-            unidades.addAll(Arrays.asList(mov.getUnidades()));
-        else if (mov.getTipo().equals("Salida"))
+        if (mov.getTipo().equals("Entrada")){
+            for (Unidad uni : mov.getUnidades()) {
+                unidades.add(uni);                
+            }
+        }
+        else if (mov.getTipo().equals("Salida")){
             unidades.removeAll(Arrays.asList(mov.getUnidades()));
+        }
         else{
             for (int i = 0; i < mov.getUnidades().length; i++) {
                 for (Unidad uni : unidades){
@@ -84,7 +88,8 @@ public class Suministro {
                     }
                 }
             }
-        }           
+        }
+        asignarCodigos();
     }
     
     public Unidad buscarUnidad(int cod){
@@ -93,6 +98,14 @@ public class Suministro {
                 return uni;
         }            
         return null;
+    }
+    
+    private void asignarCodigos(){
+        int i=1;
+        for (Unidad uni : unidades) {
+            uni.setCodigo(i);
+            i++;
+        }
     }
     
 }

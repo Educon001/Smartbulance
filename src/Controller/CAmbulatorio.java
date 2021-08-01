@@ -123,7 +123,7 @@ public class CAmbulatorio implements ICEntidad{
         
         activo = act_SI.isSelected();
         
-        if(tipo.equals("Paramedico")){
+        if(tipo.equals("Paramédico")){
             drs=DRS_SI.isSelected();
             per = new Paramedico(numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero,drs);
         }

@@ -76,7 +76,7 @@ public class CVehiculo {
         int cont=0;
         Ambulatorio am = getAmbulatorio();
         for (Personal per : am.getPersonal()){
-            if (per instanceof PersonalConVehiculo)
+            if ((per instanceof Conductor || per instanceof Paramedico) && ((PersonalConVehiculo) per).getVehiculoActual() == null)
                 cont++;
         }
         datos2 = new String[cont][3];
@@ -86,7 +86,7 @@ public class CVehiculo {
             datos1[i][2] = vehiculo.getPersonalActual().get(i).getCedula();
         }
         for (int i = 0,j = 0; i < am.getPersonal().size(); i++) {
-            if (am.getPersonal().get(i) instanceof PersonalConVehiculo && ((PersonalConVehiculo) am.getPersonal().get(i)).getVehiculoActual() != null){
+            if ((am.getPersonal().get(i) instanceof Conductor || am.getPersonal().get(i) instanceof Paramedico) && ((PersonalConVehiculo) am.getPersonal().get(i)).getVehiculoActual() == null){
                 datos2[j][0] = am.getPersonal().get(i).getTipo();
                 datos2[j][1] = am.getPersonal().get(i).getNombre();
                 datos2[j][2] = am.getPersonal().get(i).getCedula();

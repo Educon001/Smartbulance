@@ -123,7 +123,7 @@ public class CAmbulatorio implements ICEntidad{
         
         activo = act_SI.isSelected();
         
-        if(tipo.equals("Paramedico")){
+        if(tipo.equals("Paramédico")){
             drs=DRS_SI.isSelected();
             per = new Paramedico(numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero,drs);
         }
@@ -166,6 +166,8 @@ public class CAmbulatorio implements ICEntidad{
         tablaVehiculos.setModel(model);
         tablaVehiculos.setDefaultEditor(Object.class, null);
         tablaVehiculos.getTableHeader().setReorderingAllowed(false);
+        tablaVehiculos.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tablaVehiculos.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
     }
     
 

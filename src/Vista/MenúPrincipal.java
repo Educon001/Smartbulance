@@ -255,8 +255,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
         bhAmbulancias = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         panelInformacionVeh = new javax.swing.JPanel();
-        labelNombreVeh = new javax.swing.JLabel();
-        nombreVeh = new javax.swing.JLabel();
         labelSerialVeh = new javax.swing.JLabel();
         serialVeh = new javax.swing.JLabel();
         labelTipoVeh = new javax.swing.JLabel();
@@ -504,7 +502,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addGroup(panelInformacionClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonDispClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(botonModClinica)
                 .addGap(41, 41, 41))
         );
@@ -742,7 +740,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addGroup(panelRegistrarAmbulatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDir)
                     .addComponent(txtDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(panelRegistrarAmbulatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonVaciar)
                     .addComponent(botonRegistrar))
@@ -814,7 +812,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonEliminarAmbulatorio)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pestClinica.addTab("Ambulatorios", panelMostrarAmbulatorios);
@@ -1185,7 +1183,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTalleresAsociadosLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 25, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(panelTalleresAsociadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonListaMecanicos)
                     .addComponent(botonDesasociarTaller))
@@ -1348,9 +1346,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
                     .addComponent(labelDirAmbulatorio)
                     .addComponent(labelDir_DelAmbulatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(panelInformacionAmbulatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(botonDispAmbulatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelInformacionAmbulatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonDispAmbulatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonModificarAmbulatorio)
                 .addGap(40, 40, 40))
@@ -1616,7 +1614,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(botonEliVeh)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pestAmbulatorios.addTab("Ver vehículos", panelVerAmbulancias);
@@ -2128,7 +2126,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                     .addComponent(botonRegistrarEntrada)
                     .addComponent(botonRegistrarSalida)
                     .addComponent(botonVerTurnos))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pestAmbulatorios.addTab("Ver personal", panelVerPersonal);
@@ -2181,51 +2179,44 @@ public class MenúPrincipal extends javax.swing.JFrame{
         panelInformacionVeh.setBackground(new java.awt.Color(255, 255, 255));
         panelInformacionVeh.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labelNombreVeh.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelNombreVeh.setText("Nombre:");
-        panelInformacionVeh.add(labelNombreVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 112, -1, -1));
-
-        nombreVeh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        panelInformacionVeh.add(nombreVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 112, 390, 22));
-
         labelSerialVeh.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelSerialVeh.setText("Serial:");
-        panelInformacionVeh.add(labelSerialVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 165, -1, -1));
+        panelInformacionVeh.add(labelSerialVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
         serialVeh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        panelInformacionVeh.add(serialVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 165, 422, 22));
+        panelInformacionVeh.add(serialVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 422, 22));
 
         labelTipoVeh.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelTipoVeh.setText("Tipo:");
-        panelInformacionVeh.add(labelTipoVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 215, -1, -1));
+        panelInformacionVeh.add(labelTipoVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
         tipoVeh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        panelInformacionVeh.add(tipoVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 215, 633, 22));
+        panelInformacionVeh.add(tipoVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 633, 22));
 
         labelCodigoVeh.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelCodigoVeh.setText("Codigo:");
-        panelInformacionVeh.add(labelCodigoVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
+        panelInformacionVeh.add(labelCodigoVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
 
         codigoVeh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        panelInformacionVeh.add(codigoVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 450, 320, 22));
+        panelInformacionVeh.add(codigoVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 320, 22));
 
         labelDisponibleVeh.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelDisponibleVeh.setText("Disponible:");
-        panelInformacionVeh.add(labelDisponibleVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 266, -1, -1));
+        panelInformacionVeh.add(labelDisponibleVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
 
         DisponibleVeh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        panelInformacionVeh.add(DisponibleVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 120, 22));
+        panelInformacionVeh.add(DisponibleVeh, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 120, 22));
 
         labelEnMantenimiento.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelEnMantenimiento.setText("En mantenimiento:");
-        panelInformacionVeh.add(labelEnMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
+        panelInformacionVeh.add(labelEnMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
 
         enMantenimiento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        panelInformacionVeh.add(enMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 202, 22));
+        panelInformacionVeh.add(enMantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 202, 22));
 
         labelPersonalAct.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelPersonalAct.setText("Personal actual:");
-        panelInformacionVeh.add(labelPersonalAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 323, -1, -1));
+        panelInformacionVeh.add(labelPersonalAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
 
         labelTituloAmbulatorio1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         labelTituloAmbulatorio1.setText("Información del vehiculo");
@@ -2244,7 +2235,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         ));
         jScrollPane8.setViewportView(tablaPersonalAct);
 
-        panelInformacionVeh.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 270, 120));
+        panelInformacionVeh.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, 270, 120));
 
         jTabbedPane3.addTab("Mostrar vehiculo", panelInformacionVeh);
 
@@ -2292,6 +2283,11 @@ public class MenúPrincipal extends javax.swing.JFrame{
         panelInformacionVeh1.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 510, 170));
 
         btnEliminarPer.setText("Eliminar");
+        btnEliminarPer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPerActionPerformed(evt);
+            }
+        });
         panelInformacionVeh1.add(btnEliminarPer, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 100, 40));
 
         btnRegistrarAsignacion.setBackground(new java.awt.Color(51, 102, 255));
@@ -2305,6 +2301,11 @@ public class MenúPrincipal extends javax.swing.JFrame{
         panelInformacionVeh1.add(btnRegistrarAsignacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 170, 40));
 
         btnAgregarPer.setText("Seleccionar personal");
+        btnAgregarPer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarPerActionPerformed(evt);
+            }
+        });
         panelInformacionVeh1.add(btnAgregarPer, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 130, 170, 40));
 
         labelTituloAmbulatorio2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
@@ -2758,7 +2759,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         if (serial!=null){
             if(cRegistro.validarSerial(serial) && controlVehiculo.serialRegistrado(serial)){
                 controlVehiculo.mostrarVehiculo(codigoVeh, serialVeh, tipoVeh, DisponibleVeh, labelEnMantenimiento, enMantenimiento, tablaPersonalAct);
-                controlVehiculo.tablasAsignarPersonal(tablaAsignados, tablaPersonal, btnAgregarPer, btnEliminarPer);
+                controlVehiculo.tablasAsignarPersonal(tablaAsignados, tablaPersonalConVeh, btnAgregarPer, btnEliminarPer);
                 controlVehiculo.mostrarInventario(tablaInventarioVeh);
                 controlVehiculo.mostrarMantenimiento(tablaMantenimientosVeh);
                 panelesOp.setSelectedIndex(3);
@@ -3136,7 +3137,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_txtSerialAmbulanciaActionPerformed
 
     private void txtSerialAmbulanciaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSerialAmbulanciaFocusLost
-
+        if (!cRegistro.validarSerial(txtSerialAmbulancia.getText()))
+            txtSerialAmbulancia.setText(null);
     }//GEN-LAST:event_txtSerialAmbulanciaFocusLost
 
     private void radioCompactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioCompactoMouseClicked
@@ -3476,6 +3478,14 @@ public class MenúPrincipal extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_botonDispAmbulatorioActionPerformed
 
+    private void btnAgregarPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPerActionPerformed
+        controlVehiculo.agregarPersonal(tablaAsignados, tablaPersonalConVeh, btnAgregarPer);
+    }//GEN-LAST:event_btnAgregarPerActionPerformed
+
+    private void btnEliminarPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPerActionPerformed
+        controlVehiculo.eliminarPersonal(tablaAsignados, tablaPersonalConVeh, jBtnEliminar);
+    }//GEN-LAST:event_btnEliminarPerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3705,7 +3715,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel labelNombreClinica;
     private javax.swing.JLabel labelNombreMecanico;
     private javax.swing.JLabel labelNombreTaller;
-    private javax.swing.JLabel labelNombreVeh;
     private javax.swing.JLabel labelNombre_DeLaClinica;
     private javax.swing.JLabel labelNombre_DelAmbulatorio;
     private javax.swing.JLabel labelNombre_Personal;
@@ -3743,7 +3752,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel labelTituloAmbulatorio4;
     private javax.swing.JLabel labelTituloVehiculo;
     private javax.swing.JLabel logo;
-    private javax.swing.JLabel nombreVeh;
     private javax.swing.JPanel panelAmbulancias;
     private javax.swing.JPanel panelAmbulatorios;
     private javax.swing.JPanel panelAsociarTaller;

@@ -2,6 +2,9 @@ package Controller;
 
 import Modelo.*;
 import Modelo.Entidad;
+import com.toedter.calendar.JDateChooser;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.*;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
@@ -73,5 +76,21 @@ public class CVentana {
             if(((Ambulatorio) entidad).isDisponible()) disp.setText("Sí");
             else disp.setText("No");
         }
+    }
+    
+      public void entradasModificar_Paciente(Paciente paciente,JTextField txtCedula, JTextField txtNombre,JTextField txtCorreo,JTextField txtTelefono,JDateChooser DateFecha,JComboBox boxGenero){
+        txtCedula.setText(paciente.getCedula());
+        txtNombre.setText(paciente.getNombre());
+        txtCorreo.setText(paciente.getCorreo());   
+        txtTelefono.setText(paciente.getTelefono()); 
+        ZoneId defaultZoneId = ZoneId.systemDefault();
+        DateFecha.setDate(Date.from(paciente.getNacimiento().atStartOfDay(defaultZoneId).toInstant()));    
+        boxGenero.setSelectedItem(paciente.getGenero());
+        txtCedula.setEnabled(false);
+        txtNombre.setEnabled(false);
+        txtCorreo.setEnabled(false);  
+        txtTelefono.setEnabled(false);
+        DateFecha.setEnabled(false);   
+        boxGenero.setEnabled(false);      
     }
 }

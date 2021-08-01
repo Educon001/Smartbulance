@@ -6,10 +6,8 @@
 package Vista;
 
 import Controller.CPaciente;
+import Controller.CVentana;
 import Modelo.Paciente;
-import java.time.LocalDate;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -19,6 +17,7 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
     CPaciente pac;
     Paciente paciente;
     MenúPrincipal ventanaAnterior;
+    CVentana controlVentana = new CVentana();
     
     /**
      * Creates new form MostrarDetallesPaciente
@@ -28,9 +27,11 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
     }
     public MostrarDetallesPaciente(Paciente paciente,MenúPrincipal ventanaAnterior) {
         initComponents();
-        pac=new CPaciente();
-        this.ventanaAnterior=ventanaAnterior;
         
+        pac=new CPaciente();
+        this.ventanaAnterior=ventanaAnterior;     
+        
+        controlVentana.iniciarVentana(this, "src/imagenes/logo(1).png"); 
 
         pac.mostrarDetalles(paciente, jCedula, jNombre, jCorreo, jTelefono, jNacimiento, jGenero);
         pac.mostrarPagos(jTablePagos, paciente.getPagos());
@@ -245,12 +246,6 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonSalir;
-    private javax.swing.JButton botonSalir1;
-    private javax.swing.JButton botonSalir2;
-    private javax.swing.JButton botonSalir3;
-    private javax.swing.JButton botonSalir4;
-    private javax.swing.JButton botonSalir5;
     private javax.swing.JButton botonSalir6;
     private javax.swing.JLabel jCedula;
     private javax.swing.JLabel jCorreo;

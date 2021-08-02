@@ -11,6 +11,9 @@ public class Paciente extends Persona{
     
     private ArrayList<Pago> pagos;
 
+    public Paciente(){
+        
+    }
    
     public Paciente(String cedula, String nombre, String correo, String telefono, LocalDate nacimiento, char genero) {
         super( cedula,  nombre,  correo,  telefono,  nacimiento,  genero);        

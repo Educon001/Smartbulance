@@ -1,7 +1,7 @@
 
 package Modelo;
 
-public class Ambulancia extends Vehiculo { //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENTARIO
+public class Ambulancia extends Vehiculo {
     private String tipo;
     
     //Constructores

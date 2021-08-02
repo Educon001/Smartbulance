@@ -464,27 +464,27 @@ public class ModificarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_botonReestablecerActionPerformed
 
     private void botonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarCambiosActionPerformed
-        boolean validaciones = && controlRegistro.validarRIF(txt1RIFEntidad,1) && controlRegistro.validarTelf(txtTelf1Entidad,4) && controlRegistro.validarTelf(txtTelf2Entidad,7) && controlRegistro.validarNombre(txtCiudadEntidad);
-        if(validaciones && controlRegistro.camposVaciosEntidad(txtNombreEntidad, txt8RIFEntidad, txt1RIFEntidad, txtTelf1Entidad, txtTelf2Entidad, txtDirEntidad, txtDirEntidad)==false){
-            boolean modRIF=false,modTelf=false,continuar=true;
-            String RIF = controlRegistro.construirRIF(txt8RIFEntidad, txt1RIFEntidad);
-            String telf = controlRegistro.construirTelf(txtTelf1Entidad, txtTelf2Entidad);
-            if(!RIF.equals(entidad.getRIF())) modRIF=true;
-            if(!telf.equals(entidad.getTelefono())) modTelf=true;
-
-            if(modRIF==true && controlSistema.seEncuentraRegistrada_RIF(RIF,false)) continuar=false;
-            if(modTelf==true && controlSistema.seEncuentraRegistrada_Telf(telf)) continuar=false;
-
-            if(continuar){
-                if(controlRegistro.confirmar()){
-                    dispose();
-                    controlRegistro.actualizarEntidad(entidad,txtNombreEntidad,RIF,telf,txtCiudadEntidad,cboEstadoEntidad,txtDirEntidad);
-                    if(entidad instanceof Clinica) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DeLaClinica(),ventanaAnterior.getLabelRIF_DeLaClinica(),ventanaAnterior.getLabelTelf_DeLaClinica(),ventanaAnterior.getLabelCiudad_DeLaClinca(),ventanaAnterior.getLabelEstado_DeLaClinica(),ventanaAnterior.getLabelDir_DeLaClinica());
-                    if(entidad instanceof Ambulatorio) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DelAmbulatorio(),ventanaAnterior.getLabelRIF_DelAmbulatorio(),ventanaAnterior.getLabelTelf_DelAmbulatorio(),ventanaAnterior.getLabelCiudad_DelAmbulatorio(),ventanaAnterior.getLabelEstado_DelAmbulatorio(),ventanaAnterior.getLabelDir_DelAmbulatorio());
-                    ventanaAnterior.setVisible(true);
-                }
-            }
-        }
+//        boolean validaciones = && controlRegistro.validarRIF(txt1RIFEntidad,1) && controlRegistro.validarTelf(txtTelf1Entidad,4) && controlRegistro.validarTelf(txtTelf2Entidad,7) && controlRegistro.validarNombre(txtCiudadEntidad);
+//        if(validaciones && controlRegistro.camposVaciosEntidad(txtNombreEntidad, txt8RIFEntidad, txt1RIFEntidad, txtTelf1Entidad, txtTelf2Entidad, txtDirEntidad, txtDirEntidad)==false){
+//            boolean modRIF=false,modTelf=false,continuar=true;
+//            String RIF = controlRegistro.construirRIF(txt8RIFEntidad, txt1RIFEntidad);
+//            String telf = controlRegistro.construirTelf(txtTelf1Entidad, txtTelf2Entidad);
+//            if(!RIF.equals(entidad.getRIF())) modRIF=true;
+//            if(!telf.equals(entidad.getTelefono())) modTelf=true;
+//
+//            if(modRIF==true && controlSistema.seEncuentraRegistrada_RIF(RIF,false)) continuar=false;
+//            if(modTelf==true && controlSistema.seEncuentraRegistrada_Telf(telf)) continuar=false;
+//
+//            if(continuar){
+//                if(controlRegistro.confirmar()){
+//                    dispose();
+//                    controlRegistro.actualizarEntidad(entidad,txtNombreEntidad,RIF,telf,txtCiudadEntidad,cboEstadoEntidad,txtDirEntidad);
+//                    if(entidad instanceof Clinica) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DeLaClinica(),ventanaAnterior.getLabelRIF_DeLaClinica(),ventanaAnterior.getLabelTelf_DeLaClinica(),ventanaAnterior.getLabelCiudad_DeLaClinca(),ventanaAnterior.getLabelEstado_DeLaClinica(),ventanaAnterior.getLabelDir_DeLaClinica());
+//                    if(entidad instanceof Ambulatorio) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DelAmbulatorio(),ventanaAnterior.getLabelRIF_DelAmbulatorio(),ventanaAnterior.getLabelTelf_DelAmbulatorio(),ventanaAnterior.getLabelCiudad_DelAmbulatorio(),ventanaAnterior.getLabelEstado_DelAmbulatorio(),ventanaAnterior.getLabelDir_DelAmbulatorio());
+//                    ventanaAnterior.setVisible(true);
+//                }
+//            }
+//        }
     }//GEN-LAST:event_botonGuardarCambiosActionPerformed
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed

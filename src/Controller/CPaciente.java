@@ -158,8 +158,6 @@ public class CPaciente {
         ArrayList<Paciente> lista = sis.getListaPacientes();
         lista.remove(paciente);
         sis.setListaPacientes(lista);
-    
-    
     }
 
 }

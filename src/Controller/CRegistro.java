@@ -187,6 +187,22 @@ public class CRegistro {
         return true;
     }
     
+    public boolean camposVaciosEmergencia_Paciente(JTextField txt1, JTextArea txt2){
+        if(txt1.getText().isEmpty() || txt2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean camposVaciosEmergencia_Ambulatorio(JTable tabla){
+        if(tabla.getRowCount()!=1){
+            JOptionPane.showMessageDialog(null,"Debe seleccionar un ambulatorio para continuar.","Error", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }
+        return false;
+    }
+    
     public String construirRIF(JTextField txt1,JTextField txt2){
         return "J-"+txt1.getText()+"-"+txt2.getText();
     }

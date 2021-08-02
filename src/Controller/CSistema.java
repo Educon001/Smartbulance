@@ -12,6 +12,7 @@ public class CSistema {
     private ArrayList<Emergencia> listaEmergencias;
     
     Clinica prueba = new Clinica("Clinic","0212-9435176","J-12345678-1","Amazonas","Maracaibo","Calle 13");
+    
     //CONSTRUCTORES
     public CSistema() {
         listaClinicas = new ArrayList<>();

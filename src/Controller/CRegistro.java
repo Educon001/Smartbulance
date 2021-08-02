@@ -1,10 +1,10 @@
 
 package Controller;
 
-import Modelo.Clinica;
-import Modelo.Entidad;
+import Modelo.*;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.util.regex.Matcher;
@@ -282,5 +282,22 @@ public class CRegistro {
     public void botonDisponible(JToggleButton disp){
         if(disp.isSelected()) disp.setText("Sí");
         else disp.setText("No");
+    }
+    
+    public boolean camposVaciosPaciente(JTextField txtCedula, JTextField txtNombre,JTextField txtCorreo,JTextField txtTelf1,JTextField txtTelf2,JDateChooser DateFecha,JComboBox boxGenero){
+        if("".equals(String.valueOf(DateFecha.getDate())) || txtCedula.getText().isEmpty() || txtNombre.getText().isEmpty() || txtCorreo.getText().isEmpty() ||   txtTelf1.getText().isEmpty() || txtTelf2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);
+            return true;
+        }       
+        return false;
+    }
+    
+    public void actualizarPaciente(Paciente paciente,JTextField txtCedula,JTextField txtNombre,JTextField txtCorreo,String telf,JDateChooser DateFecha,JComboBox boxGenero){
+        paciente.setCedula(txtCedula.getText());
+        paciente.setNombre(txtNombre.getText());
+        paciente.setCorreo(txtCorreo.getText());
+        paciente.setTelefono(telf);
+        paciente.setNacimiento(DateFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        paciente.setGenero((char) boxGenero.getSelectedItem());       
     }
 }

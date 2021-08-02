@@ -58,7 +58,8 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
         jTelefono = new javax.swing.JLabel();
         jNacimiento = new javax.swing.JLabel();
         jGenero = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        panelModificar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -133,7 +134,15 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 6, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 90, -1));
+
+        panelModificar.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Cedula : ");
 
@@ -147,13 +156,13 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
 
         jLabel6.setText("Genero : ");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelModificarLayout = new javax.swing.GroupLayout(panelModificar);
+        panelModificar.setLayout(panelModificarLayout);
+        panelModificarLayout.setHorizontalGroup(
+            panelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelModificarLayout.createSequentialGroup()
                 .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
@@ -162,9 +171,9 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(0, 0, 0))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelModificarLayout.setVerticalGroup(
+            panelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelModificarLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -180,7 +189,7 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 6, -1, -1));
+        jPanel3.add(panelModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, -1));
 
         jTablePagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -210,6 +219,14 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
         ventanaAnterior.setVisible(true);
     }//GEN-LAST:event_botonSalir6ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    try{
+            ModificarPaciente modifi =new ModificarPaciente();
+            setVisible(false);
+            modifi.setVisible(true);
+        }catch(Exception ex){}    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -236,6 +253,7 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MostrarDetallesPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -247,6 +265,7 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir6;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jCedula;
     private javax.swing.JLabel jCorreo;
     private javax.swing.JLabel jGenero;
@@ -259,11 +278,11 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jNacimiento;
     private javax.swing.JLabel jNombre;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePagos;
     private javax.swing.JLabel jTelefono;
+    private javax.swing.JPanel panelModificar;
     // End of variables declaration//GEN-END:variables
 }

@@ -297,22 +297,23 @@ public class MenúPrincipal extends javax.swing.JFrame{
         panelPacientes = new javax.swing.JPanel();
         bhPacientes = new javax.swing.JButton();
         jTabbedPane4 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        txtCedula = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        txtTelefono = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         Calendario = new com.toedter.calendar.JDateChooser();
-        jGenero = new javax.swing.JComboBox<>();
+        txtTelefono = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTablePacientes = new javax.swing.JTable();
+        jGenero = new javax.swing.JComboBox<>();
         jBTNRegistrar = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane19 = new javax.swing.JScrollPane();
+        jTablePacientes = new javax.swing.JTable();
         btnDetalles = new javax.swing.JButton();
         jBtnEliminar = new javax.swing.JButton();
         panelRegistrarEmergencia = new javax.swing.JPanel();
@@ -2514,59 +2515,49 @@ public class MenúPrincipal extends javax.swing.JFrame{
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel7.setText("Cedula:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
-
-        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCedulaFocusLost(evt);
-            }
-        });
-        jPanel1.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 200, -1));
-
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel9.setText("Nombre:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
-
-        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNombreFocusLost(evt);
-            }
-        });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 370, -1));
-
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel10.setText("Correo:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 60, -1));
-
-        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCorreoFocusLost(evt);
-            }
-        });
-        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 389, -1));
-
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel11.setText("Telefono:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtTelefonoFocusLost(evt);
             }
         });
-        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 387, -1));
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusLost(evt);
+            }
+        });
+
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreFocusLost(evt);
+            }
+        });
+
+        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCedulaFocusLost(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel7.setText("Cedula:");
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel9.setText("Nombre:");
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel10.setText("Correo:");
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel11.setText("Telefono:");
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel12.setText("Nacimiento:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
-        jPanel1.add(Calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 170, -1));
-        JTextFieldDateEditor editor = (JTextFieldDateEditor) Calendario.getDateEditor();
-        editor.setEditable(false);
+
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel13.setText("Genero:");
 
         jGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
         jGenero.addActionListener(new java.awt.event.ActionListener() {
@@ -2574,14 +2565,109 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 jGeneroActionPerformed(evt);
             }
         });
-        jPanel1.add(jGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel13.setText("Genero:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+        jBTNRegistrar.setBackground(new java.awt.Color(51, 51, 255));
+        jBTNRegistrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jBTNRegistrar.setText("Registrar");
+        jBTNRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTNRegistrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 798, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addGap(62, 62, 62)
+                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(90, 90, 90)
+                            .addComponent(jBTNRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel9)
+                            .addGap(53, 53, 53)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(40, 40, 40)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addGap(46, 46, 46)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel12)
+                            .addGap(24, 24, 24)
+                            .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel13)
+                            .addGap(18, 18, 18)
+                            .addComponent(jGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 514, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel7)
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBTNRegistrar))
+                    .addGap(15, 15, 15)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel9)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(26, 26, 26)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel10)
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(26, 26, 26)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel11)
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(36, 36, 36)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel12)
+                        .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(41, 41, 41)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel13)
+                        .addComponent(jGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) Calendario.getDateEditor();
+        editor.setEditable(false);
+
+        jTabbedPane4.addTab("RegistrarPaciente", jPanel3);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jTablePacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -2594,19 +2680,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
             }
         ));
         jTablePacientes.setRowHeight(30);
-        jScrollPane11.setViewportView(jTablePacientes);
-
-        jPanel1.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 730, 190));
-
-        jBTNRegistrar.setBackground(new java.awt.Color(51, 51, 255));
-        jBTNRegistrar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jBTNRegistrar.setText("Registrar");
-        jBTNRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBTNRegistrarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jBTNRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 170, -1));
+        jScrollPane19.setViewportView(jTablePacientes);
 
         btnDetalles.setEnabled(false);
         btnDetalles.setBackground(new java.awt.Color(51, 255, 51));
@@ -2617,7 +2691,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 btnDetallesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 170, -1));
 
         jBtnEliminar.setEnabled(false);
         jBtnEliminar.setBackground(new java.awt.Color(255, 0, 0));
@@ -2628,9 +2701,35 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 jBtnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 170, -1));
 
-        jTabbedPane4.addTab("Mostrar pacientes", jPanel1);
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDetalles, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(btnDetalles)
+                .addGap(46, 46, 46)
+                .addComponent(jBtnEliminar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane4.addTab("Ver pacientes", jPanel4);
 
         panelRegistrarEmergencia.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -3741,85 +3840,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
         nuevaVentana.setVisible(true);
     }//GEN-LAST:event_btnRegistrarMantenimientoActionPerformed
 
-    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
-        if (!cRegistro.validarCI(txtCedula.getText())){
-            txtCedula.setText(null);
-        }else
-            if (controlSistema.buscarPaciente(txtCedula.getText())!=null)
-                JOptionPane.showMessageDialog(null, "La cedula que ingreso ya se encuentra registrada", "Error", JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_txtCedulaFocusLost
-
-    private void jGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jGeneroActionPerformed
-
-    private void jBTNRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNRegistrarActionPerformed
-        // TODO add your handling code here:
-
-        //DEBEMOS DEVOLVER LA FECHA A LOCALDATE, SOLO LO PUSE sTRING PARA PROBAR
-        if ((cRegistro.validarTelf(txtTelefono,txtTelefono.getText().length())==true)&&(pac.validarCorreo(txtCorreo)==true)&&(pac.validarCedula(txtCedula)==true)&&(cRegistro.validarNombre(txtNombre)==true) ){
-            Date fecha;
-            fecha = Calendario.getDate();
-            LocalDate nacimiento = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            char ch = 0;
-            if(jGenero.getSelectedIndex()==0){
-                ch='M';
-            }else if(jGenero.getSelectedIndex()==1){
-
-                ch='F';
-
-            }
-            Paciente paciente = new Paciente(txtCedula.getText(), txtNombre.getText(),txtCorreo.getText(), txtTelefono.getText(), nacimiento,ch);
-
-            controlSistema.agregarPaciente(paciente);
-            txtTelefono.setText(null);
-            txtCedula.setText(null);
-            txtNombre.setText(null);
-            txtCorreo.setText(null);
-            Calendario.setDate(null);
-            
-
-            pac.mostrarPacientes(jTablePacientes, controlSistema.getListaPacientes(),btnDetalles,jBtnEliminar);
-        } else {
-
-            JOptionPane.showMessageDialog(null,"Todos los datos deben proporcionarse correctamente","Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//GEN-LAST:event_jBTNRegistrarActionPerformed
-
-    private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
-    try{
-        Paciente paciente=pac.obtenerPacienteSeleccionado(controlSistema,jTablePacientes);
-        MostrarDetallesPaciente detalles =new MostrarDetallesPaciente(paciente,this);
-        setVisible(false);
-        detalles.setVisible(true);
-    }catch(Exception ex){}
-    }//GEN-LAST:event_btnDetallesActionPerformed
-
-    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
-      try{
-        pac.eliminarPaciente(controlSistema, jTablePacientes);
-        pac.mostrarPacientes(jTablePacientes, controlSistema.getListaPacientes(), btnDetalles, jBtnEliminar);
-      }catch(Exception ex){
-          JOptionPane.showMessageDialog(null, "Debe seleccionar un objeto", "Error", JOptionPane.ERROR_MESSAGE);
-      }  
-    }//GEN-LAST:event_jBtnEliminarActionPerformed
-
-    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
-        if (!cRegistro.validarNombre(txtNombre))
-            txtNombre.setText(null);
-    }//GEN-LAST:event_txtNombreFocusLost
-
-    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
-        if (!cRegistro.validarCorreo(txtCorreo.getText()))
-            txtCorreo.setText(null);
-    }//GEN-LAST:event_txtCorreoFocusLost
-
-    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
-        if (!cRegistro.validarTelf(txtTelefono,txtTelefono.getText().length()))
-            txtTelefono.setText(null);
-    }//GEN-LAST:event_txtTelefonoFocusLost
-
     private void botonEliVehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliVehMouseClicked
         Vehiculo veh = controlAmbulatorio.vehiculoSeleccionado(tablaVehiculos);
         if(veh!=null){
@@ -3952,6 +3972,83 @@ public class MenúPrincipal extends javax.swing.JFrame{
             if(cRegistro.confirmar()) System.out.println("POR REGISTRAR");
         }
     }//GEN-LAST:event_btnRegistrarEmerMouseClicked
+
+    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
+        if (!cRegistro.validarTelf(txtTelefono,txtTelefono.getText().length()))
+        txtTelefono.setText(null);
+    }//GEN-LAST:event_txtTelefonoFocusLost
+
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+        if (!cRegistro.validarCorreo(txtCorreo.getText()))
+        txtCorreo.setText(null);
+    }//GEN-LAST:event_txtCorreoFocusLost
+
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        if (!cRegistro.validarNombre(txtNombre))
+        txtNombre.setText(null);
+    }//GEN-LAST:event_txtNombreFocusLost
+
+    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
+        if (!cRegistro.validarCI(txtCedula.getText())){
+            txtCedula.setText(null);
+        }else
+        if (controlSistema.buscarPaciente(txtCedula.getText())!=null)
+        JOptionPane.showMessageDialog(null, "La cedula que ingreso ya se encuentra registrada", "Error", JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_txtCedulaFocusLost
+
+    private void jGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGeneroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jGeneroActionPerformed
+
+    private void jBTNRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNRegistrarActionPerformed
+        // TODO add your handling code here:
+
+        //DEBEMOS DEVOLVER LA FECHA A LOCALDATE, SOLO LO PUSE sTRING PARA PROBAR
+        if ((cRegistro.validarTelf(txtTelefono,txtTelefono.getText().length())==true)&&(pac.validarCorreo(txtCorreo)==true)&&(pac.validarCedula(txtCedula)==true)&&(cRegistro.validarNombre(txtNombre)==true) ){
+            Date fecha;
+            fecha = Calendario.getDate();
+            LocalDate nacimiento = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            char ch = 0;
+            if(jGenero.getSelectedIndex()==0){
+                ch='M';
+            }else if(jGenero.getSelectedIndex()==1){
+
+                ch='F';
+
+            }
+            Paciente paciente = new Paciente(txtCedula.getText(), txtNombre.getText(),txtCorreo.getText(), txtTelefono.getText(), nacimiento,ch);
+
+            controlSistema.agregarPaciente(paciente);
+            txtTelefono.setText(null);
+            txtCedula.setText(null);
+            txtNombre.setText(null);
+            txtCorreo.setText(null);
+            Calendario.setDate(null);
+
+            pac.mostrarPacientes(jTablePacientes, controlSistema.getListaPacientes(),btnDetalles,jBtnEliminar);
+        } else {
+
+            JOptionPane.showMessageDialog(null,"Todos los datos deben proporcionarse correctamente","Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBTNRegistrarActionPerformed
+
+    private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
+        try{
+            Paciente paciente=pac.obtenerPacienteSeleccionado(controlSistema,jTablePacientes);
+            MostrarDetallesPaciente detalles =new MostrarDetallesPaciente(paciente,this);
+            setVisible(false);
+            detalles.setVisible(true);
+        }catch(Exception ex){}
+    }//GEN-LAST:event_btnDetallesActionPerformed
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        try{
+            pac.eliminarPaciente(controlSistema, jTablePacientes);
+            pac.mostrarPacientes(jTablePacientes, controlSistema.getListaPacientes(), btnDetalles, jBtnEliminar);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un objeto", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4135,14 +4232,14 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
@@ -4150,6 +4247,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

@@ -1,17 +1,22 @@
 package Controller;
 
 import Modelo.*;
+import Vista.DescripcionEmergencia;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class CEmergencia {
     
+    //------------------REGISTRO DE EMERGENCIA-------------------------
     public void llenarListaAmbDisp(Clinica clinica,ArrayList<Ambulatorio> ambDisp){
         for(Ambulatorio amb : clinica.getAmbulatorios()){
             if(amb.isDisponible()) ambDisp.add(amb);
@@ -201,7 +206,120 @@ public class CEmergencia {
         pest.setSelectedIndex(0);
     }
     
+    //MENSAJES DE ERROR
     public void pacienteNoEncontrado(){
         JOptionPane.showMessageDialog(null,"No se encuentra un paciente registrado con esta cédula.","Error",JOptionPane.ERROR_MESSAGE);
     }
+    
+    public void pacienteNoAlDia(){
+        JOptionPane.showMessageDialog(null,"El paciente introducido no se encuentra al día con sus pagos.","Error",JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void pacienteConEmergenciaAbierta(){
+        JOptionPane.showMessageDialog(null,"El paciente introducido tiene una emergencia abierta, la cual se debe cerrar para continuar.","Error",JOptionPane.ERROR_MESSAGE);
+    }
+    
+    //SE CREA DEL OBJETO EMERGENCIA Y SE AGREGA A LA LISTA DE EMERGENCIAS DEL PACIENTE PASADO
+    public void crearEmergencia(Paciente pac,JTextArea txtAreaDescripcion,Ambulatorio ambulatorio,JRadioButton radioAmb,JRadioButton radioClinica,JRadioButton radioResp,Vehiculo veh){
+        int codigo = pac.getEntradaSalida().size()-1;
+        Date entrada = new Date();
+        //CONSTRUCTOR EMERGENCIA
+        Emergencia emg = new Emergencia(txtAreaDescripcion.getText(), radioResp.isSelected(),radioAmb.isSelected(), radioClinica.isSelected(),ambulatorio.getRIF(),veh.getSerial(),codigo,entrada,null); 
+        //SE AGREGA A LA LISTA DE EMERGENCIAS DEL PACIENTE
+        pac.getEntradaSalida().add(emg);
+    }
+    
+    
+    //-------------HISTORIAL DE EMERGENCIAS----------------------
+    
+    //
+    public void mostrarSoloTitulosEmergencia(JTable tabla){
+        String[] titulos = {"Código","Destino","Ambulatorio (RIF)","Vehículo (Serial)","Fecha de Entrada","Fecha Salida"};
+        TableModel modelo = new DefaultTableModel(null,titulos);
+        tabla.setModel(modelo);
+    }
+    //Muestra todas las emergencias cerradas.
+    public void mostrarHistorial(JTable tabla,ArrayList<Emergencia> emergencias){
+        String[] titulos = {"Código","Destino","Ambulatorio (RIF)","Vehículo (Serial)","Fecha de Entrada","Fecha Salida"};
+        String[][] datos = new String[emergencias.size()][3];
+        
+        for(int i=0; i<emergencias.size(); i++){
+            if(emergencias.get(i).getSalida()!=null){
+                datos[i][0] = Integer.toString(emergencias.get(i).getCodigo());
+                if(emergencias.get(i).isAmbulatorio())
+                    datos[i][1] = "Ambulatorio";
+                if(emergencias.get(i).isClinica())
+                    datos[i][1] = "Clínica";
+                if(emergencias.get(i).isRespuestaRapida())
+                    datos[i][1] = "Respuesta rápida";
+                datos[i][2] = emergencias.get(i).getRifAmbulatorio();
+                datos[i][3] = emergencias.get(i).getVehiculo();
+                datos[i][4] = emergencias.get(i).getEntrada().toString();
+                datos[i][5] = emergencias.get(i).getSalida().toString();
+            }
+        }
+
+        TableModel modelo = new DefaultTableModel(datos,titulos);
+        tabla.setModel(modelo);
+        tabla.setDefaultEditor(Object.class, null);
+        tabla.getTableHeader().setReorderingAllowed(false);
+    }
+    
+    //Muestra la última emergencia abierta
+    //FALTA CONFIRMAR TAMAÑO DE COLUMNAS
+    public void mostrarHistorial(JTable tabla,Emergencia emergencia){
+        String[] titulos = {"Código","Destino","Ambulatorio (RIF)","Vehículo (Serial)","Fecha de Entrada","Fecha Salida"};
+        String[][] datos = new String[1][3];
+        
+        
+        datos[0][0] = Integer.toString(emergencia.getCodigo());
+        if(emergencia.isAmbulatorio())
+            datos[0][1] = "Ambulatorio";
+        if(emergencia.isClinica())
+            datos[0][1] = "Clínica";
+        if(emergencia.isRespuestaRapida())
+            datos[0][1] = "Respuesta rápida";
+        datos[0][2] = emergencia.getRifAmbulatorio();
+        datos[0][3] = emergencia.getVehiculo();
+        datos[0][4] = emergencia.getEntrada().toString();
+        datos[0][5] = "No se ha cerrado";
+
+        TableModel modelo = new DefaultTableModel(datos,titulos);
+        tabla.setModel(modelo);
+        tabla.setDefaultEditor(Object.class, null);
+        tabla.getTableHeader().setReorderingAllowed(false);
+    }
+   
+    
+    public Emergencia emergenciaAbierta(JTable tabla,Paciente paciente){
+        int  codigo=-5;
+        try{
+            codigo = Integer.parseInt(pasarAtributo_DeTabla(0,tabla));
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null,"Formato de dato no es numérico.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        return paciente.retornarEmergencia(codigo);
+    }
+    
+    public Emergencia emergenciaSeleccionada(JTable tabla,Paciente paciente){
+        int  codigo=-5;
+        try{
+            codigo = Integer.parseInt(pasarAtributo_DeTabla(tabla,0));
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null,"Formato de dato no es numérico.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        return paciente.retornarEmergencia(codigo);
+    }
+    
+    public void mostrarDescripcion(String descripcion){
+        DescripcionEmergencia ventanaDescrip = new DescripcionEmergencia(descripcion);
+    }
+    
+    public void cerrarEmergencia(JTable tablaUlt,Emergencia emg){
+        emg.setSalida(new Date());
+        mostrarSoloTitulosEmergencia(tablaUlt);
+    }
+    
 }

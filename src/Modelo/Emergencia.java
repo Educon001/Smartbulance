@@ -1,12 +1,26 @@
 
 package Modelo;
 
+import java.util.Date;
+
 public class Emergencia extends Turno{
     
     private String descripcion;
     private boolean respuestaRapida, ambulatorio, clinica;
+    private String rifAmbulatorio;
     private String vehiculo;
     private int codigo;
+
+    public Emergencia(String descripcion, boolean respuestaRapida, boolean ambulatorio, boolean clinica, String rifAmbulatorio, String vehiculo, int codigo, Date entrada, Date salida) {
+        super(entrada, salida);
+        this.descripcion = descripcion;
+        this.respuestaRapida = respuestaRapida;
+        this.ambulatorio = ambulatorio;
+        this.clinica = clinica;
+        this.rifAmbulatorio = rifAmbulatorio;
+        this.vehiculo = vehiculo;
+        this.codigo = codigo;
+    }
 
     public String getDescripcion() {
         return descripcion;
@@ -55,5 +69,13 @@ public class Emergencia extends Turno{
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+    public String getRifAmbulatorio() {
+        return rifAmbulatorio;
+    }
+
+    public void setRifAmbulatorio(String rifAmbulatorio) {
+        this.rifAmbulatorio = rifAmbulatorio;
+    }  
     
 }

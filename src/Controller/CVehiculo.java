@@ -2,6 +2,7 @@
 package Controller;
 
 import Modelo.*;
+import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class CVehiculo {
     
     public void mostrarVehiculo(JLabel codigo, JLabel serial, JLabel tipo, JLabel disponible, JLabel labelMantenimiento, JLabel enMantenimiento,JTable personalActual){
         if (vehiculo instanceof Ambulancia)
-            tipo.setText("Ambulancia"+((Ambulancia) vehiculo).getTipo());
+            tipo.setText("Ambulancia"+" "+((Ambulancia) vehiculo).getTipo().toLowerCase());
         else if (vehiculo instanceof Compacto)
             tipo.setText("Vehiculo compacto");
         if (vehiculo.isDisponible()){
@@ -142,20 +143,31 @@ public class CVehiculo {
     public void asignarPersonal(JTable asignados){
         int num = asignados.getRowCount();
         Ambulatorio am = getAmbulatorio();
-        if ((vehiculo instanceof Compacto && num==2) || (vehiculo instanceof Ambulancia && num==3)){
+        if ((vehiculo instanceof Compacto && num<=2) || (vehiculo instanceof Ambulancia && num<=3)){
+            for (PersonalConVehiculo pers : vehiculo.getPersonalActual()) {
+                pers.setVehiculoActual(null);
+            }
             vehiculo.getPersonalActual().clear();
             for (int i = 0; i < num; i++) {
                 PersonalConVehiculo per = (PersonalConVehiculo) am.buscarPersonal(asignados.getModel().getValueAt(i, 2).toString());
-                if (!vehiculo.asignar_Al_Equipo(per)){
-                    vehiculo.getPersonalActual().clear();
-                    if (vehiculo instanceof Compacto)
+                if (vehiculo instanceof Compacto){
+                    if (!((Compacto) vehiculo).asignar_Al_Equipo(per)){
+                        vehiculo.getPersonalActual().clear();                       
                         JOptionPane.showMessageDialog(null, "Los vehiculos compactos deben tener un (1) conductor y un (1) paramedico", "Error", JOptionPane.ERROR_MESSAGE);
-                    else if (vehiculo instanceof Ambulancia)
+                        break;
+                    }
+                }else if (vehiculo instanceof Ambulancia){
+                    if (!((Ambulancia) vehiculo).asignar_Al_Equipo(per)){
+                        vehiculo.getPersonalActual().clear();
                         JOptionPane.showMessageDialog(null, "Las ambulancias deben tener un (1) conductor y dos (2) paramedicos", "Error", JOptionPane.ERROR_MESSAGE);
-                    break;
+                        break;
+                    }
                 }
             }
-        }         
+        }
+        for (PersonalConVehiculo pers : vehiculo.getPersonalActual()) {
+                pers.setVehiculoActual(vehiculo.getSerial());
+            }
     }
     
     public void mostrarInventario(JTable tabla){
@@ -207,9 +219,66 @@ public class CVehiculo {
         tabla.setDefaultEditor(Object.class, null);
     }
     
-    public void registrarManenimiento(Date entrada, Date salida, String taller, String descripcion){
-        Mantenimiento man = new Mantenimiento(taller,descripcion,entrada,salida);
-        vehiculo.registrarMantenimiento(man);
+    public void registrarManenimiento(Date entrada, Date salida, String taller, String descripcion, JComboBox estado){
+        if (vehiculo.isEnMantenimiento()){
+            if (salida==null){
+                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Mantenimiento man = vehiculo.getHistMantenimiento().get(vehiculo.getHistMantenimiento().size()-1);
+            man.setSalida(salida);
+            vehiculo.setEnMantenimiento(false);
+            vehiculo.setDisponible(true);
+        }else{
+            if (entrada==null || taller==null || descripcion==null){
+                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Mantenimiento man = new Mantenimiento(taller,descripcion,entrada);       
+            if (estado.getSelectedIndex()==1){
+                if (salida==null){
+                    JOptionPane.showMessageDialog(null, "Debe llenar todos los campos", "error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }   
+                man.setSalida(salida);
+                    vehiculo.registrarMantenimiento(man);
+            }else if (estado.getSelectedIndex()==0){
+                vehiculo.llevarMantenimiento(man);
+            }
+        }
+    }
+    
+    public boolean vehiculoDisponible(){
+        if (vehiculo.isDisponible())
+            return true;
+        else{
+            JOptionPane.showMessageDialog(null, "Este vehiculo no se encuentra disponible en este momento", "Vehiculo no disponible", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
     }
   
+    public void estadoMantenimiento(JComboBox estado, JDateChooser fechaSalida){
+        if (estado.getSelectedIndex()==0){
+            fechaSalida.setEnabled(false);
+            fechaSalida.setDate(null);
+        }else
+            fechaSalida.setEnabled(true);
+    }
+    
+    public void ventanaMantenimiento(JTextField txt1RifTaller,JTextField txt2RifTaller, JTextArea txtDescripcion, JDateChooser fechaEntrada, JComboBox cboEstado){
+        if (vehiculo.isEnMantenimiento()){
+            Mantenimiento man = vehiculo.getHistMantenimiento().get(vehiculo.getHistMantenimiento().size()-1);
+            txt1RifTaller.setEnabled(false);
+            txt1RifTaller.setText(man.getTaller().substring(2, 9));
+            txt2RifTaller.setEnabled(false);
+            txt2RifTaller.setText(man.getTaller().substring(11));
+            txtDescripcion.setEnabled(false);
+            txtDescripcion.setText(man.getDescripcion());
+            fechaEntrada.setEnabled(false);
+            fechaEntrada.setDate(man.getEntrada());
+            cboEstado.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Este vehiculo tiene un mantenimiento en progreso, registre la fecha de salida", "Manteniemiento en progreso", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
 }

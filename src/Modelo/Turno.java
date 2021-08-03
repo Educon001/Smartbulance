@@ -14,8 +14,10 @@ public class Turno {
         this.entrada = entrada;
         this.salida = salida;
     }
-    
-    
+
+    public Turno(Date entrada) {
+        this.entrada = entrada;
+    }
     
     public Date getEntrada() {
         return entrada;

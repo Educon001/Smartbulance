@@ -17,6 +17,12 @@ public class Mantenimiento extends Turno {
         this.descripcion = descripcion;
     }
 
+    public Mantenimiento(String taller, String descripcion, Date entrada) {
+        super(entrada);
+        this.taller = taller;
+        this.descripcion = descripcion;
+    }
+
     public String getTaller() {
         return taller;
     }

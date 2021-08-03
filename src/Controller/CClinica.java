@@ -143,4 +143,12 @@ public class CClinica {
     public void clinicaDisponible(JToggleButton disp){
         clinica.setDisponible(disp.isSelected());
     }
+    
+    public boolean tallerRegistrado(String RIF){
+        if (clinica.buscarTaller(RIF)!=null)
+            return true;
+        JOptionPane.showMessageDialog(null, "El taller que ingresó no se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+    
 }

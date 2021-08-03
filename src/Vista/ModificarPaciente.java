@@ -5,30 +5,42 @@
  */
 package Vista;
 
-import Controller.CRegistro;
-import Controller.CSistema;
-import Controller.CVentana;
-import Modelo.Paciente;
+import Modelo.*;
+import Controller.*;
 import java.time.ZoneId;
 import java.util.Date;
+import javax.swing.JButton;
+import javax.swing.JTable;
 
-/**
- *
- * @author familia
- */
 public class ModificarPaciente extends javax.swing.JFrame {
-    
     Paciente paciente;
+    CPaciente pac;
     CVentana controlVentana = new CVentana();
     CRegistro controlRegistro = new CRegistro();
     CSistema controlSistema;
     MenúPrincipal ventanaAnterior;
+    private JButton btnDetalles;
+    private JButton jBtnEliminar;
+    private JButton jbtnModificar;
+    private JTable jTablePacientes;
 
-    /**
-     * Creates new form ModificarPaciente
-     */
     public ModificarPaciente() {
         initComponents();
+    }
+    
+    public ModificarPaciente(MenúPrincipal ventanaAnterior,Paciente paciente,CSistema controlSistema,JButton btnDetalles,JButton jBtnEliminar,JButton jbtnModificar, JTable jTablePacientes) {
+        initComponents();
+        this.paciente = paciente;
+        this.ventanaAnterior = ventanaAnterior;
+        this.controlSistema=controlSistema;
+        this.btnDetalles=btnDetalles;
+        this.jBtnEliminar=jBtnEliminar;
+        this.jbtnModificar=jbtnModificar;
+        this.jTablePacientes=jTablePacientes;
+       
+        
+        controlVentana.iniciarVentana(this, "src/imagenes/logo(1).png");    
+        controlVentana.entradasModificar_Paciente(paciente, cboCI_Paciente,txtCedula, txtNombre, txtCorreo, txtTelf1, txtTelf2, DateFecha, boxGenero);
     }
 
     /**
@@ -40,221 +52,110 @@ public class ModificarPaciente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        DateFecha = new com.toedter.calendar.JDateChooser();
-        boxGenero = new javax.swing.JComboBox<>();
-        txtCedula = new javax.swing.JTextField();
+        panelMod = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        labelNombreEntidad = new javax.swing.JLabel();
+        labelTelfEntidad = new javax.swing.JLabel();
+        labelCiudadEntidad = new javax.swing.JLabel();
+        labelEstadoEntidad = new javax.swing.JLabel();
+        labelDirEntidad = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        jRadioCedula = new javax.swing.JRadioButton();
-        jRadioNombre = new javax.swing.JRadioButton();
-        jRadioCorreo = new javax.swing.JRadioButton();
-        jRadioTelefono = new javax.swing.JRadioButton();
-        jRadioFecha = new javax.swing.JRadioButton();
-        jRadioGenero = new javax.swing.JRadioButton();
-        botonSalir = new javax.swing.JButton();
-        botonReestablecer = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtTelf1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtTelf2 = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
+        boxGenero = new javax.swing.JComboBox<>();
         botonGuardarCambios = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        botonReestablecer = new javax.swing.JButton();
+        radioModNombre = new javax.swing.JRadioButton();
+        radioModTelf = new javax.swing.JRadioButton();
+        radioCedula = new javax.swing.JRadioButton();
+        radioModGenero = new javax.swing.JRadioButton();
+        radioModFecha = new javax.swing.JRadioButton();
+        botonSalir = new javax.swing.JButton();
+        labelCiudadEntidad1 = new javax.swing.JLabel();
+        txtCorreo = new javax.swing.JTextField();
+        radioModCorreo = new javax.swing.JRadioButton();
+        DateFecha = new com.toedter.calendar.JDateChooser();
+        cboCI_Paciente = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        panelMod.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel1.setText("Seleccione el dato a modificar");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Cedula : ");
+        labelNombreEntidad.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelNombreEntidad.setText("Nombre:");
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel3.setText("Nombre : ");
+        labelTelfEntidad.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelTelfEntidad.setText("Teléfono:");
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel4.setText("Telefono :");
+        labelCiudadEntidad.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelCiudadEntidad.setText("Cedula :");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Correo : ");
+        labelEstadoEntidad.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelEstadoEntidad.setText("Genero : ");
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel6.setText("Genero : ");
+        labelDirEntidad.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelDirEntidad.setText("Nacimiento :");
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Fecha de Nacimiento : ");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(14, 14, 14))))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-
-        boxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
-        boxGenero.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxGeneroActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("-");
+
+        txtTelf1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTelf1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelf1FocusLost(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("-");
+
+        txtTelf2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTelf2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelf2FocusLost(evt);
+            }
+        });
+        txtTelf2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelf2ActionPerformed(evt);
+            }
+        });
+
+        txtCedula.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCedulaFocusLost(evt);
+            }
+        });
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(DateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                    .addComponent(boxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCedula)
-                    .addComponent(txtNombre)
-                    .addComponent(txtCorreo)
-                    .addComponent(txtTelefono))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(DateFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(boxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8))
-        );
+        boxGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
 
-        jRadioCedula.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioCedulaMouseClicked(evt);
-            }
-        });
-        jRadioCedula.addActionListener(new java.awt.event.ActionListener() {
+        botonGuardarCambios.setBackground(new java.awt.Color(153, 204, 255));
+        botonGuardarCambios.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonGuardarCambios.setText("Guardar cambios");
+        botonGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioCedulaActionPerformed(evt);
-            }
-        });
-
-        jRadioNombre.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioNombreMouseClicked(evt);
-            }
-        });
-        jRadioNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioNombreActionPerformed(evt);
-            }
-        });
-
-        jRadioCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioCorreoMouseClicked(evt);
-            }
-        });
-        jRadioCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioCorreoActionPerformed(evt);
-            }
-        });
-
-        jRadioTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioTelefonoMouseClicked(evt);
-            }
-        });
-        jRadioTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioTelefonoActionPerformed(evt);
-            }
-        });
-
-        jRadioFecha.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioFechaMouseClicked(evt);
-            }
-        });
-        jRadioFecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioFechaActionPerformed(evt);
-            }
-        });
-
-        jRadioGenero.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioGeneroMouseClicked(evt);
-            }
-        });
-        jRadioGenero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioGeneroActionPerformed(evt);
-            }
-        });
-
-        botonSalir.setBackground(new java.awt.Color(255, 0, 0));
-        botonSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        botonSalir.setText("Salir");
-        botonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonSalirActionPerformed(evt);
+                botonGuardarCambiosActionPerformed(evt);
             }
         });
 
@@ -267,129 +168,338 @@ public class ModificarPaciente extends javax.swing.JFrame {
             }
         });
 
-        botonGuardarCambios.setBackground(new java.awt.Color(153, 204, 255));
-        botonGuardarCambios.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        botonGuardarCambios.setText("Guardar cambios");
-        botonGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
+        radioModNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioModNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioModNombreMouseClicked(evt);
+            }
+        });
+        radioModNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarCambiosActionPerformed(evt);
+                radioModNombreActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonSalir))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        radioModTelf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioModTelf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioModTelfMouseClicked(evt);
+            }
+        });
+        radioModTelf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioModTelfActionPerformed(evt);
+            }
+        });
+
+        radioCedula.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioCedulaMouseClicked(evt);
+            }
+        });
+        radioCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioCedulaActionPerformed(evt);
+            }
+        });
+
+        radioModGenero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioModGenero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioModGeneroMouseClicked(evt);
+            }
+        });
+
+        radioModFecha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioModFecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioModFechaMouseClicked(evt);
+            }
+        });
+
+        botonSalir.setBackground(new java.awt.Color(255, 0, 0));
+        botonSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
+
+        labelCiudadEntidad1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelCiudadEntidad1.setText("Correo :");
+
+        txtCorreo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoFocusLost(evt);
+            }
+        });
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
+
+        radioModCorreo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioModCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioModCorreoMouseClicked(evt);
+            }
+        });
+        radioModCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioModCorreoActionPerformed(evt);
+            }
+        });
+
+        cboCI_Paciente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cboCI_Paciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E" }));
+        cboCI_Paciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboCI_PacienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelModLayout = new javax.swing.GroupLayout(panelMod);
+        panelMod.setLayout(panelModLayout);
+        panelModLayout.setHorizontalGroup(
+            panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelModLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonReestablecer, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(botonGuardarCambios)
+                .addGap(48, 48, 48))
+            .addGroup(panelModLayout.createSequentialGroup()
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelModLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1)
+                                .addGroup(panelModLayout.createSequentialGroup()
+                                    .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelModLayout.createSequentialGroup()
+                                            .addGap(1, 1, 1)
+                                            .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(labelCiudadEntidad1)
+                                                .addGroup(panelModLayout.createSequentialGroup()
+                                                    .addComponent(labelNombreEntidad)
+                                                    .addGap(130, 130, 130)
+                                                    .addComponent(jLabel3))))
+                                        .addGroup(panelModLayout.createSequentialGroup()
+                                            .addComponent(labelEstadoEntidad)
+                                            .addGap(22, 22, 22)
+                                            .addComponent(boxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(radioModGenero)))
+                                    .addGap(239, 239, 239)))
+                            .addGroup(panelModLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(labelCiudadEntidad)
                                 .addGap(36, 36, 36)
-                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(botonReestablecer, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonGuardarCambios)))
+                                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelModLayout.createSequentialGroup()
+                                        .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioCedula))
+                                    .addGroup(panelModLayout.createSequentialGroup()
+                                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioModCorreo))
+                                    .addGroup(panelModLayout.createSequentialGroup()
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioModNombre))))))
+                    .addGroup(panelModLayout.createSequentialGroup()
+                        .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelModLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(labelTelfEntidad)
+                                .addGap(35, 35, 35))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelModLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(labelDirEntidad)
+                                .addGap(18, 18, 18)))
+                        .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelModLayout.createSequentialGroup()
+                                .addComponent(txtTelf1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTelf2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioModTelf))
+                            .addComponent(DateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jRadioCedula)
-                                            .addComponent(jRadioNombre, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addComponent(jRadioCorreo, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addComponent(jRadioTelefono, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addComponent(jRadioFecha, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jRadioGenero, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(0, 44, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(radioModFecha)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(botonSalir)
+                .addGap(25, 25, 25))
+        );
+        panelModLayout.setVerticalGroup(
+            panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelModLayout.createSequentialGroup()
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelModLayout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel1))
+                    .addGroup(panelModLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(botonSalir)))
                 .addGap(29, 29, 29)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jRadioCedula)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioNombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioCorreo)
-                                .addGap(24, 24, 24)
-                                .addComponent(jRadioTelefono)
-                                .addGap(12, 12, 12)
-                                .addComponent(jRadioFecha)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioGenero))
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonReestablecer, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                        .addComponent(botonGuardarCambios)))
-                .addContainerGap())
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(radioCedula)
+                    .addComponent(labelCiudadEntidad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelNombreEntidad))
+                    .addComponent(radioModNombre))
+                .addGap(20, 20, 20)
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(radioModCorreo)
+                    .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelCiudadEntidad1)
+                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioModTelf)
+                    .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelTelfEntidad)
+                        .addComponent(txtTelf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(txtTelf2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(radioModFecha, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(DateFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelDirEntidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioModGenero)
+                    .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelEstadoEntidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(boxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(72, 72, 72)
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonGuardarCambios)
+                    .addComponent(botonReestablecer, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30))
         );
 
-        getContentPane().add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 560, 360));
+        getContentPane().add(panelMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 390));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Wallpaper.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioCedulaActionPerformed
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        dispose();
+        ventanaAnterior.setVisible(true);
+    }//GEN-LAST:event_botonSalirActionPerformed
 
-    private void jRadioNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioNombreActionPerformed
+    private void radioModFechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioModFechaMouseClicked
+        if(radioModFecha.isSelected()){
+            DateFecha.setEnabled(true);
+            DateFecha.setDate(null);
+        }
+        else {
+            DateFecha.setEnabled(false);
+            ZoneId defaultZoneId = ZoneId.systemDefault();
 
-    private void jRadioCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioCorreoActionPerformed
+            DateFecha.setDate(Date.from(paciente.getNacimiento().atStartOfDay(defaultZoneId).toInstant()));
+        }
+    }//GEN-LAST:event_radioModFechaMouseClicked
 
-    private void jRadioTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioTelefonoActionPerformed
+    private void radioModGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioModGeneroMouseClicked
+        if(radioModGenero.isSelected()) {
+            
+            if (paciente.getGenero()=='M'){
+                boxGenero.setSelectedIndex(0);
+            }else if(paciente.getGenero()=='F'){
+                boxGenero.setSelectedIndex(1);
 
-    private void jRadioFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioFechaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioFechaActionPerformed
+            }
+            boxGenero.setEnabled(true);
+            
+        }else{
+                
+                if (paciente.getGenero()=='M'){
+                boxGenero.setSelectedIndex(0);
+            }else if(paciente.getGenero()=='F'){
+                boxGenero.setSelectedIndex(1);
 
-    private void jRadioGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioGeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioGeneroActionPerformed
+            }
+            boxGenero.setEnabled(false);
+        }
+    }//GEN-LAST:event_radioModGeneroMouseClicked
 
-    private void jRadioCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioCedulaMouseClicked
-        // TODO add your handling code here:
-        if(jRadioCedula.isSelected()){
+    private void radioCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioCedulaMouseClicked
+        if(radioCedula.isSelected()){
             txtCedula.setEnabled(true);
             txtCedula.setText(null);
+            cboCI_Paciente.setEnabled(true);
+            
+            if (paciente.getCedula().charAt(0)=='V'){
+                cboCI_Paciente.setSelectedIndex(0);
+            }else if(paciente.getCedula().charAt(0)=='E'){
+                cboCI_Paciente.setSelectedIndex(1);
+
+            }
+            
         }
         else{
             txtCedula.setEnabled(false);
             txtCedula.setText(paciente.getCedula());
-        }
-    }//GEN-LAST:event_jRadioCedulaMouseClicked
+            
+            if (paciente.getCedula().charAt(0)=='V'){
+                cboCI_Paciente.setSelectedIndex(0);
+            }else if(paciente.getCedula().charAt(0)=='E'){
+                cboCI_Paciente.setSelectedIndex(1);
 
-    private void jRadioNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioNombreMouseClicked
+            }
+            cboCI_Paciente.setEnabled(false);
+
+        }
+    }//GEN-LAST:event_radioCedulaMouseClicked
+
+    private void radioModTelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModTelfActionPerformed
         // TODO add your handling code here:
-        if(jRadioNombre.isSelected()){
+    }//GEN-LAST:event_radioModTelfActionPerformed
+
+    private void radioModTelfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioModTelfMouseClicked
+        if(radioModTelf.isSelected()){
+            txtTelf1.setEnabled(true);
+            txtTelf2.setEnabled(true);
+            txtTelf1.setText(null);
+            txtTelf2.setText(null);
+        }
+        else{
+            txtTelf1.setEnabled(false);
+            txtTelf2.setEnabled(false);
+            txtTelf1.setText(paciente.getTelefono().substring(0,4));
+            txtTelf2.setText(paciente.getTelefono().substring(5));
+        }
+    }//GEN-LAST:event_radioModTelfMouseClicked
+
+    private void radioModNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModNombreActionPerformed
+
+    }//GEN-LAST:event_radioModNombreActionPerformed
+
+    private void radioModNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioModNombreMouseClicked
+        if(radioModNombre.isSelected()){
             txtNombre.setEnabled(true);
             txtNombre.setText(null);
         }
@@ -397,99 +507,95 @@ public class ModificarPaciente extends javax.swing.JFrame {
             txtNombre.setEnabled(false);
             txtNombre.setText(paciente.getNombre());
         }
-    }//GEN-LAST:event_jRadioNombreMouseClicked
-
-    private void jRadioCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioCorreoMouseClicked
-        // TODO add your handling code here:
-        if(jRadioCorreo.isSelected()){
-            txtCorreo.setEnabled(true);
-            txtCorreo.setText(null);
-        }
-        else{
-            txtCorreo.setEnabled(false);
-            txtCorreo.setText(paciente.getCorreo());
-        }
-    }//GEN-LAST:event_jRadioCorreoMouseClicked
-
-    private void jRadioTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioTelefonoMouseClicked
-        // TODO add your handling code here:
-        if(jRadioTelefono.isSelected()){
-            txtTelefono.setEnabled(true);
-            txtTelefono.setText(null);
-        }
-        else{
-            txtTelefono.setEnabled(false);
-            txtTelefono.setText(paciente.getTelefono());
-        }
-    }//GEN-LAST:event_jRadioTelefonoMouseClicked
-
-    private void jRadioFechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioFechaMouseClicked
-        // TODO add your handling code here:
-        if(jRadioFecha.isSelected()){
-            DateFecha.setEnabled(true);
-            DateFecha.setDate(null);
-        }
-        else{
-            DateFecha.setEnabled(false);
-            ZoneId defaultZoneId = ZoneId.systemDefault();
-            DateFecha.setDate(Date.from(paciente.getNacimiento().atStartOfDay(defaultZoneId).toInstant()));
-            
-        }
-    }//GEN-LAST:event_jRadioFechaMouseClicked
-
-    private void boxGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxGeneroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boxGeneroActionPerformed
-
-    private void jRadioGeneroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioGeneroMouseClicked
-        // TODO add your handling code here:
-        if(jRadioGenero.isSelected()){
-            boxGenero.setEnabled(true);
-            boxGenero.setSelectedItem(null);
-        }
-        else{
-            boxGenero.setEnabled(false);            
-            boxGenero.setSelectedItem(paciente.getGenero());
-        }
-    }//GEN-LAST:event_jRadioGeneroMouseClicked
-
-    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
-        dispose();
-        ventanaAnterior.setVisible(true);
-    }//GEN-LAST:event_botonSalirActionPerformed
+    }//GEN-LAST:event_radioModNombreMouseClicked
 
     private void botonReestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReestablecerActionPerformed
-        controlVentana.entradasModificar_Paciente(paciente,txtCedula,txtNombre,txtCorreo,txtTelefono,DateFecha,boxGenero);
-        controlVentana.seleccionarBotonesRadio_Entidad(false,jRadioCedula,jRadioNombre,jRadioCorreo,jRadioTelefono,jRadioFecha,jRadioGenero);
+        controlRegistro.construirTelf(txtTelf1, txtTelf2);
+        controlVentana.entradasModificar_Paciente(paciente, cboCI_Paciente,txtCedula, txtNombre, txtCorreo, txtTelf1, txtTelf2, DateFecha, boxGenero);
+        controlVentana.seleccionarBotonesRadio_Paciente(false, radioCedula, radioCedula, radioCedula, radioCedula, radioCedula, radioCedula);
     }//GEN-LAST:event_botonReestablecerActionPerformed
 
     private void botonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarCambiosActionPerformed
-//        boolean validaciones = && controlRegistro.validarRIF(txt1RIFEntidad,1) && controlRegistro.validarTelf(txtTelf1Entidad,4) && controlRegistro.validarTelf(txtTelf2Entidad,7) && controlRegistro.validarNombre(txtCiudadEntidad);
-//        if(validaciones && controlRegistro.camposVaciosEntidad(txtNombreEntidad, txt8RIFEntidad, txt1RIFEntidad, txtTelf1Entidad, txtTelf2Entidad, txtDirEntidad, txtDirEntidad)==false){
-//            boolean modRIF=false,modTelf=false,continuar=true;
-//            String RIF = controlRegistro.construirRIF(txt8RIFEntidad, txt1RIFEntidad);
-//            String telf = controlRegistro.construirTelf(txtTelf1Entidad, txtTelf2Entidad);
-//            if(!RIF.equals(entidad.getRIF())) modRIF=true;
-//            if(!telf.equals(entidad.getTelefono())) modTelf=true;
-//
-//            if(modRIF==true && controlSistema.seEncuentraRegistrada_RIF(RIF,false)) continuar=false;
-//            if(modTelf==true && controlSistema.seEncuentraRegistrada_Telf(telf)) continuar=false;
-//
-//            if(continuar){
-//                if(controlRegistro.confirmar()){
-//                    dispose();
-//                    controlRegistro.actualizarEntidad(entidad,txtNombreEntidad,RIF,telf,txtCiudadEntidad,cboEstadoEntidad,txtDirEntidad);
-//                    if(entidad instanceof Clinica) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DeLaClinica(),ventanaAnterior.getLabelRIF_DeLaClinica(),ventanaAnterior.getLabelTelf_DeLaClinica(),ventanaAnterior.getLabelCiudad_DeLaClinca(),ventanaAnterior.getLabelEstado_DeLaClinica(),ventanaAnterior.getLabelDir_DeLaClinica());
-//                    if(entidad instanceof Ambulatorio) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DelAmbulatorio(),ventanaAnterior.getLabelRIF_DelAmbulatorio(),ventanaAnterior.getLabelTelf_DelAmbulatorio(),ventanaAnterior.getLabelCiudad_DelAmbulatorio(),ventanaAnterior.getLabelEstado_DelAmbulatorio(),ventanaAnterior.getLabelDir_DelAmbulatorio());
-//                    ventanaAnterior.setVisible(true);
-//                }
-//            }
-//        }
+        boolean validaciones = controlRegistro.validarTelf(txtTelf1,4) && controlRegistro.validarTelf(txtTelf2,7) && controlRegistro.validarCI(txtCedula.getText());
+        if(validaciones && controlRegistro.camposVaciosPaciente(txtCedula, txtNombre, txtCorreo, txtTelf1, txtTelf2, DateFecha, boxGenero)==false){
+            boolean modTelf=false,continuar=true;
+            String telf = controlRegistro.construirTelf(txtTelf1, txtTelf2);
+            if(!telf.equals(paciente.getTelefono())) modTelf=true;
+
+            if(modTelf==true && controlSistema.seEncuentraRegistrada_Telf(telf)) continuar=false;
+
+            if(continuar){
+                if(controlRegistro.confirmar()){
+                    dispose();
+                    
+                    String cedula = controlRegistro.construirCedula(cboCI_Paciente, txtCedula);
+                    
+                    controlRegistro.actualizarPaciente(paciente, cedula, txtNombre, txtCorreo, telf, DateFecha, boxGenero);
+                    ventanaAnterior.pac.mostrarPacientes(jTablePacientes, controlSistema.getListaPacientes(),btnDetalles,jBtnEliminar,jbtnModificar);
+                    ventanaAnterior.setVisible(true);
+                }
+            }
+        }
     }//GEN-LAST:event_botonGuardarCambiosActionPerformed
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
+        if(!controlRegistro.validarCI(txtCedula.getText())) txtCedula.setText(null);
+    }//GEN-LAST:event_txtCedulaFocusLost
+
+    private void txtTelf2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelf2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelf2ActionPerformed
+
+    private void txtTelf2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelf2FocusLost
+        if(!controlRegistro.validarTelf(txtTelf2,7)) txtTelf2.setText(null);
+    }//GEN-LAST:event_txtTelf2FocusLost
+
+    private void txtTelf1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelf1FocusLost
+        if(!controlRegistro.validarTelf(txtTelf1,4)) txtTelf1.setText(null);
+    }//GEN-LAST:event_txtTelf1FocusLost
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoFocusLost
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void radioModCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioModCorreoMouseClicked
+        // TODO add your handling code here:
+        if(radioModCorreo.isSelected()){
+            
+            txtCorreo.setEnabled(true);
+            txtCorreo.setText(null);
+            
+        }else{
+            
+            txtCorreo.setEnabled(false);
+            txtCorreo.setText(paciente.getCorreo());
+         
+        }
+    }//GEN-LAST:event_radioModCorreoMouseClicked
+
+    private void radioModCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioModCorreoActionPerformed
+
+    private void radioCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioCedulaActionPerformed
+
+    private void cboCI_PacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCI_PacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCI_PacienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -517,6 +623,9 @@ public class ModificarPaciente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ModificarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -525,32 +634,36 @@ public class ModificarPaciente extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DateFecha;
     private javax.swing.JButton botonGuardarCambios;
     private javax.swing.JButton botonReestablecer;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> boxGenero;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<String> cboCI_Paciente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JRadioButton jRadioCedula;
-    private javax.swing.JRadioButton jRadioCorreo;
-    private javax.swing.JRadioButton jRadioFecha;
-    private javax.swing.JRadioButton jRadioGenero;
-    private javax.swing.JRadioButton jRadioNombre;
-    private javax.swing.JRadioButton jRadioTelefono;
+    private javax.swing.JLabel labelCiudadEntidad;
+    private javax.swing.JLabel labelCiudadEntidad1;
+    private javax.swing.JLabel labelDirEntidad;
+    private javax.swing.JLabel labelEstadoEntidad;
+    private javax.swing.JLabel labelNombreEntidad;
+    private javax.swing.JLabel labelTelfEntidad;
+    private javax.swing.JPanel panelMod;
+    private javax.swing.JRadioButton radioCedula;
+    private javax.swing.JRadioButton radioModCorreo;
+    private javax.swing.JRadioButton radioModFecha;
+    private javax.swing.JRadioButton radioModGenero;
+    private javax.swing.JRadioButton radioModNombre;
+    private javax.swing.JRadioButton radioModTelf;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtTelf1;
+    private javax.swing.JTextField txtTelf2;
     // End of variables declaration//GEN-END:variables
 }

@@ -58,7 +58,6 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
         jTelefono = new javax.swing.JLabel();
         jNacimiento = new javax.swing.JLabel();
         jGenero = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         panelModificar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -133,14 +132,6 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
         );
 
         jPanel3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 6, -1, -1));
-
-        jButton1.setText("Modificar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 90, -1));
 
         panelModificar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -219,14 +210,6 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
         ventanaAnterior.setVisible(true);
     }//GEN-LAST:event_botonSalir6ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    try{
-            ModificarPaciente modifi =new ModificarPaciente();
-            setVisible(false);
-            modifi.setVisible(true);
-        }catch(Exception ex){}    // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -265,7 +248,6 @@ public class MostrarDetallesPaciente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir6;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jCedula;
     private javax.swing.JLabel jCorreo;
     private javax.swing.JLabel jGenero;

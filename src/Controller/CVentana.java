@@ -54,6 +54,15 @@ public class CVentana {
         boton6.setSelected(seleccionar);
     }
     
+    public void seleccionarBotonesRadio_Paciente(boolean seleccionar,JRadioButton boton1,JRadioButton boton2,JRadioButton boton3,JRadioButton boton4,JRadioButton boton5,JRadioButton boton6){
+        boton1.setSelected(seleccionar);
+        boton2.setSelected(seleccionar);
+        boton3.setSelected(seleccionar);
+        boton4.setSelected(seleccionar);
+        boton5.setSelected(seleccionar);
+        boton6.setSelected(seleccionar);
+    }    
+    
     public void pestClinica(JButton boton1,JButton boton2,JButton boton3,JTextArea txtArea){
         boton1.setEnabled(false);
         boton2.setEnabled(false);
@@ -78,19 +87,32 @@ public class CVentana {
         }
     }
     
-      public void entradasModificar_Paciente(Paciente paciente,JTextField txtCedula, JTextField txtNombre,JTextField txtCorreo,JTextField txtTelefono,JDateChooser DateFecha,JComboBox boxGenero){
-        txtCedula.setText(paciente.getCedula());
+      public void entradasModificar_Paciente(Paciente paciente,JComboBox nacionalidad,JTextField txtCedula, JTextField txtNombre,JTextField txtCorreo,JTextField txtTelf1,JTextField txtTelf2,JDateChooser DateFecha,JComboBox boxGenero){
+        if (paciente.getCedula().charAt(0)=='V'){
+          nacionalidad.setSelectedIndex(0);
+        }else if (paciente.getCedula().charAt(0)=='V'){
+          nacionalidad.setSelectedIndex(1);  
+        }        
+        txtCedula.setText(paciente.getCedula().substring(2));
         txtNombre.setText(paciente.getNombre());
         txtCorreo.setText(paciente.getCorreo());   
-        txtTelefono.setText(paciente.getTelefono()); 
+        txtTelf1.setText(paciente.getTelefono().substring(0,4));
+        txtTelf2.setText(paciente.getTelefono().substring(5));
         ZoneId defaultZoneId = ZoneId.systemDefault();
         DateFecha.setDate(Date.from(paciente.getNacimiento().atStartOfDay(defaultZoneId).toInstant()));    
-        boxGenero.setSelectedItem(paciente.getGenero());
+        if (paciente.getGenero()=='M'){
+            boxGenero.setSelectedIndex(0);         
+        }else if (paciente.getGenero()=='F'){
+            boxGenero.setSelectedIndex(0);           
+        }
+        nacionalidad.setEnabled(false);
         txtCedula.setEnabled(false);
         txtNombre.setEnabled(false);
         txtCorreo.setEnabled(false);  
-        txtTelefono.setEnabled(false);
+        txtTelf1.setEnabled(false);
+        txtTelf2.setEnabled(false);
         DateFecha.setEnabled(false);   
         boxGenero.setEnabled(false);      
     }
+      
 }

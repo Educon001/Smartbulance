@@ -4,7 +4,7 @@ package Modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.Calendar;
 
 
 public class Paciente extends Persona{
@@ -38,6 +38,30 @@ public class Paciente extends Persona{
         
     }
     
-    //public boolean alDia(){ Hay que hacer este método
+    //Verifica si el último pago se realizó hace más de un mes
+    public boolean alDia(){
+        Date fechaActual = new Date();
+        long difMili = fechaActual.getTime()-pagos.get(pagos.size()-1).getFecha().getTime();
+        long difDias = (difMili/ (1000 * 60 * 60 * 24))% 365;
+        if(difDias>31) return false;
+        return true;
+    }
+    
+    //Verifica si el paciente tiene una emergencia abierta
+    public boolean emergenciaAbierta(){
+        if((super.entradaSalida.get(entradaSalida.size()-1)).getSalida()==null)
+            return true;
+        return false;
+    }
        
+    public Emergencia retornarEmergencia(int codigo){
+        for(Turno emg : super.entradaSalida){
+            if(emg instanceof Emergencia){
+                if(((Emergencia) emg).getCodigo()==codigo)
+                    return (Emergencia) emg;
+            }                      
+        }
+        return null;
+    }
+    
 }

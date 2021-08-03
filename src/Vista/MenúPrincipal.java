@@ -2724,7 +2724,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addComponent(jBtnEliminar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -3895,9 +3895,18 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private void pestRegEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pestRegEmerMouseClicked
         if(pestRegEmer.getSelectedIndex()==1){
             if(cRegistro.camposVaciosEmergencia_Paciente(txtCI_Emergencia,jTextArea1))pestRegEmer.setSelectedIndex(0);
-            //FALTA CONFIRMAR SI SE ENCUENTRA EL PACIENTE O SI ESTE ESTÁ AL DÍA
 //            else if(controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia))==null){
 //                controlEmergencia.pacienteNoEncontrado();
+//                pestRegEmer.setSelectedIndex(0);
+//            }
+//            //FALTA PROBAR
+//            else if(!controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia)).alDia()){
+//                controlEmergencia.pacienteNoAlDia();
+//                pestRegEmer.setSelectedIndex(0);
+//            }
+//            //FALTA PROBAR
+//            else if(controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia)).emergenciaAbierta()){
+//                controlEmergencia.pacienteConEmergenciaAbierta();
 //                pestRegEmer.setSelectedIndex(0);
 //            }
             else{

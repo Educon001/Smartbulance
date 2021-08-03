@@ -7,9 +7,12 @@ package Controller;
 
 import Modelo.Paciente;
 import Modelo.Pago;
+import com.toedter.calendar.JDateChooser;
+import java.time.ZoneId;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JButton;
@@ -33,35 +36,25 @@ public class CPaciente {
 
     
     
-    public void mostrarPacientes(JTable tabla,ArrayList<Paciente> listaPacientes, JButton Detalles,JButton eliminar){
-        
-        
-        
-
-      
+    public void mostrarPacientes(JTable tabla,ArrayList<Paciente> listaPacientes, JButton Detalles,JButton eliminar,JButton Modificar){
         String[] titulos = {"Cedula","Nombre","Correo","Telefono","Fecha De Nacimiento","Genero"};
         String[][] datos = new String[listaPacientes.size()][6];
-        
         for (int i = 0; i < listaPacientes.size(); i++) {
             datos[i][0]=listaPacientes.get(i).getCedula();
             datos[i][1]=listaPacientes.get(i).getNombre();
             datos[i][2]=listaPacientes.get(i).getCorreo();
             datos[i][3]=listaPacientes.get(i).getTelefono();
             datos[i][4]=listaPacientes.get(i).getNacimiento().toString();
-            datos[i][5]=String.valueOf(listaPacientes.get(i).getGenero());
-            
+            datos[i][5]=String.valueOf(listaPacientes.get(i).getGenero());           
         }
-        
-        
         TableModel model = new DefaultTableModel(datos,titulos);
         tabla.setModel(model);
         tabla.setDefaultEditor(Object.class, null);
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.addMouseListener(new EventoMouse(Detalles));
         tabla.addMouseListener(new EventoMouse(eliminar));
-
-        
-    }
+        tabla.addMouseListener(new EventoMouse(Modificar));       
+    }   
     
     public boolean validarCedula(JTextField txtCedula){
         String cedula = txtCedula.getText();
@@ -86,62 +79,44 @@ public class CPaciente {
         
     
     
-    
+  
    
     
     
     public void mostrarPagos(JTable tabla,ArrayList<Pago> listaPagos){
-        
-        
-        
-
-      
         String[] titulos = {"Factura","Fecha","Monto"};
-        String[][] datos = new String[listaPagos.size()][3];
-        
+        String[][] datos = new String[listaPagos.size()][3];       
         for (int i = 0; i < listaPagos.size(); i++) {
             datos[i][0]=String.valueOf(listaPagos.get(i).getFactura());
             datos[i][1]=String.valueOf(listaPagos.get(i).getFecha());
-            datos[i][2]=String.valueOf(listaPagos.get(i).getMonto());
-            
-            
-        }
-        
-        
+            datos[i][2]=String.valueOf(listaPagos.get(i).getMonto());     
+        }    
         TableModel model = new DefaultTableModel(datos,titulos);
         tabla.setModel(model);
         tabla.setDefaultEditor(Object.class, null);
-        tabla.getTableHeader().setReorderingAllowed(false);
-        
-       
-
-        
-        
-        
-        
-        
-        
+        tabla.getTableHeader().setReorderingAllowed(false);      
     }
     
 
     
-    public void mostrarDetalles(Paciente paciente,JLabel jCedula,JLabel jNombre,JLabel jCorreo,JLabel jTelefono,JLabel jNacimiento, JLabel jGenero){
-       
+    public void mostrarDetalles(Paciente paciente,JLabel jCedula,JLabel jNombre,JLabel jCorreo,JLabel jTelefono,JLabel jNacimiento, JLabel jGenero){      
         jCedula.setText(paciente.getCedula());
         jNombre.setText(paciente.getNombre());
         jCorreo.setText(paciente.getCorreo());
         jTelefono.setText(paciente.getTelefono());
         String Fecha = paciente.getNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
-
         jNacimiento.setText(Fecha);
-        jGenero.setText(String.valueOf(paciente.getGenero()));
-        
-        
-        
-   
+        jGenero.setText(String.valueOf(paciente.getGenero())); 
+    }
+    
+    public void detallesModificables(Paciente paciente,JTextField jCedula,JTextField jNombre,JTextField jCorreo,JTextField jTelefono,JDateChooser jNacimiento, JTextField jGenero){  
+        jCedula.setText(paciente.getCedula());
+        jNombre.setText(paciente.getNombre());
+        jCorreo.setText(paciente.getCorreo());
+        jTelefono.setText(paciente.getTelefono());       
     }
      
-     public Paciente obtenerPacienteSeleccionado(CSistema sis,JTable tabla){
+    public Paciente obtenerPacienteSeleccionado(CSistema sis,JTable tabla){
         int indice = tabla.getSelectedRow();   
         String cod = tabla.getModel().getValueAt(indice,0).toString();
         Paciente paciente;
@@ -149,8 +124,7 @@ public class CPaciente {
         return paciente;
     }
    
-    public void eliminarPaciente(CSistema sis,JTable tabla){
-        
+    public void eliminarPaciente(CSistema sis,JTable tabla){        
         int indice = tabla.getSelectedRow();   
         String cod = tabla.getModel().getValueAt(indice,0).toString();
         Paciente paciente;

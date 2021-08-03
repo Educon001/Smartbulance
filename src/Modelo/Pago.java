@@ -8,8 +8,14 @@ public class Pago {
     private long factura;
     private Date fecha;
     private double monto;
+    
+    public Pago() {     
+    }
 
-    public Pago() {
+    public Pago(long factura,Date fecha,double monto) {
+        this.factura=factura;
+        this.fecha=fecha;
+        this.monto=monto;
     }
 
     public long getFactura() {

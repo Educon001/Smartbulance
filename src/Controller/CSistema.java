@@ -79,6 +79,19 @@ public class CSistema {
         return null; 
     }
     
+    public long generarFactura(){
+        long mayor;
+        mayor = 0;        
+        for (Paciente pac : listaPacientes){
+            for (Pago pag : pac.getPagos()){
+              if (pag.getFactura()>mayor){
+                mayor=pag.getFactura();               
+            }
+          }          
+        }
+     return 1+mayor;
+    }
+    
     public Emergencia buscarEmergencia(int cod){
         for (Emergencia em : listaEmergencias) {
             if (em.getCodigo()==cod)

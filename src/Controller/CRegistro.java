@@ -19,8 +19,7 @@ public class CRegistro {
     public CRegistro(CSistema controlSistema) {
         this.controlSistema = controlSistema;
     }
-    
-    
+       
     public boolean validarSerial(String serial){
         Pattern pat = Pattern.compile("[A-Z0-9]{17}",Pattern.CASE_INSENSITIVE);
         Matcher mat = pat.matcher(serial);
@@ -127,7 +126,7 @@ public class CRegistro {
             JOptionPane.showMessageDialog(null,"Fomato de dato no es numérico.","Error", JOptionPane.ERROR_MESSAGE);
         }
         return false;
-    }
+    }   
     
     public boolean validarSalario (String salario){
         try{
@@ -186,6 +185,14 @@ public class CRegistro {
         JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);
         return true;
     }
+    
+     public boolean camposVaciosPagos(JTextField txtCedula,JTextField txtMonto,JDateChooser fecha ){
+        if(!txtCedula.getText().isEmpty() && !txtMonto.getText().isEmpty() && fecha.getDate()!=null){
+            return false;                     
+        }
+        JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);
+        return true;
+    }    
     
     public boolean camposVaciosEmergencia_Paciente(JTextField txt1, JTextArea txt2){
         if(txt1.getText().isEmpty() || txt2.getText().isEmpty()){
@@ -292,12 +299,19 @@ public class CRegistro {
         return false;
     }
     
-    public void actualizarPaciente(Paciente paciente,JTextField txtCedula,JTextField txtNombre,JTextField txtCorreo,String telf,JDateChooser DateFecha,JComboBox boxGenero){
-        paciente.setCedula(txtCedula.getText());
+    public void actualizarPaciente(Paciente paciente,String txtCedula,JTextField txtNombre,JTextField txtCorreo,String telf,JDateChooser DateFecha,JComboBox boxGenero){
+        paciente.setCedula(txtCedula);
         paciente.setNombre(txtNombre.getText());
         paciente.setCorreo(txtCorreo.getText());
         paciente.setTelefono(telf);
-        paciente.setNacimiento(DateFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        paciente.setGenero((char) boxGenero.getSelectedItem());       
+        paciente.setNacimiento(DateFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());       
+        char genero;
+        if(boxGenero.getSelectedIndex()==0){
+            genero= 'M';
+        }else{
+            genero= 'F';   
+        }       
+        paciente.setGenero(genero);       
     }
+    
 }

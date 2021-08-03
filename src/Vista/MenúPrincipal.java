@@ -2213,6 +2213,12 @@ public class MenúPrincipal extends javax.swing.JFrame{
         });
         panelAmbulancias.add(bhAmbulancias, new org.netbeans.lib.awtextra.AbsoluteConstraints(781, 20, 70, 60));
 
+        jTabbedPane3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane3MouseClicked(evt);
+            }
+        });
+
         panelInformacionVeh.setBackground(new java.awt.Color(255, 255, 255));
         panelInformacionVeh.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -3824,6 +3830,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
 
     private void btnRegistrarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsignacionActionPerformed
         controlVehiculo.asignarPersonal(tablaAsignados);
+        controlVehiculo.tablasAsignarPersonal(tablaAsignados, tablaPersonalConVeh, btnAgregarPer, btnEliminarPer);
+        controlVehiculo.mostrarVehiculo(codigoVeh, serialVeh, tipoVeh, DisponibleVeh, labelEnMantenimiento, enMantenimiento, tablaPersonalAct);
     }//GEN-LAST:event_btnRegistrarAsignacionActionPerformed
 
     private void tablaInventarioVehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInventarioVehMouseClicked
@@ -3835,7 +3843,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_tablaMantenimientosVehMouseClicked
 
     private void btnRegistrarMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMantenimientoActionPerformed
-        PantallaRegistrarMantenimiento nuevaVentana = new PantallaRegistrarMantenimiento(controlVehiculo, this);
+        PantallaRegistrarMantenimiento nuevaVentana = new PantallaRegistrarMantenimiento(controlVehiculo, controlClinica, this);
         setVisible(false);
         nuevaVentana.setVisible(true);
     }//GEN-LAST:event_btnRegistrarMantenimientoActionPerformed
@@ -4058,6 +4066,12 @@ public class MenúPrincipal extends javax.swing.JFrame{
             JOptionPane.showMessageDialog(null, "Debe seleccionar un objeto", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBtnEliminarActionPerformed
+
+    private void jTabbedPane3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane3MouseClicked
+        if (jTabbedPane3.getSelectedIndex()==1)
+            if (!controlVehiculo.vehiculoDisponible())
+                jTabbedPane3.setSelectedIndex(0);
+    }//GEN-LAST:event_jTabbedPane3MouseClicked
 
     /**
      * @param args the command line arguments

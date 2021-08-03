@@ -5,22 +5,26 @@ import Controller.*;
 import Modelo.*;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
     CVehiculo con;
     MenúPrincipal ventanaAnterior;
     CVentana controlVentana = new CVentana(this);
     CRegistro conR = new CRegistro();
+    CClinica conCli;
     
     public PantallaRegistrarMantenimiento() {
         initComponents();
     }
     
-    public PantallaRegistrarMantenimiento(CVehiculo con,MenúPrincipal ventanaAnterior) {
+    public PantallaRegistrarMantenimiento(CVehiculo con,CClinica conCli,MenúPrincipal ventanaAnterior) {
         initComponents();
         this.con = con;
+        this.conCli = conCli;
         this.ventanaAnterior = ventanaAnterior;
         controlVentana.iniciarVentana(this,"src/imagenes/logo(1).png");
+        con.ventanaMantenimiento(txt1RifTaller,txt2RifTaller,txtDescripcion,fechaEntrada,cboEstado);
     }
 
     /**
@@ -41,21 +45,23 @@ public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
         labelDescripcion = new javax.swing.JLabel();
         fechaEntrada = new com.toedter.calendar.JDateChooser();
         fechaSalida = new com.toedter.calendar.JDateChooser();
-        txtTaller = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         btnRegistrarM = new javax.swing.JButton();
+        txt1RifTaller = new javax.swing.JTextField();
+        txt2RifTaller = new javax.swing.JTextField();
+        labelTaller1 = new javax.swing.JLabel();
+        cboEstado = new javax.swing.JComboBox<>();
+        labelEntrada1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelMovimientos.setBackground(new java.awt.Color(255, 255, 255));
-        panelMovimientos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Datos del mantenimiento");
-        panelMovimientos.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 320, 50));
 
         botonSalir.setBackground(new java.awt.Color(255, 0, 0));
         botonSalir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -65,42 +71,22 @@ public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
                 botonSalirActionPerformed(evt);
             }
         });
-        panelMovimientos.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 120, 50));
 
         labelSalida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelSalida.setText("Salida:");
-        panelMovimientos.add(labelSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, 20));
 
         labelEntrada.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelEntrada.setText("Entrada:");
-        panelMovimientos.add(labelEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, 20));
 
         labelTaller.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        labelTaller.setText("Taller (RIF):");
-        panelMovimientos.add(labelTaller, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, 20));
+        labelTaller.setText("-");
 
         labelDescripcion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelDescripcion.setText("Descripcion:");
-        panelMovimientos.add(labelDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, 20));
-        panelMovimientos.add(fechaEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 200, -1));
-        JTextFieldDateEditor editor1 = (JTextFieldDateEditor) fechaEntrada.getDateEditor();
-        editor1.setEditable(false);
-        panelMovimientos.add(fechaSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 200, 30));
-        JTextFieldDateEditor editor2 = (JTextFieldDateEditor) fechaSalida.getDateEditor();
-        editor2.setEditable(false);
-
-        txtTaller.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtTallerFocusLost(evt);
-            }
-        });
-        panelMovimientos.add(txtTaller, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 230, 30));
 
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
         jScrollPane1.setViewportView(txtDescripcion);
-
-        panelMovimientos.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 290, 100));
 
         btnRegistrarM.setBackground(new java.awt.Color(0, 102, 255));
         btnRegistrarM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -110,7 +96,119 @@ public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
                 btnRegistrarMActionPerformed(evt);
             }
         });
-        panelMovimientos.add(btnRegistrarM, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, 150, 40));
+
+        txt1RifTaller.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt1RifTaller.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt1RifTallerFocusLost(evt);
+            }
+        });
+
+        txt2RifTaller.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txt2RifTaller.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt2RifTallerFocusLost(evt);
+            }
+        });
+
+        labelTaller1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelTaller1.setText("Taller (RIF): J -");
+
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "En progreso", "Finalizado" }));
+        cboEstado.setSelectedIndex(1);
+        cboEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEstadoActionPerformed(evt);
+            }
+        });
+
+        labelEntrada1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelEntrada1.setText("Estado:");
+
+        javax.swing.GroupLayout panelMovimientosLayout = new javax.swing.GroupLayout(panelMovimientos);
+        panelMovimientos.setLayout(panelMovimientosLayout);
+        panelMovimientosLayout.setHorizontalGroup(
+            panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMovimientosLayout.createSequentialGroup()
+                .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMovimientosLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(190, 190, 190)
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelMovimientosLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(labelDescripcion)
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelMovimientosLayout.createSequentialGroup()
+                        .addGap(560, 560, 560)
+                        .addComponent(btnRegistrarM, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelMovimientosLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelMovimientosLayout.createSequentialGroup()
+                                .addComponent(labelTaller1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt1RifTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt2RifTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelMovimientosLayout.createSequentialGroup()
+                                .addComponent(labelSalida)
+                                .addGap(18, 18, 18)
+                                .addComponent(fechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelMovimientosLayout.createSequentialGroup()
+                                .addComponent(labelEntrada)
+                                .addGap(18, 18, 18)
+                                .addComponent(fechaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelMovimientosLayout.createSequentialGroup()
+                                .addComponent(labelEntrada1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        panelMovimientosLayout.setVerticalGroup(
+            panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMovimientosLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelMovimientosLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEntrada1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelTaller1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt1RifTaller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt2RifTaller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelTaller, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
+                .addGroup(panelMovimientosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnRegistrarM, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        JTextFieldDateEditor editor1 = (JTextFieldDateEditor) fechaEntrada.getDateEditor();
+        editor1.setEditable(false);
+        JTextFieldDateEditor editor2 = (JTextFieldDateEditor) fechaSalida.getDateEditor();
+        editor2.setEditable(false);
 
         getContentPane().add(panelMovimientos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 740, 480));
 
@@ -126,14 +224,23 @@ public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void btnRegistrarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMActionPerformed
-        con.registrarManenimiento(fechaEntrada.getDate(), fechaSalida.getDate(), txtTaller.getText(), txtDescripcion.getText());
+        if (conCli.tallerRegistrado(conR.construirRIF(txt1RifTaller, txt2RifTaller)))
+            con.registrarManenimiento(fechaEntrada.getDate(), fechaSalida.getDate(), conR.construirRIF(txt1RifTaller, txt2RifTaller), txtDescripcion.getText(),cboEstado);
     }//GEN-LAST:event_btnRegistrarMActionPerformed
 
-    private void txtTallerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTallerFocusLost
-        if (!conR.formatoRIFCompleto(txtTaller.getText())){
-            txtTaller.setText(null);
-        }
-    }//GEN-LAST:event_txtTallerFocusLost
+    private void txt1RifTallerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt1RifTallerFocusLost
+        // TODO add your handling code here:
+        if(conR.validarRIF(txt1RifTaller,8)==false) txt1RifTaller.setText(null);
+    }//GEN-LAST:event_txt1RifTallerFocusLost
+
+    private void txt2RifTallerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt2RifTallerFocusLost
+        // TODO add your handling code here:
+        if(conR.validarRIF(txt2RifTaller,1)==false) txt2RifTaller.setText(null);
+    }//GEN-LAST:event_txt2RifTallerFocusLost
+
+    private void cboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoActionPerformed
+        con.estadoMantenimiento(cboEstado,fechaSalida);
+    }//GEN-LAST:event_cboEstadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,6 +281,7 @@ public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton btnRegistrarM;
+    private javax.swing.JComboBox<String> cboEstado;
     private com.toedter.calendar.JDateChooser fechaEntrada;
     private com.toedter.calendar.JDateChooser fechaSalida;
     private javax.swing.JLabel jLabel1;
@@ -181,10 +289,13 @@ public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelDescripcion;
     private javax.swing.JLabel labelEntrada;
+    private javax.swing.JLabel labelEntrada1;
     private javax.swing.JLabel labelSalida;
     private javax.swing.JLabel labelTaller;
+    private javax.swing.JLabel labelTaller1;
     private javax.swing.JPanel panelMovimientos;
+    private javax.swing.JTextField txt1RifTaller;
+    private javax.swing.JTextField txt2RifTaller;
     private javax.swing.JTextArea txtDescripcion;
-    private javax.swing.JTextField txtTaller;
     // End of variables declaration//GEN-END:variables
 }

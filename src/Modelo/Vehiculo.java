@@ -122,6 +122,7 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
         if(per instanceof Conductor){
             if(poseeConductor()==false){
                 personalActual.add(per);
+                per.setVehiculoActual(serial);
                 return true;
             }
         }

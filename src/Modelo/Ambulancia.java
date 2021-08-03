@@ -27,7 +27,8 @@ public class Ambulancia extends Vehiculo {
     //OTROS MÉTODOS
     @Override
     public boolean asignar_Al_Equipo(PersonalConVehiculo per) {
-        super.asignar_Al_Equipo(per);
+        if (super.asignar_Al_Equipo(per))
+            return true;
         if(per instanceof Paramedico){
             if(contarParamedicos()<2){
                 personalActual.add(per);

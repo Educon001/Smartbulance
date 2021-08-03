@@ -10,9 +10,10 @@ public class Compacto extends Vehiculo{ //NOTA: FALTAN LOS METODOS PARA LLEVAR A
         super(serial,enMantenimiento,disponible);
     }
 
-    //SE PONDRÁN LOS GETTERS Y SETTERS AL ESTAR LISTAS LAS DEMÁS CLASES
+    @Override
     public boolean asignar_Al_Equipo(PersonalConVehiculo per) {
-        super.asignar_Al_Equipo(per);
+        if (super.asignar_Al_Equipo(per))
+            return true;
         if(per instanceof Paramedico){
             if(contarParamedicos()==0){
                 personalActual.add(per);

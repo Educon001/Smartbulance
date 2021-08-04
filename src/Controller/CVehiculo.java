@@ -146,6 +146,8 @@ public class CVehiculo {
         if ((vehiculo instanceof Compacto && num<=2) || (vehiculo instanceof Ambulancia && num<=3)){
             for (PersonalConVehiculo pers : vehiculo.getPersonalActual()) {
                 pers.setVehiculoActual(null);
+                if (pers instanceof Paramedico)
+                    ((Paramedico) pers).setAsignadoDRS(false);
             }
             vehiculo.getPersonalActual().clear();
             for (int i = 0; i < num; i++) {
@@ -168,6 +170,7 @@ public class CVehiculo {
         for (PersonalConVehiculo pers : vehiculo.getPersonalActual()) {
                 pers.setVehiculoActual(vehiculo.getSerial());
             }
+        vehiculo.asignarDRS();
     }
     
     public void mostrarInventario(JTable tabla){

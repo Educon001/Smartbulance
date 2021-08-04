@@ -127,6 +127,21 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
             }
         }
         return false;
-    }   
+    }
+    
+    public void asignarDRS(){
+        Paramedico para = null;
+        for (PersonalConVehiculo per : personalActual) {
+            if (per instanceof Paramedico){
+                if (para == null)
+                    para = (Paramedico) per;
+                else
+                    if (per.getNacimiento().isBefore(para.getNacimiento()))
+                        para=(Paramedico) per;
+            }
+        }
+        if (para!=null)
+            para.setAsignadoDRS(true);
+    }
     
 }

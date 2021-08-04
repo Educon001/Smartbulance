@@ -55,7 +55,7 @@ public class CPaciente {
         tabla.addMouseListener(new EventoMouse(eliminar));
         tabla.addMouseListener(new EventoMouse(Modificar));       
     }   
-    
+ 
     public boolean validarCedula(JTextField txtCedula){
         String cedula = txtCedula.getText();
         int cant;
@@ -81,7 +81,7 @@ public class CPaciente {
     
   
    
-    
+   
     
     public void mostrarPagos(JTable tabla,ArrayList<Pago> listaPagos){
         String[] titulos = {"Factura","Fecha","Monto"};
@@ -96,9 +96,7 @@ public class CPaciente {
         tabla.setDefaultEditor(Object.class, null);
         tabla.getTableHeader().setReorderingAllowed(false);      
     }
-    
-
-    
+ 
     public void mostrarDetalles(Paciente paciente,JLabel jCedula,JLabel jNombre,JLabel jCorreo,JLabel jTelefono,JLabel jNacimiento, JLabel jGenero){      
         jCedula.setText(paciente.getCedula());
         jNombre.setText(paciente.getNombre());

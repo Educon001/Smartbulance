@@ -90,7 +90,7 @@ public class CVentana {
       public void entradasModificar_Paciente(Paciente paciente,JComboBox nacionalidad,JTextField txtCedula, JTextField txtNombre,JTextField txtCorreo,JTextField txtTelf1,JTextField txtTelf2,JDateChooser DateFecha,JComboBox boxGenero){
         if (paciente.getCedula().charAt(0)=='V'){
           nacionalidad.setSelectedIndex(0);
-        }else if (paciente.getCedula().charAt(0)=='V'){
+        }else if (paciente.getCedula().charAt(0)=='E'){
           nacionalidad.setSelectedIndex(1);  
         }        
         txtCedula.setText(paciente.getCedula().substring(2));
@@ -103,7 +103,7 @@ public class CVentana {
         if (paciente.getGenero()=='M'){
             boxGenero.setSelectedIndex(0);         
         }else if (paciente.getGenero()=='F'){
-            boxGenero.setSelectedIndex(0);           
+            boxGenero.setSelectedIndex(1);           
         }
         nacionalidad.setEnabled(false);
         txtCedula.setEnabled(false);

@@ -3744,6 +3744,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_txt1RIFFocusLost
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
+        try{
         if(cRegistro.camposVaciosEntidad(txtNombreAmbulatorio,txt8RIF,txt1RIF,txtTelf1,txtTelf2,txtCiudad,txtDir)==false){
             String RIF = cRegistro.construirRIF(txt8RIF,txt1RIF);
             String telf = cRegistro.construirTelf(txtTelf1,txtTelf2);
@@ -3753,6 +3754,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
                     cRegistro.vaciarDatosEntidad(txtNombreAmbulatorio, txt8RIF, txt1RIF, txtTelf1, txtTelf2, txtCiudad, txtDir, cboEstado);
                 }   
             }
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
@@ -3851,11 +3855,15 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_txtNombreMecanicoActionPerformed
 
     private void botonAgregarMecanicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarMecanicoActionPerformed
+        try{
         if(txtNombreMecanico.getText().isEmpty()) JOptionPane.showMessageDialog(null,"Este campo está vacío","Error", JOptionPane.ERROR_MESSAGE);
         else{
             if(cRegistro.validarNombre(txtNombreMecanico)) txtAreaMecanicos.setText(txtAreaMecanicos.getText()+"\n"+txtNombreMecanico.getText());
         }
         txtNombreMecanico.setText(null);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botonAgregarMecanicoActionPerformed
 
     private void botonModClinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModClinicaActionPerformed
@@ -3871,11 +3879,15 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_pestClinicaMouseClicked
 
     private void botonEliminarAmbulatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarAmbulatorioActionPerformed
+        try{
         Ambulatorio amb = controlClinica.ambulatorioSeleccionado(tablaAmbulatorios);
         if(amb!=null){
             if(cRegistro.confirmar()) controlClinica.getClinica().desincorporarAmbulatorio(amb);
             controlClinica.mostrarTablaAmbulatorios(controlClinica.getClinica().getAmbulatorios(),tablaAmbulatorios);   
             botonEliminarAmbulatorio.setEnabled(false);
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonEliminarAmbulatorioActionPerformed
 
@@ -3956,12 +3968,16 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_botonVaciarAmbulanciaActionPerformed
 
     private void botonRegistrarAmbulanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarAmbulanciaActionPerformed
+        try{
         if(!cRegistro.camposVaciosVehiculo(radioAmbulancia,radioCompacto,txtSerialAmbulancia,radioAmbTerrestre,radioAmbAerea)){
             if(!controlClinica.buscarVehiculo(txtSerialAmbulancia.getText()) && cRegistro.confirmar()){
                 controlAmbulatorio.crearVehiculo(radioAmbulancia,txtSerialAmbulancia,radioAmbTerrestre);
                 cRegistro.vaciarDatosAmbulancia(radioAmbulancia,radioCompacto,txtSerialAmbulancia,radioAmbTerrestre,radioAmbAerea);
                 controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);
             }
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonRegistrarAmbulanciaActionPerformed
 
@@ -4023,6 +4039,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_cboTipoPersonalMouseClicked
 
     private void botonRegistrarPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarPersonalActionPerformed
+        try{
         if(!cRegistro.camposVaciosPersonal(cboTipoPersonal,txtCI_Personal,txtNombre_Personal,txtCorreo_Personal,txtTelf1_Personal,txtTelf2_Personal,chooserFN_Personal,radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario,chooserFC,txtLicencia,radioAsignado_SI,radioAsignado_NO)){
             String cedula = cRegistro.construirCedula(cboCI_Personal,txtCI_Personal);
             String telf = cRegistro.construirTelf(txtTelf1_Personal,txtTelf2_Personal);              
@@ -4035,6 +4052,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 }
                 cRegistro.vaciarDatosPersonal(txtCI_Personal,txtNombre_Personal,txtCorreo_Personal,txtTelf1_Personal,txtTelf2_Personal,chooserFN_Personal,radioMasc_Personal,radioFem_Personal,radioActivo_SI,radioActivo_NO,txtSalario,chooserFC,cboTipoPersonal,radioAsignado_SI,radioAsignado_SI,txtLicencia);
             }
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonRegistrarPersonalActionPerformed
 
@@ -4061,6 +4081,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_botonEliminar_PersonalActionPerformed
 
     private void botonEliminar_PersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminar_PersonalMouseClicked
+        try{
         Personal per = controlAmbulatorio.personalSeleccionado(tablaPersonal);
         if(per!=null){
             if(cRegistro.confirmar()) controlAmbulatorio.getAmbulatorio().eliminarPersonal(per);
@@ -4070,9 +4091,13 @@ public class MenúPrincipal extends javax.swing.JFrame{
             botonRegistrarSalida.setEnabled(false);
             botonVerTurnos.setEnabled(false);
         }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botonEliminar_PersonalMouseClicked
 
     private void botonRegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarEntradaMouseClicked
+        try{
         Personal per = controlAmbulatorio.personalSeleccionado(tablaPersonal);
         if(per!=null){
             if(cRegistro.confirmar()){
@@ -4080,6 +4105,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 botonRegistrarEntrada.setEnabled(false);
                 botonRegistrarSalida.setEnabled(true);
             }
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonRegistrarEntradaMouseClicked
 
@@ -4104,6 +4132,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_tablaPersonalMouseClicked
 
     private void botonRegistrarSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarSalidaMouseClicked
+        try{
         Personal per = controlAmbulatorio.personalSeleccionado(tablaPersonal);
         if(per!=null){
             if(cRegistro.confirmar()){
@@ -4111,6 +4140,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 botonRegistrarEntrada.setEnabled(true);
                 botonRegistrarSalida.setEnabled(false);                
             }
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonRegistrarSalidaMouseClicked
 
@@ -4145,6 +4177,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_btnDetallesSumActionPerformed
 
     private void btnRegistrarMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMovActionPerformed
+        try{
         Suministro sum = controlInventario.obtenerObjetoSeleccionado(tablaSuministros);
         if (sum != null){
             PantallaRegistroMov ventanaNueva = new PantallaRegistroMov(sum, controlInventario, controlSistema, this);
@@ -4152,6 +4185,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
             ventanaNueva.setVisible(true);
         }else
             JOptionPane.showMessageDialog(null, "Debe seleccionar un objeto", "Error", JOptionPane.ERROR_MESSAGE);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarMovActionPerformed
 
     private void btnRegistrarSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarSumActionPerformed
@@ -4179,9 +4215,13 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_tablaPersonalConVehMouseClicked
 
     private void btnRegistrarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarAsignacionActionPerformed
+        try{
         controlVehiculo.asignarPersonal(tablaAsignados);
         controlVehiculo.tablasAsignarPersonal(tablaAsignados, tablaPersonalConVeh, btnAgregarPer, btnEliminarPer);
         controlVehiculo.mostrarVehiculo(codigoVeh, serialVeh, tipoVeh, DisponibleVeh, labelEnMantenimiento, enMantenimiento, tablaPersonalAct);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarAsignacionActionPerformed
 
     private void tablaInventarioVehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInventarioVehMouseClicked
@@ -4193,9 +4233,13 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_tablaMantenimientosVehMouseClicked
 
     private void btnRegistrarMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMantenimientoActionPerformed
+        try{
         PantallaRegistrarMantenimiento nuevaVentana = new PantallaRegistrarMantenimiento(controlVehiculo, controlClinica, tablaMantenimientosVeh,this);
         setVisible(false);
         nuevaVentana.setVisible(true);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarMantenimientoActionPerformed
 
     private void botonEliVehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliVehMouseClicked
@@ -4235,11 +4279,19 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_botonDispAmbulatorioActionPerformed
 
     private void btnAgregarPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPerActionPerformed
+        try{
         controlVehiculo.agregarPersonal(tablaAsignados, tablaPersonalConVeh, btnAgregarPer);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAgregarPerActionPerformed
 
     private void btnEliminarPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPerActionPerformed
+        try{
         controlVehiculo.eliminarPersonal(tablaAsignados, tablaPersonalConVeh, jBtnEliminar);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEliminarPerActionPerformed
 
     private void cboCI_PersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCI_PersonalActionPerformed
@@ -4259,10 +4311,14 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_tablaESMouseClicked
 
     private void botonRegistrarEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarEntrada1ActionPerformed
+        try{
         controlVehiculo.registrarTurno();
         botonRegistrarEntrada.setEnabled(false);
         botonRegistrarSalida.setEnabled(true);
         controlVehiculo.mostrarES(tablaES);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botonRegistrarEntrada1ActionPerformed
 
     private void bhPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhPacientesMouseEntered
@@ -4307,9 +4363,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_jGeneroActionPerformed
 
     private void jBTNRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNRegistrarActionPerformed
-        // TODO add your handling code here:
-
-        //DEBEMOS DEVOLVER LA FECHA A LOCALDATE, SOLO LO PUSE sTRING PARA PROBAR
+        try{
         if ((cRegistro.validarTelf(txtTelf1,4)&& cRegistro.validarTelf(txtTelf2,7))&&(pac.validarCorreo(txtCorreo)==true)&&(pac.validarCedula(txtCedula)==true)&&(cRegistro.validarNombre(txtNombre)==true) ){
             Date fecha;
             fecha = Calendario.getDate();
@@ -4342,6 +4396,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
         } else {
 
             JOptionPane.showMessageDialog(null,"Todos los datos deben proporcionarse correctamente","Error", JOptionPane.ERROR_MESSAGE);
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBTNRegistrarActionPerformed
 
@@ -4397,8 +4454,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_jbtnModificarActionPerformed
 
     private void btnAgregarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPagoActionPerformed
-        // TODO add your handling code here:
-
+        try{
         if (cRegistro.camposVaciosPagos(txtBuscarCedula, txtMonto, jFechaPago)==false){
 
             if (cRegistro.validarCI(txtBuscarCedula.getText()) && cRegistro.datoEsNumerico(txtMonto) && jFechaPago.getDate()!=null){
@@ -4415,6 +4471,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
 
             }
 
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnAgregarPagoActionPerformed
@@ -4443,7 +4502,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private void txtMontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusLost
         // TODO add your handling code here:
         if(!txtMonto.getText().isEmpty())
-        cRegistro.datoEsNumerico(txtMonto);
+            if (!cRegistro.validarSalario(txtMonto.getText()))
+                txtMonto.setText(null);
     }//GEN-LAST:event_txtMontoFocusLost
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
@@ -4506,6 +4566,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_radioRespRapActionPerformed
 
     private void btnRegistrarEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarEmerMouseClicked
+        try{
         if(tablaVehSelec.getRowCount()==1){
             Paciente paciente = controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia));
             Ambulatorio amb = controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
@@ -4523,6 +4584,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
         }
         else
         JOptionPane.showMessageDialog(null,"Debe seleccionar el vehículo a utilizar","Error",JOptionPane.ERROR_MESSAGE);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarEmerMouseClicked
 
     private void pestRegEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pestRegEmerMouseClicked

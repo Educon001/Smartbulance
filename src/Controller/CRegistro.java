@@ -132,7 +132,7 @@ public class CRegistro {
         try{
             double sal = Double.parseDouble(salario);
             if(sal>0) return true;
-            else JOptionPane.showMessageDialog(null,"El salario debe ser un número positivo mayor que cero.","Error", JOptionPane.ERROR_MESSAGE);
+            else JOptionPane.showMessageDialog(null,"El monto debe ser un número positivo mayor que cero.","Error", JOptionPane.ERROR_MESSAGE);
         }
         catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null,"Formato de dato no es numérico.","Error", JOptionPane.ERROR_MESSAGE);

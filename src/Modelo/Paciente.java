@@ -43,7 +43,7 @@ public class Paciente extends Persona{
         if(!pagos.isEmpty()){
             Date fechaActual = new Date();
             long difMili = fechaActual.getTime()-pagos.get(pagos.size()-1).getFecha().getTime();
-            long difDias = difMili/1000/60/60/24;
+            long difDias = difMili/86400000;
             if(difDias>31) return false;
             return true;
         }

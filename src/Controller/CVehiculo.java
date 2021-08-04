@@ -3,6 +3,8 @@ package Controller;
 
 import Modelo.*;
 import com.toedter.calendar.JDateChooser;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
@@ -209,12 +211,17 @@ public class CVehiculo {
     }
     
     public void mostrarMantenimiento(JTable tabla){
-        String[] titulo = {"Taller","Descripción"};
-        String matriz[][]=new String[vehiculo.getHistMantenimiento().size()][2];
-        
+        String[] titulo = {"Taller","Descripción","Entrada","Salida"};
+        String matriz[][]=new String[vehiculo.getHistMantenimiento().size()][4];
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/uuuu");
         for (int i=0;i<vehiculo.getHistMantenimiento().size();i++){
             matriz[i][0] = (vehiculo.getHistMantenimiento().get(i)).getTaller();
             matriz[i][1] = (vehiculo.getHistMantenimiento().get(i)).getDescripcion();
+            matriz[i][2] = formato.format((vehiculo.getHistMantenimiento().get(i)).getEntrada());
+            if ((vehiculo.getHistMantenimiento().get(i)).getSalida()!=null)
+                matriz[i][3] = formato.format((vehiculo.getHistMantenimiento().get(i)).getSalida());
+            else
+                matriz[i][3] = "En progreso";
         }
         
         TableModel model = new DefaultTableModel(matriz,titulo);
@@ -272,7 +279,7 @@ public class CVehiculo {
         if (vehiculo.isEnMantenimiento()){
             Mantenimiento man = vehiculo.getHistMantenimiento().get(vehiculo.getHistMantenimiento().size()-1);
             txt1RifTaller.setEnabled(false);
-            txt1RifTaller.setText(man.getTaller().substring(2, 9));
+            txt1RifTaller.setText(man.getTaller().substring(2, 10));
             txt2RifTaller.setEnabled(false);
             txt2RifTaller.setText(man.getTaller().substring(11));
             txtDescripcion.setEnabled(false);
@@ -282,6 +289,36 @@ public class CVehiculo {
             cboEstado.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Este vehiculo tiene un mantenimiento en progreso, registre la fecha de salida", "Manteniemiento en progreso", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+    
+    public void mostrarES(JTable tabla){
+        String[] titulo = {"Entrada","Salida","Duración"};
+        String matriz[][]=new String[vehiculo.getEntradasSalidas().size()][3];
+        for (int i=0;i<vehiculo.getEntradasSalidas().size();i++){
+            matriz[i][0] = (vehiculo.getEntradasSalidas().get(i)).getEntrada().toString();
+            if ((vehiculo.getEntradasSalidas().get(i)).getSalida()!=null){
+                matriz[i][1] = (vehiculo.getEntradasSalidas().get(i)).getSalida().toString();
+                matriz[i][2] = String.valueOf((vehiculo.getEntradasSalidas().get(i)).duracion()/3600000);
+            }else
+                matriz[i][1] = matriz[i][2] = "En progreso";
+        }
+        
+        TableModel model = new DefaultTableModel(matriz,titulo);
+        tabla.setModel(model);
+        tabla.setDefaultEditor(Object.class, null);
+    } 
+    
+    public void crearTurnoNuevo(Date hora){
+        Turno turno = new Turno(hora,null);
+        vehiculo.registrarES(turno);
+    }
+    
+    public void registrarTurno(){
+       Date hora = new Date();
+       if(vehiculo.getEntradasSalidas().isEmpty() || vehiculo.getEntradasSalidas().get(vehiculo.getEntradasSalidas().size()-1).getSalida()!=null)
+            crearTurnoNuevo(hora);
+       else
+            vehiculo.getEntradasSalidas().get(vehiculo.getEntradasSalidas().size()-1).setSalida(hora);
     }
     
 }

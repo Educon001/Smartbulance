@@ -93,12 +93,10 @@ public class CAmbulatorio implements ICEntidad{
         ambulatorio.agregarVehiculo(comp);
     }
     
-    public void crearVehiculo(JRadioButton radioAmb,JTextField txtSerial,JRadioButton radioMant_SI,JRadioButton radioDis_SI,JRadioButton radioTerrestre){
-        boolean disponible=false, enMantenimiento=false;
+    public void crearVehiculo(JRadioButton radioAmb,JTextField txtSerial,JRadioButton radioTerrestre){
+        boolean disponible=true, enMantenimiento=false;
         String serial;
-        
-        if(radioMant_SI.isSelected()) enMantenimiento=true;
-        if(radioDis_SI.isSelected()) disponible=true;
+
         serial = txtSerial.getText();
         
         if(radioAmb.isSelected()) crearAmbulancia(enMantenimiento,serial,disponible,radioTerrestre);

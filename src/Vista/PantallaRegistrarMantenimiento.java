@@ -6,6 +6,7 @@ import Modelo.*;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.util.*;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
     CVehiculo con;
@@ -13,15 +14,17 @@ public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
     CVentana controlVentana = new CVentana(this);
     CRegistro conR = new CRegistro();
     CClinica conCli;
+    JTable tablaMant;
     
     public PantallaRegistrarMantenimiento() {
         initComponents();
     }
     
-    public PantallaRegistrarMantenimiento(CVehiculo con,CClinica conCli,MenúPrincipal ventanaAnterior) {
+    public PantallaRegistrarMantenimiento(CVehiculo con,CClinica conCli,JTable tablaMant,MenúPrincipal ventanaAnterior) {
         initComponents();
         this.con = con;
         this.conCli = conCli;
+        this.tablaMant = tablaMant;
         this.ventanaAnterior = ventanaAnterior;
         controlVentana.iniciarVentana(this,"src/imagenes/logo(1).png");
         con.ventanaMantenimiento(txt1RifTaller,txt2RifTaller,txtDescripcion,fechaEntrada,cboEstado);
@@ -221,11 +224,38 @@ public class PantallaRegistrarMantenimiento extends javax.swing.JFrame {
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         dispose();
         ventanaAnterior.setVisible(true);
+        ventanaAnterior.controlVehiculo.mostrarMantenimiento(tablaMant);
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void btnRegistrarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMActionPerformed
-        if (conCli.tallerRegistrado(conR.construirRIF(txt1RifTaller, txt2RifTaller)))
+        try{
+        if (conCli.tallerRegistrado(conR.construirRIF(txt1RifTaller, txt2RifTaller))){
             con.registrarManenimiento(fechaEntrada.getDate(), fechaSalida.getDate(), conR.construirRIF(txt1RifTaller, txt2RifTaller), txtDescripcion.getText(),cboEstado);
+            if (cboEstado.getSelectedIndex()==1){
+                txt1RifTaller.setText(null);
+                txt2RifTaller.setText(null);
+                txtDescripcion.setText(null);
+                fechaEntrada.setDate(null);
+                fechaSalida.setDate(null);
+                txt1RifTaller.setEnabled(true);
+                txt2RifTaller.setEnabled(true);
+                txtDescripcion.setEnabled(true);
+                fechaEntrada.setEnabled(true);
+                fechaSalida.setEnabled(true);
+                cboEstado.setEnabled(true);
+            }else{
+                txt1RifTaller.setEnabled(false);
+                txt2RifTaller.setEnabled(false);
+                txtDescripcion.setEnabled(false);
+                fechaEntrada.setEnabled(false);
+                fechaSalida.setEnabled(true);
+                cboEstado.setSelectedIndex(1);
+                cboEstado.setEnabled(false);
+            }
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los datos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarMActionPerformed
 
     private void txt1RifTallerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt1RifTallerFocusLost

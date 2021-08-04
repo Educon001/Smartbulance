@@ -167,10 +167,10 @@ public class CRegistro {
     }
     
     
-    public boolean camposVaciosVehiculo(JRadioButton radioAmbulancia,JRadioButton radioCompacto,JTextField txtSerial,JRadioButton radioMantenimiento_SI,JRadioButton radioMantenimiento_NO,JRadioButton radioDis_SI,JRadioButton radioDis_NO,JRadioButton radioTer,JRadioButton radioAerea){
-        if(radioAmbulancia.isSelected() && (radioMantenimiento_SI.isSelected() || radioMantenimiento_NO.isSelected()) && (radioDis_SI.isSelected() || radioDis_NO.isSelected()) && (radioTer.isSelected() || radioAerea.isSelected()) && !txtSerial.getText().isEmpty())
+    public boolean camposVaciosVehiculo(JRadioButton radioAmbulancia,JRadioButton radioCompacto,JTextField txtSerial,JRadioButton radioTer,JRadioButton radioAerea){
+        if(radioAmbulancia.isSelected() &&  (radioTer.isSelected() || radioAerea.isSelected()) && !txtSerial.getText().isEmpty())
             return false;
-        if(radioCompacto.isSelected() && (radioMantenimiento_SI.isSelected() || radioMantenimiento_NO.isSelected()) && (radioDis_SI.isSelected() || radioDis_NO.isSelected()) && !txtSerial.getText().isEmpty())
+        if(radioCompacto.isSelected() && !txtSerial.getText().isEmpty())
             return false;
         JOptionPane.showMessageDialog(null,"Asegúrese de llenar todos los campos solicitados","Error", JOptionPane.ERROR_MESSAGE);        
         return true;
@@ -255,14 +255,10 @@ public class CRegistro {
         radioNO.setVisible(paramedico);
     }
     
-    public void vaciarDatosAmbulancia(JRadioButton radioAmbulancia,JRadioButton radioCompacto,JTextField txtSerial,JRadioButton radioMantenimiento_SI,JRadioButton radioMantenimiento_NO,JRadioButton radioDisponibleAmbulancia_SI,JRadioButton radioDisponibleAmbulancia_NO,JRadioButton radioAmbTerrestre,JRadioButton radioAmbAerea){
+    public void vaciarDatosAmbulancia(JRadioButton radioAmbulancia,JRadioButton radioCompacto,JTextField txtSerial,JRadioButton radioAmbTerrestre,JRadioButton radioAmbAerea){
         radioAmbulancia.setSelected(false);
         radioCompacto.setSelected(false);
         txtSerial.setText(null);
-        radioMantenimiento_SI.setSelected(false);
-        radioMantenimiento_NO.setSelected(false);
-        radioDisponibleAmbulancia_SI.setSelected(false);
-        radioDisponibleAmbulancia_NO.setSelected(false);
         radioAmbTerrestre.setSelected(false);
         radioAmbAerea.setSelected(false);
     }

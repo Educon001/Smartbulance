@@ -462,7 +462,7 @@ public class ModificarPaciente extends javax.swing.JFrame {
         }
         else{
             txtCedula.setEnabled(false);
-            txtCedula.setText(paciente.getCedula());
+            txtCedula.setText(paciente.getCedula().substring(2));
             
             if (paciente.getCedula().charAt(0)=='V'){
                 cboCI_Paciente.setSelectedIndex(0);

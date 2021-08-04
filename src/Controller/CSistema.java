@@ -4,6 +4,8 @@ package Controller;
 import Modelo.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class CSistema {
     //ATRIBUTOS
@@ -63,6 +65,7 @@ public class CSistema {
         listaEmergencias.add(em);
         em.setCodigo(listaEmergencias.size());
     }
+    
  
     public Clinica buscarClinica(String RIF){
         for(Clinica clinica : listaClinicas){
@@ -159,6 +162,32 @@ public class CSistema {
     public void crearClinica(String nombre,String RIF,String telf,String ciudad,String estado,String dir){        
         Clinica clinica = new Clinica(nombre,telf,RIF,estado,ciudad,dir);
         agregarClinica(clinica);
+    }
+    
+     public void mostrarPagosGlobal(JTable tablaPagos){
+        String[] titulos = {"Cedula","Factura","Fecha","Monto"};
+        long tam=0;
+        for (int w=0; w<listaPacientes.size();w++){
+            tam=tam+listaPacientes.get(w).getPagos().size();
+        }
+        String[][] datos;       
+        datos = new String[(int)tam][4];
+        long cont=0;
+        
+        for (int i = 0; i < listaPacientes.size(); i++) {
+            
+            for (int x=0;x<listaPacientes.get(i).getPagos().size();x++){
+                datos[(int) cont][0]=String.valueOf(listaPacientes.get(i).getCedula());
+                datos[(int) cont][1]=String.valueOf(listaPacientes.get(i).getPagos().get(x).getFactura());
+                datos[(int) cont][2]=String.valueOf(listaPacientes.get(i).getPagos().get(x).getFecha());
+                datos[(int) cont][3]=String.valueOf(listaPacientes.get(i).getPagos().get(x).getMonto());    
+                cont+=1;
+            }
+        }    
+        TableModel model = new DefaultTableModel(datos,titulos);
+        tablaPagos.setModel(model);
+        tablaPagos.setDefaultEditor(Object.class, null);
+        tablaPagos.getTableHeader().setReorderingAllowed(false);      
     }
     
 }

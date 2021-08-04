@@ -40,16 +40,21 @@ public class Paciente extends Persona{
     
     //Verifica si el último pago se realizó hace más de un mes
     public boolean alDia(){
-        Date fechaActual = new Date();
-        long difMili = fechaActual.getTime()-pagos.get(pagos.size()-1).getFecha().getTime();
-        long difDias = (difMili/ (1000 * 60 * 60 * 24))% 365;
-        if(difDias>31) return false;
-        return true;
+        if(!pagos.isEmpty()){
+            Date fechaActual = new Date();
+            long difMili = fechaActual.getTime()-pagos.get(pagos.size()-1).getFecha().getTime();
+            long difDias = difMili/1000/60/60/24;
+            if(difDias>31) return false;
+            return true;
+        }
+        return false;
     }
     
     //Verifica si el paciente tiene una emergencia abierta
     public boolean emergenciaAbierta(){
-        if((super.entradaSalida.get(entradaSalida.size()-1)).getSalida()==null)
+        if(entradaSalida.isEmpty())
+            return false;
+        else if((super.entradaSalida.get(entradaSalida.size()-1)).getSalida()==null)
             return true;
         return false;
     }

@@ -309,12 +309,26 @@ public class MenúPrincipal extends javax.swing.JFrame{
         txtTelfPaciente1 = new javax.swing.JTextField();
         txtTelfPaciente2 = new javax.swing.JTextField();
         cboCI_Paciente = new javax.swing.JComboBox<>();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane19 = new javax.swing.JScrollPane();
         jTablePacientes = new javax.swing.JTable();
         btnDetalles = new javax.swing.JButton();
         jBtnEliminar = new javax.swing.JButton();
         jbtnModificar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTablePagos = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        btnAgregarPago = new javax.swing.JButton();
+        txtBuscarCedula = new javax.swing.JTextField();
+        boxNacionalidadCedula = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        txtMonto = new javax.swing.JTextField();
+        jFechaPago = new com.toedter.calendar.JDateChooser();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         panelRegistrarEmergencia = new javax.swing.JPanel();
         tituloRegistrarEmergencia = new javax.swing.JLabel();
         pestRegEmer = new javax.swing.JTabbedPane();
@@ -348,18 +362,22 @@ public class MenúPrincipal extends javax.swing.JFrame{
         radioRespRap = new javax.swing.JRadioButton();
         jLabel19 = new javax.swing.JLabel();
         btnRegistrarEmer = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTablePagos = new javax.swing.JTable();
-        jPanel6 = new javax.swing.JPanel();
-        btnAgregarPago = new javax.swing.JButton();
-        txtBuscarCedula = new javax.swing.JTextField();
-        boxNacionalidadCedula = new javax.swing.JComboBox<>();
-        jLabel20 = new javax.swing.JLabel();
-        txtMonto = new javax.swing.JTextField();
-        jFechaPago = new com.toedter.calendar.JDateChooser();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        panelHistEmer = new javax.swing.JPanel();
+        labelCI_HistEmg = new javax.swing.JLabel();
+        labelTituloHistEmg = new javax.swing.JLabel();
+        cboCI_HistEmg = new javax.swing.JComboBox<>();
+        g20 = new javax.swing.JLabel();
+        txtCI_HistEmg = new javax.swing.JTextField();
+        labelEmergencias = new javax.swing.JLabel();
+        jScrollPane21 = new javax.swing.JScrollPane();
+        tablaHistEmg = new javax.swing.JTable();
+        jScrollPane22 = new javax.swing.JScrollPane();
+        tablaEmgReciente = new javax.swing.JTable();
+        labelEmergencias1 = new javax.swing.JLabel();
+        btnVerHistEmg = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        btnCerrarEmg = new javax.swing.JButton();
         fondoPacientes = new javax.swing.JLabel();
         panelOpciones = new javax.swing.JPanel();
         botonAmbulancias = new javax.swing.JLabel();
@@ -2540,18 +2558,21 @@ public class MenúPrincipal extends javax.swing.JFrame{
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        txtCorreo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCorreoFocusLost(evt);
             }
         });
 
+        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombreFocusLost(evt);
             }
         });
 
+        txtCedula.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCedulaFocusLost(evt);
@@ -2576,6 +2597,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel13.setText("Genero:");
 
+        jGenero.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
         jGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2592,12 +2614,24 @@ public class MenúPrincipal extends javax.swing.JFrame{
             }
         });
 
+        txtTelfPaciente1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTelfPaciente1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelfPaciente1FocusLost(evt);
+            }
+        });
         txtTelfPaciente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelfPaciente1ActionPerformed(evt);
             }
         });
 
+        txtTelfPaciente2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtTelfPaciente2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelfPaciente2FocusLost(evt);
+            }
+        });
         txtTelfPaciente2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelfPaciente2ActionPerformed(evt);
@@ -2612,42 +2646,55 @@ public class MenúPrincipal extends javax.swing.JFrame{
             }
         });
 
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel23.setText("-");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel24.setText("-");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(203, 203, 203)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtTelfPaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(txtTelfPaciente2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(328, Short.MAX_VALUE))
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(txtTelfPaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel23)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtTelfPaciente2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(8, 8, 8)))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(345, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addComponent(jLabel7)
-                            .addGap(130, 130, 130)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(90, 90, 90)
+                            .addGap(422, 422, 422)
                             .addComponent(jBTNRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addGap(53, 53, 53)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(40, 40, 40)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel11)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addGap(24, 24, 24)
-                            .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addComponent(jLabel13)
                             .addGap(18, 18, 18)
@@ -2658,34 +2705,36 @@ public class MenúPrincipal extends javax.swing.JFrame{
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTelfPaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelfPaciente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(228, 228, 228))
+                    .addComponent(txtTelfPaciente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel11))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(170, 170, 170))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel7)
-                        .addComponent(jBTNRegistrar)
-                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBTNRegistrar))
                     .addGap(15, 15, 15)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(26, 26, 26)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel10)
-                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(26, 26, 26)
-                    .addComponent(jLabel11)
-                    .addGap(36, 36, 36)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel12)
-                        .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(41, 41, 41)
+                    .addComponent(jLabel9)
+                    .addGap(30, 30, 30)
+                    .addComponent(jLabel10)
+                    .addGap(157, 157, 157)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel13)
                         .addComponent(jGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2788,342 +2837,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
         );
 
         jTabbedPane4.addTab("Ver pacientes", jPanel4);
-
-        panelRegistrarEmergencia.setBackground(new java.awt.Color(255, 255, 255));
-
-        tituloRegistrarEmergencia.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        tituloRegistrarEmergencia.setText("Llene los siguientes campos correspondientes a la emergencia");
-
-        pestRegEmer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pestRegEmerMouseClicked(evt);
-            }
-        });
-
-        panelInfoPac_Emer.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel18.setText("Descripción de la emergencia:");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane18.setViewportView(jTextArea1);
-
-        labelCI_Emergencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelCI_Emergencia.setText("Cédula del paciente:");
-
-        cboCI_Emergencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cboCI_Emergencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E" }));
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel16.setText("-");
-
-        txtCI_Emergencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCI_Emergencia.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCI_EmergenciaFocusLost(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelInfoPac_EmerLayout = new javax.swing.GroupLayout(panelInfoPac_Emer);
-        panelInfoPac_Emer.setLayout(panelInfoPac_EmerLayout);
-        panelInfoPac_EmerLayout.setHorizontalGroup(
-            panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInfoPac_EmerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane18)
-                    .addGroup(panelInfoPac_EmerLayout.createSequentialGroup()
-                        .addGroup(panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addGroup(panelInfoPac_EmerLayout.createSequentialGroup()
-                                .addComponent(labelCI_Emergencia)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cboCI_Emergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCI_Emergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 460, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        panelInfoPac_EmerLayout.setVerticalGroup(
-            panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInfoPac_EmerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCI_Emergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboCI_Emergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
-                    .addComponent(labelCI_Emergencia))
-                .addGap(40, 40, 40)
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
-
-        pestRegEmer.addTab("Información paciente", panelInfoPac_Emer);
-
-        panelAmbulatoriosDisp.setBackground(new java.awt.Color(255, 255, 255));
-
-        tablaAmbulatoriosDisp.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tablaAmbulatoriosDisp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaAmbulatoriosDispMouseClicked(evt);
-            }
-        });
-        jScrollPane14.setViewportView(tablaAmbulatoriosDisp);
-
-        botonSelecAmbulatorio.setBackground(new java.awt.Color(153, 204, 255));
-        botonSelecAmbulatorio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        botonSelecAmbulatorio.setText("Seleccionar ambulatorio");
-        botonSelecAmbulatorio.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonSelecAmbulatorioMouseClicked(evt);
-            }
-        });
-
-        labelAmbulatorioSelec.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelAmbulatorioSelec.setText("Ambulatorio seleccionado");
-
-        tablaAmbSelec.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane15.setViewportView(tablaAmbSelec);
-
-        labelAmbulatoriosDisp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelAmbulatoriosDisp.setText("Ambulatorios disponibles");
-
-        javax.swing.GroupLayout panelAmbulatoriosDispLayout = new javax.swing.GroupLayout(panelAmbulatoriosDisp);
-        panelAmbulatoriosDisp.setLayout(panelAmbulatoriosDispLayout);
-        panelAmbulatoriosDispLayout.setHorizontalGroup(
-            panelAmbulatoriosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAmbulatoriosDispLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelAmbulatoriosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAmbulatoriosDispLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botonSelecAmbulatorio))
-                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
-                    .addComponent(jScrollPane15)
-                    .addGroup(panelAmbulatoriosDispLayout.createSequentialGroup()
-                        .addGroup(panelAmbulatoriosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelAmbulatoriosDisp)
-                            .addComponent(labelAmbulatorioSelec))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        panelAmbulatoriosDispLayout.setVerticalGroup(
-            panelAmbulatoriosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAmbulatoriosDispLayout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(labelAmbulatoriosDisp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonSelecAmbulatorio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelAmbulatorioSelec)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pestRegEmer.addTab("Seleccionar ambulatorio", panelAmbulatoriosDisp);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        labelDestinoPaciente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelDestinoPaciente.setText("Destino del paciente:");
-
-        tablaVehDisp.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tablaVehDisp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaVehDispMouseClicked(evt);
-            }
-        });
-        jScrollPane16.setViewportView(tablaVehDisp);
-
-        botonSelecVeh.setBackground(new java.awt.Color(153, 204, 255));
-        botonSelecVeh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        botonSelecVeh.setText("Seleccionar vehículo");
-        botonSelecVeh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonSelecVehMouseClicked(evt);
-            }
-        });
-
-        tablaVehSelec.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane17.setViewportView(tablaVehSelec);
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel17.setText("Vehículo seleccionado");
-
-        radioAmbEmer.setBackground(new java.awt.Color(255, 255, 255));
-        grupoDestinoPaciente.add(radioAmbEmer);
-        radioAmbEmer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        radioAmbEmer.setText("Ambulatorio");
-        radioAmbEmer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                radioAmbEmerMouseClicked(evt);
-            }
-        });
-
-        radioClinicaEmer.setBackground(new java.awt.Color(255, 255, 255));
-        grupoDestinoPaciente.add(radioClinicaEmer);
-        radioClinicaEmer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        radioClinicaEmer.setText("Clínica");
-        radioClinicaEmer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                radioClinicaEmerMouseClicked(evt);
-            }
-        });
-
-        radioRespRap.setBackground(new java.awt.Color(255, 255, 255));
-        grupoDestinoPaciente.add(radioRespRap);
-        radioRespRap.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        radioRespRap.setText("Respuesta rápida");
-        radioRespRap.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                radioRespRapMouseClicked(evt);
-            }
-        });
-        radioRespRap.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioRespRapActionPerformed(evt);
-            }
-        });
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel19.setText("Vehículos disponibles con equipo asignado");
-
-        btnRegistrarEmer.setBackground(new java.awt.Color(153, 204, 255));
-        btnRegistrarEmer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnRegistrarEmer.setText("Registrar emergencia");
-        btnRegistrarEmer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarEmerMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane16, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane17)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(labelDestinoPaciente)
-                                .addGap(33, 33, 33)
-                                .addComponent(radioAmbEmer)
-                                .addGap(33, 33, 33)
-                                .addComponent(radioClinicaEmer)
-                                .addGap(33, 33, 33)
-                                .addComponent(radioRespRap))
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel19))
-                        .addGap(0, 290, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonSelecVeh, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnRegistrarEmer, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDestinoPaciente)
-                    .addComponent(radioAmbEmer)
-                    .addComponent(radioClinicaEmer)
-                    .addComponent(radioRespRap))
-                .addGap(24, 24, 24)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonSelecVeh)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(btnRegistrarEmer)
-                .addContainerGap())
-        );
-
-        scrollVehDisp.setViewportView(jPanel2);
-
-        pestRegEmer.addTab("Seleccionar vehículo", scrollVehDisp);
-
-        javax.swing.GroupLayout panelRegistrarEmergenciaLayout = new javax.swing.GroupLayout(panelRegistrarEmergencia);
-        panelRegistrarEmergencia.setLayout(panelRegistrarEmergenciaLayout);
-        panelRegistrarEmergenciaLayout.setHorizontalGroup(
-            panelRegistrarEmergenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistrarEmergenciaLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(tituloRegistrarEmergencia)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pestRegEmer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-        panelRegistrarEmergenciaLayout.setVerticalGroup(
-            panelRegistrarEmergenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistrarEmergenciaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tituloRegistrarEmergencia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pestRegEmer, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane4.addTab("Registrar emergencia", panelRegistrarEmergencia);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -3262,6 +2975,486 @@ public class MenúPrincipal extends javax.swing.JFrame{
         );
 
         jTabbedPane4.addTab("RegistrarPago", jPanel1);
+
+        panelRegistrarEmergencia.setBackground(new java.awt.Color(255, 255, 255));
+
+        tituloRegistrarEmergencia.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        tituloRegistrarEmergencia.setText("Llene los siguientes campos correspondientes a la emergencia");
+
+        pestRegEmer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pestRegEmerMouseClicked(evt);
+            }
+        });
+
+        panelInfoPac_Emer.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel18.setText("Descripción de la emergencia:");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTextArea1.setRows(5);
+        jScrollPane18.setViewportView(jTextArea1);
+
+        labelCI_Emergencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelCI_Emergencia.setText("Cédula del paciente:");
+
+        cboCI_Emergencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cboCI_Emergencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E" }));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setText("-");
+
+        txtCI_Emergencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCI_Emergencia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCI_EmergenciaFocusLost(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelInfoPac_EmerLayout = new javax.swing.GroupLayout(panelInfoPac_Emer);
+        panelInfoPac_Emer.setLayout(panelInfoPac_EmerLayout);
+        panelInfoPac_EmerLayout.setHorizontalGroup(
+            panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInfoPac_EmerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane18)
+                    .addGroup(panelInfoPac_EmerLayout.createSequentialGroup()
+                        .addGroup(panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addGroup(panelInfoPac_EmerLayout.createSequentialGroup()
+                                .addComponent(labelCI_Emergencia)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboCI_Emergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCI_Emergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 299, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panelInfoPac_EmerLayout.setVerticalGroup(
+            panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInfoPac_EmerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelInfoPac_EmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCI_Emergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCI_Emergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(labelCI_Emergencia))
+                .addGap(40, 40, 40)
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+
+        pestRegEmer.addTab("Información paciente", panelInfoPac_Emer);
+
+        panelAmbulatoriosDisp.setBackground(new java.awt.Color(255, 255, 255));
+
+        tablaAmbulatoriosDisp.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tablaAmbulatoriosDisp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaAmbulatoriosDispMouseClicked(evt);
+            }
+        });
+        jScrollPane14.setViewportView(tablaAmbulatoriosDisp);
+
+        botonSelecAmbulatorio.setBackground(new java.awt.Color(153, 204, 255));
+        botonSelecAmbulatorio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonSelecAmbulatorio.setText("Seleccionar ambulatorio");
+        botonSelecAmbulatorio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSelecAmbulatorioMouseClicked(evt);
+            }
+        });
+
+        labelAmbulatorioSelec.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelAmbulatorioSelec.setText("Ambulatorio seleccionado");
+
+        tablaAmbSelec.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane15.setViewportView(tablaAmbSelec);
+
+        labelAmbulatoriosDisp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelAmbulatoriosDisp.setText("Ambulatorios disponibles");
+
+        javax.swing.GroupLayout panelAmbulatoriosDispLayout = new javax.swing.GroupLayout(panelAmbulatoriosDisp);
+        panelAmbulatoriosDisp.setLayout(panelAmbulatoriosDispLayout);
+        panelAmbulatoriosDispLayout.setHorizontalGroup(
+            panelAmbulatoriosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAmbulatoriosDispLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelAmbulatoriosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAmbulatoriosDispLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonSelecAmbulatorio))
+                    .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+                    .addComponent(jScrollPane15)
+                    .addGroup(panelAmbulatoriosDispLayout.createSequentialGroup()
+                        .addGroup(panelAmbulatoriosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelAmbulatoriosDisp)
+                            .addComponent(labelAmbulatorioSelec))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panelAmbulatoriosDispLayout.setVerticalGroup(
+            panelAmbulatoriosDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAmbulatoriosDispLayout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(labelAmbulatoriosDisp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonSelecAmbulatorio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelAmbulatorioSelec)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pestRegEmer.addTab("Seleccionar ambulatorio", panelAmbulatoriosDisp);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        labelDestinoPaciente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelDestinoPaciente.setText("Destino del paciente:");
+
+        tablaVehDisp.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tablaVehDisp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaVehDispMouseClicked(evt);
+            }
+        });
+        jScrollPane16.setViewportView(tablaVehDisp);
+
+        botonSelecVeh.setBackground(new java.awt.Color(153, 204, 255));
+        botonSelecVeh.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        botonSelecVeh.setText("Seleccionar vehículo");
+        botonSelecVeh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSelecVehMouseClicked(evt);
+            }
+        });
+
+        tablaVehSelec.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane17.setViewportView(tablaVehSelec);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setText("Vehículo seleccionado");
+
+        radioAmbEmer.setBackground(new java.awt.Color(255, 255, 255));
+        radioAmbEmer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioAmbEmer.setText("Ambulatorio");
+        radioAmbEmer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioAmbEmerMouseClicked(evt);
+            }
+        });
+
+        radioClinicaEmer.setBackground(new java.awt.Color(255, 255, 255));
+        radioClinicaEmer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioClinicaEmer.setText("Clínica");
+        radioClinicaEmer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioClinicaEmerMouseClicked(evt);
+            }
+        });
+
+        radioRespRap.setBackground(new java.awt.Color(255, 255, 255));
+        radioRespRap.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        radioRespRap.setText("Respuesta rápida");
+        radioRespRap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radioRespRapMouseClicked(evt);
+            }
+        });
+        radioRespRap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioRespRapActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setText("Vehículos disponibles con equipo asignado");
+
+        btnRegistrarEmer.setBackground(new java.awt.Color(153, 204, 255));
+        btnRegistrarEmer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnRegistrarEmer.setText("Registrar emergencia");
+        btnRegistrarEmer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarEmerMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane16, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane17)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(labelDestinoPaciente)
+                                .addGap(33, 33, 33)
+                                .addComponent(radioAmbEmer)
+                                .addGap(33, 33, 33)
+                                .addComponent(radioClinicaEmer)
+                                .addGap(33, 33, 33)
+                                .addComponent(radioRespRap))
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel19))
+                        .addGap(0, 290, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonSelecVeh, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRegistrarEmer, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelDestinoPaciente)
+                    .addComponent(radioAmbEmer)
+                    .addComponent(radioClinicaEmer)
+                    .addComponent(radioRespRap))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonSelecVeh)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(btnRegistrarEmer)
+                .addContainerGap())
+        );
+
+        scrollVehDisp.setViewportView(jPanel2);
+
+        pestRegEmer.addTab("Seleccionar vehículo", scrollVehDisp);
+
+        javax.swing.GroupLayout panelRegistrarEmergenciaLayout = new javax.swing.GroupLayout(panelRegistrarEmergencia);
+        panelRegistrarEmergencia.setLayout(panelRegistrarEmergenciaLayout);
+        panelRegistrarEmergenciaLayout.setHorizontalGroup(
+            panelRegistrarEmergenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRegistrarEmergenciaLayout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(tituloRegistrarEmergencia)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pestRegEmer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        panelRegistrarEmergenciaLayout.setVerticalGroup(
+            panelRegistrarEmergenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRegistrarEmergenciaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tituloRegistrarEmergencia)
+                .addGap(32, 32, 32)
+                .addComponent(pestRegEmer, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+
+        jTabbedPane4.addTab("Registrar emergencia", panelRegistrarEmergencia);
+
+        panelHistEmer.setBackground(new java.awt.Color(255, 255, 255));
+
+        labelCI_HistEmg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelCI_HistEmg.setText("Cédula del paciente:");
+
+        labelTituloHistEmg.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        labelTituloHistEmg.setText("Historial de emergencias");
+
+        cboCI_HistEmg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cboCI_HistEmg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E" }));
+
+        g20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        g20.setText("-");
+
+        txtCI_HistEmg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCI_HistEmg.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCI_HistEmgFocusLost(evt);
+            }
+        });
+
+        labelEmergencias.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelEmergencias.setText("Emergencias");
+
+        tablaHistEmg.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane21.setViewportView(tablaHistEmg);
+
+        tablaEmgReciente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane22.setViewportView(tablaEmgReciente);
+
+        labelEmergencias1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelEmergencias1.setText("Emergencia abierta (más reciente)");
+
+        btnVerHistEmg.setBackground(new java.awt.Color(153, 204, 255));
+        btnVerHistEmg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnVerHistEmg.setText("Ver historial");
+        btnVerHistEmg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerHistEmgActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(153, 204, 255));
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton2.setText("Ver descripción");
+
+        btnCerrarEmg.setBackground(new java.awt.Color(255, 0, 51));
+        btnCerrarEmg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCerrarEmg.setText("Cerrar emergencia");
+        btnCerrarEmg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarEmgActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelHistEmerLayout = new javax.swing.GroupLayout(panelHistEmer);
+        panelHistEmer.setLayout(panelHistEmerLayout);
+        panelHistEmerLayout.setHorizontalGroup(
+            panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHistEmerLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelHistEmerLayout.createSequentialGroup()
+                        .addComponent(labelCI_HistEmg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(g20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125)
+                        .addComponent(btnVerHistEmg))
+                    .addGroup(panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(labelEmergencias)
+                        .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelEmergencias1))
+                    .addGroup(panelHistEmerLayout.createSequentialGroup()
+                        .addComponent(btnCerrarEmg)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHistEmerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTituloHistEmg)
+                .addGap(240, 240, 240))
+        );
+        panelHistEmerLayout.setVerticalGroup(
+            panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHistEmerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelTituloHistEmg)
+                .addGap(43, 43, 43)
+                .addGroup(panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCI_HistEmg)
+                    .addComponent(cboCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(g20)
+                    .addComponent(txtCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVerHistEmg))
+                .addGap(18, 18, 18)
+                .addComponent(labelEmergencias)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(labelEmergencias1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(btnCerrarEmg))
+                .addGap(36, 36, 36))
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelHistEmer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelHistEmer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane4.addTab("Historial emergencias", jPanel5);
 
         panelPacientes.add(jTabbedPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 800, 540));
 
@@ -3460,11 +3653,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
         panelesOp.setSelectedIndex(0);
     }//GEN-LAST:event_bhAmbulanciasActionPerformed
 
-    private void bhPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhPacientesActionPerformed
-        // TODO add your handling code here:
-        panelesOp.setSelectedIndex(0);
-    }//GEN-LAST:event_bhPacientesActionPerformed
-
     private void bhClinicaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhClinicaMouseEntered
         // TODO add your handling code here:
         bhClinica.setBorder(bordeAmarillo);
@@ -3480,11 +3668,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
         bhAmbulancias.setBorder(bordeAmarillo);
     }//GEN-LAST:event_bhAmbulanciasMouseEntered
 
-    private void bhPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhPacientesMouseEntered
-        // TODO add your handling code here:
-        bhPacientes.setBorder(bordeAmarillo);
-    }//GEN-LAST:event_bhPacientesMouseEntered
-
     private void bhClinicaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhClinicaMouseExited
         // TODO add your handling code here:
         bhClinica.setBorder(null);
@@ -3499,11 +3682,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
         // TODO add your handling code here:
         bhAmbulancias.setBorder(null);
     }//GEN-LAST:event_bhAmbulanciasMouseExited
-
-    private void bhPacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhPacientesMouseExited
-        // TODO add your handling code here:
-        bhPacientes.setBorder(null);
-    }//GEN-LAST:event_bhPacientesMouseExited
 
     private void cboEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEstadoActionPerformed
         // TODO add your handling code here:
@@ -4064,120 +4242,64 @@ public class MenúPrincipal extends javax.swing.JFrame{
         controlVehiculo.eliminarPersonal(tablaAsignados, tablaPersonalConVeh, jBtnEliminar);
     }//GEN-LAST:event_btnEliminarPerActionPerformed
 
-    private void txtCI_EmergenciaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCI_EmergenciaFocusLost
-        if(!cRegistro.validarCI(txtCI_Emergencia.getText())) txtCI_Emergencia.setText(null);
-    }//GEN-LAST:event_txtCI_EmergenciaFocusLost
-
-    private void radioRespRapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRespRapActionPerformed
+    private void cboCI_PersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCI_PersonalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_radioRespRapActionPerformed
+    }//GEN-LAST:event_cboCI_PersonalActionPerformed
 
-    private void pestRegEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pestRegEmerMouseClicked
-        if(pestRegEmer.getSelectedIndex()==1){
-            if(cRegistro.camposVaciosEmergencia_Paciente(txtCI_Emergencia,jTextArea1))pestRegEmer.setSelectedIndex(0);
-//            else if(controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia))==null){
-//                controlEmergencia.pacienteNoEncontrado();
-//                pestRegEmer.setSelectedIndex(0);
-//            }
-//            //FALTA PROBAR
-//            else if(!controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia)).alDia()){
-//                controlEmergencia.pacienteNoAlDia();
-//                pestRegEmer.setSelectedIndex(0);
-//            }
-//            //FALTA PROBAR
-//            else if(controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia)).emergenciaAbierta()){
-//                controlEmergencia.pacienteConEmergenciaAbierta();
-//                pestRegEmer.setSelectedIndex(0);
-//            }
-            else{
-                controlEmergencia.mostrarAmbDisp(tablaAmbulatoriosDisp,controlClinica.getClinica());
-                if(tablaAmbSelec.getRowCount()!=1) controlEmergencia.titulosTablaAmbSelec(tablaAmbSelec);
-                botonSelecAmbulatorio.setEnabled(false);
-            }
-        }        
-        if(pestRegEmer.getSelectedIndex()==2){
-            if(cRegistro.camposVaciosEmergencia_Paciente(txtCI_Emergencia,jTextArea1))pestRegEmer.setSelectedIndex(0);
-            else if(cRegistro.camposVaciosEmergencia_Ambulatorio(tablaAmbulatoriosDisp)) pestRegEmer.setSelectedIndex(1);
-            else if(!controlClinica.getClinica().isDisponible()){
-                radioClinicaEmer.setEnabled(false);
-                if(tablaVehSelec.getRowCount()!=1) controlEmergencia.titulosTablaVehSelec(tablaVehSelec);
-            }
-        }
-    }//GEN-LAST:event_pestRegEmerMouseClicked
+    private void jTabbedPane3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane3MouseClicked
+        if (jTabbedPane3.getSelectedIndex()==2){
+            if (!controlVehiculo.vehiculoDisponible())
+                jTabbedPane3.setSelectedIndex(0);
+        }else if (jTabbedPane3.getSelectedIndex()==1)
+            controlVehiculo.mostrarES(tablaES);
+    }//GEN-LAST:event_jTabbedPane3MouseClicked
 
-    private void jTabbedPane4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane4MouseClicked
-        if(jTabbedPane4.getSelectedComponent().toString().equals("Registrar emergencia")) 
-            controlEmergencia.panelRegistro(pestRegEmer);
-    }//GEN-LAST:event_jTabbedPane4MouseClicked
+    private void tablaESMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaESMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaESMouseClicked
 
-    private void tablaAmbulatoriosDispMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAmbulatoriosDispMouseClicked
-        Ambulatorio amb = controlEmergencia.ambulatorioSeleccionado(tablaAmbulatoriosDisp,controlClinica.getClinica());
-        if(amb!=null) botonSelecAmbulatorio.setEnabled(true);
-    }//GEN-LAST:event_tablaAmbulatoriosDispMouseClicked
+    private void botonRegistrarEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarEntrada1ActionPerformed
+        controlVehiculo.registrarTurno();
+        botonRegistrarEntrada.setEnabled(false);
+        botonRegistrarSalida.setEnabled(true);
+        controlVehiculo.mostrarES(tablaES);
+    }//GEN-LAST:event_botonRegistrarEntrada1ActionPerformed
 
-    private void botonSelecAmbulatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSelecAmbulatorioMouseClicked
-        Ambulatorio amb = controlEmergencia.ambulatorioSeleccionado(tablaAmbulatoriosDisp,controlClinica.getClinica());
-        if(amb!=null){
-            controlEmergencia.mostrarAmbulatorioSeleccionado(tablaAmbSelec,amb);
-            botonSelecAmbulatorio.setEnabled(false);
-        }
-    }//GEN-LAST:event_botonSelecAmbulatorioMouseClicked
+    private void bhPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhPacientesMouseEntered
+        // TODO add your handling code here:
+        bhPacientes.setBorder(bordeAmarillo);
+    }//GEN-LAST:event_bhPacientesMouseEntered
 
-    private void radioAmbEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioAmbEmerMouseClicked
-        Ambulatorio amb =controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
-        controlEmergencia.ambulancias_disponibles_conEquipo(tablaVehDisp,amb);
-    }//GEN-LAST:event_radioAmbEmerMouseClicked
+    private void bhPacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhPacientesMouseExited
+        // TODO add your handling code here:
+        bhPacientes.setBorder(null);
+    }//GEN-LAST:event_bhPacientesMouseExited
 
-    private void radioClinicaEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioClinicaEmerMouseClicked
-        if(radioClinicaEmer.isSelected()){
-            Ambulatorio amb=controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
-            controlEmergencia.ambulancias_disponibles_conEquipo(tablaVehDisp,amb);
-        }
-    }//GEN-LAST:event_radioClinicaEmerMouseClicked
-
-    private void radioRespRapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioRespRapMouseClicked
-        Ambulatorio amb=controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
-        controlEmergencia.compactos_disponibles_conEquipo(tablaVehDisp,amb);
-    }//GEN-LAST:event_radioRespRapMouseClicked
-
-    private void botonSelecVehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSelecVehMouseClicked
-        Ambulatorio amb=controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
-        Vehiculo veh = controlEmergencia.vehiculoSeleccionado(tablaVehDisp,amb);
-        if(veh!=null){
-            System.out.println(veh.getSerial());
-            controlEmergencia.mostrarVehiculoSeleccionado(tablaVehSelec,veh);
-            botonSelecVeh.setEnabled(false);
-        }
-    }//GEN-LAST:event_botonSelecVehMouseClicked
-
-    private void tablaVehDispMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVehDispMouseClicked
-        Ambulatorio amb=controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
-        Vehiculo veh = controlEmergencia.vehiculoSeleccionado(tablaVehDisp,amb);
-        if(veh!=null) botonSelecVeh.setEnabled(true);
-    }//GEN-LAST:event_tablaVehDispMouseClicked
-
-    private void btnRegistrarEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarEmerMouseClicked
-        if(tablaVehSelec.getRowCount()==1){
-            if(cRegistro.confirmar()) System.out.println("POR REGISTRAR");
-        }
-    }//GEN-LAST:event_btnRegistrarEmerMouseClicked
+    private void bhPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhPacientesActionPerformed
+        // TODO add your handling code here:
+        panelesOp.setSelectedIndex(0);
+    }//GEN-LAST:event_bhPacientesActionPerformed
 
     private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
+        if(!txtCorreo.getText().isEmpty())
         if (!cRegistro.validarCorreo(txtCorreo.getText()))
         txtCorreo.setText(null);
     }//GEN-LAST:event_txtCorreoFocusLost
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        if(!txtNombre.getText().isEmpty())
         if (!cRegistro.validarNombre(txtNombre))
         txtNombre.setText(null);
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
-        if (!cRegistro.validarCI(txtCedula.getText())){
-            txtCedula.setText(null);
-        }else
-        if (controlSistema.buscarPaciente(txtCedula.getText())!=null)
-        JOptionPane.showMessageDialog(null, "La cedula que ingreso ya se encuentra registrada", "Error", JOptionPane.ERROR_MESSAGE);
+        if(!txtCedula.getText().isEmpty()){
+            if (!cRegistro.validarCI(txtCedula.getText())){
+                txtCedula.setText(null);
+            }else
+            if (controlSistema.buscarPaciente(txtCedula.getText())!=null)
+            JOptionPane.showMessageDialog(null, "La cedula que ingreso ya se encuentra registrada", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_txtCedulaFocusLost
 
     private void jGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGeneroActionPerformed
@@ -4200,7 +4322,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 ch='F';
 
             }
-            
+
             String telef;
             telef = cRegistro.construirTelf(txtTelfPaciente1, txtTelfPaciente2);
             String cedula = cRegistro.construirCedula(cboCI_Paciente,txtCedula);
@@ -4222,6 +4344,30 @@ public class MenúPrincipal extends javax.swing.JFrame{
             JOptionPane.showMessageDialog(null,"Todos los datos deben proporcionarse correctamente","Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jBTNRegistrarActionPerformed
+
+    private void txtTelfPaciente1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelfPaciente1FocusLost
+        if(!txtTelfPaciente1.getText().isEmpty())
+        if(!cRegistro.validarTelf(txtTelfPaciente1,4))
+        txtTelfPaciente1.setText(null);
+    }//GEN-LAST:event_txtTelfPaciente1FocusLost
+
+    private void txtTelfPaciente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelfPaciente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelfPaciente1ActionPerformed
+
+    private void txtTelfPaciente2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelfPaciente2FocusLost
+        if(!txtTelfPaciente2.getText().isEmpty())
+        if(!cRegistro.validarTelf(txtTelfPaciente2,7))
+        txtTelfPaciente2.setText(null);
+    }//GEN-LAST:event_txtTelfPaciente2FocusLost
+
+    private void txtTelfPaciente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelfPaciente2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelfPaciente2ActionPerformed
+
+    private void cboCI_PacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCI_PacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCI_PacienteActionPerformed
 
     private void btnDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetallesActionPerformed
         try{
@@ -4250,69 +4396,16 @@ public class MenúPrincipal extends javax.swing.JFrame{
         }catch(Exception ex){}    // TODO add your handling code here:
     }//GEN-LAST:event_jbtnModificarActionPerformed
 
-    private void txtTelfPaciente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelfPaciente1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelfPaciente1ActionPerformed
-
-    private void txtTelfPaciente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelfPaciente2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelfPaciente2ActionPerformed
-
-    private void cboCI_PersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCI_PersonalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCI_PersonalActionPerformed
-
-    private void cboCI_PacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCI_PacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCI_PacienteActionPerformed
-
-    private void txtBuscarCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarCedulaActionPerformed
-
-    private void txtBuscarCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarCedulaFocusLost
-        // TODO add your handling code here:
-        if (cRegistro.validarCI(txtBuscarCedula.getText())){
-            String cedula;
-            cedula = cRegistro.construirCedula(boxNacionalidadCedula, txtBuscarCedula);
-            if (controlSistema.buscarPaciente(cedula)==null){
-
-                JOptionPane.showMessageDialog(null, "La cedula ingresada no esta registrada ", "Error", JOptionPane.ERROR_MESSAGE);
-                
-            } else{
-                Paciente paciente = controlSistema.buscarPaciente(cedula);
-            
-            
-            }
-        }
-        
-
-    }//GEN-LAST:event_txtBuscarCedulaFocusLost
-
-    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_txtMontoActionPerformed
-
-    private void txtMontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusLost
-        // TODO add your handling code here:
-        cRegistro.datoEsNumerico(txtMonto);
-        
-        
-       
-    }//GEN-LAST:event_txtMontoFocusLost
-
     private void btnAgregarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPagoActionPerformed
         // TODO add your handling code here:
-        
+
         if (cRegistro.camposVaciosPagos(txtBuscarCedula, txtMonto, jFechaPago)==false){
-        
+
             if (cRegistro.validarCI(txtBuscarCedula.getText()) && cRegistro.datoEsNumerico(txtMonto) && jFechaPago.getDate()!=null){
-                
+
                 Paciente pacienteAPagar = controlSistema.buscarPaciente(cRegistro.construirCedula(boxNacionalidadCedula, txtBuscarCedula));
                 Pago pago=new Pago(controlSistema.generarFactura(),jFechaPago.getDate(),Double.parseDouble(txtMonto.getText()));
-                
+
                 pacienteAPagar.registrarPago(pago);
                 JOptionPane.showMessageDialog(null,"Pago Registrado Exitosamente");
                 txtBuscarCedula.setText(null);
@@ -4320,31 +4413,177 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 jFechaPago.setDate(null);
                 controlSistema.mostrarPagosGlobal(jTablePagos);
 
-                
             }
-        
+
         }
-        
+
     }//GEN-LAST:event_btnAgregarPagoActionPerformed
 
-    private void jTabbedPane3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane3MouseClicked
-        if (jTabbedPane3.getSelectedIndex()==2){
-            if (!controlVehiculo.vehiculoDisponible())
-                jTabbedPane3.setSelectedIndex(0);
-        }else if (jTabbedPane3.getSelectedIndex()==1)
-            controlVehiculo.mostrarES(tablaES);
-    }//GEN-LAST:event_jTabbedPane3MouseClicked
-
-    private void tablaESMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaESMouseClicked
+    private void txtBuscarCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBuscarCedulaFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_tablaESMouseClicked
+        if(!txtBuscarCedula.getText().isEmpty()){
+            if (cRegistro.validarCI(txtBuscarCedula.getText())){
+                String cedula;
+                cedula = cRegistro.construirCedula(boxNacionalidadCedula, txtBuscarCedula);
+                if (controlSistema.buscarPaciente(cedula)==null){
 
-    private void botonRegistrarEntrada1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarEntrada1ActionPerformed
-        controlVehiculo.registrarTurno();
-        botonRegistrarEntrada.setEnabled(false);
-        botonRegistrarSalida.setEnabled(true);
-        controlVehiculo.mostrarES(tablaES);
-    }//GEN-LAST:event_botonRegistrarEntrada1ActionPerformed
+                    JOptionPane.showMessageDialog(null, "La cedula ingresada no esta registrada ", "Error", JOptionPane.ERROR_MESSAGE);
+
+                } else{
+                    Paciente paciente = controlSistema.buscarPaciente(cedula);
+                }
+            }
+        }
+    }//GEN-LAST:event_txtBuscarCedulaFocusLost
+
+    private void txtBuscarCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarCedulaActionPerformed
+
+    private void txtMontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMontoFocusLost
+        // TODO add your handling code here:
+        if(!txtMonto.getText().isEmpty())
+        cRegistro.datoEsNumerico(txtMonto);
+    }//GEN-LAST:event_txtMontoFocusLost
+
+    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtMontoActionPerformed
+
+    private void txtCI_EmergenciaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCI_EmergenciaFocusLost
+        if(!cRegistro.validarCI(txtCI_Emergencia.getText())) txtCI_Emergencia.setText(null);
+    }//GEN-LAST:event_txtCI_EmergenciaFocusLost
+
+    private void tablaAmbulatoriosDispMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaAmbulatoriosDispMouseClicked
+        Ambulatorio amb = controlEmergencia.ambulatorioSeleccionado(tablaAmbulatoriosDisp,controlClinica.getClinica());
+        if(amb!=null) botonSelecAmbulatorio.setEnabled(true);
+    }//GEN-LAST:event_tablaAmbulatoriosDispMouseClicked
+
+    private void botonSelecAmbulatorioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSelecAmbulatorioMouseClicked
+        Ambulatorio amb = controlEmergencia.ambulatorioSeleccionado(tablaAmbulatoriosDisp,controlClinica.getClinica());
+        if(amb!=null){
+            controlEmergencia.mostrarAmbulatorioSeleccionado(tablaAmbSelec,amb);
+            botonSelecAmbulatorio.setEnabled(false);
+        }
+    }//GEN-LAST:event_botonSelecAmbulatorioMouseClicked
+
+    private void tablaVehDispMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVehDispMouseClicked
+        Ambulatorio amb=controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
+        Vehiculo veh = controlEmergencia.vehiculoSeleccionado(tablaVehDisp,amb);
+        if(veh!=null) botonSelecVeh.setEnabled(true);
+    }//GEN-LAST:event_tablaVehDispMouseClicked
+
+    private void botonSelecVehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSelecVehMouseClicked
+        Ambulatorio amb=controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
+        Vehiculo veh = controlEmergencia.vehiculoSeleccionado(tablaVehDisp,amb);
+        if(veh!=null){
+            System.out.println(veh.getSerial());
+            controlEmergencia.mostrarVehiculoSeleccionado(tablaVehSelec,veh);
+            botonSelecVeh.setEnabled(false);
+        }
+    }//GEN-LAST:event_botonSelecVehMouseClicked
+
+    private void radioAmbEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioAmbEmerMouseClicked
+        Ambulatorio amb =controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
+        controlEmergencia.ambulancias_disponibles_conEquipo(tablaVehDisp,amb);
+    }//GEN-LAST:event_radioAmbEmerMouseClicked
+
+    private void radioClinicaEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioClinicaEmerMouseClicked
+        if(radioClinicaEmer.isSelected()){
+            Ambulatorio amb=controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
+            controlEmergencia.ambulancias_disponibles_conEquipo(tablaVehDisp,amb);
+        }
+    }//GEN-LAST:event_radioClinicaEmerMouseClicked
+
+    private void radioRespRapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioRespRapMouseClicked
+        Ambulatorio amb=controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
+        controlEmergencia.compactos_disponibles_conEquipo(tablaVehDisp,amb);
+    }//GEN-LAST:event_radioRespRapMouseClicked
+
+    private void radioRespRapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRespRapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioRespRapActionPerformed
+
+    private void btnRegistrarEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarEmerMouseClicked
+        if(tablaVehSelec.getRowCount()==1){
+            Paciente paciente = controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia));
+            Ambulatorio amb = controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
+            Vehiculo veh = controlEmergencia.vehiculoSeleccionado(amb,tablaVehSelec);
+            controlEmergencia.crearEmergencia(paciente, jTextArea1, amb, radioAmbEmer, radioClinicaEmer, radioRespRap, veh);
+            controlEmergencia.titulosTablaAmbSelec(tablaAmbulatoriosDisp);
+            controlEmergencia.titulosTablaAmbSelec(tablaAmbSelec);
+            controlEmergencia.titulosTablaVehSelec(tablaVehSelec);
+            controlEmergencia.titulosTablaVehSelec(tablaVehDisp);
+            jTextArea1.setText(null);
+            txtCI_Emergencia.setText(null);
+            cboCI_Emergencia.setSelectedIndex(0);
+            pestRegEmer.setSelectedIndex(0);
+            JOptionPane.showMessageDialog(null,"Emergencia registrada.","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
+        }
+        else
+        JOptionPane.showMessageDialog(null,"Debe seleccionar el vehículo a utilizar","Error",JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnRegistrarEmerMouseClicked
+
+    private void pestRegEmerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pestRegEmerMouseClicked
+        if(pestRegEmer.getSelectedIndex()==1){
+            if(cRegistro.camposVaciosEmergencia_Paciente(txtCI_Emergencia,jTextArea1))pestRegEmer.setSelectedIndex(0);
+            else if(controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia))==null){
+                controlEmergencia.pacienteNoEncontrado();
+                pestRegEmer.setSelectedIndex(0);
+            }
+            else if(!controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia)).alDia()){
+                controlEmergencia.pacienteNoAlDia();
+                pestRegEmer.setSelectedIndex(0);
+            }
+            else if(controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia)).emergenciaAbierta()){
+                controlEmergencia.pacienteConEmergenciaAbierta();
+                pestRegEmer.setSelectedIndex(0);
+            }
+            else{
+                controlEmergencia.mostrarAmbDisp(tablaAmbulatoriosDisp,controlClinica.getClinica());
+                if(tablaAmbSelec.getRowCount()!=1) controlEmergencia.titulosTablaAmbSelec(tablaAmbSelec);
+                botonSelecAmbulatorio.setEnabled(false);
+            }
+        }
+        if(pestRegEmer.getSelectedIndex()==2){
+            if(cRegistro.camposVaciosEmergencia_Paciente(txtCI_Emergencia,jTextArea1))pestRegEmer.setSelectedIndex(0);
+            else if(cRegistro.camposVaciosEmergencia_Ambulatorio(tablaAmbulatoriosDisp) || tablaAmbSelec.getRowCount()!=1) pestRegEmer.setSelectedIndex(1);
+            else if(!controlClinica.getClinica().isDisponible()){
+                radioClinicaEmer.setEnabled(false);
+                if(tablaVehSelec.getRowCount()!=1) controlEmergencia.titulosTablaVehSelec(tablaVehSelec);
+            }
+        }
+    }//GEN-LAST:event_pestRegEmerMouseClicked
+
+    private void txtCI_HistEmgFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCI_HistEmgFocusLost
+        if(!cRegistro.validarCI(txtCI_HistEmg.getText())) txtCI_HistEmg.setText(null);
+    }//GEN-LAST:event_txtCI_HistEmgFocusLost
+
+    private void btnVerHistEmgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHistEmgActionPerformed
+        if(!cRegistro.validarCI(txtCI_HistEmg.getText())) txtCI_HistEmg.setText(null);
+        else if(controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_HistEmg,txtCI_HistEmg))==null)
+        controlEmergencia.pacienteNoEncontrado();
+        else{
+            Paciente paciente = controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_HistEmg,txtCI_HistEmg));
+            controlEmergencia.mostrarHistorial(tablaHistEmg,paciente.getEntradaSalida());
+            controlEmergencia.emergenciaAbierta(tablaEmgReciente,paciente);
+        }
+    }//GEN-LAST:event_btnVerHistEmgActionPerformed
+
+    private void btnCerrarEmgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarEmgActionPerformed
+        Paciente paciente = controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_HistEmg,txtCI_HistEmg));
+        if(tablaEmgReciente.getRowCount()!=1){
+            controlEmergencia.cerrarEmergencia(tablaEmgReciente,paciente);
+        }
+        else
+        JOptionPane.showMessageDialog(null,"No hay emergencias por cerrar.","Información",JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnCerrarEmgActionPerformed
+
+    private void jTabbedPane4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane4MouseClicked
+        if(jTabbedPane4.getSelectedComponent().toString().equals("Registrar emergencia"))
+        controlEmergencia.panelRegistro(pestRegEmer);
+    }//GEN-LAST:event_jTabbedPane4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -4474,6 +4713,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JComboBox<String> boxNacionalidadCedula;
     private javax.swing.JButton btnAgregarPago;
     private javax.swing.JButton btnAgregarPer;
+    private javax.swing.JButton btnCerrarEmg;
     private javax.swing.JButton btnDetalles;
     private javax.swing.JButton btnDetallesSum;
     private javax.swing.JButton btnEliminarPer;
@@ -4482,7 +4722,9 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JButton btnRegistrarMantenimiento;
     private javax.swing.JButton btnRegistrarMov;
     private javax.swing.JButton btnRegistrarSum;
+    private javax.swing.JButton btnVerHistEmg;
     private javax.swing.JComboBox<String> cboCI_Emergencia;
+    private javax.swing.JComboBox<String> cboCI_HistEmg;
     private javax.swing.JComboBox<String> cboCI_Paciente;
     private javax.swing.JComboBox<String> cboCI_Personal;
     private javax.swing.JComboBox<String> cboEstado;
@@ -4498,6 +4740,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel fondoClinica;
     private javax.swing.JLabel fondoHome;
     private javax.swing.JLabel fondoPacientes;
+    private javax.swing.JLabel g20;
     private javax.swing.ButtonGroup grupoActivo;
     private javax.swing.ButtonGroup grupoAsignado;
     private javax.swing.ButtonGroup grupoDestinoPaciente;
@@ -4512,6 +4755,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel guion4;
     private javax.swing.JButton jBTNRegistrar;
     private javax.swing.JButton jBtnEliminar;
+    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jFechaPago;
     private javax.swing.JComboBox<String> jGenero;
     private javax.swing.JLabel jLabel10;
@@ -4528,6 +4772,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -4541,6 +4787,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -4556,6 +4803,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
+    private javax.swing.JScrollPane jScrollPane21;
+    private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -4575,6 +4824,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel labelAmbulatoriosDisp;
     private javax.swing.JLabel labelAsignadoDRS;
     private javax.swing.JLabel labelCI_Emergencia;
+    private javax.swing.JLabel labelCI_HistEmg;
     private javax.swing.JLabel labelCI_Personal;
     private javax.swing.JLabel labelCiudad;
     private javax.swing.JLabel labelCiudadAmbulatorio;
@@ -4592,6 +4842,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel labelDir_DelAmbulatorio;
     private javax.swing.JLabel labelDir_Taller;
     private javax.swing.JLabel labelDisponibleVeh;
+    private javax.swing.JLabel labelEmergencias;
+    private javax.swing.JLabel labelEmergencias1;
     private javax.swing.JLabel labelEnMantenimiento;
     private javax.swing.JLabel labelEstado;
     private javax.swing.JLabel labelEstadoAmbulatorio;
@@ -4644,6 +4896,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel labelTituloAmbulatorio2;
     private javax.swing.JLabel labelTituloAmbulatorio3;
     private javax.swing.JLabel labelTituloAmbulatorio4;
+    private javax.swing.JLabel labelTituloHistEmg;
     private javax.swing.JLabel labelTituloVehiculo;
     private javax.swing.JLabel logo;
     private javax.swing.JPanel panelAmbulancias;
@@ -4652,6 +4905,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JPanel panelAsociarTaller;
     private javax.swing.JPanel panelClinica;
     private javax.swing.JPanel panelDatosPersonal;
+    private javax.swing.JPanel panelHistEmer;
     private javax.swing.JPanel panelHome;
     private javax.swing.JPanel panelInfoPac_Emer;
     private javax.swing.JPanel panelInformacionAmbulatorio;
@@ -4697,6 +4951,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JTable tablaAmbulatoriosDisp;
     private javax.swing.JTable tablaAsignados;
     private javax.swing.JTable tablaES;
+    private javax.swing.JTable tablaEmgReciente;
+    private javax.swing.JTable tablaHistEmg;
     private javax.swing.JTable tablaInventarioVeh;
     private javax.swing.JTable tablaMantenimientosVeh;
     private javax.swing.JTable tablaPersonal;
@@ -4716,6 +4972,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JTextArea txtAreaMecanicos;
     private javax.swing.JTextField txtBuscarCedula;
     private javax.swing.JTextField txtCI_Emergencia;
+    private javax.swing.JTextField txtCI_HistEmg;
     private javax.swing.JTextField txtCI_Personal;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCiudad;

@@ -1,64 +1,58 @@
 <root>
   <Clinica>
-    <nombre>Clinica 2</nombre>
+    <nombre>Hola</nombre>
     <telefono>0242-1945665</telefono>
     <RIF>J-12345678-1</RIF>
     <estado>Amazonas</estado>
     <ciudad>f</ciudad>
     <direccion>f</direccion>
-    <disponible>true</disponible>
-    <talleresAsociados>
-      <Taller>
-        <nombre>Taller 1</nombre>
-        <telefono>0212-3333333</telefono>
-        <RIF>J-12999234-2</RIF>
-        <estado>Amazonas</estado>
-        <ciudad>dd</ciudad>
-        <direccion>Ambulatoris</direccion>
-        <mecanicos>
-          <mecanico>Mario</mecanico>
-        </mecanicos>
-      </Taller>
-      <Taller>
-        <nombre>Taller 2</nombre>
-        <telefono>0212-1122334</telefono>
-        <RIF>J-11223344-9</RIF>
-        <estado>Amazonas</estado>
-        <ciudad>CAGAR</ciudad>
-        <direccion>aaaa</direccion>
-        <mecanicos>
-          <mecanico>A</mecanico>
-          <mecanico>A</mecanico>
-        </mecanicos>
-      </Taller>
-    </talleresAsociados>
+    <disponible>false</disponible>
     <ambulatorios>
       <Ambulatorio>
-        <nombre>Ambulatorio 1</nombre>
-        <telefono>0212-1112223</telefono>
-        <RIF>J-22334455-1</RIF>
-        <estado>dddd</estado>
-        <ciudad>dddd</ciudad>
-        <direccion>Amazonas</direccion>
-        <disponible>true</disponible>
-      </Ambulatorio>
-      <Ambulatorio>
         <nombre>Ambulatorio 2</nombre>
-        <telefono>0212-1111112</telefono>
+        <telefono>0121-3413614</telefono>
         <RIF>J-22331122-2</RIF>
-        <estado>ssss</estado>
+        <estado>Amazonas</estado>
         <ciudad>sss</ciudad>
         <direccion>Amazonas</direccion>
-        <disponible>true</disponible>
-      </Ambulatorio>
-      <Ambulatorio>
-        <nombre>Ambulatorio 3</nombre>
-        <telefono>0212-1234567</telefono>
-        <RIF>J-11111111-2</RIF>
-        <estado>dddd</estado>
-        <ciudad>ddd</ciudad>
-        <direccion>Amazonas</direccion>
-        <disponible>true</disponible>
+        <disponible>false</disponible>
+        <Personal>
+          <personal>
+            <cedula>V-1</cedula>
+            <nombre>a</nombre>
+            <correo>a@a.com</correo>
+            <telefono>0212-4532523</telefono>
+            <nacimiento>2021-08-05</nacimiento>
+            <genero>M</genero>
+            <numCarnet>0</numCarnet>
+            <activo>true</activo>
+            <salario>1.0</salario>
+            <fechaContrato>2021-08-06</fechaContrato>
+            <tipo>Conductor</tipo>
+            <licencia>1</licencia>
+          </personal>
+        </Personal>
+        <vehiculos>
+          <compacto>
+            <serial>11223344556677889</serial>
+            <enMantenimiento>false</enMantenimiento>
+            <disponible>true</disponible>
+            <codigo>1</codigo>
+          </compacto>
+          <ambulancia>
+            <serial>12345678987654321</serial>
+            <enMantenimiento>false</enMantenimiento>
+            <disponible>true</disponible>
+            <codigo>2</codigo>
+            <tipo>Terrestre</tipo>
+          </ambulancia>
+          <compacto>
+            <serial>22334455667788991</serial>
+            <enMantenimiento>false</enMantenimiento>
+            <disponible>true</disponible>
+            <codigo>3</codigo>
+          </compacto>
+        </vehiculos>
       </Ambulatorio>
       <Ambulatorio>
         <nombre>Ambulatorio 4</nombre>

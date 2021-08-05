@@ -13,6 +13,12 @@ public class Ambulancia extends Vehiculo {
         //Atributo tipo de ambulancia (aérea o terrestre)
         this.tipo = tipo;
     }
+
+    public Ambulancia(String serial, boolean enMantenimiento, boolean disponible, String tipo,int codigo) {
+        super(serial, enMantenimiento, disponible, codigo);
+        this.tipo = tipo;
+    }
+    
     
     
     //GETTERS Y SETTERS

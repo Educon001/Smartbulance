@@ -274,7 +274,6 @@ public class PClinica {
             elementoVehiculo = CompactotoXMLElement((Compacto) vehiculo);
         agregarVehiculo(elementoVehiculo,RIF_Clinica,RIF_Ambulatorio);
         boolean  resultado = updateDocument();
-        System.out.println(resultado);
         return resultado;
     }
   
@@ -380,7 +379,6 @@ public class PClinica {
             ConductortoXMLElement(elementoPersonal,(Conductor) personal);
         agregarPersonal(elementoPersonal,RIF_Clinica,RIF_Ambulatorio);
         boolean  resultado = updateDocument();
-        System.out.println(resultado);
         return resultado;
     }
     
@@ -482,7 +480,7 @@ public class PClinica {
     }
     
     public boolean hayVehiculos(Element vehiculos){
-        if(vehiculos.getChild("vehiculo")!=null)
+        if(vehiculos.getChild("ambulancia")!=null || vehiculos.getChild("compacto")!=null)
             return true;
         return false;
     }
@@ -499,7 +497,6 @@ public class PClinica {
                         for(Element elementoVehiculo : vehiculos){
                             if(elementoVehiculo.getChildText("serial").equals(serial)){
                                 elementoAmbulatorio.getChild("vehiculos").removeContent(elementoVehiculo);
-//                                elementoVehiculo.detach();
                                 if(!hayVehiculos(elementoAmbulatorio.getChild("vehiculos"))) elementoAmbulatorio.removeChild("vehiculos");
                                 return updateDocument();
                             }
@@ -596,10 +593,7 @@ public class PClinica {
             nacimiento = LocalDate.parse(elementoPersonal.getChild("nacimiento").getText(), formatter);
             fechaContrato = LocalDate.parse(elementoPersonal.getChild("fechaContrato").getText(), formatter);
         }
-        catch(DateTimeParseException ex){
-            System.out.println(nacimiento);
-            System.out.println(fechaContrato);
-        }
+        catch(DateTimeParseException ex){}
         
         
         if(elementoPersonal.getChildText("tipo").equals("Paramédico")){
@@ -629,13 +623,13 @@ public class PClinica {
     
     private Ambulancia AmbulanciaToObject(Element elementoAmbulancia) {
         //String serial, boolean enMantenimiento, boolean disponible, String tipo
-        Ambulancia ambulancia = new Ambulancia(elementoAmbulancia.getChildText("serial"),Boolean.parseBoolean(elementoAmbulancia.getChildText("enMantenimiento")),Boolean.parseBoolean(elementoAmbulancia.getChildText("disponible")),elementoAmbulancia.getChildText("tipo"));
+        Ambulancia ambulancia = new Ambulancia(elementoAmbulancia.getChildText("serial"),Boolean.parseBoolean(elementoAmbulancia.getChildText("enMantenimiento")),Boolean.parseBoolean(elementoAmbulancia.getChildText("disponible")),elementoAmbulancia.getChildText("tipo"),Integer.parseInt(elementoAmbulancia.getChildText("codigo")));
         return ambulancia; 
     }
     
     private Compacto CompactoToObject(Element elementoCompacto) {
         //String serial, boolean enMantenimiento, boolean disponible, String tipo
-        Compacto compacto = new Compacto(elementoCompacto.getChildText("serial"),Boolean.parseBoolean(elementoCompacto.getChildText("enMantenimiento")),Boolean.parseBoolean(elementoCompacto.getChildText("disponible")));
+        Compacto compacto = new Compacto(elementoCompacto.getChildText("serial"),Boolean.parseBoolean(elementoCompacto.getChildText("enMantenimiento")),Boolean.parseBoolean(elementoCompacto.getChildText("disponible")),Integer.parseInt(elementoCompacto.getChildText("codigo")));
         return compacto; 
     }
     

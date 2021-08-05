@@ -7,6 +7,7 @@ package Vista;
 
 import Modelo.*;
 import Controller.*;
+import persistencia.PClinica;
 
 public class ModificarEntidad extends javax.swing.JFrame {
     Entidad entidad;
@@ -471,6 +472,7 @@ public class ModificarEntidad extends javax.swing.JFrame {
     }//GEN-LAST:event_botonReestablecerActionPerformed
 
     private void botonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarCambiosActionPerformed
+        try{
         boolean validaciones = controlRegistro.validarRIF(txt8RIFEntidad,8) && controlRegistro.validarRIF(txt1RIFEntidad,1) && controlRegistro.validarTelf(txtTelf1Entidad,4) && controlRegistro.validarTelf(txtTelf2Entidad,7) && controlRegistro.validarNombre(txtCiudadEntidad);
         if(validaciones && controlRegistro.camposVaciosEntidad(txtNombreEntidad, txt8RIFEntidad, txt1RIFEntidad, txtTelf1Entidad, txtTelf2Entidad, txtDirEntidad, txtDirEntidad)==false){
                 boolean modRIF=false,modTelf=false,continuar=true;
@@ -489,9 +491,12 @@ public class ModificarEntidad extends javax.swing.JFrame {
                             if(entidad instanceof Clinica) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DeLaClinica(),ventanaAnterior.getLabelRIF_DeLaClinica(),ventanaAnterior.getLabelTelf_DeLaClinica(),ventanaAnterior.getLabelCiudad_DeLaClinca(),ventanaAnterior.getLabelEstado_DeLaClinica(),ventanaAnterior.getLabelDir_DeLaClinica());
                             if(entidad instanceof Ambulatorio) controlRegistro.actualizarEtiquetas_Entidad(entidad,ventanaAnterior.getLabelNombre_DelAmbulatorio(),ventanaAnterior.getLabelRIF_DelAmbulatorio(),ventanaAnterior.getLabelTelf_DelAmbulatorio(),ventanaAnterior.getLabelCiudad_DelAmbulatorio(),ventanaAnterior.getLabelEstado_DelAmbulatorio(),ventanaAnterior.getLabelDir_DelAmbulatorio());
                             ventanaAnterior.setVisible(true);
+                            PClinica persistencia = new PClinica();
+                            persistencia.modificarEntidad(entidad, 1);
                         }   
                 }
         }
+        }catch(Exception ex){}
     }//GEN-LAST:event_botonGuardarCambiosActionPerformed
 
     private void txt8RIFEntidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt8RIFEntidadFocusLost

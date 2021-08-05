@@ -25,7 +25,13 @@ public class Vehiculo {  //NOTA: FALTAN LOS METODOS PARA LLEVAR A CABO EL INVENT
         personalActual = new ArrayList<>();
         entradasSalidas = new ArrayList<>();
     }
-    
+
+    public Vehiculo(String serial, boolean enMantenimiento, boolean disponible, int codigo) {
+        this.serial = serial;
+        this.enMantenimiento = enMantenimiento;
+        this.disponible = disponible;
+        this.codigo = codigo;
+    }
   
     //GETTERS Y SETTERS
     public int getCodigo() {

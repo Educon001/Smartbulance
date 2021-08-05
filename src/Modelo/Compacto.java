@@ -10,6 +10,10 @@ public class Compacto extends Vehiculo{ //NOTA: FALTAN LOS METODOS PARA LLEVAR A
         super(serial,enMantenimiento,disponible);
     }
 
+    public Compacto(String serial, boolean enMantenimiento, boolean disponible, int codigo) {
+        super(serial, enMantenimiento, disponible, codigo);
+    }
+
     @Override
     public boolean asignar_Al_Equipo(PersonalConVehiculo per) {
         if (super.asignar_Al_Equipo(per))

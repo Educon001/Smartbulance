@@ -224,8 +224,8 @@ public class CEmergencia {
     }
     
     //SE CREA DEL OBJETO EMERGENCIA Y SE AGREGA A LA LISTA DE EMERGENCIAS DEL PACIENTE PASADO
-    public void crearEmergencia(Paciente pac,JTextArea txtAreaDescripcion,Ambulatorio ambulatorio,JRadioButton radioAmb,JRadioButton radioClinica,JRadioButton radioResp,Vehiculo veh){
-        int codigo = pac.getEntradaSalida().size()-1;
+    public void crearEmergencia(CSistema con, Paciente pac,JTextArea txtAreaDescripcion,Ambulatorio ambulatorio,JRadioButton radioAmb,JRadioButton radioClinica,JRadioButton radioResp,Vehiculo veh){
+        int codigo = con.generarCodigoEm();
         Date entrada = new Date();
         //CONSTRUCTOR EMERGENCIA
         Emergencia emg = new Emergencia(txtAreaDescripcion.getText(), radioResp.isSelected(),radioAmb.isSelected(), radioClinica.isSelected(),ambulatorio.getRIF(),veh.getSerial(),codigo,entrada,null); 

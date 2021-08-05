@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.*;
 import javax.swing.table.*;
+import persistencia.PClinica;
 
 public class CClinica {
 
@@ -61,6 +62,8 @@ public class CClinica {
     public void crearAmbulatorio(Clinica clinica,String nombreAmbulatorio,String RIF,String telefono,String ciudad,String estado,String direccion){
         Ambulatorio amb = new Ambulatorio(nombreAmbulatorio,telefono,RIF,estado,ciudad,direccion);        
         clinica.incorporarAmbulatorio(amb);
+        PClinica persistencia = new PClinica();
+        persistencia.agregarAmbulatorio(amb,clinica.getRIF());
     }
     
     public void crearTaller(Clinica clinica,String nombreTaller,String RIF,String telefono,String ciudad,String direccion,String estado,JTextArea txtAreaMecanicos){
@@ -68,6 +71,8 @@ public class CClinica {
         mecanicos.remove(0);
         Taller taller = new Taller(mecanicos,nombreTaller,telefono,RIF,estado,ciudad,direccion);       
         clinica.asociarTaller(taller);
+        PClinica persistencia = new PClinica();
+        persistencia.agregarTaller(taller, clinica.getRIF());
     }
     
     
@@ -142,6 +147,8 @@ public class CClinica {
     
     public void clinicaDisponible(JToggleButton disp){
         clinica.setDisponible(disp.isSelected());
+        PClinica persistencia = new PClinica();
+        persistencia.modificarEntidad(clinica, 0);
     }
     
     public boolean tallerRegistrado(String RIF){

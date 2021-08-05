@@ -6,21 +6,20 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import persistencia.PClinica;
 
 public class CSistema {
     //ATRIBUTOS
     private ArrayList<Clinica> listaClinicas;
     private ArrayList<Paciente> listaPacientes;
-    private ArrayList<Emergencia> listaEmergencias;
     
-    Clinica prueba = new Clinica("Clinic","0212-9435176","J-12345678-1","Amazonas","Maracaibo","Calle 13");
+    //Clinica prueba = new Clinica("Clinic","0212-9435176","J-12345678-1","Amazonas","Maracaibo","Calle 13");
     
     //CONSTRUCTORES
     public CSistema() {
-        listaClinicas = new ArrayList<>();
-        listaClinicas.add(prueba);
+        PClinica persi = new PClinica();
+        listaClinicas = persi.todosLasClinicas();
         listaPacientes = new ArrayList<>();  
-        listaEmergencias = new ArrayList<>();
     }
        // String nombre, String telefono, String RIF, String estado, String ciudad, String direccion
     //GETTERS Y SETTERS
@@ -39,14 +38,6 @@ public class CSistema {
     public void setListaPacientes(ArrayList<Paciente> listaPacientes) {
         this.listaPacientes = listaPacientes;
     }
-
-    public ArrayList<Emergencia> getListaEmergencias() {
-        return listaEmergencias;
-    }
-
-    public void setListaEmergencias(ArrayList<Emergencia> listaEmergencias) {
-        this.listaEmergencias = listaEmergencias;
-    }
     
     //OTROS MÉTODOS
     public void agregarClinica(Clinica cli){
@@ -60,13 +51,7 @@ public class CSistema {
     public void eliminarPaciente(Paciente pac){
         listaPacientes.remove(pac);
     }
-    
-    public void agregarEmergencia(Emergencia em){
-        listaEmergencias.add(em);
-        em.setCodigo(listaEmergencias.size());
-    }
-    
- 
+
     public Clinica buscarClinica(String RIF){
         for(Clinica clinica : listaClinicas){
             if(RIF.equals(clinica.getRIF())) return clinica;
@@ -82,6 +67,24 @@ public class CSistema {
         return null; 
     }
     
+    public Emergencia buscarEmergencia(int num){
+        for (Paciente pac : listaPacientes) {
+            for (Turno em : pac.getEntradaSalida()) {
+                if (((Emergencia) em).getCodigo()==num)
+                    return (Emergencia) em;
+            }
+        }
+        return null;
+    }
+    
+    public int generarCodigoEm(){
+        int codigo = 1;
+        for (Paciente pac : listaPacientes) {
+            codigo+=pac.getEntradaSalida().size();
+        }
+        return codigo;
+    }
+    
     public long generarFactura(){
         long mayor;
         mayor = 0;        
@@ -93,14 +96,6 @@ public class CSistema {
           }          
         }
      return 1+mayor;
-    }
-    
-    public Emergencia buscarEmergencia(int cod){
-        for (Emergencia em : listaEmergencias) {
-            if (em.getCodigo()==cod)
-                return em;
-        }
-        return null;
     }
     
     public void mensajeEntidad_RIFRegistrado(){
@@ -159,11 +154,6 @@ public class CSistema {
         return false;
     }
     
-    public void crearClinica(String nombre,String RIF,String telf,String ciudad,String estado,String dir){        
-        Clinica clinica = new Clinica(nombre,telf,RIF,estado,ciudad,dir);
-        agregarClinica(clinica);
-    }
-    
      public void mostrarPagosGlobal(JTable tablaPagos){
         String[] titulos = {"Cedula","Factura","Fecha","Monto"};
         long tam=0;
@@ -188,6 +178,18 @@ public class CSistema {
         tablaPagos.setModel(model);
         tablaPagos.setDefaultEditor(Object.class, null);
         tablaPagos.getTableHeader().setReorderingAllowed(false);      
+    }
+    
+    public void crearClinica(String nombre,String RIF,String telf,String ciudad,String estado,String dir){        
+        Clinica clinica = new Clinica(nombre,telf,RIF,estado,ciudad,dir);
+        agregarClinica(clinica);
+        PClinica pClinica = new PClinica();
+        pClinica.agregarClinica(clinica);
+    }
+    
+    public void agregarTaller_Archivo(Taller taller,String RIF){
+        PClinica pClinica = new PClinica();
+        pClinica.agregarTaller(taller, RIF);
     }
     
 }

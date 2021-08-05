@@ -2087,7 +2087,6 @@
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonEliVehMouseClicked"/>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliVehActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -3006,7 +3005,6 @@
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonEliminar_PersonalMouseClicked"/>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliminar_PersonalActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="botonRegistrarEntrada">

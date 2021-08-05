@@ -16,6 +16,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import persistencia.PClinica;
 
 /**
  *
@@ -1601,11 +1602,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 botonEliVehMouseClicked(evt);
             }
         });
-        botonEliVeh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliVehActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelVerAmbulanciasLayout = new javax.swing.GroupLayout(panelVerAmbulancias);
         panelVerAmbulancias.setLayout(panelVerAmbulanciasLayout);
@@ -2068,11 +2064,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
         botonEliminar_Personal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonEliminar_PersonalMouseClicked(evt);
-            }
-        });
-        botonEliminar_Personal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminar_PersonalActionPerformed(evt);
             }
         });
 
@@ -3610,7 +3601,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         if(RIF!=null){
             if(cRegistro.formatoRIFCompleto(RIF) && controlClinica.seEncuentraRegistradoRIF_Ambulatorio(RIF,true)){
                 Ambulatorio amb = controlClinica.getClinica().retornarAmbulatorio(RIF);
-                controlAmbulatorio = new CAmbulatorio(amb);
+                controlAmbulatorio = new CAmbulatorio(amb,controlClinica.getClinica().getRIF());
                 controlInventario = new CInventario(amb);
                 controlVentana.botonClinica_DatosEntidad(controlAmbulatorio.getAmbulatorio(),labelNombre_DelAmbulatorio,labelRIF_DelAmbulatorio,labelTelf_DelAmbulatorio,labelCiudad_DelAmbulatorio,labelEstado_DelAmbulatorio,labelDir_DelAmbulatorio,botonDispAmbulatorio);
                 controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);
@@ -3885,9 +3876,13 @@ public class MenúPrincipal extends javax.swing.JFrame{
         try{
         Ambulatorio amb = controlClinica.ambulatorioSeleccionado(tablaAmbulatorios);
         if(amb!=null){
-            if(cRegistro.confirmar()) controlClinica.getClinica().desincorporarAmbulatorio(amb);
-            controlClinica.mostrarTablaAmbulatorios(controlClinica.getClinica().getAmbulatorios(),tablaAmbulatorios);   
-            botonEliminarAmbulatorio.setEnabled(false);
+            if(cRegistro.confirmar()){
+                controlClinica.getClinica().desincorporarAmbulatorio(amb);
+                controlClinica.mostrarTablaAmbulatorios(controlClinica.getClinica().getAmbulatorios(),tablaAmbulatorios);   
+                botonEliminarAmbulatorio.setEnabled(false);
+                PClinica persistencia = new PClinica();
+                persistencia.Ambulatorio_EliminarXMLElement(controlClinica.getClinica().getRIF(), amb.getRIF());
+            }
         }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
@@ -3908,13 +3903,19 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_botonListaMecanicosActionPerformed
 
     private void botonDesasociarTallerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDesasociarTallerActionPerformed
+        try{
         Taller taller=controlClinica.tallerSeleccionado(tablaTalleres);
         if(taller!=null){
-            if(cRegistro.confirmar()) controlClinica.getClinica().desasociarTaller(taller);
+            if(cRegistro.confirmar()){
+            controlClinica.getClinica().desasociarTaller(taller);
             controlClinica.mostrarTablaTalleres(controlClinica.getClinica().getTalleresAsociados(),tablaTalleres);
             botonDesasociarTaller.setEnabled(false);
             botonListaMecanicos.setEnabled(false);
+            PClinica persistencia = new PClinica();
+            persistencia.Taller_EliminarXMLElement(controlClinica.getClinica().getRIF(), taller.getRIF());
+            }
         }
+        }catch (Exception ex){}
     }//GEN-LAST:event_botonDesasociarTallerActionPerformed
 
     private void tablaAmbulatoriosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaAmbulatoriosFocusLost
@@ -3947,10 +3948,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
         controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);
         controlInventario.mostrarInventario(tablaSuministros, btnRegistrarMov, btnDetallesSum);
     }//GEN-LAST:event_pestAmbulatoriosMouseClicked
-
-    private void botonEliVehActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliVehActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonEliVehActionPerformed
 
     private void radioAmbAereaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioAmbAereaMouseClicked
         if(!radioAmbulancia.isSelected()){
@@ -4079,24 +4076,22 @@ public class MenúPrincipal extends javax.swing.JFrame{
         cRegistro.seleccionTipoPersonal(cboTipoPersonal,labelLicencia,labelAsignadoDRS,txtLicencia,radioAsignado_SI,radioAsignado_NO);
     }//GEN-LAST:event_panelDatosPersonalMouseMoved
 
-    private void botonEliminar_PersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminar_PersonalActionPerformed
-       
-    }//GEN-LAST:event_botonEliminar_PersonalActionPerformed
-
     private void botonEliminar_PersonalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminar_PersonalMouseClicked
         try{
         Personal per = controlAmbulatorio.personalSeleccionado(tablaPersonal);
         if(per!=null){
-            if(cRegistro.confirmar()) controlAmbulatorio.getAmbulatorio().eliminarPersonal(per);
-            controlAmbulatorio.mostrarPersonal(tablaPersonal);  
-            botonEliminar_Personal.setEnabled(false);
-            botonRegistrarEntrada.setEnabled(false);
-            botonRegistrarSalida.setEnabled(false);
-            botonVerTurnos.setEnabled(false);
+            if(cRegistro.confirmar()){ 
+                controlAmbulatorio.getAmbulatorio().eliminarPersonal(per);
+                controlAmbulatorio.mostrarPersonal(tablaPersonal);  
+                botonEliminar_Personal.setEnabled(false);
+                botonRegistrarEntrada.setEnabled(false);
+                botonRegistrarSalida.setEnabled(false);
+                botonVerTurnos.setEnabled(false);
+                PClinica persistencia = new PClinica();
+                persistencia.Personal_EliminarXMLElement(controlClinica.getClinica().getRIF(), controlAmbulatorio.getAmbulatorio().getRIF(), per.getCedula());
+            }
         }
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        }catch(Exception ex){}
     }//GEN-LAST:event_botonEliminar_PersonalMouseClicked
 
     private void botonRegistrarEntradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarEntradaMouseClicked
@@ -4246,12 +4241,18 @@ public class MenúPrincipal extends javax.swing.JFrame{
     }//GEN-LAST:event_btnRegistrarMantenimientoActionPerformed
 
     private void botonEliVehMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliVehMouseClicked
+        try{
         Vehiculo veh = controlAmbulatorio.vehiculoSeleccionado(tablaVehiculos);
         if(veh!=null){
-            if(cRegistro.confirmar()) controlAmbulatorio.getAmbulatorio().eliminarVehiculo(veh);
-            controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);    
-            botonEliVeh.setEnabled(false);
+            if(cRegistro.confirmar()){
+                controlAmbulatorio.getAmbulatorio().eliminarVehiculo(veh);
+                controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);    
+                botonEliVeh.setEnabled(false);
+                PClinica persistencia = new PClinica();
+                persistencia.Vehiculo_EliminarXMLElement(controlClinica.getClinica().getRIF(), controlAmbulatorio.getAmbulatorio().getRIF(), veh.getSerial());
+            }
         }
+        }catch(Exception ex){}
     }//GEN-LAST:event_botonEliVehMouseClicked
 
     private void tablaVehiculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVehiculosMouseClicked
@@ -4574,7 +4575,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
             Paciente paciente = controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Emergencia,txtCI_Emergencia));
             Ambulatorio amb = controlEmergencia.ambulatorioSeleccionado(controlClinica.getClinica(),tablaAmbSelec);
             Vehiculo veh = controlEmergencia.vehiculoSeleccionado(amb,tablaVehSelec);
-            controlEmergencia.crearEmergencia(paciente, jTextArea1, amb, radioAmbEmer, radioClinicaEmer, radioRespRap, veh);
+            controlEmergencia.crearEmergencia(controlSistema,paciente, jTextArea1, amb, radioAmbEmer, radioClinicaEmer, radioRespRap, veh);
             controlEmergencia.titulosTablaAmbSelec(tablaAmbulatoriosDisp);
             controlEmergencia.titulosTablaAmbSelec(tablaAmbSelec);
             controlEmergencia.titulosTablaVehSelec(tablaVehSelec);

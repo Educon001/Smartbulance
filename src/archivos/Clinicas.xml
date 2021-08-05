@@ -1,0 +1,74 @@
+<root>
+  <Clinica>
+    <nombre>Clinica 2</nombre>
+    <telefono>0242-1945665</telefono>
+    <RIF>J-12345678-1</RIF>
+    <estado>Amazonas</estado>
+    <ciudad>f</ciudad>
+    <direccion>f</direccion>
+    <disponible>true</disponible>
+    <talleresAsociados>
+      <Taller>
+        <nombre>Taller 1</nombre>
+        <telefono>0212-3333333</telefono>
+        <RIF>J-12999234-2</RIF>
+        <estado>Amazonas</estado>
+        <ciudad>dd</ciudad>
+        <direccion>Ambulatoris</direccion>
+        <mecanicos>
+          <mecanico>Mario</mecanico>
+        </mecanicos>
+      </Taller>
+      <Taller>
+        <nombre>Taller 2</nombre>
+        <telefono>0212-1122334</telefono>
+        <RIF>J-11223344-9</RIF>
+        <estado>Amazonas</estado>
+        <ciudad>CAGAR</ciudad>
+        <direccion>aaaa</direccion>
+        <mecanicos>
+          <mecanico>A</mecanico>
+          <mecanico>A</mecanico>
+        </mecanicos>
+      </Taller>
+    </talleresAsociados>
+    <ambulatorios>
+      <Ambulatorio>
+        <nombre>Ambulatorio 1</nombre>
+        <telefono>0212-1112223</telefono>
+        <RIF>J-22334455-1</RIF>
+        <estado>dddd</estado>
+        <ciudad>dddd</ciudad>
+        <direccion>Amazonas</direccion>
+        <disponible>true</disponible>
+      </Ambulatorio>
+      <Ambulatorio>
+        <nombre>Ambulatorio 2</nombre>
+        <telefono>0212-1111112</telefono>
+        <RIF>J-22331122-2</RIF>
+        <estado>ssss</estado>
+        <ciudad>sss</ciudad>
+        <direccion>Amazonas</direccion>
+        <disponible>true</disponible>
+      </Ambulatorio>
+      <Ambulatorio>
+        <nombre>Ambulatorio 3</nombre>
+        <telefono>0212-1234567</telefono>
+        <RIF>J-11111111-2</RIF>
+        <estado>dddd</estado>
+        <ciudad>ddd</ciudad>
+        <direccion>Amazonas</direccion>
+        <disponible>true</disponible>
+      </Ambulatorio>
+      <Ambulatorio>
+        <nombre>Ambulatorio 4</nombre>
+        <telefono>0222-7775553</telefono>
+        <RIF>J-22211111-2</RIF>
+        <estado>ddd</estado>
+        <ciudad>ddd</ciudad>
+        <direccion>Amazonas</direccion>
+        <disponible>true</disponible>
+      </Ambulatorio>
+    </ambulatorios>
+  </Clinica>
+</root>

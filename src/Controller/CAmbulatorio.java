@@ -7,14 +7,16 @@ import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.*;
+import persistencia.PClinica;
 
 public class CAmbulatorio implements ICEntidad{
     
     private Ambulatorio ambulatorio;
-    private long numCarnets=0;
+    private String RIF_Clinica;
 
-    public CAmbulatorio(Ambulatorio ambulatorio){
+    public CAmbulatorio(Ambulatorio ambulatorio, String RIF_Clinica){
         this.ambulatorio = ambulatorio;
+        this.RIF_Clinica = RIF_Clinica;
     }
     
     public CAmbulatorio(){}
@@ -85,12 +87,16 @@ public class CAmbulatorio implements ICEntidad{
         else tipoAmbulancia = "Aerea";
         
         Ambulancia amb = new Ambulancia(serial,enMantenimiento,disponible,tipoAmbulancia);
-        ambulatorio.agregarVehiculo(amb);
+        ambulatorio.agregarVehiculo(amb);       
+        PClinica persistencia = new PClinica();
+        persistencia.agregarVehiculo(amb,RIF_Clinica,ambulatorio.getRIF());
     }
     
     public void crearCompacto(boolean enMantenimiento, String serial, boolean disponible){
         Compacto comp = new Compacto(serial,enMantenimiento,disponible);
         ambulatorio.agregarVehiculo(comp);
+        PClinica persistencia = new PClinica();
+        persistencia.agregarVehiculo(comp,RIF_Clinica,ambulatorio.getRIF());
     }
     
     public void crearVehiculo(JRadioButton radioAmb,JTextField txtSerial,JRadioButton radioTerrestre){
@@ -109,11 +115,10 @@ public class CAmbulatorio implements ICEntidad{
         long lic;
         boolean activo,drs;
         char genero=' ';
-        
         LocalDate nacimiento = fN.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate contrato = fC.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
       
-        numCarnets += numCarnets;
+        int numCarnets=ambulatorio.getPersonal().size();
         double sal = Double.parseDouble(salario);
         
         if(masc.isSelected()) genero='M';
@@ -132,6 +137,8 @@ public class CAmbulatorio implements ICEntidad{
         else per = new Personal(numCarnets,activo,sal,contrato,tipo,ci,nombre,correo,telf,nacimiento,genero);
         
         ambulatorio.registrarPersonal(per);
+        PClinica persistencia = new PClinica();
+        persistencia.agregarPersonal(per,RIF_Clinica,ambulatorio.getRIF());
     }
     
     
@@ -214,6 +221,8 @@ public class CAmbulatorio implements ICEntidad{
     
     public void ambulatorioDisponible(JToggleButton disp){
         ambulatorio.setDisponible(disp.isSelected());
+        PClinica persistencia = new PClinica();
+        persistencia.modificarEntidad(ambulatorio,0);
     }
  
 }

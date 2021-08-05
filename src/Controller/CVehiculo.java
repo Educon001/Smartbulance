@@ -23,9 +23,10 @@ public class CVehiculo {
     public boolean serialRegistrado(String serial){
         for (Ambulatorio am : clinica.getAmbulatorios()) {
             for (Vehiculo ve : am.getVehiculos()) {
-                if (ve.getSerial().equals(serial))
+                if (ve.getSerial().equals(serial)){
                     vehiculo = ve;
                     return true;
+                }
             }
         }
         return false;
@@ -36,9 +37,9 @@ public class CVehiculo {
             tipo.setText("Ambulancia"+" "+((Ambulancia) vehiculo).getTipo().toLowerCase());
         else if (vehiculo instanceof Compacto)
             tipo.setText("Vehiculo compacto");
+        codigo.setText(String.valueOf(vehiculo.getCodigo()));
+        serial.setText(vehiculo.getSerial());
         if (vehiculo.isDisponible()){
-            codigo.setText(String.valueOf(vehiculo.getCodigo()));
-            serial.setText(vehiculo.getSerial());
             disponible.setText("Si");
             labelMantenimiento.setVisible(false);
             enMantenimiento.setVisible(false);

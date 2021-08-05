@@ -276,7 +276,230 @@ public class PClinica {
         boolean  resultado = updateDocument();
         return resultado;
     }
-  
+    
+    //----------------------GUARDAR INVENTARIO------------------
+    //Suministros-----------------------------------------------
+    private Element SuministrotoXMLElement(Suministro sum) {
+        Element elementoSum = new Element("suministro");
+        Element tipo = new Element("tipo");
+        tipo.setText(sum.getTipo());
+        
+        Element nombre = new Element("nombre");
+        nombre.setText(sum.getNombre());
+        
+        Element descripcion = new Element("descripcion");
+        descripcion.setText(sum.getDescripción());
+        
+        Element codigo = new Element("codigo");
+        tipo.setText(String.valueOf(sum.getCodigo()));
+        
+        elementoSum.addContent(tipo);
+        elementoSum.addContent(nombre);
+        elementoSum.addContent(descripcion);
+        elementoSum.addContent(codigo);
+        
+        return elementoSum;
+    }
+    
+    public boolean tieneSuministros(Element ambulatorio){
+        List<Element> atributos = ambulatorio.getChildren();
+        for(Element elemento : atributos){
+            if(elemento.getName().equals("suministros"))
+                return true;
+        }
+        return false;
+    }
+    
+    public void agregarSuministro(Element elementoSum, String RIF_Clinica, String RIF_Ambulatorio){
+        List<Element> listaElementos=root.getChildren();
+        for (Element element : listaElementos) {
+            if (element.getName().equals("Clinica")) {
+                if(element.getChild("RIF").getText().equals(RIF_Clinica)){
+                    List<Element> listaAmbulatorios = element.getChild("ambulatorios").getChildren();
+                    for(Element ambulatorio : listaAmbulatorios){
+                        if(ambulatorio.getChild("RIF").getText().equals(RIF_Ambulatorio)){
+                            if(!tieneSuministros(ambulatorio)){
+                                Element suministros = new Element("suministros");
+                                suministros.addContent(elementoSum);
+                                ambulatorio.addContent(suministros);
+                            }else 
+                                ambulatorio.getChild("suministros").addContent(elementoSum); 
+                        }                                
+                    }
+                }
+            }
+        }
+    }
+    
+    public boolean agregarSuministro(Suministro sum,String RIF_Clinica,String RIF_Ambulatorio){
+        agregarVehiculo(SuministrotoXMLElement(sum),RIF_Clinica,RIF_Ambulatorio);
+        return updateDocument();
+    }
+
+    //Movimientos----------------------------------------------------------
+    private void MovimientotoXMLElement(Element elementoMov, Movimiento mov) {
+        Element fecha = new Element("fecha");
+        fecha.setText(mov.getFecha().toString());
+        
+        Element tipo = new Element("tipo");
+        tipo.setText(mov.getTipo());
+        
+        Element unidades = new Element("unidades");
+        for (Unidad uni : mov.getUnidades()) {
+            unidades.addContent(UnidadtoXMLElement(uni));
+        }
+        
+        elementoMov.addContent(fecha);
+        elementoMov.addContent(tipo);
+        elementoMov.addContent(unidades);
+    }
+    
+    private Element MovimientotoXMLElement(Movimiento mov) {
+        Element elementoMov = new Element("movimiento");
+        MovimientotoXMLElement(elementoMov, mov);
+        return elementoMov;
+    }
+    
+    private Element ReubicaciontoXMLElement(Reubicacion reu){
+        Element elementoReu = new Element("reubicacion");
+        
+        MovimientotoXMLElement(elementoReu,reu);
+        
+        Element origen = new Element("origen");
+        origen.setText(reu.getOrigen());
+        
+        Element destino = new Element("destino");
+        destino.setText(reu.getDestino());
+        
+        elementoReu.addContent(origen);
+        elementoReu.addContent(destino);
+        
+        return elementoReu;
+    }
+    
+    private Element SalidatoXMLElement(Salida sal){
+        Element elementoSal = new Element("salida");
+        
+        MovimientotoXMLElement(elementoSal,sal);
+        
+        Element argumento = new Element("argumento");
+        argumento.setText(sal.getArgumento());
+        
+        elementoSal.addContent(argumento);
+        
+        return elementoSal;
+    }
+    
+    public boolean tieneMovimientos(Element sum){
+        List<Element> atributos = sum.getChildren();
+        for(Element elemento : atributos){
+            if(elemento.getName().equals("movimientos"))
+                return true;
+        }
+        return false;
+    }
+    
+    public void agregarMovimiento(Element elementoMov, String RIF_Clinica, String RIF_Ambulatorio, String codigoSum){
+        List<Element> listaElementos=root.getChildren();
+        for (Element element : listaElementos) {
+            if (element.getName().equals("Clinica")) {
+                if(element.getChild("RIF").getText().equals(RIF_Clinica)){
+                    List<Element> listaAmbulatorios = element.getChild("ambulatorios").getChildren();
+                    for(Element ambulatorio : listaAmbulatorios){
+                        if(ambulatorio.getChild("RIF").getText().equals(RIF_Ambulatorio)){
+                            List<Element> listaSuministros = element.getChild("suministros").getChildren();
+                            for (Element suministro : listaSuministros) {
+                                if (suministro.getChild("codigo").getText().equals(codigoSum)){
+                                    if(!tieneMovimientos(suministro)){
+                                        Element movimientos = new Element("movimientos");
+                                        movimientos.addContent(elementoMov);
+                                        suministro.addContent(movimientos);
+                                    }else 
+                                        suministro.getChild("movimientos").addContent(elementoMov); 
+                                }                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public boolean agregarMovimiento(Movimiento mov,String RIF_Clinica,String RIF_Ambulatorio,String codigoSum){
+        Element elementoMovimiento = null;
+        
+        if(mov instanceof Reubicacion)
+            elementoMovimiento = ReubicaciontoXMLElement((Reubicacion) mov);
+        else if(mov instanceof Salida) 
+            elementoMovimiento = SalidatoXMLElement((Salida) mov);
+        else
+            elementoMovimiento = MovimientotoXMLElement(mov);
+        
+        agregarMovimiento(elementoMovimiento,RIF_Clinica,RIF_Ambulatorio,codigoSum);
+        return updateDocument();
+    }
+    
+    //Unidades-----------------------------------------
+    private Element UnidadtoXMLElement(Unidad uni) {
+        Element elementoUni = new Element("unidad");
+        
+        Element codigo = new Element("codigo");
+        codigo.setText(String.valueOf(uni.getCodigo()));
+        
+        Element ubicacion = new Element("ubicacion");
+        ubicacion.setText(uni.getUbicacion());
+        
+        Element fVencimiento = new Element("fVencimiento");
+        fVencimiento.setText(uni.getfVencimiento());
+        
+        elementoUni.addContent(codigo);
+        elementoUni.addContent(ubicacion);
+        elementoUni.addContent(fVencimiento);
+        
+        return elementoUni;
+    }
+    
+    public boolean TieneUnidades(Element sum){
+        List<Element> atributos = sum.getChildren();
+        for(Element elemento : atributos){
+            if(elemento.getName().equals("unidades"))
+                return true;
+        }
+        return false;
+    }
+    
+    public void agregarUnidad(Element elementoUni, String RIF_Clinica, String RIF_Ambulatorio, String codigoSum){
+        List<Element> listaElementos=root.getChildren();
+        for (Element element : listaElementos) {
+            if (element.getName().equals("Clinica")) {
+                if(element.getChild("RIF").getText().equals(RIF_Clinica)){
+                    List<Element> listaAmbulatorios = element.getChild("ambulatorios").getChildren();
+                    for(Element ambulatorio : listaAmbulatorios){
+                        if(ambulatorio.getChild("RIF").getText().equals(RIF_Ambulatorio)){
+                            List<Element> listaSuministros = element.getChild("suministros").getChildren();
+                            for (Element suministro : listaSuministros) {
+                                if (suministro.getChild("codigo").getText().equals(codigoSum)){
+                                    if(!TieneUnidades(suministro)){
+                                        Element unidades = new Element("unidades");
+                                        unidades.addContent(elementoUni);
+                                        suministro.addContent(unidades);
+                                    }else 
+                                        suministro.getChild("unidades").addContent(elementoUni); 
+                                }                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public boolean agregarUnidad(Unidad uni,String RIF_Clinica,String RIF_Ambulatorio,String codigoSum){
+        Element elementoUnidad = null;
+        elementoUnidad = UnidadtoXMLElement(uni);
+        agregarUnidad(elementoUnidad,RIF_Clinica,RIF_Ambulatorio,codigoSum);
+        return updateDocument();
+    }
     
     //----------------------GUARDAR PERSONAL--------------------
     private void PersonatoXMLElement(Element elementoPersona, Persona persona) {
@@ -426,6 +649,37 @@ public class PClinica {
         return false;
     }
     
+    //---------------MODIFICACIÓN DE INVENTARIO------------------------------
+    public boolean modificarUnidad(Unidad uni,String RIF_Clinica,String RIF_Ambulatorio,String codigoSum){
+        boolean encontrado=false;
+        List<Element> listaElementos=root.getChildren();
+        for (Element element : listaElementos) {
+            if (element.getName().equals("Clinica")) {
+                if(element.getChild("RIF").getText().equals(RIF_Clinica)){
+                    List<Element> listaAmbulatorios = element.getChild("ambulatorios").getChildren();
+                    for(Element ambulatorio : listaAmbulatorios){
+                        if(ambulatorio.getChild("RIF").getText().equals(RIF_Ambulatorio)){
+                            List<Element> listaSuministros = element.getChild("suministros").getChildren();
+                            for (Element suministro : listaSuministros) {
+                                if (suministro.getChild("codigo").getText().equals(codigoSum)){
+                                    List<Element> listaUnidades = suministro.getChild("unidades").getChildren();
+                                    for (Element unidad : listaUnidades) {
+                                        if (unidad.getChild("codigo").getText().equals(String.valueOf(uni.getCodigo()))){
+                                            unidad.getChild("codigo").setText(String.valueOf(uni.getCodigo()));
+                                            unidad.getChild("ubicacion").setText(uni.getUbicacion());
+                                            encontrado=true;
+                                        }
+                                    }
+                                }
+                                if (encontrado) return updateDocument();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
     
     //--------------ELIMINAR TALLER----------------------------
     public boolean hayTalleres(Element talleresAsociados){
@@ -539,8 +793,40 @@ public class PClinica {
         return false;        
     }
     
+    private boolean hayUnidades(Element Unidades){
+        if(Unidades.getChild("unidad")!=null)
+            return true;
+        return false;
+    }
     
-    
+    public boolean Unidad_EliminarXMLElement(String RIF_Clinica,String RIF_Ambulatorio,String codigoSum,String codigoUni){
+        List<Element> listaElementos=root.getChildren();
+        for (Element element : listaElementos) {
+            if (element.getName().equals("Clinica")) {
+                if(element.getChild("RIF").getText().equals(RIF_Clinica)){
+                    List<Element> listaAmbulatorios = element.getChild("ambulatorios").getChildren();
+                    for(Element ambulatorio : listaAmbulatorios){
+                        if(ambulatorio.getChild("RIF").getText().equals(RIF_Ambulatorio)){
+                            List<Element> listaSuministros = element.getChild("suministros").getChildren();
+                            for (Element suministro : listaSuministros) {
+                                if (suministro.getChild("codigo").getText().equals(codigoSum)){
+                                    List<Element> listaUnidades = suministro.getChild("unidades").getChildren();
+                                    for (Element unidad : listaUnidades) {
+                                        if (unidad.getChild("codigo").getText().equals(codigoUni)){
+                                            suministro.getChild("unidades").removeContent(unidad);
+                                            if (!hayUnidades(suministro.getChild("unidades"))) suministro.removeChild("unidades");
+                                            return updateDocument();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
     
     //---------------CARGAR LISTA DE CLINICAS------------------- 
     private Clinica ClinicaToObject(Element element) {
@@ -577,6 +863,101 @@ public class PClinica {
     
     
     //ELEMENTO AMBULANCIA A OBJETO
+    
+    private void datosMovimiento(LocalDate fecha,Unidad[] unidades,Element elementoMov){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        try{
+            fecha = LocalDate.parse(elementoMov.getChild("fecha").getText(), formatter);
+        }catch(DateTimeParseException ex){}
+        ArrayList<Unidad> unidadesList = todasLasUnidades(elementoMov);
+        unidades = new Unidad[unidadesList.size()];
+        for (int i = 0; i < unidadesList.size(); i++) {
+            unidades[i]=unidadesList.get(i);
+        }
+    }
+    
+    private Movimiento MovimientotoObject(Element elementoMov){
+        LocalDate fecha=null;
+        Unidad[] unidades=null;
+        datosMovimiento(fecha, unidades, elementoMov);
+        Movimiento mov = new Movimiento(fecha,unidades,elementoMov.getChildText("tipo"));
+        return mov;
+    }
+    
+    private Reubicacion ReubicaciontoObject(Element elementoReu){
+        LocalDate fecha=null;
+        Unidad[] unidades=null;
+        datosMovimiento(fecha, unidades, elementoReu);
+        Reubicacion reu = new Reubicacion(elementoReu.getChildText("origen"),elementoReu.getChildText("destino"),fecha,unidades,elementoReu.getChildText("tipo"));
+        return reu;
+    }
+    
+    private Salida SalidatoObject(Element elementoSal){
+        LocalDate fecha=null;
+        Unidad[] unidades=null;
+        datosMovimiento(fecha, unidades, elementoSal);
+        Salida sal = new Salida(elementoSal.getChildText("argumento"),fecha,unidades,elementoSal.getChildText("tipo"));
+        return sal;
+    }
+    
+    private ArrayList<Movimiento> todosLosMovimientos(Element elementoSum){
+        ArrayList<Movimiento> movimientos = new ArrayList<Movimiento>();
+        Movimiento mov=null;
+        
+        for (Object it : elementoSum.getChild("movimientos").getChildren()) {
+            Element elementoMov = (Element) it;
+            //Elemento a objeto
+            if(elementoMov.getName().equals("movimiento"))
+                mov = MovimientotoObject(elementoMov);
+            else if(elementoMov.getName().equals("reubicacion"))
+                mov = ReubicaciontoObject(elementoMov);
+            else if(elementoMov.getName().equals("salida"))
+                mov = SalidatoObject(elementoMov);
+
+            movimientos.add(mov);
+        }
+        return movimientos;
+    }
+    
+    private Unidad UnidadtoObject(Element elementoUni){
+        int codigo=0;
+        try{
+            codigo = Integer.parseInt(elementoUni.getChildText("codigo"));
+        }catch(NumberFormatException e){}
+        Unidad uni = new Unidad(codigo,elementoUni.getChildText("ubicacion"),elementoUni.getChildText("fVencimiento"));
+        return uni;
+    }
+    
+    private ArrayList<Unidad> todasLasUnidades(Element elementoSum_Mov){
+        ArrayList<Unidad> unidades=new ArrayList<Unidad>();
+        for(Object it : elementoSum_Mov.getChild("unidades").getChildren()){
+            Element elementoUni = (Element) it;
+            Unidad uni = UnidadtoObject(elementoUni); 
+            unidades.add(uni);
+        } 
+        return unidades;
+    }
+    
+    private Suministro SuministrotoObject(Element elementoSum){
+        int codigo=0;
+        try{
+            codigo = Integer.parseInt(elementoSum.getChildText("codigo"));
+        }catch(NumberFormatException e){}
+        Suministro sum = new Suministro(elementoSum.getChildText("tipo"),elementoSum.getChildText("nombre"),elementoSum.getChildText("descripcion"),codigo);
+        return sum;
+    }
+    
+    private ArrayList<Suministro> todosLosSuministros(Element elementoAmbulatorio){
+        ArrayList<Suministro> suministros=new ArrayList<Suministro>();
+        for(Object it : elementoAmbulatorio.getChild("suministros").getChildren()){
+            Element elementoSum = (Element) it;
+            Suministro sum = SuministrotoObject(elementoSum); 
+            if (elementoSum.getChild("unidades")!=null) sum.setUnidades(todasLasUnidades(elementoSum));
+            if (elementoSum.getChild("movimientos")!=null) sum.setMovimientos(todosLosMovimientos(elementoSum));
+            suministros.add(sum);
+        } 
+        return suministros;
+    }
     
     private Personal PersonaltoObject(Element elementoPersonal){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
@@ -665,6 +1046,7 @@ public class PClinica {
             Ambulatorio ambulatorio = AmbulatorioToObject(elementoAmbulatorio);
             ambulatorio.setVehiculos(todosLosVehiculos(elementoAmbulatorio));
             if(elementoAmbulatorio.getChild("Personal")!=null) ambulatorio.setPersonal(todoElPersonal(elementoAmbulatorio));
+            if(elementoAmbulatorio.getChild("suministros")!=null) ambulatorio.setInventario(todosLosSuministros(elementoAmbulatorio));
             ambulatorios.add(ambulatorio);
         }
         return ambulatorios;

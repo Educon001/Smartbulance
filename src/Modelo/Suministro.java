@@ -21,6 +21,13 @@ public class Suministro {
         movimientos = new ArrayList<>();
         unidades = new ArrayList<>();
     }
+
+    public Suministro(String tipo, String nombre, String descripción, int codigo) {
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.descripción = descripción;
+        this.codigo = codigo;
+    }
     
     //Getters y setters
 
@@ -60,8 +67,16 @@ public class Suministro {
         return movimientos;
     }
 
+    public void setMovimientos(ArrayList<Movimiento> movimientos) {
+        this.movimientos = movimientos;
+    }
+
     public ArrayList<Unidad> getUnidades() {
         return unidades;
+    }
+
+    public void setUnidades(ArrayList<Unidad> unidades) {
+        this.unidades = unidades;
     }
     
     public int getCantidad() {

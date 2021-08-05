@@ -46,6 +46,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         this.controlSistema=controlSistema;
         this.controlClinica=controlClinica;
         this.iniciarSesion=iniciarSesion;
+        this.controlVehiculo = new CVehiculo(controlClinica.getClinica());
         txtAreaMecanicos.setText(null);
         controlSistema.mostrarPagosGlobal(jTablePagos);
         
@@ -3623,15 +3624,15 @@ public class MenúPrincipal extends javax.swing.JFrame{
 
     private void botonAmbulanciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAmbulanciasMouseClicked
         String serial = JOptionPane.showInputDialog(null,"Introduzca el serial de la ambulancia:","Solicitud del serial",JOptionPane.QUESTION_MESSAGE);
-        controlVehiculo = new CVehiculo(controlClinica.getClinica());
         if (serial!=null){
-            if(cRegistro.validarSerial(serial) && controlVehiculo.serialRegistrado(serial)){
+            if(controlVehiculo.serialRegistrado(serial)){
                 controlVehiculo.mostrarVehiculo(codigoVeh, serialVeh, tipoVeh, DisponibleVeh, labelEnMantenimiento, enMantenimiento, tablaPersonalAct);
                 controlVehiculo.tablasAsignarPersonal(tablaAsignados, tablaPersonalConVeh, btnAgregarPer, btnEliminarPer);
                 controlVehiculo.mostrarInventario(tablaInventarioVeh);
                 controlVehiculo.mostrarMantenimiento(tablaMantenimientosVeh);
                 panelesOp.setSelectedIndex(3);
-            }             
+            }else if (cRegistro.validarSerial(serial)) 
+                JOptionPane.showMessageDialog(null, "El serial que ingresó no se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonAmbulanciasMouseClicked
 

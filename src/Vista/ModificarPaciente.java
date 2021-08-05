@@ -70,7 +70,6 @@ public class ModificarPaciente extends javax.swing.JFrame {
         botonReestablecer = new javax.swing.JButton();
         radioModNombre = new javax.swing.JRadioButton();
         radioModTelf = new javax.swing.JRadioButton();
-        radioCedula = new javax.swing.JRadioButton();
         radioModGenero = new javax.swing.JRadioButton();
         radioModFecha = new javax.swing.JRadioButton();
         botonSalir = new javax.swing.JButton();
@@ -174,11 +173,6 @@ public class ModificarPaciente extends javax.swing.JFrame {
                 radioModNombreMouseClicked(evt);
             }
         });
-        radioModNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioModNombreActionPerformed(evt);
-            }
-        });
 
         radioModTelf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioModTelf.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -189,18 +183,6 @@ public class ModificarPaciente extends javax.swing.JFrame {
         radioModTelf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioModTelfActionPerformed(evt);
-            }
-        });
-
-        radioCedula.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        radioCedula.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                radioCedulaMouseClicked(evt);
-            }
-        });
-        radioCedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioCedulaActionPerformed(evt);
             }
         });
 
@@ -304,9 +286,7 @@ public class ModificarPaciente extends javax.swing.JFrame {
                                     .addGroup(panelModLayout.createSequentialGroup()
                                         .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(radioCedula))
+                                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelModLayout.createSequentialGroup()
                                         .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -356,7 +336,6 @@ public class ModificarPaciente extends javax.swing.JFrame {
                     .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(radioCedula)
                     .addComponent(labelCiudadEntidad))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -446,35 +425,6 @@ public class ModificarPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_radioModGeneroMouseClicked
 
-    private void radioCedulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioCedulaMouseClicked
-        if(radioCedula.isSelected()){
-            txtCedula.setEnabled(true);
-            txtCedula.setText(null);
-            cboCI_Paciente.setEnabled(true);
-            
-            if (paciente.getCedula().charAt(0)=='V'){
-                cboCI_Paciente.setSelectedIndex(0);
-            }else if(paciente.getCedula().charAt(0)=='E'){
-                cboCI_Paciente.setSelectedIndex(1);
-
-            }
-            
-        }
-        else{
-            txtCedula.setEnabled(false);
-            txtCedula.setText(paciente.getCedula().substring(2));
-            
-            if (paciente.getCedula().charAt(0)=='V'){
-                cboCI_Paciente.setSelectedIndex(0);
-            }else if(paciente.getCedula().charAt(0)=='E'){
-                cboCI_Paciente.setSelectedIndex(1);
-
-            }
-            cboCI_Paciente.setEnabled(false);
-
-        }
-    }//GEN-LAST:event_radioCedulaMouseClicked
-
     private void radioModTelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModTelfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioModTelfActionPerformed
@@ -494,10 +444,6 @@ public class ModificarPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_radioModTelfMouseClicked
 
-    private void radioModNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModNombreActionPerformed
-
-    }//GEN-LAST:event_radioModNombreActionPerformed
-
     private void radioModNombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioModNombreMouseClicked
         if(radioModNombre.isSelected()){
             txtNombre.setEnabled(true);
@@ -512,7 +458,7 @@ public class ModificarPaciente extends javax.swing.JFrame {
     private void botonReestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReestablecerActionPerformed
         controlRegistro.construirTelf(txtTelf1, txtTelf2);
         controlVentana.entradasModificar_Paciente(paciente, cboCI_Paciente,txtCedula, txtNombre, txtCorreo, txtTelf1, txtTelf2, DateFecha, boxGenero);
-        controlVentana.seleccionarBotonesRadio_Paciente(false, radioCedula, radioCedula, radioCedula, radioCedula, radioCedula, radioCedula);
+        controlVentana.seleccionarBotonesRadio_Paciente(false, radioModNombre, radioModCorreo, radioModTelf, radioModFecha, radioModGenero);
     }//GEN-LAST:event_botonReestablecerActionPerformed
 
     private void botonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarCambiosActionPerformed
@@ -589,10 +535,6 @@ public class ModificarPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radioModCorreoActionPerformed
 
-    private void radioCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioCedulaActionPerformed
-
     private void cboCI_PacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCI_PacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboCI_PacienteActionPerformed
@@ -654,7 +596,6 @@ public class ModificarPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel labelNombreEntidad;
     private javax.swing.JLabel labelTelfEntidad;
     private javax.swing.JPanel panelMod;
-    private javax.swing.JRadioButton radioCedula;
     private javax.swing.JRadioButton radioModCorreo;
     private javax.swing.JRadioButton radioModFecha;
     private javax.swing.JRadioButton radioModGenero;

@@ -45,22 +45,20 @@ public class CVentana {
         txtDir.setEnabled(false);
     }
     
-    public void seleccionarBotonesRadio_Entidad(boolean seleccionar,JRadioButton boton1,JRadioButton boton2,JRadioButton boton3,JRadioButton boton4,JRadioButton boton5,JRadioButton boton6){
+    public void seleccionarBotonesRadio_Entidad(boolean seleccionar,JRadioButton boton1,JRadioButton boton2,JRadioButton boton3,JRadioButton boton4,JRadioButton boton5){
         boton1.setSelected(seleccionar);
         boton2.setSelected(seleccionar);
         boton3.setSelected(seleccionar);
         boton4.setSelected(seleccionar);
         boton5.setSelected(seleccionar);
-        boton6.setSelected(seleccionar);
     }
     
-    public void seleccionarBotonesRadio_Paciente(boolean seleccionar,JRadioButton boton1,JRadioButton boton2,JRadioButton boton3,JRadioButton boton4,JRadioButton boton5,JRadioButton boton6){
+    public void seleccionarBotonesRadio_Paciente(boolean seleccionar,JRadioButton boton1,JRadioButton boton2,JRadioButton boton3,JRadioButton boton4,JRadioButton boton5){
         boton1.setSelected(seleccionar);
         boton2.setSelected(seleccionar);
         boton3.setSelected(seleccionar);
         boton4.setSelected(seleccionar);
         boton5.setSelected(seleccionar);
-        boton6.setSelected(seleccionar);
     }    
     
     public void pestClinica(JButton boton1,JButton boton2,JButton boton3,JTextArea txtArea){

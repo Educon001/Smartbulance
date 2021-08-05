@@ -60,7 +60,6 @@ public class ModificarEntidad extends javax.swing.JFrame {
         botonGuardarCambios = new javax.swing.JButton();
         botonReestablecer = new javax.swing.JButton();
         radioModNombre = new javax.swing.JRadioButton();
-        radioModRIF = new javax.swing.JRadioButton();
         radioModTelf = new javax.swing.JRadioButton();
         radioModCiudad = new javax.swing.JRadioButton();
         radioModEstado = new javax.swing.JRadioButton();
@@ -182,18 +181,6 @@ public class ModificarEntidad extends javax.swing.JFrame {
             }
         });
 
-        radioModRIF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        radioModRIF.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                radioModRIFMouseClicked(evt);
-            }
-        });
-        radioModRIF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioModRIFActionPerformed(evt);
-            }
-        });
-
         radioModTelf.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioModTelf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -289,9 +276,7 @@ public class ModificarEntidad extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txt1RIFEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(radioModRIF))))
+                                    .addComponent(txt1RIFEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(radioModNombre)
@@ -323,14 +308,12 @@ public class ModificarEntidad extends javax.swing.JFrame {
                         .addComponent(labelNombreEntidad)
                         .addComponent(txtNombreEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
-                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radioModRIF)
-                    .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelRIFEntidad)
-                        .addComponent(txt8RIFEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)
-                        .addComponent(txt1RIFEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelRIFEntidad)
+                    .addComponent(txt8RIFEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(txt1RIFEntidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(panelModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(radioModTelf)
@@ -378,10 +361,6 @@ public class ModificarEntidad extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelf2EntidadActionPerformed
 
-    private void radioModRIFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModRIFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioModRIFActionPerformed
-
     private void radioModNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioModNombreActionPerformed
 
     }//GEN-LAST:event_radioModNombreActionPerformed
@@ -396,21 +375,6 @@ public class ModificarEntidad extends javax.swing.JFrame {
             txtNombreEntidad.setText(entidad.getNombre());
         }
     }//GEN-LAST:event_radioModNombreMouseClicked
-
-    private void radioModRIFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioModRIFMouseClicked
-        if(radioModRIF.isSelected()){
-            txt8RIFEntidad.setEnabled(true);
-            txt1RIFEntidad.setEnabled(true);
-            txt8RIFEntidad.setText(null);
-            txt1RIFEntidad.setText(null);
-        }
-        else{
-            txt8RIFEntidad.setEnabled(false);
-            txt1RIFEntidad.setEnabled(false);
-            txt8RIFEntidad.setText(entidad.getRIF().substring(2,10));
-            txt1RIFEntidad.setText(entidad.getRIF().substring(11));
-        }
-    }//GEN-LAST:event_radioModRIFMouseClicked
 
     private void radioModTelfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioModTelfMouseClicked
         if(radioModTelf.isSelected()){
@@ -468,7 +432,7 @@ public class ModificarEntidad extends javax.swing.JFrame {
 
     private void botonReestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReestablecerActionPerformed
         controlVentana.entradasModificar_Entidad(entidad,txtNombreEntidad, txt8RIFEntidad, txt1RIFEntidad, txtTelf1Entidad, txtTelf2Entidad, txtCiudadEntidad, cboEstadoEntidad, txtDirEntidad);
-        controlVentana.seleccionarBotonesRadio_Entidad(false,radioModNombre, radioModRIF, radioModTelf, radioModCiudad, radioModEstado, radioModDir);
+        controlVentana.seleccionarBotonesRadio_Entidad(false,radioModNombre, radioModTelf, radioModCiudad, radioModEstado, radioModDir);
     }//GEN-LAST:event_botonReestablecerActionPerformed
 
     private void botonGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarCambiosActionPerformed
@@ -576,7 +540,6 @@ public class ModificarEntidad extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioModDir;
     private javax.swing.JRadioButton radioModEstado;
     private javax.swing.JRadioButton radioModNombre;
-    private javax.swing.JRadioButton radioModRIF;
     private javax.swing.JRadioButton radioModTelf;
     private javax.swing.JTextField txt1RIFEntidad;
     private javax.swing.JTextField txt8RIFEntidad;

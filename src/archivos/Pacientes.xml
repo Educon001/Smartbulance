@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
 <root>
-  <Paciente>
-    <cedula>V-222</cedula>
-    <nombre>PEPE</nombre>
-    <correo>FFD@GMAIL.COM</correo>
-    <telefono>0333-2222222</telefono>
-    <nacimiento>2021-08-04</nacimiento>
-    <genero>M</genero>
-  </Paciente>
+    
 </root>

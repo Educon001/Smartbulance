@@ -3590,7 +3590,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
             if(cRegistro.formatoRIFCompleto(RIF) && controlClinica.seEncuentraRegistradoRIF_Ambulatorio(RIF,true)){
                 Ambulatorio amb = controlClinica.getClinica().retornarAmbulatorio(RIF);
                 controlAmbulatorio = new CAmbulatorio(amb,controlClinica.getClinica().getRIF());
-                controlInventario = new CInventario(amb);
+                controlInventario = new CInventario(amb, controlClinica.getClinica().getRIF());
                 controlVentana.botonClinica_DatosEntidad(controlAmbulatorio.getAmbulatorio(),labelNombre_DelAmbulatorio,labelRIF_DelAmbulatorio,labelTelf_DelAmbulatorio,labelCiudad_DelAmbulatorio,labelEstado_DelAmbulatorio,labelDir_DelAmbulatorio,botonDispAmbulatorio);
                 controlAmbulatorio.mostrarTablaVehiculos(tablaVehiculos);
                 controlAmbulatorio.mostrarPersonal(tablaPersonal);

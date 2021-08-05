@@ -291,7 +291,7 @@ public class PClinica {
         descripcion.setText(sum.getDescripción());
         
         Element codigo = new Element("codigo");
-        tipo.setText(String.valueOf(sum.getCodigo()));
+        codigo.setText(String.valueOf(sum.getCodigo()));
         
         elementoSum.addContent(tipo);
         elementoSum.addContent(nombre);
@@ -332,7 +332,7 @@ public class PClinica {
     }
     
     public boolean agregarSuministro(Suministro sum,String RIF_Clinica,String RIF_Ambulatorio){
-        agregarVehiculo(SuministrotoXMLElement(sum),RIF_Clinica,RIF_Ambulatorio);
+        agregarSuministro(SuministrotoXMLElement(sum),RIF_Clinica,RIF_Ambulatorio);
         return updateDocument();
     }
 
@@ -340,15 +340,12 @@ public class PClinica {
     private void MovimientotoXMLElement(Element elementoMov, Movimiento mov) {
         Element fecha = new Element("fecha");
         fecha.setText(mov.getFecha().toString());
-        
         Element tipo = new Element("tipo");
         tipo.setText(mov.getTipo());
-        
         Element unidades = new Element("unidades");
         for (Unidad uni : mov.getUnidades()) {
             unidades.addContent(UnidadtoXMLElement(uni));
         }
-        
         elementoMov.addContent(fecha);
         elementoMov.addContent(tipo);
         elementoMov.addContent(unidades);
@@ -407,7 +404,7 @@ public class PClinica {
                     List<Element> listaAmbulatorios = element.getChild("ambulatorios").getChildren();
                     for(Element ambulatorio : listaAmbulatorios){
                         if(ambulatorio.getChild("RIF").getText().equals(RIF_Ambulatorio)){
-                            List<Element> listaSuministros = element.getChild("suministros").getChildren();
+                            List<Element> listaSuministros = ambulatorio.getChild("suministros").getChildren();
                             for (Element suministro : listaSuministros) {
                                 if (suministro.getChild("codigo").getText().equals(codigoSum)){
                                     if(!tieneMovimientos(suministro)){
@@ -427,14 +424,12 @@ public class PClinica {
     
     public boolean agregarMovimiento(Movimiento mov,String RIF_Clinica,String RIF_Ambulatorio,String codigoSum){
         Element elementoMovimiento = null;
-        
         if(mov instanceof Reubicacion)
             elementoMovimiento = ReubicaciontoXMLElement((Reubicacion) mov);
         else if(mov instanceof Salida) 
             elementoMovimiento = SalidatoXMLElement((Salida) mov);
         else
             elementoMovimiento = MovimientotoXMLElement(mov);
-        
         agregarMovimiento(elementoMovimiento,RIF_Clinica,RIF_Ambulatorio,codigoSum);
         return updateDocument();
     }
@@ -476,7 +471,7 @@ public class PClinica {
                     List<Element> listaAmbulatorios = element.getChild("ambulatorios").getChildren();
                     for(Element ambulatorio : listaAmbulatorios){
                         if(ambulatorio.getChild("RIF").getText().equals(RIF_Ambulatorio)){
-                            List<Element> listaSuministros = element.getChild("suministros").getChildren();
+                            List<Element> listaSuministros = ambulatorio.getChild("suministros").getChildren();
                             for (Element suministro : listaSuministros) {
                                 if (suministro.getChild("codigo").getText().equals(codigoSum)){
                                     if(!TieneUnidades(suministro)){
@@ -496,7 +491,7 @@ public class PClinica {
     
     public boolean agregarUnidad(Unidad uni,String RIF_Clinica,String RIF_Ambulatorio,String codigoSum){
         Element elementoUnidad = null;
-        elementoUnidad = UnidadtoXMLElement(uni);
+        elementoUnidad = UnidadtoXMLElement(uni);;
         agregarUnidad(elementoUnidad,RIF_Clinica,RIF_Ambulatorio,codigoSum);
         return updateDocument();
     }
@@ -650,7 +645,7 @@ public class PClinica {
     }
     
     //---------------MODIFICACIÓN DE INVENTARIO------------------------------
-    public boolean modificarUnidad(Unidad uni,String RIF_Clinica,String RIF_Ambulatorio,String codigoSum){
+    public boolean modificarUnidad(Unidad uni,String RIF_Clinica,String RIF_Ambulatorio,String codigoSum,int codigoNuevo){
         boolean encontrado=false;
         List<Element> listaElementos=root.getChildren();
         for (Element element : listaElementos) {
@@ -659,13 +654,13 @@ public class PClinica {
                     List<Element> listaAmbulatorios = element.getChild("ambulatorios").getChildren();
                     for(Element ambulatorio : listaAmbulatorios){
                         if(ambulatorio.getChild("RIF").getText().equals(RIF_Ambulatorio)){
-                            List<Element> listaSuministros = element.getChild("suministros").getChildren();
+                            List<Element> listaSuministros = ambulatorio.getChild("suministros").getChildren();
                             for (Element suministro : listaSuministros) {
                                 if (suministro.getChild("codigo").getText().equals(codigoSum)){
                                     List<Element> listaUnidades = suministro.getChild("unidades").getChildren();
                                     for (Element unidad : listaUnidades) {
                                         if (unidad.getChild("codigo").getText().equals(String.valueOf(uni.getCodigo()))){
-                                            unidad.getChild("codigo").setText(String.valueOf(uni.getCodigo()));
+                                            unidad.getChild("codigo").setText(String.valueOf(codigoNuevo));
                                             unidad.getChild("ubicacion").setText(uni.getUbicacion());
                                             encontrado=true;
                                         }
@@ -807,7 +802,7 @@ public class PClinica {
                     List<Element> listaAmbulatorios = element.getChild("ambulatorios").getChildren();
                     for(Element ambulatorio : listaAmbulatorios){
                         if(ambulatorio.getChild("RIF").getText().equals(RIF_Ambulatorio)){
-                            List<Element> listaSuministros = element.getChild("suministros").getChildren();
+                            List<Element> listaSuministros = ambulatorio.getChild("suministros").getChildren();
                             for (Element suministro : listaSuministros) {
                                 if (suministro.getChild("codigo").getText().equals(codigoSum)){
                                     List<Element> listaUnidades = suministro.getChild("unidades").getChildren();

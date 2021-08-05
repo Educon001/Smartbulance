@@ -3,6 +3,7 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import persistencia.PClinica;
 
 public class Suministro {
     //Atributos
@@ -27,6 +28,8 @@ public class Suministro {
         this.nombre = nombre;
         this.descripción = descripción;
         this.codigo = codigo;
+        movimientos = new ArrayList<>();
+        unidades = new ArrayList<>();
     }
     
     //Getters y setters
@@ -84,14 +87,20 @@ public class Suministro {
         return cantidad;
     }
     
-    public void registrarMovimiento(Movimiento mov){
+    public void registrarMovimiento(Movimiento mov, String RIFCli, String RIFAmb){
         movimientos.add(mov);
         if (mov.getTipo().equals("Entrada")){
             for (Unidad uni : mov.getUnidades()) {
-                unidades.add(uni);                
+                unidades.add(uni);
+                PClinica persistencia = new PClinica();
+                persistencia.agregarUnidad(uni, RIFCli, RIFAmb, String.valueOf(codigo));
             }
         }
         else if (mov.getTipo().equals("Salida")){
+            for (Unidad uni : mov.getUnidades()){
+                PClinica persistencia = new PClinica();
+                persistencia.Unidad_EliminarXMLElement(RIFCli, RIFAmb, String.valueOf(codigo),String.valueOf(uni.getCodigo()));
+            }
             unidades.removeAll(Arrays.asList(mov.getUnidades()));
         }
         else{
@@ -99,12 +108,14 @@ public class Suministro {
                 for (Unidad uni : unidades){
                     if (uni.equals(mov.getUnidades()[i])){
                         uni.setUbicacion(((Reubicacion) mov).getDestino());
+                        PClinica persistencia = new PClinica();
+                        persistencia.modificarUnidad(uni, RIFCli, RIFAmb, String.valueOf(codigo),uni.getCodigo());
                         break;
                     }
                 }
             }
         }
-        asignarCodigos();
+        asignarCodigos(RIFCli,RIFAmb);
     }
     
     public Unidad buscarUnidad(int cod){
@@ -115,9 +126,11 @@ public class Suministro {
         return null;
     }
     
-    private void asignarCodigos(){
+    private void asignarCodigos(String RIFCli, String RIFAmb){
         int i=1;
         for (Unidad uni : unidades) {
+            PClinica persistencia = new PClinica();
+            persistencia.modificarUnidad(uni, RIFCli, RIFAmb, String.valueOf(codigo),i);
             uni.setCodigo(i);
             i++;
         }

@@ -372,12 +372,10 @@ public class MenúPrincipal extends javax.swing.JFrame{
         labelEmergencias = new javax.swing.JLabel();
         jScrollPane21 = new javax.swing.JScrollPane();
         tablaHistEmg = new javax.swing.JTable();
-        jScrollPane22 = new javax.swing.JScrollPane();
-        tablaEmgReciente = new javax.swing.JTable();
-        labelEmergencias1 = new javax.swing.JLabel();
         btnVerHistEmg = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVerDescripcionEmg = new javax.swing.JButton();
         btnCerrarEmg = new javax.swing.JButton();
+        btnOtroPaciente = new javax.swing.JButton();
         fondoPacientes = new javax.swing.JLabel();
         panelOpciones = new javax.swing.JPanel();
         botonAmbulancias = new javax.swing.JLabel();
@@ -3187,6 +3185,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         jLabel17.setText("Vehículo seleccionado");
 
         radioAmbEmer.setBackground(new java.awt.Color(255, 255, 255));
+        grupoDestinoPaciente.add(radioAmbEmer);
         radioAmbEmer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioAmbEmer.setText("Ambulatorio");
         radioAmbEmer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3196,6 +3195,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         });
 
         radioClinicaEmer.setBackground(new java.awt.Color(255, 255, 255));
+        grupoDestinoPaciente.add(radioClinicaEmer);
         radioClinicaEmer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioClinicaEmer.setText("Clínica");
         radioClinicaEmer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3205,6 +3205,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         });
 
         radioRespRap.setBackground(new java.awt.Color(255, 255, 255));
+        grupoDestinoPaciente.add(radioRespRap);
         radioRespRap.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         radioRespRap.setText("Respuesta rápida");
         radioRespRap.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3291,11 +3292,11 @@ public class MenúPrincipal extends javax.swing.JFrame{
         panelRegistrarEmergencia.setLayout(panelRegistrarEmergenciaLayout);
         panelRegistrarEmergenciaLayout.setHorizontalGroup(
             panelRegistrarEmergenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistrarEmergenciaLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
+            .addComponent(pestRegEmer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistrarEmergenciaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tituloRegistrarEmergencia)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pestRegEmer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(66, 66, 66))
         );
         panelRegistrarEmergenciaLayout.setVerticalGroup(
             panelRegistrarEmergenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3304,7 +3305,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addComponent(tituloRegistrarEmergencia)
                 .addGap(32, 32, 32)
                 .addComponent(pestRegEmer, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Registrar emergencia", panelRegistrarEmergencia);
@@ -3344,23 +3345,12 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane21.setViewportView(tablaHistEmg);
-
-        tablaEmgReciente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        tablaHistEmg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaHistEmgMouseClicked(evt);
             }
-        ));
-        jScrollPane22.setViewportView(tablaEmgReciente);
-
-        labelEmergencias1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelEmergencias1.setText("Emergencia abierta (más reciente)");
+        });
+        jScrollPane21.setViewportView(tablaHistEmg);
 
         btnVerHistEmg.setBackground(new java.awt.Color(153, 204, 255));
         btnVerHistEmg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -3371,16 +3361,30 @@ public class MenúPrincipal extends javax.swing.JFrame{
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Ver descripción");
+        btnVerDescripcionEmg.setBackground(new java.awt.Color(153, 204, 255));
+        btnVerDescripcionEmg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnVerDescripcionEmg.setText("Ver descripción");
+        btnVerDescripcionEmg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerDescripcionEmgActionPerformed(evt);
+            }
+        });
 
         btnCerrarEmg.setBackground(new java.awt.Color(255, 0, 51));
         btnCerrarEmg.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnCerrarEmg.setText("Cerrar emergencia");
+        btnCerrarEmg.setText("Cerrar última emergencia");
         btnCerrarEmg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarEmgActionPerformed(evt);
+            }
+        });
+
+        btnOtroPaciente.setBackground(new java.awt.Color(255, 0, 0));
+        btnOtroPaciente.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnOtroPaciente.setText("Otro paciente");
+        btnOtroPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOtroPacienteActionPerformed(evt);
             }
         });
 
@@ -3392,25 +3396,26 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addGap(25, 25, 25)
                 .addGroup(panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelHistEmerLayout.createSequentialGroup()
-                        .addComponent(labelCI_HistEmg)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(g20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(125, 125, 125)
-                        .addComponent(btnVerHistEmg))
-                    .addGroup(panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(labelEmergencias)
-                        .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelEmergencias1))
-                    .addGroup(panelHistEmerLayout.createSequentialGroup()
                         .addComponent(btnCerrarEmg)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addComponent(btnVerDescripcionEmg))
+                    .addGroup(panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelHistEmerLayout.createSequentialGroup()
+                            .addComponent(labelCI_HistEmg)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cboCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(g20)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(41, 41, 41)
+                            .addComponent(btnVerHistEmg)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnOtroPaciente))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelEmergencias)
+                            .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(25, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHistEmerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelTituloHistEmg)
@@ -3427,18 +3432,15 @@ public class MenúPrincipal extends javax.swing.JFrame{
                     .addComponent(cboCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(g20)
                     .addComponent(txtCI_HistEmg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVerHistEmg))
+                    .addComponent(btnVerHistEmg)
+                    .addComponent(btnOtroPaciente))
                 .addGap(18, 18, 18)
                 .addComponent(labelEmergencias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(labelEmergencias1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane22, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(btnVerDescripcionEmg)
                     .addComponent(btnCerrarEmg))
                 .addGap(36, 36, 36))
         );
@@ -4580,6 +4582,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
             txtCI_Emergencia.setText(null);
             cboCI_Emergencia.setSelectedIndex(0);
             pestRegEmer.setSelectedIndex(0);
+            System.out.println(paciente.getEntradaSalida().get(paciente.getEntradaSalida().size()-1).getEntrada().toString());
             JOptionPane.showMessageDialog(null,"Emergencia registrada.","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
         }
         else
@@ -4612,7 +4615,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         }
         if(pestRegEmer.getSelectedIndex()==2){
             if(cRegistro.camposVaciosEmergencia_Paciente(txtCI_Emergencia,jTextArea1))pestRegEmer.setSelectedIndex(0);
-            else if(cRegistro.camposVaciosEmergencia_Ambulatorio(tablaAmbulatoriosDisp) || tablaAmbSelec.getRowCount()!=1) pestRegEmer.setSelectedIndex(1);
+            else if(tablaAmbSelec.getRowCount()!=1) pestRegEmer.setSelectedIndex(1);
             else if(!controlClinica.getClinica().isDisponible()){
                 radioClinicaEmer.setEnabled(false);
                 if(tablaVehSelec.getRowCount()!=1) controlEmergencia.titulosTablaVehSelec(tablaVehSelec);
@@ -4627,27 +4630,57 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private void btnVerHistEmgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerHistEmgActionPerformed
         if(!cRegistro.validarCI(txtCI_HistEmg.getText())) txtCI_HistEmg.setText(null);
         else if(controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_HistEmg,txtCI_HistEmg))==null)
-        controlEmergencia.pacienteNoEncontrado();
+            controlEmergencia.pacienteNoEncontrado();
         else{
+            txtCI_HistEmg.setEnabled(false);
+            cboCI_HistEmg.setEnabled(false);
             Paciente paciente = controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_HistEmg,txtCI_HistEmg));
             controlEmergencia.mostrarHistorial(tablaHistEmg,paciente.getEntradaSalida());
-            controlEmergencia.emergenciaAbierta(tablaEmgReciente,paciente);
         }
     }//GEN-LAST:event_btnVerHistEmgActionPerformed
 
     private void btnCerrarEmgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarEmgActionPerformed
         Paciente paciente = controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_HistEmg,txtCI_HistEmg));
-        if(tablaEmgReciente.getRowCount()!=1){
-            controlEmergencia.cerrarEmergencia(tablaEmgReciente,paciente);
+        if(paciente.getEntradaSalida().get(paciente.getEntradaSalida().size()-1).getSalida()==null){
+            paciente.getEntradaSalida().get(paciente.getEntradaSalida().size()-1).setSalida(new Date());
+            controlEmergencia.mostrarHistorial(tablaHistEmg,paciente.getEntradaSalida());
         }
-        else
-        JOptionPane.showMessageDialog(null,"No hay emergencias por cerrar.","Información",JOptionPane.INFORMATION_MESSAGE);
+        else 
+            JOptionPane.showMessageDialog(null,"No hay emergencia por cerrar.","Información",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCerrarEmgActionPerformed
 
     private void jTabbedPane4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane4MouseClicked
         if(jTabbedPane4.getSelectedComponent().toString().equals("Registrar emergencia"))
-        controlEmergencia.panelRegistro(pestRegEmer);
+            controlEmergencia.panelRegistro(pestRegEmer);
+        if(jTabbedPane4.getSelectedIndex()==4){
+           btnVerDescripcionEmg.setEnabled(false);
+           controlEmergencia.mostrarSoloTitulosEmergencia(tablaHistEmg);
+        }
     }//GEN-LAST:event_jTabbedPane4MouseClicked
+
+    private void btnOtroPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtroPacienteActionPerformed
+        cboCI_HistEmg.setEnabled(true);
+        cboCI_HistEmg.setSelectedIndex(0);
+        txtCI_HistEmg.setText(null);
+        txtCI_HistEmg.setEnabled(true);
+        controlEmergencia.mostrarSoloTitulosEmergencia(tablaHistEmg);
+    }//GEN-LAST:event_btnOtroPacienteActionPerformed
+
+    private void btnVerDescripcionEmgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDescripcionEmgActionPerformed
+        Paciente paciente = controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_HistEmg,txtCI_HistEmg));
+        Emergencia emg = controlEmergencia.emergenciaSeleccionada(tablaHistEmg, paciente);
+        if(emg!=null)
+            controlEmergencia.mostrarDescripcion(emg.getDescripcion());
+        else
+            JOptionPane.showMessageDialog(null,"Debe seleccionar un ítem de el historial.","Error",JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnVerDescripcionEmgActionPerformed
+
+    private void tablaHistEmgMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaHistEmgMouseClicked
+       Paciente paciente = controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_HistEmg,txtCI_HistEmg));
+        Emergencia emg = controlEmergencia.emergenciaSeleccionada(tablaHistEmg, paciente);
+        if(emg!=null)
+            btnVerDescripcionEmg.setEnabled(true);
+    }//GEN-LAST:event_tablaHistEmgMouseClicked
 
     /**
      * @param args the command line arguments
@@ -4781,11 +4814,13 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JButton btnDetalles;
     private javax.swing.JButton btnDetallesSum;
     private javax.swing.JButton btnEliminarPer;
+    private javax.swing.JButton btnOtroPaciente;
     private javax.swing.JButton btnRegistrarAsignacion;
     private javax.swing.JButton btnRegistrarEmer;
     private javax.swing.JButton btnRegistrarMantenimiento;
     private javax.swing.JButton btnRegistrarMov;
     private javax.swing.JButton btnRegistrarSum;
+    private javax.swing.JButton btnVerDescripcionEmg;
     private javax.swing.JButton btnVerHistEmg;
     private javax.swing.JComboBox<String> cboCI_Emergencia;
     private javax.swing.JComboBox<String> cboCI_HistEmg;
@@ -4819,7 +4854,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel guion4;
     private javax.swing.JButton jBTNRegistrar;
     private javax.swing.JButton jBtnEliminar;
-    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jFechaPago;
     private javax.swing.JComboBox<String> jGenero;
     private javax.swing.JLabel jLabel10;
@@ -4868,7 +4902,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
-    private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -4907,7 +4940,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JLabel labelDir_Taller;
     private javax.swing.JLabel labelDisponibleVeh;
     private javax.swing.JLabel labelEmergencias;
-    private javax.swing.JLabel labelEmergencias1;
     private javax.swing.JLabel labelEnMantenimiento;
     private javax.swing.JLabel labelEstado;
     private javax.swing.JLabel labelEstadoAmbulatorio;
@@ -5015,7 +5047,6 @@ public class MenúPrincipal extends javax.swing.JFrame{
     private javax.swing.JTable tablaAmbulatoriosDisp;
     private javax.swing.JTable tablaAsignados;
     private javax.swing.JTable tablaES;
-    private javax.swing.JTable tablaEmgReciente;
     private javax.swing.JTable tablaHistEmg;
     private javax.swing.JTable tablaInventarioVeh;
     private javax.swing.JTable tablaMantenimientosVeh;

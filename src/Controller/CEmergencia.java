@@ -245,23 +245,24 @@ public class CEmergencia {
     //Muestra todas las emergencias cerradas.
     public void mostrarHistorial(JTable tabla,ArrayList<Turno> turnos){
         String[] titulos = {"Código","Destino","Ambulatorio (RIF)","Vehículo (Serial)","Fecha de Entrada","Fecha Salida"};
-        String[][] datos = new String[turnos.size()][3];
+        String[][] datos = new String[turnos.size()][6];
         
         for(int i=0; i<turnos.size(); i++){
             if(turnos.get(i) instanceof Emergencia){
-                    if(turnos.get(i).getSalida()!=null){
-                        datos[i][0] = Integer.toString(((Emergencia) turnos.get(i)).getCodigo());
-                        if(((Emergencia) turnos.get(i)).isAmbulatorio())
-                            datos[i][1] = "Ambulatorio";
-                        if(((Emergencia) turnos.get(i)).isClinica())
-                            datos[i][1] = "Clínica";
-                        if(((Emergencia) turnos.get(i)).isRespuestaRapida())
+                datos[i][0] = Integer.toString(((Emergencia) turnos.get(i)).getCodigo());
+                    if(((Emergencia) turnos.get(i)).isAmbulatorio())
+                        datos[i][1] = "Ambulatorio";
+                    if(((Emergencia) turnos.get(i)).isClinica())
+                        datos[i][1] = "Clínica";
+                    if(((Emergencia) turnos.get(i)).isRespuestaRapida())
                         datos[i][1] = "Respuesta rápida";
                     datos[i][2] = ((Emergencia) turnos.get(i)).getRifAmbulatorio();
                     datos[i][3] = ((Emergencia) turnos.get(i)).getVehiculo();
-                    datos[i][4] = ((Emergencia) turnos.get(i)).toString();
-                    datos[i][5] = ((Emergencia) turnos.get(i)).toString();
-                }
+                    datos[i][4] = ((Emergencia) turnos.get(i)).getEntrada().toString();
+                    if(((Emergencia) turnos.get(i)).getSalida()!=null)
+                        datos[i][5] = ((Emergencia) turnos.get(i)).getSalida().toString();
+                    else
+                       datos[i][5] = "En progreso"; 
             }
         }
 
@@ -271,38 +272,6 @@ public class CEmergencia {
         tabla.getTableHeader().setReorderingAllowed(false);
     }
     
-    //Muestra la última emergencia abierta
-    //FALTA CONFIRMAR TAMAÑO DE COLUMNAS
-    public void mostrarEmgAbierta(JTable tabla,Turno turno){
-        String[] titulos = {"Código","Destino","Ambulatorio (RIF)","Vehículo (Serial)","Fecha de Entrada","Fecha Salida"};
-        String[][] datos = new String[1][3];
-        
-        if(turno instanceof Emergencia){
-            datos[0][0] = Integer.toString(((Emergencia) turno).getCodigo());
-            if(((Emergencia) turno).isAmbulatorio())
-                datos[0][1] = "Ambulatorio";
-            if(((Emergencia) turno).isClinica())
-                datos[0][1] = "Clínica";
-            if(((Emergencia) turno).isRespuestaRapida())
-                datos[0][1] = "Respuesta rápida";
-            datos[0][2] = ((Emergencia) turno).getRifAmbulatorio();
-            datos[0][3] = ((Emergencia) turno).getVehiculo();
-            datos[0][4] = ((Emergencia) turno).getEntrada().toString();
-            datos[0][5] = "No se ha cerrado";
-        }
-
-        TableModel modelo = new DefaultTableModel(datos,titulos);
-        tabla.setModel(modelo);
-        tabla.setDefaultEditor(Object.class, null);
-        tabla.getTableHeader().setReorderingAllowed(false);
-    }
-    
-    public void emergenciaAbierta(JTable tabla, Paciente paciente){
-        Turno turno = paciente.getEntradaSalida().get(paciente.getEntradaSalida().size()-1);
-        if(turno.getSalida()==null)
-            mostrarEmgAbierta(tabla,turno);
-        else mostrarSoloTitulosEmergencia(tabla);
-    }
    
     
 //    public Emergencia emergenciaAbierta(JTable tabla,Paciente paciente){
@@ -329,6 +298,7 @@ public class CEmergencia {
     
     public void mostrarDescripcion(String descripcion){
         DescripcionEmergencia ventanaDescrip = new DescripcionEmergencia(descripcion);
+        ventanaDescrip.setVisible(true);
     }
     
     public void cerrarEmergencia(JTable tablaUlt,Paciente paciente){

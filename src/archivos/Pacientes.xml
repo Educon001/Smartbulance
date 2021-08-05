@@ -1,0 +1,10 @@
+<root>
+  <Paciente>
+    <cedula>V-222</cedula>
+    <nombre>PEPE</nombre>
+    <correo>FFD@GMAIL.COM</correo>
+    <telefono>0333-2222222</telefono>
+    <nacimiento>2021-08-04</nacimiento>
+    <genero>M</genero>
+  </Paciente>
+</root>

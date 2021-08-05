@@ -2,8 +2,11 @@ package Controller;
 
 import Modelo.*;
 import Vista.DescripcionEmergencia;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,6 +16,8 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import org.jdom.JDOMException;
+import persistencia.PPaciente;
 
 public class CEmergencia {
     
@@ -231,6 +236,15 @@ public class CEmergencia {
         Emergencia emg = new Emergencia(txtAreaDescripcion.getText(), radioResp.isSelected(),radioAmb.isSelected(), radioClinica.isSelected(),ambulatorio.getRIF(),veh.getSerial(),codigo,entrada,null); 
         //SE AGREGA A LA LISTA DE EMERGENCIAS DEL PACIENTE
         pac.getEntradaSalida().add(emg);
+        PPaciente persistencia;
+        try {
+            persistencia = new PPaciente();
+            persistencia.agregarEmergencia(pac.getCedula(),emg);
+        } catch (IOException ex) {
+            Logger.getLogger(CEmergencia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JDOMException ex) {
+            Logger.getLogger(CEmergencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

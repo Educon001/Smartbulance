@@ -2,11 +2,15 @@
 package Controller;
 
 import Modelo.*;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import org.jdom.JDOMException;
 import persistencia.PClinica;
+import persistencia.PPaciente;
 
 public class CSistema {
     //ATRIBUTOS
@@ -16,10 +20,11 @@ public class CSistema {
     //Clinica prueba = new Clinica("Clinic","0212-9435176","J-12345678-1","Amazonas","Maracaibo","Calle 13");
     
     //CONSTRUCTORES
-    public CSistema() {
+    public CSistema() throws IOException, JDOMException, ParseException {
         PClinica persi = new PClinica();
         listaClinicas = persi.todosLasClinicas();
-        listaPacientes = new ArrayList<>();  
+        PPaciente persiPac = new PPaciente();
+        listaPacientes = persiPac.todosLosPacientes();  
     }
        // String nombre, String telefono, String RIF, String estado, String ciudad, String direccion
     //GETTERS Y SETTERS
@@ -44,8 +49,10 @@ public class CSistema {
         listaClinicas.add(cli);
     }
     
-    public void agregarPaciente(Paciente pac){
+    public void agregarPaciente(Paciente pac) throws IOException, JDOMException{
         listaPacientes.add(pac);
+        PPaciente persistencia = new PPaciente();
+        persistencia.agregarPaciente(pac);
     }
     
     public void eliminarPaciente(Paciente pac){

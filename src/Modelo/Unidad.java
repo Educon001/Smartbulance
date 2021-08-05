@@ -13,6 +13,12 @@ public class Unidad {
         this.fVencimiento = fVencimiento;
     }
 
+    public Unidad(int codigo, String ubicacion, String fVencimiento) {
+        this.codigo = codigo;
+        this.ubicacion = ubicacion;
+        this.fVencimiento = fVencimiento;
+    }
+
     public int getCodigo() {
         return codigo;
     }

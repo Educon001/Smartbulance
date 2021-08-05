@@ -13,6 +13,12 @@ public class Reubicacion extends Movimiento{
         this.destino = destino;
     }
 
+    public Reubicacion(String origen, String destino, LocalDate fecha, Unidad[] unidades, String tipo) {
+        super(fecha, unidades, tipo);
+        this.origen = origen;
+        this.destino = destino;
+    }
+
     public String getOrigen() {
         return origen;
     }

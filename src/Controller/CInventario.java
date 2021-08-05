@@ -11,13 +11,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.*;
+import persistencia.PClinica;
 
 public class CInventario {
     
     private Ambulatorio ambulatorio;
+    private String RIFCli;
 
-    public CInventario(Ambulatorio ambulatorio) {
+    public CInventario(Ambulatorio ambulatorio, String RIFCli) {
         this.ambulatorio = ambulatorio;
+        this.RIFCli = RIFCli;
     }
 
     public CInventario() {
@@ -52,6 +55,8 @@ public class CInventario {
     public void registrarSuministro(String tipo, String nombre, String descripcion){
         Suministro sum = new Suministro(tipo,nombre,descripcion);
         ambulatorio.agregarSuministro(sum);
+        PClinica persistencia = new PClinica();
+        persistencia.agregarSuministro(sum, RIFCli, ambulatorio.getRIF());
     }
     
     public Suministro obtenerObjetoSeleccionado(JTable tabla){
@@ -227,10 +232,12 @@ public class CInventario {
             }
         }else if (comboAplica.equals("No aplica"))
             for (int i = 0; i < unidades.length; i++) {
-                unidades[i] = new Unidad("Almacen",comboAplica); 
+                unidades[i] = new Unidad(-1-i,"Almacen",comboAplica); 
             }     
         Movimiento mov = new Movimiento(LocalDate.now(),unidades,"Entrada");
-        sum.registrarMovimiento(mov);
+        sum.registrarMovimiento(mov, RIFCli, ambulatorio.getRIF());
+        PClinica persistencia = new PClinica();
+        persistencia.agregarMovimiento(mov, RIFCli, ambulatorio.getRIF(), String.valueOf(sum.getCodigo()));
     }
     
     public void registrarSalida(String comboArgumento, String txtArgumento, JList lista, Suministro sum){
@@ -246,7 +253,9 @@ public class CInventario {
             unidades[i]=sum.buscarUnidad(cod);
         }
         Movimiento mov = new Salida(argumento,LocalDate.now(),unidades,"Salida");
-        sum.registrarMovimiento(mov);
+        sum.registrarMovimiento(mov, RIFCli, ambulatorio.getRIF());
+        PClinica persistencia = new PClinica();
+        persistencia.agregarMovimiento(mov, RIFCli, ambulatorio.getRIF(), String.valueOf(sum.getCodigo()));
     }
     
     public void registrarReubicacion(String destino, Object[] objetos, Suministro sum, JTable tabla){
@@ -257,7 +266,9 @@ public class CInventario {
             }
             Movimiento mov = new Reubicacion(destino,LocalDate.now(),unidades,"Reubicacion");
             ((Reubicacion) mov).setOrigen(unidades[0].getUbicacion());
-            sum.registrarMovimiento(mov);
+            sum.registrarMovimiento(mov, RIFCli, ambulatorio.getRIF());
+            PClinica persistencia = new PClinica();
+            persistencia.agregarMovimiento(mov, RIFCli, ambulatorio.getRIF(), String.valueOf(sum.getCodigo()));
         }else
             JOptionPane.showMessageDialog(null, "El destino debe ser diferente al origen", "Error", JOptionPane.ERROR_MESSAGE);
     }

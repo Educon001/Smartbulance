@@ -14,9 +14,12 @@ import com.toedter.calendar.JTextFieldDateEditor;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import persistencia.PClinica;
+import persistencia.PPaciente;
 
 /**
  *
@@ -50,7 +53,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
         this.controlVehiculo = new CVehiculo(controlClinica.getClinica());
         txtAreaMecanicos.setText(null);
         controlSistema.mostrarPagosGlobal(jTablePagos);
-        
+        pac.mostrarPacientes(jTablePacientes, controlSistema.getListaPacientes(),btnDetalles,jBtnEliminar,jbtnModificar);
+
     }
 
     /**
@@ -2647,49 +2651,38 @@ public class MenúPrincipal extends javax.swing.JFrame{
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(jBTNRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(171, 171, 171))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTelfPaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtTelfPaciente2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel24)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(txtTelfPaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel23)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtTelfPaciente2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(8, 8, 8)))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(345, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addGap(422, 422, 422)
-                            .addComponent(jBTNRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel13)
-                            .addGap(18, 18, 18)
-                            .addComponent(jGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jLabel23))
+                            .addComponent(jGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2698,37 +2691,32 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboCI_Paciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBTNRegistrar)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addGap(23, 23, 23)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTelfPaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTelfPaciente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
                     .addComponent(jLabel11))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(Calendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(170, 170, 170))
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel7)
-                        .addComponent(jBTNRegistrar))
-                    .addGap(15, 15, 15)
-                    .addComponent(jLabel9)
-                    .addGap(30, 30, 30)
-                    .addComponent(jLabel10)
-                    .addGap(157, 157, 157)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel13)
-                        .addComponent(jGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(141, 141, 141))
         );
 
         JTextFieldDateEditor editor = (JTextFieldDateEditor) Calendario.getDateEditor();
@@ -3284,7 +3272,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
         panelRegistrarEmergencia.setLayout(panelRegistrarEmergenciaLayout);
         panelRegistrarEmergenciaLayout.setHorizontalGroup(
             panelRegistrarEmergenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pestRegEmer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
+            .addComponent(pestRegEmer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistrarEmergenciaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tituloRegistrarEmergencia)
@@ -3297,7 +3285,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addComponent(tituloRegistrarEmergencia)
                 .addGap(32, 32, 32)
                 .addComponent(pestRegEmer, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Registrar emergencia", panelRegistrarEmergencia);
@@ -3407,7 +3395,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelEmergencias)
                             .addComponent(jScrollPane21, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHistEmerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelTituloHistEmg)
@@ -3429,7 +3417,7 @@ public class MenúPrincipal extends javax.swing.JFrame{
                 .addGap(18, 18, 18)
                 .addComponent(labelEmergencias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addComponent(jScrollPane21, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(panelHistEmerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerDescripcionEmg)
@@ -4368,27 +4356,44 @@ public class MenúPrincipal extends javax.swing.JFrame{
 
     private void jBTNRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTNRegistrarActionPerformed
         try{
-        if ((cRegistro.validarTelf(txtTelf1,4)&& cRegistro.validarTelf(txtTelf2,7))&&(pac.validarCorreo(txtCorreo)==true)&&(pac.validarCedula(txtCedula)==true)&&(cRegistro.validarNombre(txtNombre)==true) ){
-            Date fecha;
-            fecha = Calendario.getDate();
-            LocalDate nacimiento = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            char ch = 'M';
-            if(jGenero.getSelectedIndex()==0){
-                ch='M';
-            }else if(jGenero.getSelectedIndex()==1){
+            
+            
+        if (controlSistema.buscarPaciente(cRegistro.construirCedula(cboCI_Paciente,txtCedula))==null){    
+            if ((cRegistro.validarTelf(txtTelf1,4)&& cRegistro.validarTelf(txtTelf2,7))&&(pac.validarCorreo(txtCorreo)==true)&&(pac.validarCedula(txtCedula)==true)&&(cRegistro.validarNombre(txtNombre)==true) ){
+                Date fecha;
+                fecha = Calendario.getDate();
+                LocalDate nacimiento = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                char ch = 'M';
+                if(jGenero.getSelectedIndex()==0){
+                    ch='M';
+                }else if(jGenero.getSelectedIndex()==1){
 
-                ch='F';
+                    ch='F';
 
+                }
+
+                String telef;
+                telef = cRegistro.construirTelf(txtTelfPaciente1, txtTelfPaciente2);
+                String cedula = cRegistro.construirCedula(cboCI_Paciente,txtCedula);
+
+                Paciente paciente = new Paciente(cedula, txtNombre.getText(),txtCorreo.getText(), telef, nacimiento,ch);
+
+                controlSistema.agregarPaciente(paciente);
+                JOptionPane.showMessageDialog(null,"Paciente Registrado Exitosamente");
+                txtTelfPaciente1.setText(null);
+                txtTelfPaciente2.setText(null);
+                txtCedula.setText(null);
+                txtNombre.setText(null);
+                txtCorreo.setText(null);
+                Calendario.setDate(null);
+
+                pac.mostrarPacientes(jTablePacientes, controlSistema.getListaPacientes(),btnDetalles,jBtnEliminar,jbtnModificar);
+            } else {
+
+                JOptionPane.showMessageDialog(null,"Todos los datos deben proporcionarse correctamente","Error", JOptionPane.ERROR_MESSAGE);
             }
-
-            String telef;
-            telef = cRegistro.construirTelf(txtTelfPaciente1, txtTelfPaciente2);
-            String cedula = cRegistro.construirCedula(cboCI_Paciente,txtCedula);
-
-            Paciente paciente = new Paciente(cedula, txtNombre.getText(),txtCorreo.getText(), telef, nacimiento,ch);
-
-            controlSistema.agregarPaciente(paciente);
-            JOptionPane.showMessageDialog(null,"Paciente Registrado Exitosamente");
+        }else{
+            JOptionPane.showMessageDialog(null,"La Cadula ingresada ya esta registrada","Error", JOptionPane.ERROR_MESSAGE);
             txtTelfPaciente1.setText(null);
             txtTelfPaciente2.setText(null);
             txtCedula.setText(null);
@@ -4396,10 +4401,8 @@ public class MenúPrincipal extends javax.swing.JFrame{
             txtCorreo.setText(null);
             Calendario.setDate(null);
 
-            pac.mostrarPacientes(jTablePacientes, controlSistema.getListaPacientes(),btnDetalles,jBtnEliminar,jbtnModificar);
-        } else {
 
-            JOptionPane.showMessageDialog(null,"Todos los datos deben proporcionarse correctamente","Error", JOptionPane.ERROR_MESSAGE);
+        
         }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
@@ -4464,15 +4467,19 @@ public class MenúPrincipal extends javax.swing.JFrame{
             if (cRegistro.validarCI(txtBuscarCedula.getText()) && cRegistro.datoEsNumerico(txtMonto) && jFechaPago.getDate()!=null){
 
                 Paciente pacienteAPagar = controlSistema.buscarPaciente(cRegistro.construirCedula(boxNacionalidadCedula, txtBuscarCedula));
+
                 Pago pago=new Pago(controlSistema.generarFactura(),jFechaPago.getDate(),Double.parseDouble(txtMonto.getText()));
 
                 pacienteAPagar.registrarPago(pago);
+                
+                PPaciente persistencia = new PPaciente();
+                persistencia.agregarPago(pacienteAPagar.getCedula(),pago);
+                
                 JOptionPane.showMessageDialog(null,"Pago Registrado Exitosamente");
                 txtBuscarCedula.setText(null);
                 txtMonto.setText(null);
                 jFechaPago.setDate(null);
                 controlSistema.mostrarPagosGlobal(jTablePagos);
-
             }
 
         }

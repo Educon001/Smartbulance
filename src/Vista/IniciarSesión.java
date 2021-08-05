@@ -6,7 +6,12 @@
 package Vista;
 
 import Controller.*;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.jdom.JDOMException;
 
 /**
  *
@@ -17,7 +22,7 @@ public class IniciarSesión extends javax.swing.JFrame {
     CVentana controlVentana;
     CRegistro controlRegistro;
     
-    public IniciarSesión() {
+    public IniciarSesión() throws IOException, JDOMException, ParseException {
         initComponents();
         controlSistema = new CSistema();
         controlVentana = new CVentana();
@@ -257,7 +262,15 @@ public class IniciarSesión extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IniciarSesión().setVisible(true);
+                try {
+                    new IniciarSesión().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(IniciarSesión.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (JDOMException ex) {
+                    Logger.getLogger(IniciarSesión.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(IniciarSesión.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -31,6 +31,62 @@
             <tipo>Conductor</tipo>
             <licencia>1</licencia>
           </personal>
+          <personal>
+            <cedula>V-7</cedula>
+            <nombre>Conductor dos</nombre>
+            <correo>cdos@m.com</correo>
+            <telefono>0212-1112233</telefono>
+            <nacimiento>2021-08-01</nacimiento>
+            <genero>M</genero>
+            <numCarnet>1</numCarnet>
+            <activo>true</activo>
+            <salario>2222.0</salario>
+            <fechaContrato>2021-08-04</fechaContrato>
+            <tipo>Conductor</tipo>
+            <licencia>22222</licencia>
+          </personal>
+          <personal>
+            <cedula>V-2</cedula>
+            <nombre>paramuno</nombre>
+            <correo>puno@g.com</correo>
+            <telefono>0212-1122334</telefono>
+            <nacimiento>2001-08-01</nacimiento>
+            <genero>M</genero>
+            <numCarnet>2</numCarnet>
+            <activo>true</activo>
+            <salario>11223.0</salario>
+            <fechaContrato>2021-08-04</fechaContrato>
+            <tipo>Paramédico</tipo>
+            <asignadoDRS>true</asignadoDRS>
+          </personal>
+          <personal>
+            <cedula>V-76543</cedula>
+            <nombre>paramdos</nombre>
+            <correo>puno@gmail.com</correo>
+            <telefono>0222-3335566</telefono>
+            <nacimiento>2001-08-03</nacimiento>
+            <genero>M</genero>
+            <numCarnet>3</numCarnet>
+            <activo>true</activo>
+            <salario>6543.0</salario>
+            <fechaContrato>2021-08-03</fechaContrato>
+            <tipo>Paramédico</tipo>
+            <asignadoDRS>true</asignadoDRS>
+          </personal>
+          <personal>
+            <cedula>V-65432</cedula>
+            <nombre>paramtres</nombre>
+            <correo>ptres@g.com</correo>
+            <telefono>0222-1111222</telefono>
+            <nacimiento>2001-08-15</nacimiento>
+            <genero>M</genero>
+            <numCarnet>4</numCarnet>
+            <activo>true</activo>
+            <salario>33322.0</salario>
+            <fechaContrato>2021-08-03</fechaContrato>
+            <tipo>Paramédico</tipo>
+            <asignadoDRS>false</asignadoDRS>
+          </personal>
         </Personal>
         <vehiculos>
           <compacto>

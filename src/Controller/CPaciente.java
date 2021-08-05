@@ -8,11 +8,14 @@ package Controller;
 import Modelo.Paciente;
 import Modelo.Pago;
 import com.toedter.calendar.JDateChooser;
+import java.io.IOException;
 import java.time.ZoneId;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JButton;
@@ -22,6 +25,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import org.jdom.JDOMException;
+import persistencia.PPaciente;
 
 /**
  *
@@ -123,13 +128,23 @@ public class CPaciente {
     }
    
     public void eliminarPaciente(CSistema sis,JTable tabla){        
-        int indice = tabla.getSelectedRow();   
-        String cod = tabla.getModel().getValueAt(indice,0).toString();
-        Paciente paciente;
-        paciente = sis.buscarPaciente(String.valueOf(cod));
-        ArrayList<Paciente> lista = sis.getListaPacientes();
-        lista.remove(paciente);
-        sis.setListaPacientes(lista);
+        try {
+            int indice = tabla.getSelectedRow();
+            String cod = tabla.getModel().getValueAt(indice,0).toString();
+            Paciente paciente;
+            paciente = sis.buscarPaciente(String.valueOf(cod));
+            ArrayList<Paciente> lista = sis.getListaPacientes();
+            lista.remove(paciente);
+            sis.setListaPacientes(lista);
+            PPaciente persistencia = new PPaciente();
+            persistencia.eliminarPaciente(paciente.getCedula());
+        } catch (IOException ex) {
+            Logger.getLogger(CPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JDOMException ex) {
+            Logger.getLogger(CPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
 }
